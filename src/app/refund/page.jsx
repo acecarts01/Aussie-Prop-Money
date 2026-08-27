@@ -8,6 +8,7 @@ export default function RefundPage() {
     <div className="container section" style={{ maxWidth: '68ch' }}>
       <Breadcrumbs trail={[{ label: 'Refunds', href: '/refund/' }]} />
       <h1>Refund Policy</h1>
+      <hr className="gold-rule" />
       <p>
         If your order arrives damaged, misprinted, or incorrect, contact us within 14 days of delivery for a
         replacement or refund. Because notes are printed to order, we don&rsquo;t offer change-of-mind refunds once

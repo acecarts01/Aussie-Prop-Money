@@ -9,6 +9,7 @@ export default function ShippingPage() {
     <div className="container section" style={{ maxWidth: '68ch' }}>
       <Breadcrumbs trail={[{ label: 'Shipping', href: '/shipping/' }]} />
       <h1>Shipping</h1>
+      <hr className="gold-rule" />
       <p>We ship within Australia only — no international shipping or marketing at this time.</p>
       <ul>
         <li>Free shipping on orders over {SITE.orderRules.freeShippingThreshold} AUD.</li>

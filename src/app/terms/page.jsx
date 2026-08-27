@@ -9,6 +9,7 @@ export default function TermsPage() {
     <div className="container section" style={{ maxWidth: '68ch' }}>
       <Breadcrumbs trail={[{ label: 'Terms', href: '/terms/' }]} />
       <h1>Terms of Service</h1>
+      <hr className="gold-rule" />
       <p>By ordering from {SITE.name}, you agree to the following:</p>
       <ul>
         <li>All products are novelty/prop items only. They are NOT LEGAL TENDER and must not be used to

@@ -1,7 +1,8 @@
 import { notFound } from 'next/navigation'
 import ProductCard from '@/components/ProductCard'
 import Breadcrumbs from '@/components/Breadcrumbs'
-import { CATEGORIES } from '@/config/site'
+import PageHeader from '@/components/PageHeader'
+import { CATEGORIES, NOTE_COLORS } from '@/config/site'
 import { getCategory, productsIn, absoluteUrl } from '@/lib/utils'
 
 export function generateStaticParams() {
@@ -24,18 +25,24 @@ export default function CategoryPage({ params }) {
   const products = productsIn(category.slug)
 
   return (
-    <div className="container section">
-      <Breadcrumbs trail={[{ label: 'Shop', href: '/shop/' }, { label: category.name, href: `/shop/${category.slug}/` }]} />
-      <h1>{category.name}</h1>
-      <p style={{ maxWidth: '60ch', color: 'var(--ink-soft)' }}>{category.description}</p>
+    <div>
+      <PageHeader
+        eyebrow="Shop by Denomination"
+        title={category.name}
+        subtitle={category.description}
+        accent={NOTE_COLORS[category.color]}
+        breadcrumbs={<Breadcrumbs trail={[{ label: 'Shop', href: '/shop/' }, { label: category.name, href: `/shop/${category.slug}/` }]} />}
+      />
 
-      {products.length > 0 ? (
-        <div className="grid grid-4" style={{ marginTop: '1.5rem' }}>
-          {products.map((p) => <ProductCard key={p.slug} product={p} />)}
-        </div>
-      ) : (
-        <p>No products in this category yet — check back soon.</p>
-      )}
+      <div className="container section">
+        {products.length > 0 ? (
+          <div className="grid grid-4">
+            {products.map((p) => <ProductCard key={p.slug} product={p} />)}
+          </div>
+        ) : (
+          <p>No products in this category yet — check back soon.</p>
+        )}
+      </div>
     </div>
   )
 }

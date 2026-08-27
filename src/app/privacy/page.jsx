@@ -9,6 +9,7 @@ export default function PrivacyPage() {
     <div className="container section" style={{ maxWidth: '68ch' }}>
       <Breadcrumbs trail={[{ label: 'Privacy', href: '/privacy/' }]} />
       <h1>Privacy Policy</h1>
+      <hr className="gold-rule" />
       <p>
         {SITE.name} collects only the information needed to process an order or respond to an enquiry: your name,
         email, and any details you provide in a form or order request. We do not sell customer data to third

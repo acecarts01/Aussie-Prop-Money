@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import QtyStepper from '@/components/QtyStepper'
 import WebForm from '@/components/WebForm'
+import PageHeader from '@/components/PageHeader'
 import { getCart, updateQty, removeFromCart, subtotal } from '@/lib/cart'
 import { formatPrice } from '@/lib/utils'
 import { SITE, PAYMENT_METHODS } from '@/config/site'
@@ -28,9 +29,9 @@ export default function CartPage() {
     .join('\n')
 
   return (
-    <div className="container section" style={{ maxWidth: '900px' }}>
-      <h1>Your Cart</h1>
-
+    <div>
+      <PageHeader eyebrow="Checkout" title="Your Cart" />
+      <div className="container section" style={{ maxWidth: '900px' }}>
       {items.length === 0 ? (
         <p>
           Your cart is empty. <Link href="/shop/">Browse the shop</Link>.
@@ -124,6 +125,7 @@ export default function CartPage() {
           </div>
         </>
       )}
+      </div>
     </div>
   )
 }

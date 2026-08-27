@@ -102,6 +102,7 @@ export default function HomePage() {
           <div className="section-head">
             <span className="eyebrow">Shop by Denomination</span>
             <h2>Every Australian Note, One Range</h2>
+            <hr className="gold-rule" />
           </div>
           <div className="grid grid-4">
             {CATEGORIES.filter((c) => ['five-dollar-notes','ten-dollar-notes','twenty-dollar-notes','fifty-dollar-notes','hundred-dollar-notes'].includes(c.slug)).map((c) => (
@@ -124,6 +125,7 @@ export default function HomePage() {
           <div className="section-head">
             <span className="eyebrow">Best Sellers</span>
             <h2>Popular With Productions &amp; Creators</h2>
+            <hr className="gold-rule" />
           </div>
           <div className="grid grid-4">
             {bestSellers.map((p) => <ProductCard key={p.slug} product={p} />)}
@@ -135,6 +137,7 @@ export default function HomePage() {
         <div className="container" style={{ maxWidth: '72ch' }}>
           <span className="eyebrow">About {SITE.name}</span>
           <h2>Built Compliance-First, From the Start</h2>
+          <hr className="gold-rule" />
           <p>{SITE.brandStatement}</p>
           <p>
             We ship within Australia only, price every pack the same regardless of payment method, and never offer
@@ -148,6 +151,7 @@ export default function HomePage() {
           <div className="section-head">
             <span className="eyebrow">Frequently Asked</span>
             <h2>Common Questions</h2>
+            <hr className="gold-rule" />
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
             {FAQS.map((f) => (
@@ -165,6 +169,7 @@ export default function HomePage() {
           <div className="section-head">
             <span className="eyebrow">Customer Reviews</span>
             <h2>{avgRating}★ from {REVIEWS.length} Reviews</h2>
+            <hr className="gold-rule" />
           </div>
           <div className="grid grid-3">
             {REVIEWS.slice(0, 6).map((r) => (

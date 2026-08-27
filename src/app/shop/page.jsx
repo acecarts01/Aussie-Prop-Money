@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import ProductCard from '@/components/ProductCard'
 import Breadcrumbs from '@/components/Breadcrumbs'
+import PageHeader from '@/components/PageHeader'
 import { CATEGORIES, PRODUCTS, NOTE_COLORS } from '@/config/site'
 import { absoluteUrl } from '@/lib/utils'
 
@@ -12,24 +13,26 @@ export const metadata = {
 
 export default function ShopPage() {
   return (
-    <div className="container section">
-      <Breadcrumbs trail={[{ label: 'Shop', href: '/shop/' }]} />
-      <h1>Shop Prop Money Australia</h1>
-      <p style={{ maxWidth: '60ch', color: 'var(--ink-soft)' }}>
-        Every category below ships Australia-wide. Reproductions follow RBA reproduction guidance and are clearly
-        marked NOT LEGAL TENDER.
-      </p>
+    <div>
+      <PageHeader
+        eyebrow="The Full Range"
+        title="Shop Prop Money Australia"
+        subtitle="Every category below ships Australia-wide. Reproductions follow RBA reproduction guidance and are clearly marked NOT LEGAL TENDER."
+        breadcrumbs={<Breadcrumbs trail={[{ label: 'Shop', href: '/shop/' }]} />}
+      />
 
-      <div className="chip-row" style={{ margin: '1.5rem 0' }}>
-        {CATEGORIES.map((c) => (
-          <Link key={c.slug} href={`/shop/${c.slug}/`} className="chip" style={{ textDecoration: 'none', borderColor: NOTE_COLORS[c.color] }}>
-            {c.name}
-          </Link>
-        ))}
-      </div>
+      <div className="container section">
+        <div className="chip-row" style={{ margin: '0 0 1.5rem' }}>
+          {CATEGORIES.map((c) => (
+            <Link key={c.slug} href={`/shop/${c.slug}/`} className="chip" style={{ textDecoration: 'none', borderColor: NOTE_COLORS[c.color] }}>
+              {c.name}
+            </Link>
+          ))}
+        </div>
 
-      <div className="grid grid-4">
-        {PRODUCTS.map((p) => <ProductCard key={p.slug} product={p} />)}
+        <div className="grid grid-4">
+          {PRODUCTS.map((p) => <ProductCard key={p.slug} product={p} />)}
+        </div>
       </div>
     </div>
   )

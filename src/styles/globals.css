@@ -196,7 +196,7 @@ a { color: inherit; }
 .trust-item { display: flex; align-items: center; gap: 0.6rem; font-size: 0.9rem; color: var(--ink-soft); flex: 1 1 200px; }
 
 /* ---------- Footer ---------- */
-.site-footer { border-top: 1px solid var(--line); background: var(--surface-2); padding: 2.5rem 0 1.5rem; }
+.site-footer { border-top: 3px solid var(--gold); background: var(--surface-2); padding: 2.5rem 0 1.5rem; }
 .footer-grid { display: flex; flex-wrap: wrap; gap: 2rem; justify-content: space-between; }
 .footer-col h4 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.75rem; }
 .footer-col ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.4rem; }
@@ -326,6 +326,10 @@ th, td { text-align: left; padding: 0.6rem 0.9rem; border-bottom: 1px solid var(
 .luxury-band .btn-outline { color: #fff; border-color: rgba(255,255,255,0.4); }
 .luxury-band .btn-outline:hover { border-color: #fff; }
 .luxury-band .gold-rule { background: linear-gradient(90deg, var(--gold-bright), transparent); }
+.luxury-band .breadcrumbs, .luxury-band .breadcrumbs a { color: rgba(243,239,231,0.55); }
+
+.page-header { padding: 3rem 0 2.5rem; }
+.page-header h1 { margin-top: 0.4rem; font-size: clamp(1.8rem, 4vw, 2.6rem); }
 
 /* ---------- Utility ---------- */
 .tap-target { min-width: 44px; min-height: 44px; }
