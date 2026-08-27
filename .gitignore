@@ -1,0 +1,7 @@
+node_modules/
+.next/
+out/
+.env
+.env.local
+docs/_contact-sheet.png
+.DS_Store

@@ -1,0 +1,38 @@
+# Australian Reserve Props
+
+> Premium Australian Prop Notes for Film, Theatre & Play
+
+Australian Reserve Props is an Australia-based novelty currency brand established in 2024, offering compliance-first prop money for film, theatre, content creation, education, and gifting. Australian Reserve Props ships Australia-wide and specialises in Australian-note-styled prop currency across all five denominations. Every note is reproduced under RBA reproduction guidance, clearly marked NOT LEGAL TENDER, and sold for novelty and production use only.
+
+## Contact
+- Email: [EMAIL]
+- Phone: [NUMBER]
+- Ships: Australia only
+
+## Categories
+- [$5 Prop Notes](https://thereservenote.com/shop/five-dollar-notes/): $19.95-$19.95 AUD, Australian $5-style prop notes — the smallest denomination in the range, popular for party favours, magic tricks, and scenes needing a lower-value note.
+- [$10 Prop Notes](https://thereservenote.com/shop/ten-dollar-notes/): $22.95-$22.95 AUD, Australian $10-style prop notes, a common choice for content creators and everyday prank or gift use.
+- [$20 Prop Notes](https://thereservenote.com/shop/twenty-dollar-notes/): $24.95-$24.95 AUD, Australian $20-style prop notes, sized for magic tricks, photo props, and mid-range prop budgets.
+- [$50 Prop Notes](https://thereservenote.com/shop/fifty-dollar-notes/): $27.95-$27.95 AUD, Australian $50-style prop notes, the most requested denomination for film and theatre productions.
+- [$100 Prop Notes](https://thereservenote.com/shop/hundred-dollar-notes/): $29.95-$29.95 AUD, Australian $100-style prop notes for briefcase scenes, high-stakes narratives, and premium-looking stacks.
+- [Packs & Bundles](https://thereservenote.com/shop/packs-bundles/): $34.95-$89.95 AUD, Mixed-denomination and bulk packs for productions and events needing more than a single note type.
+- [Kids Play Money](https://thereservenote.com/shop/kids-play-money/): $19.95-$19.95 AUD, Educational Australian-style play money for classrooms, pretend play, and teaching kids to count currency.
+- [Gift Sets](https://thereservenote.com/shop/gift-sets/): $39.95-$39.95 AUD, Novelty money gift boxes for birthdays, graduations, and gag gifts.
+- [Accessories](https://thereservenote.com/shop/accessories/): $16.95-$16.95 AUD, Money guns, refill packs, and display cases to go with your prop notes.
+
+## Compliance
+All products are reproduced to differ from genuine Australian currency by at least 25% in size, per RBA
+reproduction guidance, are clearly marked NOT LEGAL TENDER, and carry no replicated banknote security features.
+No custom or buyer-specified serial numbers are offered under any circumstances.
+
+## Key pages
+- [Shop](https://thereservenote.com/shop/): full catalog
+- [Wholesale](https://thereservenote.com/wholesale/): bulk/production orders
+- [FAQ](https://thereservenote.com/faq/): legal and ordering questions
+- [Blog](https://thereservenote.com/blog/): buying guides
+
+## Optional
+- [API Catalog](https://thereservenote.com/.well-known/api-catalog)
+- [Agent Skills](https://thereservenote.com/.well-known/agent-skills/index.json)
+- [MCP Server Card](https://thereservenote.com/.well-known/mcp/server-card.json)
+- [Auth](https://thereservenote.com/auth.md)

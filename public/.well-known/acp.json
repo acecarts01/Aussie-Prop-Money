@@ -1,0 +1,43 @@
+{
+  "protocol": {
+    "name": "acp",
+    "version": "0.1.0"
+  },
+  "name": "Australian Reserve Props",
+  "description": "Premium Australian Prop Notes for Film, Theatre & Play",
+  "api_base_url": "https://thereservenote.com",
+  "homepage": "https://thereservenote.com",
+  "transports": [
+    "https"
+  ],
+  "capabilities": {
+    "services": [
+      "product-catalog",
+      "wholesale",
+      "blog",
+      "faq"
+    ],
+    "ordering": "human-assisted",
+    "payment_methods": [
+      "bank-transfer",
+      "payid",
+      "crypto-BTC",
+      "crypto-USDT",
+      "crypto-ETH",
+      "crypto-BNB"
+    ],
+    "currency": "AUD",
+    "minimum_order_usd": 0,
+    "free_shipping_threshold_usd": 75
+  },
+  "contact": {
+    "email": "[EMAIL]"
+  },
+  "legal": {
+    "age_restriction": "none",
+    "region": "AU",
+    "ships_to": "Australia only",
+    "product_type": "novelty currency",
+    "compliance": "RBA reproduction guidance + Crimes (Currency) Act 1981"
+  }
+}

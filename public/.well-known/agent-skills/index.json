@@ -1,0 +1,36 @@
+{
+  "$schema": "https://agentskills.io/schema/v0.2.0/index.json",
+  "name": "Australian Reserve Props",
+  "url": "https://thereservenote.com",
+  "description": "Premium Australian Prop Notes for Film, Theatre & Play",
+  "skills": [
+    {
+      "name": "browse-products",
+      "type": "navigation",
+      "description": "Browse the full prop money catalog by denomination",
+      "url": "https://thereservenote.com/shop/",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "wholesale-inquiry",
+      "type": "commerce",
+      "description": "Bulk/production pricing and enquiry for film & theatre",
+      "url": "https://thereservenote.com/wholesale/",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "product-education",
+      "type": "content",
+      "description": "Legal and buying-guide blog content",
+      "url": "https://thereservenote.com/blog/",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "contact",
+      "type": "support",
+      "description": "Contact for orders or questions",
+      "url": "https://thereservenote.com/contact/",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}

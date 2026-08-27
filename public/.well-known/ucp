@@ -1,0 +1,52 @@
+{
+  "ucp": "1.0",
+  "protocol_version": "1.0",
+  "spec": "https://ucp.dev/specification/overview/",
+  "schema": "https://ucp.dev/schema/v1.json",
+  "site": "https://thereservenote.com",
+  "name": "Australian Reserve Props",
+  "description": "Premium Australian Prop Notes for Film, Theatre & Play",
+  "services": [
+    {
+      "id": "product-catalog",
+      "type": "catalog",
+      "url": "https://thereservenote.com/shop/",
+      "description": "Full product catalog"
+    },
+    {
+      "id": "wholesale",
+      "type": "b2b",
+      "url": "https://thereservenote.com/wholesale/",
+      "description": "Wholesale pricing and bulk ordering"
+    }
+  ],
+  "capabilities": [
+    "browse",
+    "inquiry",
+    "wholesale",
+    "content"
+  ],
+  "endpoints": {
+    "catalog": "https://thereservenote.com/shop/",
+    "contact": "https://thereservenote.com/contact/",
+    "agent_skills": "https://thereservenote.com/.well-known/agent-skills/index.json",
+    "mcp_server_card": "https://thereservenote.com/.well-known/mcp/server-card.json",
+    "api_catalog": "https://thereservenote.com/.well-known/api-catalog",
+    "llms_txt": "https://thereservenote.com/llms.txt"
+  },
+  "currency": "AUD",
+  "minimum_order_usd": 0,
+  "payment_methods": [
+    "bank-transfer",
+    "payid",
+    "crypto-BTC",
+    "crypto-USDT",
+    "crypto-ETH",
+    "crypto-BNB"
+  ],
+  "legal": {
+    "age_restriction": "none",
+    "product_type": "novelty currency",
+    "compliance": "RBA reproduction guidance + Crimes (Currency) Act 1981"
+  }
+}
