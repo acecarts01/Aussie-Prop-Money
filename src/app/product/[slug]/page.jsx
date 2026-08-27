@@ -3,6 +3,8 @@ import ProductArt from '@/components/ProductArt'
 import ProductCard from '@/components/ProductCard'
 import AddToCartButton from '@/components/AddToCartButton'
 import Breadcrumbs from '@/components/Breadcrumbs'
+import ValueTable from '@/components/ValueTable'
+import SubmitSetReport from '@/components/SubmitSetReport'
 import { PRODUCTS, SITE } from '@/config/site'
 import { getProduct, getCategory, relatedProducts, formatPrice, absoluteUrl } from '@/lib/utils'
 
@@ -64,6 +66,7 @@ export default function ProductPage({ params }) {
           <h1 style={{ marginTop: '0.5rem' }}>{product.name}</h1>
           <p style={{ color: 'var(--ink-faint)' }}>{product.faceValueLabel}</p>
           <p className="product-price" style={{ fontSize: '1.6rem' }}>{formatPrice(product.price)}</p>
+          <hr className="gold-rule" />
           <p>{product.description}</p>
 
           <div className="callout" style={{ margin: '1.25rem 0' }}>
@@ -75,6 +78,10 @@ export default function ProductPage({ params }) {
         </div>
       </div>
 
+      <div style={{ marginTop: '3rem', maxWidth: '640px' }}>
+        <ValueTable currentSlug={product.slug} />
+      </div>
+
       {related.length > 0 && (
         <div style={{ marginTop: '3rem' }}>
           <h2 style={{ fontSize: '1.3rem' }}>You Might Also Like</h2>
@@ -83,6 +90,10 @@ export default function ProductPage({ params }) {
           </div>
         </div>
       )}
+
+      <div style={{ marginTop: '3rem', maxWidth: '640px' }}>
+        <SubmitSetReport productName={product.name} />
+      </div>
     </div>
   )
 }

@@ -47,12 +47,13 @@ export default function HomePage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(aggregateSchema) }} />
 
-      <section className="hero">
+      <section className="hero luxury-band">
         <div className="container hero-grid">
           <div>
             <span className="eyebrow">Australia-Only · Compliance-First</span>
             <h1 style={{ fontSize: 'clamp(2rem, 5vw, 3.2rem)' }}>Prop Money Australia, Done Properly</h1>
-            <p style={{ maxWidth: '48ch', fontSize: '1.05rem', color: 'var(--ink-soft)' }}>
+            <hr className="gold-rule" />
+            <p style={{ maxWidth: '48ch', fontSize: '1.05rem', color: 'rgba(243,239,231,0.78)' }}>
               Australian-note-styled prop currency for film, theatre, content creation, education, and gifting —
               all five denominations, reproduced to RBA reproduction guidance and clearly marked NOT LEGAL TENDER.
             </p>

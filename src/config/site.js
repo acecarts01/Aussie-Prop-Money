@@ -149,6 +149,18 @@ export const CATEGORIES = [
   },
 ]
 
+export const CIRCULATION_OPTIONS = [
+  { id: 'clean', label: 'Standard Clean', desc: 'Fresh from print, crisp and flat', price: 0 },
+  { id: 'light', label: 'Light Circulation', desc: 'Mild creases, lightly handled look', price: 5 },
+  { id: 'heavy', label: 'Heavy Circulation', desc: 'Simulated dirt, creases, frayed corners', price: 10 },
+]
+
+export const PACKAGING_OPTIONS = [
+  { id: 'band', label: 'Standard Paper Band', price: 0 },
+  { id: 'classic-band', label: 'Classic Currency Band', price: 0 },
+  { id: 'loose', label: 'Loose Notes', price: 0 },
+]
+
 const disclaimer =
   'Reproduced at a size that differs from genuine Australian currency by at least 25%, per RBA reproduction guidance. Clearly marked NOT LEGAL TENDER on every note, with no replicated banknote security features. For film, theatre, education, and novelty use only.'
 
