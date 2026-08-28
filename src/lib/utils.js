@@ -25,6 +25,13 @@ export function absoluteUrl(path = '/') {
   return `https://${SITE.domain}${clean}`
 }
 
+// Placeholder-art label only (see ProductArt) — real photos replace this entirely.
+export function artLabelFor(product) {
+  const dollarMatch = product.name.match(/\$\d+/)
+  if (dollarMatch) return dollarMatch[0]
+  return product.name.split(' ')[0].toUpperCase().slice(0, 10)
+}
+
 export function relatedProducts(product, count = 4) {
   return PRODUCTS.filter((p) => p.slug !== product.slug && p.category === product.category).slice(0, count)
 }

@@ -27,7 +27,7 @@ export default function CategoryPage({ params }) {
   return (
     <div>
       <PageHeader
-        eyebrow="Shop by Denomination"
+        eyebrow="Shop"
         title={category.name}
         subtitle={category.description}
         accent={NOTE_COLORS[category.color]}

@@ -6,7 +6,7 @@ import Breadcrumbs from '@/components/Breadcrumbs'
 import ValueTable from '@/components/ValueTable'
 import SubmitSetReport from '@/components/SubmitSetReport'
 import { PRODUCTS, SITE } from '@/config/site'
-import { getProduct, getCategory, relatedProducts, formatPrice, absoluteUrl } from '@/lib/utils'
+import { getProduct, getCategory, relatedProducts, formatPrice, absoluteUrl, artLabelFor } from '@/lib/utils'
 
 export function generateStaticParams() {
   return PRODUCTS.map((p) => ({ slug: p.slug }))
@@ -58,7 +58,7 @@ export default function ProductPage({ params }) {
 
       <div className="grid grid-2" style={{ alignItems: 'start', gap: '2.5rem' }}>
         <div className="product-frame" style={{ borderRadius: 'var(--radius)', border: '1px solid var(--line)' }}>
-          <ProductArt colorKey={category?.color} label={product.name.match(/\$\d+/)?.[0]} />
+          <ProductArt colorKey={category?.color} label={artLabelFor(product)} />
         </div>
 
         <div>

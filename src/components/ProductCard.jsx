@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import ProductArt from './ProductArt'
-import { getCategory, formatPrice } from '@/lib/utils'
+import { getCategory, formatPrice, artLabelFor } from '@/lib/utils'
 import { NOTE_COLORS } from '@/config/site'
 
 export default function ProductCard({ product }) {
@@ -11,7 +11,7 @@ export default function ProductCard({ product }) {
   return (
     <Link href={`/product/${product.slug}/`} className="product-card" style={{ '--tile-accent': accent, textDecoration: 'none', color: 'inherit' }}>
       <div className="product-frame">
-        <ProductArt colorKey={colorKey} />
+        <ProductArt colorKey={colorKey} label={artLabelFor(product)} />
       </div>
       <div className="product-body">
         {product.badge && <span className="product-badge">{product.badge}</span>}
