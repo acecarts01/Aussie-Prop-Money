@@ -19,7 +19,7 @@ export const SITE = {
   abn: '[ABN_PENDING]',
   gstRegistered: null, // null = unknown/pending — do not display a GST claim until this is set
   brandStatement:
-    'Australian Reserve Props is an Australia-based novelty currency brand established in 2024, offering compliance-first prop money for film, theatre, content creation, education, and gifting. Australian Reserve Props ships Australia-wide and specialises in Australian-note-styled prop currency across all five denominations. Every note is reproduced under RBA reproduction guidance, clearly marked NOT LEGAL TENDER, and sold for novelty and production use only.',
+    'Australian Reserve Props is an Australia-based novelty currency brand established in 2024, offering compliance-first prop money for film, theatre, content creation, education, and gifting. Australian Reserve Props ships Australia-wide and specialises in Australian-note-styled prop currency across our $20, $50, and $100 denominations. Every note is reproduced under RBA reproduction guidance, clearly marked NOT LEGAL TENDER, and sold for novelty and production use only.',
   orderRules: {
     minOrder: 0,
     freeShippingThreshold: 75,
@@ -86,20 +86,6 @@ export const NOTE_COLORS = {
 }
 
 export const CATEGORIES = [
-  {
-    slug: 'five-dollar-notes',
-    name: '$5 Prop Notes',
-    color: 'five',
-    description:
-      'Australian $5-style prop notes — the smallest denomination in the range, popular for party favours, magic tricks, and scenes needing a lower-value note.',
-  },
-  {
-    slug: 'ten-dollar-notes',
-    name: '$10 Prop Notes',
-    color: 'ten',
-    description:
-      'Australian $10-style prop notes, a common choice for content creators and everyday prank or gift use.',
-  },
   {
     slug: 'twenty-dollar-notes',
     name: '$20 Prop Notes',
@@ -210,32 +196,6 @@ const chequeDisclaimer =
 
 export const PRODUCTS = [
   {
-    slug: 'five-dollar-prop-note-stack',
-    name: '$5 AUD Prop Note Stack',
-    category: 'five-dollar-notes',
-    price: 19.95,
-    faceValueLabel: '$500 face value per stack',
-    badge: 'Party Favourite',
-    tags: ['five-dollar-prop-note', 'novelty-currency', 'not-legal-tender', 'party-prank-money'],
-    circulationOptions: true,
-    customSerials: false,
-    description: `A stack of 100 Australian $5-style prop notes, most often picked up for party favours, magic tricks, and photo props where a smaller denomination reads naturally. ${disclaimer}`,
-    images: ['placeholder-five.svg'],
-  },
-  {
-    slug: 'ten-dollar-prop-note-stack',
-    name: '$10 AUD Prop Note Stack',
-    category: 'ten-dollar-notes',
-    price: 22.95,
-    faceValueLabel: '$1,000 face value per stack',
-    badge: 'Creator Favourite',
-    tags: ['ten-dollar-prop-note', 'novelty-currency', 'not-legal-tender', 'content-creator-props'],
-    circulationOptions: true,
-    customSerials: false,
-    description: `A stack of 100 Australian $10-style prop notes, a regular pick for content creators filming unboxing, prank, and flex-style videos. ${disclaimer}`,
-    images: ['placeholder-ten.svg'],
-  },
-  {
     slug: 'twenty-dollar-prop-note-stack',
     name: '$20 AUD Prop Note Stack',
     category: 'twenty-dollar-notes',
@@ -284,7 +244,7 @@ export const PRODUCTS = [
     tags: ['mixed-denomination-pack', 'novelty-currency', 'not-legal-tender', 'gift-money-set'],
     circulationOptions: true,
     customSerials: false,
-    description: `A mixed pack spanning all five denominations, sized for a first order or a scene that needs visual variety rather than a single note type. ${disclaimer}`,
+    description: `A mixed pack spanning our $20, $50, and $100 denominations, sized for a first order or a scene that needs visual variety rather than a single note type. ${disclaimer}`,
     images: ['placeholder-mixed.svg'],
   },
   {
@@ -342,38 +302,6 @@ export const PRODUCTS = [
   },
 
   // --- Denomination half packs & jumbo packs ---
-  {
-    slug: 'five-dollar-half-pack', name: '$5 AUD Prop Note Half Pack', category: 'five-dollar-notes', price: 12.95,
-    faceValueLabel: '$250 face value per pack (50 notes)', badge: null,
-    tags: ['five-dollar-prop-note', 'novelty-currency', 'not-legal-tender', 'party-prank-money'],
-    circulationOptions: true, customSerials: false,
-    description: `A lighter 50-note pack of $5-style prop notes for a single scene or light party use. ${disclaimer}`,
-    images: ['placeholder-five-half.svg'],
-  },
-  {
-    slug: 'five-dollar-jumbo-pack', name: '$5 AUD Prop Note Jumbo Pack', category: 'five-dollar-notes', price: 39.95,
-    faceValueLabel: '$1,250 face value per pack (250 notes)', badge: null,
-    tags: ['five-dollar-prop-note', 'bulk-production-pack', 'not-legal-tender', 'novelty-currency'],
-    circulationOptions: true, customSerials: false,
-    description: `A 250-note bulk pack of $5-style prop notes for productions needing volume at the smaller denomination. ${disclaimer}`,
-    images: ['placeholder-five-jumbo.svg'],
-  },
-  {
-    slug: 'ten-dollar-half-pack', name: '$10 AUD Prop Note Half Pack', category: 'ten-dollar-notes', price: 14.95,
-    faceValueLabel: '$500 face value per pack (50 notes)', badge: null,
-    tags: ['ten-dollar-prop-note', 'novelty-currency', 'not-legal-tender', 'content-creator-props'],
-    circulationOptions: true, customSerials: false,
-    description: `A 50-note starter pack of $10-style prop notes, sized for a single content piece or quick top-up. ${disclaimer}`,
-    images: ['placeholder-ten-half.svg'],
-  },
-  {
-    slug: 'ten-dollar-jumbo-pack', name: '$10 AUD Prop Note Jumbo Pack', category: 'ten-dollar-notes', price: 44.95,
-    faceValueLabel: '$2,500 face value per pack (250 notes)', badge: null,
-    tags: ['ten-dollar-prop-note', 'bulk-production-pack', 'not-legal-tender', 'content-creator-props'],
-    circulationOptions: true, customSerials: false,
-    description: `A 250-note bulk pack of $10-style prop notes for creators and productions filming multiple takes. ${disclaimer}`,
-    images: ['placeholder-ten-jumbo.svg'],
-  },
   {
     slug: 'twenty-dollar-half-pack', name: '$20 AUD Prop Note Half Pack', category: 'twenty-dollar-notes', price: 16.95,
     faceValueLabel: '$1,000 face value per pack (50 notes)', badge: null,
@@ -556,10 +484,10 @@ export const PRODUCTS = [
   // --- Display & Collectibles ---
   {
     slug: 'denomination-display-frame', name: 'Complete Denomination Display Frame', category: 'display-collectibles', price: 89.0,
-    faceValueLabel: 'One note from each of the five denominations, framed', badge: null,
+    faceValueLabel: 'One note from each of our three denominations, framed', badge: null,
     tags: ['display-collectible', 'australian-reserve-props', 'not-legal-tender', 'novelty-currency'],
     circulationOptions: false, customSerials: false,
-    description: `A framed set of all five Australian denominations, glass-fronted for office or set-dressing display. ${disclaimer}`,
+    description: `A framed set of our three Australian denominations, glass-fronted for office or set-dressing display. ${disclaimer}`,
     images: ['placeholder-display-frame.svg'],
   },
   {
@@ -829,9 +757,9 @@ export const POSTS = [
     excerpt: 'TikTok, YouTube, and Instagram all have policies here — what to know before you film.',
     body: [
       'Prop money shows up constantly in unboxing videos, prank content, and "flex" style clips. The notes that hold up best on camera are clearly marked as props and sized differently from real currency — which, done right, is also exactly what keeps the content compliant with platform policy.',
-      'A $10 or $20 stack is usually enough for close-up shots; save the $100 stacks for wide shots or briefcase reveals where scale matters more than detail.',
+      'A $20 stack is usually enough for close-up shots; save the $100 stacks for wide shots or briefcase reveals where scale matters more than detail.',
       'Keep the "not legal tender" disclaimer visible in-frame where practical — it protects you as a creator and keeps the video itself unambiguous about what viewers are looking at.',
     ],
-    tags: ['content-creator-props', 'ten-dollar-prop-note'],
+    tags: ['content-creator-props', 'twenty-dollar-prop-note'],
   },
 ]

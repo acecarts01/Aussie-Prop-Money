@@ -160,7 +160,7 @@ a { color: inherit; }
 .brand { display: flex; align-items: center; gap: 0.6rem; font-family: var(--font-fraunces); font-weight: 600; font-size: 1.15rem; text-decoration: none; color: var(--ink); }
 .brand-mark {
   width: 34px; height: 34px; border-radius: 50%; flex-shrink: 0;
-  background: conic-gradient(var(--note-five), var(--note-ten), var(--note-twenty), var(--note-fifty), var(--note-hundred), var(--note-five));
+  background: conic-gradient(var(--note-twenty), var(--note-fifty), var(--note-hundred), var(--note-twenty));
   display: flex; align-items: center; justify-content: center; color: #fff; font-size: 0.85rem; font-weight: 700;
 }
 .nav-links { display: flex; gap: 1.5rem; list-style: none; margin: 0; padding: 0; }

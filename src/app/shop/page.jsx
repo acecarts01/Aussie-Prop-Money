@@ -7,7 +7,7 @@ import { productsIn, absoluteUrl } from '@/lib/utils'
 
 export const metadata = {
   title: 'Shop Prop Money Australia — All Denominations',
-  description: 'Browse Australian prop money by denomination, pack size, and use case — all five note values, plus vintage notes, briefcases, prop coins, confetti, display sets, personalised gifts, kids play money, and accessories.',
+  description: 'Browse Australian prop money by denomination, pack size, and use case — $20, $50, and $100 notes, plus vintage notes, briefcases, prop coins, confetti, display sets, personalised gifts, kids play money, and accessories.',
   alternates: { canonical: absoluteUrl('/shop/') },
 }
 

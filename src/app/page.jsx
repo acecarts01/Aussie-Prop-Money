@@ -6,7 +6,7 @@ import { absoluteUrl } from '@/lib/utils'
 export const metadata = {
   title: 'Prop Money Australia — Australian Reserve Props',
   description:
-    'Compliance-first Australian prop money for film, theatre, content creation, education, and gifting. All five denominations, Australia-wide shipping.',
+    'Compliance-first Australian prop money for film, theatre, content creation, education, and gifting. $20, $50, and $100 denominations, Australia-wide shipping.',
   alternates: { canonical: absoluteUrl('/') },
 }
 
@@ -55,7 +55,7 @@ export default function HomePage() {
             <hr className="gold-rule" />
             <p style={{ maxWidth: '48ch', fontSize: '1.05rem', color: 'rgba(243,239,231,0.78)' }}>
               Australian-note-styled prop currency for film, theatre, content creation, education, and gifting —
-              all five denominations, reproduced to RBA reproduction guidance and clearly marked NOT LEGAL TENDER.
+              $20, $50, and $100 denominations, reproduced to RBA reproduction guidance and clearly marked NOT LEGAL TENDER.
             </p>
             <div style={{ display: 'flex', gap: '0.75rem', marginTop: '1.5rem', flexWrap: 'wrap' }}>
               <Link href="/shop/" className="btn btn-accent">Shop All Denominations</Link>
@@ -64,10 +64,8 @@ export default function HomePage() {
           </div>
           <div className="hero-fan" aria-hidden="true">
             {[
-              { key: 'five', rot: -18, x: 0 },
-              { key: 'ten', rot: -8, x: 40 },
-              { key: 'twenty', rot: 2, x: 80 },
-              { key: 'fifty', rot: 12, x: 120 },
+              { key: 'twenty', rot: -14, x: 20 },
+              { key: 'fifty', rot: 4, x: 90 },
               { key: 'hundred', rot: 22, x: 160 },
             ].map((n, i) => (
               <div
@@ -81,7 +79,7 @@ export default function HomePage() {
                   animationDelay: `${i * 90}ms`,
                 }}
               >
-                ${n.key === 'five' ? 5 : n.key === 'ten' ? 10 : n.key === 'twenty' ? 20 : n.key === 'fifty' ? 50 : 100}
+                ${n.key === 'twenty' ? 20 : n.key === 'fifty' ? 50 : 100}
               </div>
             ))}
           </div>
@@ -105,7 +103,7 @@ export default function HomePage() {
             <hr className="gold-rule" />
           </div>
           <div className="grid grid-4">
-            {CATEGORIES.filter((c) => ['five-dollar-notes','ten-dollar-notes','twenty-dollar-notes','fifty-dollar-notes','hundred-dollar-notes'].includes(c.slug)).map((c) => (
+            {CATEGORIES.filter((c) => ['twenty-dollar-notes','fifty-dollar-notes','hundred-dollar-notes'].includes(c.slug)).map((c) => (
               <Link
                 key={c.slug}
                 href={`/shop/${c.slug}/`}

@@ -1,7 +1,7 @@
 import { PRODUCTS, NOTE_COLORS } from '@/config/site'
 import { getCategory, formatPrice } from '@/lib/utils'
 
-const DENOM_CATEGORIES = ['hundred-dollar-notes', 'fifty-dollar-notes', 'twenty-dollar-notes', 'ten-dollar-notes', 'five-dollar-notes']
+const DENOM_CATEGORIES = ['hundred-dollar-notes', 'fifty-dollar-notes', 'twenty-dollar-notes']
 
 export default function ValueTable({ currentSlug }) {
   const rows = DENOM_CATEGORIES
