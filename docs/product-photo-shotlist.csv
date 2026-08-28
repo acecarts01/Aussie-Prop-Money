@@ -1,10 +1,4 @@
 Category,Product Name,Price (AUD),Contents / Face Value,New or Existing,Photo Sourced (Y/N)
-$5 Prop Notes,$5 AUD Prop Note Stack,19.95,$500 face value (100 notes),Existing,
-$5 Prop Notes,$5 AUD Prop Note Half Pack,12.95,$250 face value (50 notes),New,
-$5 Prop Notes,$5 AUD Prop Note Jumbo Pack,39.95,"$1,250 face value (250 notes)",New,
-$10 Prop Notes,$10 AUD Prop Note Stack,22.95,"$1,000 face value (100 notes)",Existing,
-$10 Prop Notes,$10 AUD Prop Note Half Pack,14.95,$500 face value (50 notes),New,
-$10 Prop Notes,$10 AUD Prop Note Jumbo Pack,44.95,"$2,500 face value (250 notes)",New,
 $20 Prop Notes,$20 AUD Prop Note Stack,24.95,"$2,000 face value (100 notes)",Existing,
 $20 Prop Notes,$20 AUD Prop Note Half Pack,16.95,"$1,000 face value (50 notes)",New,
 $20 Prop Notes,$20 AUD Prop Note Jumbo Pack,49.95,"$5,000 face value (250 notes)",New,

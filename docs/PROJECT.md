@@ -44,13 +44,16 @@ Authority: Crimes (Currency) Act 1981 (Cth) + RBA Reproducing Banknotes guidance
 - Reviews: schema emitted only for client-confirmed-genuine reviews (see Section — Reviews below).
 
 ## I — Shop Structure
+**Superseded:** this section is the original 10-product intake plan. The live site has since grown to a
+42-product, 13-category catalog — see `docs/product-photo-shotlist.csv` for the current, accurate list. Kept
+below only as a historical record of the original scope.
+
 **Main categories:** Shop by Denomination · Shop by Use · Packs & Bundles · Accessories · Kids Play Money · Gift Sets
 
-**Denomination line (all five, as requested):**
+**Denomination line — minimum denomination is $20 AUD; $5 and $10 were removed from the catalog per owner
+decision (not carried into the live site):**
 | Product | Face value per stack | Proposed price (AUD) |
 |---|---|---|
-| $5 AUD Prop Note Stack | $500 | $19.95 |
-| $10 AUD Prop Note Stack | $1,000 | $22.95 |
 | $20 AUD Prop Note Stack | $2,000 | $24.95 |
 | $50 AUD Prop Note Stack | $5,000 | $27.95 |
 | $100 AUD Prop Note Stack | $10,000 | $29.95 |
