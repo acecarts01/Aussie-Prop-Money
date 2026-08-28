@@ -1,9 +1,26 @@
+import { Fraunces, Public_Sans } from 'next/font/google'
 import '../styles/globals.css'
 import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
 import ChatHub from '@/components/ChatHub'
 import { SITE } from '@/config/site'
 import { absoluteUrl } from '@/lib/utils'
+
+// next/font self-hosts these at build time — no runtime request to Google Fonts,
+// no render-blocking @import chain. Replaces the old globals.css @import.
+const fraunces = Fraunces({
+  subsets: ['latin'],
+  weight: ['500', '600', '700'],
+  variable: '--font-fraunces',
+  display: 'swap',
+})
+
+const publicSans = Public_Sans({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-public-sans',
+  display: 'swap',
+})
 
 export const metadata = {
   metadataBase: new URL(absoluteUrl('/')),
@@ -58,7 +75,7 @@ const websiteSchema = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang={SITE.locale}>
+    <html lang={SITE.locale} className={`${fraunces.variable} ${publicSans.variable}`}>
       <head>
         <script src="/js/webmcp.js" defer />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }} />

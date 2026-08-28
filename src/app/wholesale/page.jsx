@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import WebForm from '@/components/WebForm'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import PageHeader from '@/components/PageHeader'
@@ -21,7 +22,7 @@ export default function WholesalePage() {
       <div className="container section" style={{ maxWidth: '760px' }}>
         <p>
           Film, TV, and theatre productions needing volume across multiple scenes can order in bulk. Our{' '}
-          <a href="/product/bulk-production-pack/">Bulk Production Pack</a> is the starting point — get in touch for
+          <Link href="/product/bulk-production-pack/">Bulk Production Pack</Link> is the starting point — get in touch for
           larger custom quantities or a mix of specific denominations for your production.
         </p>
         <div className="callout" style={{ margin: '1.5rem 0' }}>
