@@ -167,6 +167,139 @@ export const CATEGORIES = [
   },
 ]
 
+// Keyword targeting per category, sourced from the Semrush AU exports in
+// `keywords export cluster/` (see docs/keyword-assignments.md for the full
+// sourced numbers). `verified: true` = real Semrush AU volume/KD backs this
+// set. `verified: false` = no data was exported for this cluster (briefcases,
+// confetti, display, personalised) — candidate terms only, same caveat as
+// the rest of docs/keyword-map.md. Products inherit their category's set,
+// since search demand was researched per-category, not per-SKU.
+export const CATEGORY_KEYWORDS = {
+  'twenty-dollar-notes': {
+    verified: true,
+    primary: 'australian 20 dollar bill',
+    supporting: ['aus $20 note', '$20 note australian', '$20 aus note', 'australian $20 note', '$20 notes'],
+  },
+  'fifty-dollar-notes': {
+    verified: true,
+    primary: '50 dollar note australia',
+    supporting: ['50 dollar bill australia', '$50 note', 'australian $50 note', 'australian 50 dollar bill', '50 dollar australian note'],
+  },
+  'hundred-dollar-notes': {
+    verified: true,
+    primary: '100 dollar note australia',
+    supporting: ['australian 100 dollar note', '$100 note', 'aus 100 dollar note', 'australian 100 dollar banknote', 'australian $100 note'],
+  },
+  'vintage-series-notes': {
+    verified: true,
+    primary: 'australian old notes',
+    supporting: ['old $20 note australia', 'old 20 dollar note australia', 'old notes australia', 'australian dollar old notes', 'australian gold notes'],
+  },
+  'packs-bundles': {
+    verified: true,
+    primary: 'au prop money',
+    supporting: ['prop money', 'fake money australia', 'realistic fake money australia', 'bulk fake money', 'prop money australia'],
+  },
+  'briefcases-bags': {
+    verified: false,
+    primary: 'prop money briefcase',
+    supporting: ['prop money briefcase australia', 'money briefcase prop', 'duffel bag prop money', 'briefcase full of fake money', 'money bag prop for film'],
+  },
+  'confetti-party-favors': {
+    verified: true,
+    primary: 'money lei',
+    supporting: ['graduation money lei', 'cash lei', 'graduation lei australia', 'leis with money', 'money confetti australia'],
+  },
+  'display-collectibles': {
+    verified: false,
+    primary: 'prop money display frame',
+    supporting: ['framed prop money australia', 'prop money collector case', 'limited edition prop money australia', 'money display case australia', 'office display prop money'],
+  },
+  'personalised-novelty': {
+    verified: false,
+    primary: 'personalised prop money',
+    supporting: ['personalised photo money note', 'custom prop money gift', 'novelty big cheque australia', 'giant cheque prop', 'personalised novelty cheque'],
+  },
+  'kids-play-money': {
+    verified: true,
+    primary: 'australian play money',
+    supporting: ['play money australia', 'australian play money printable', 'printable australian play money', 'play money printable australia', 'print off play money'],
+  },
+  'gift-sets': {
+    verified: true,
+    primary: 'graduation money lei',
+    supporting: ['graduation lei australia', 'leis with money', 'diy graduation money gift ideas', 'novelty money gift box australia', 'birthday money gift australia'],
+  },
+  accessories: {
+    verified: true,
+    primary: 'money gun',
+    supporting: ['money guns', 'money gun tiktok', 'toy money gun', 'fake money gun machine', 'cheap money gun'],
+  },
+}
+
+export const CATEGORY_FAQS = {
+  'twenty-dollar-notes': [
+    { q: 'How big is a prop $20 note compared to a real one?', a: 'Reproduced to differ from a genuine Australian $20 note by at least 25% in size, per RBA reproduction guidance, and clearly marked NOT LEGAL TENDER.' },
+    { q: "What's a $20 prop note stack good for?", a: 'Sized for magic tricks, photo props, and mid-range prop budgets — a common denomination for close-up work.' },
+    { q: 'Can I get an aged look on $20 notes?', a: 'Yes — every stack offers Standard Clean, Light Circulation, or Heavy Circulation at checkout.' },
+  ],
+  'fifty-dollar-notes': [
+    { q: 'Why is $50 the most requested denomination?', a: "It's the most requested by film and theatre productions for wallet, register, and handoff scenes — visually substantial without needing a huge stack." },
+    { q: 'Is the $50 prop note the same size as a real one?', a: 'No — reproduced to differ by at least 25% in size, per RBA guidance, and marked NOT LEGAL TENDER.' },
+    { q: 'What pack sizes are available?', a: 'Half Pack (50 notes), Stack (100 notes), and Jumbo Pack (250 notes).' },
+  ],
+  'hundred-dollar-notes': [
+    { q: "What's the $100 stack used for?", a: 'Briefcase reveals, high-stakes narrative scenes, and premium-looking stacks where scale matters.' },
+    { q: 'How many notes come in a $100 Jumbo Pack?', a: '250 notes, $25,000 in combined face value.' },
+    { q: 'Is it legal to reproduce a $100 note design?', a: 'Yes, provided it differs in size by at least 25%, carries no replicated security features, and is clearly marked NOT LEGAL TENDER — see our FAQ page for the full legal explanation.' },
+  ],
+  'vintage-series-notes': [
+    { q: 'What’s different about the Vintage & Legacy Series?', a: 'An older-style Australian note design, useful for period productions set before the current note series.' },
+    { q: 'Can I mix vintage and current-series notes in one order?', a: 'Yes — order any combination of Vintage and standard denomination products together.' },
+    { q: 'Are vintage notes compliant the same way?', a: 'Yes, the same 25% size-difference and NOT LEGAL TENDER marking applies.' },
+  ],
+  'packs-bundles': [
+    { q: "What's the difference between the Starter Pack and Bulk Production Pack?", a: 'The Starter Pack mixes all three denominations for a first order; the Bulk Production Pack is a much larger mixed-denomination volume built for productions needing multiple scenes.' },
+    { q: 'Do pack prices reflect the printed face value?', a: 'No — pricing reflects production cost, not face value, the same convention used across the industry.' },
+    { q: 'Can I request a custom mix of denominations?', a: 'For volumes beyond our standard packs, use the Wholesale enquiry form.' },
+  ],
+  'briefcases-bags': [
+    { q: 'Does the briefcase or bag come with the notes already inside?', a: 'Yes — each set is pre-packed with the stated face value of $100-style notes ready for a reveal shot.' },
+    { q: "What's the difference between the briefcase and duffel bag sets?", a: 'Face value and case style — briefcases suit $50,000-$250,000 reveals, the duffel bag set scales to $500,000 for larger scenes.' },
+    { q: 'Can I buy the case without notes, or notes without a case?', a: 'Currently these are sold as complete sets; contact us for a custom configuration.' },
+  ],
+  'confetti-party-favors': [
+    { q: 'Is money confetti reusable?', a: 'No — confetti and shredded cash are single-use party items.' },
+    { q: "What's a money lei used for?", a: 'A folded-note necklace, popular as a graduation or celebration gift in Australia.' },
+    { q: 'Are these items marked as novelty items?', a: 'Yes — the same NOT LEGAL TENDER marking and RBA-compliant sizing applies to any note-printed material, including leis and confetti.' },
+  ],
+  'display-collectibles': [
+    { q: 'Can the display frame be hung on a wall?', a: "Yes — it's glass-fronted and designed for office or set-dressing display." },
+    { q: 'What makes the Collector Case "limited edition"?', a: 'Each case is individually numbered.' },
+    { q: 'Does the Prop Money Counter actually count notes?', a: "No — it's a non-functional display prop for set dressing behind cash-counting scenes." },
+  ],
+  'personalised-novelty': [
+    { q: 'Whose photo can I put on a Personalised Photo Prop Note?', a: "Any photo you supply, for gifting or novelty purposes — it's a gag gift, not a reproduction of a real individual on legal tender." },
+    { q: 'Is the Novelty Big Cheque a real, bankable cheque?', a: 'No — it’s a novelty presentation piece only and cannot be deposited or cashed.' },
+    { q: 'Can I choose my own message and amount on the cheque?', a: 'Yes — both are fully customisable at checkout.' },
+  ],
+  'kids-play-money': [
+    { q: 'Is play money safe for young children?', a: "It's paper-based novelty currency, not a real financial product — supervise use with very young children as with any small paper item." },
+    { q: 'Is play money to scale with real Australian currency?', a: 'No — it’s designed for recognisability and counting practice, not as a size-accurate reproduction.' },
+    { q: 'Do you offer enough for a whole classroom?', a: 'Yes — the Classroom Play Money Bulk Pack is sized for 30 students.' },
+  ],
+  'gift-sets': [
+    { q: 'Are gift sets suitable for teenagers and adults?', a: 'Yes — birthday and graduation sets are designed as novelty cash gifts for any age.' },
+    { q: 'Can I add a card or message to a gift set?', a: "Not currently included — add your own card alongside the gift." },
+    { q: 'Do gift sets ship gift-wrapped?', a: "They arrive boxed; gift wrapping isn't currently offered as an add-on." },
+  ],
+  accessories: [
+    { q: 'What denomination does the Money Gun Refill Pack use?', a: '$50-style prop notes, sized for standard money guns.' },
+    { q: 'Does the Money Gun come with notes included?', a: "No — it's sold separately from refill packs." },
+    { q: 'What does the acrylic display case fit?', a: "A single stack or a small mixed set; it's sold empty." },
+  ],
+}
+
 export const CIRCULATION_OPTIONS = [
   { id: 'clean', label: 'Standard Clean', desc: 'Fresh from print, crisp and flat', price: 0 },
   { id: 'light', label: 'Light Circulation', desc: 'Mild creases, lightly handled look', price: 5 },
@@ -197,7 +330,7 @@ export const PRODUCTS = [
     circulationOptions: true,
     customSerials: false,
     description: `A stack of 100 Australian $20-style prop notes, sized and weighted for magic tricks and sleight-of-hand routines as well as general photo props. ${disclaimer}`,
-    images: ['placeholder-twenty.svg'],
+    images: ['twenty-dollar-prop-note-stack.webp'],
   },
   {
     slug: 'fifty-dollar-prop-note-stack',
@@ -210,7 +343,7 @@ export const PRODUCTS = [
     circulationOptions: true,
     customSerials: false,
     description: `A stack of 100 Australian $50-style prop notes — the denomination most often requested by film and theatre productions for wallet, register, and handoff scenes. ${disclaimer}`,
-    images: ['placeholder-fifty.svg'],
+    images: ['fifty-dollar-prop-note-stack.webp'],
   },
   {
     slug: 'hundred-dollar-prop-note-stack',
@@ -223,7 +356,7 @@ export const PRODUCTS = [
     circulationOptions: true,
     customSerials: false,
     description: `A stack of 100 Australian $100-style prop notes, built for briefcase reveals and high-value scenes where the stack needs to look substantial on camera. ${disclaimer}`,
-    images: ['placeholder-hundred.svg'],
+    images: ['hundred-dollar-prop-note-stack.webp'],
   },
   {
     slug: 'mixed-denomination-starter-pack',
@@ -236,7 +369,7 @@ export const PRODUCTS = [
     circulationOptions: true,
     customSerials: false,
     description: `A mixed pack spanning our $20, $50, and $100 denominations, sized for a first order or a scene that needs visual variety rather than a single note type. ${disclaimer}`,
-    images: ['placeholder-mixed.svg'],
+    images: ['mixed-denomination-starter-pack.webp'],
   },
   {
     slug: 'bulk-production-pack',
@@ -249,7 +382,7 @@ export const PRODUCTS = [
     circulationOptions: true,
     customSerials: false,
     description: `A large mixed-denomination pack built for film, TV, and theatre productions needing volume across multiple scenes. Wholesale pricing available on request. ${disclaimer}`,
-    images: ['placeholder-bulk.svg'],
+    images: ['bulk-production-pack.webp'],
   },
   {
     slug: 'kids-play-money-educational-set',
@@ -263,7 +396,7 @@ export const PRODUCTS = [
     customSerials: false,
     description:
       'An Australian-currency-styled play money set for classrooms and pretend play, designed to help kids learn to count and recognise note values. Clearly marked as play money and not legal tender.',
-    images: ['placeholder-kids.svg'],
+    images: ['kids-play-money-educational-set.webp'],
   },
   {
     slug: 'prop-money-gift-box-set',
@@ -276,7 +409,7 @@ export const PRODUCTS = [
     circulationOptions: true,
     customSerials: false,
     description: `A mixed-denomination stack presented in a gift box, aimed at birthdays, graduations, and gag gifts rather than production use. ${disclaimer}`,
-    images: ['placeholder-giftbox.svg'],
+    images: ['prop-money-gift-box-set.webp'],
   },
   {
     slug: 'money-gun-refill-pack',
@@ -289,7 +422,7 @@ export const PRODUCTS = [
     circulationOptions: false,
     customSerials: false,
     description: `A refill pack of $50-style prop notes sized for standard money guns, for parties and events. ${disclaimer}`,
-    images: ['placeholder-refill.svg'],
+    images: ['money-gun-refill-pack.webp'],
   },
 
   // --- Denomination half packs & jumbo packs ---
@@ -299,7 +432,7 @@ export const PRODUCTS = [
     tags: ['twenty-dollar-prop-note', 'novelty-currency', 'not-legal-tender', 'magic-trick-money'],
     circulationOptions: true, customSerials: false,
     description: `A 50-note pack of $20-style prop notes, a common size for magic routines and photo props. ${disclaimer}`,
-    images: ['placeholder-twenty-half.svg'],
+    images: ['twenty-dollar-half-pack.webp'],
   },
   {
     slug: 'twenty-dollar-jumbo-pack', name: '$20 AUD Prop Note Jumbo Pack', category: 'twenty-dollar-notes', price: 49.95,
@@ -307,7 +440,7 @@ export const PRODUCTS = [
     tags: ['twenty-dollar-prop-note', 'bulk-production-pack', 'not-legal-tender', 'magic-trick-money'],
     circulationOptions: true, customSerials: false,
     description: `A 250-note bulk pack of $20-style prop notes for larger magic acts or multi-scene productions. ${disclaimer}`,
-    images: ['placeholder-twenty-jumbo.svg'],
+    images: ['twenty-dollar-jumbo-pack.webp'],
   },
   {
     slug: 'fifty-dollar-half-pack', name: '$50 AUD Prop Note Half Pack', category: 'fifty-dollar-notes', price: 18.95,
@@ -315,7 +448,7 @@ export const PRODUCTS = [
     tags: ['fifty-dollar-prop-note', 'novelty-currency', 'not-legal-tender', 'film-prop-money'],
     circulationOptions: true, customSerials: false,
     description: `A 50-note pack of $50-style prop notes for a single scene needing a mid-size stack. ${disclaimer}`,
-    images: ['placeholder-fifty-half.svg'],
+    images: ['fifty-dollar-half-pack.webp'],
   },
   {
     slug: 'fifty-dollar-jumbo-pack', name: '$50 AUD Prop Note Jumbo Pack', category: 'fifty-dollar-notes', price: 54.95,
@@ -323,7 +456,7 @@ export const PRODUCTS = [
     tags: ['fifty-dollar-prop-note', 'bulk-production-pack', 'not-legal-tender', 'film-prop-money'],
     circulationOptions: true, customSerials: false,
     description: `A 250-note bulk pack of $50-style prop notes, our most-requested denomination for production runs. ${disclaimer}`,
-    images: ['placeholder-fifty-jumbo.svg'],
+    images: ['fifty-dollar-jumbo-pack.webp'],
   },
   {
     slug: 'hundred-dollar-half-pack', name: '$100 AUD Prop Note Half Pack', category: 'hundred-dollar-notes', price: 19.95,
@@ -331,7 +464,7 @@ export const PRODUCTS = [
     tags: ['hundred-dollar-prop-note', 'novelty-currency', 'not-legal-tender', 'film-prop-money'],
     circulationOptions: true, customSerials: false,
     description: `A 50-note pack of $100-style prop notes for a single briefcase or safe scene. ${disclaimer}`,
-    images: ['placeholder-hundred-half.svg'],
+    images: ['hundred-dollar-half-pack.webp'],
   },
   {
     slug: 'hundred-dollar-jumbo-pack', name: '$100 AUD Prop Note Jumbo Pack', category: 'hundred-dollar-notes', price: 59.95,
@@ -339,7 +472,7 @@ export const PRODUCTS = [
     tags: ['hundred-dollar-prop-note', 'bulk-production-pack', 'not-legal-tender', 'film-prop-money'],
     circulationOptions: true, customSerials: false,
     description: `A 250-note bulk pack of $100-style prop notes for large-scale briefcase or vault scenes. ${disclaimer}`,
-    images: ['placeholder-hundred-jumbo.svg'],
+    images: ['hundred-dollar-jumbo-pack.webp'],
   },
 
   // --- Vintage & Legacy Series ---
@@ -349,7 +482,7 @@ export const PRODUCTS = [
     tags: ['vintage-prop-note', 'twenty-dollar-prop-note', 'not-legal-tender', 'theatre-stage-money'],
     circulationOptions: true, customSerials: false,
     description: `An older-style $20 note design for period pieces and productions set before the current note series. ${disclaimer}`,
-    images: ['placeholder-vintage-twenty.svg'],
+    images: ['vintage-twenty-note-stack.webp'],
   },
   {
     slug: 'vintage-fifty-note-stack', name: 'Vintage $50 Note Stack', category: 'vintage-series-notes', price: 31.95,
@@ -357,7 +490,7 @@ export const PRODUCTS = [
     tags: ['vintage-prop-note', 'fifty-dollar-prop-note', 'not-legal-tender', 'theatre-stage-money'],
     circulationOptions: true, customSerials: false,
     description: `An older-style $50 note design, useful anywhere a production needs to signal an earlier decade. ${disclaimer}`,
-    images: ['placeholder-vintage-fifty.svg'],
+    images: ['vintage-fifty-note-stack.webp'],
   },
   {
     slug: 'vintage-hundred-note-stack', name: 'Vintage $100 Note Stack', category: 'vintage-series-notes', price: 34.95,
@@ -365,7 +498,7 @@ export const PRODUCTS = [
     tags: ['vintage-prop-note', 'hundred-dollar-prop-note', 'not-legal-tender', 'theatre-stage-money'],
     circulationOptions: true, customSerials: false,
     description: `An older-style $100 note design for period dramas and heritage-set productions. ${disclaimer}`,
-    images: ['placeholder-vintage-hundred.svg'],
+    images: ['vintage-hundred-note-stack.webp'],
   },
 
   // --- Packs & Bundles additions ---
@@ -375,7 +508,7 @@ export const PRODUCTS = [
     tags: ['mixed-denomination-pack', 'gift-money-set', 'not-legal-tender', 'novelty-currency'],
     circulationOptions: true, customSerials: false,
     description: `A mixed-denomination pack sized for wedding money-dance traditions and event decor. ${disclaimer}`,
-    images: ['placeholder-wedding-pack.svg'],
+    images: ['wedding-event-pack.webp'],
   },
   {
     slug: 'content-creator-flex-pack', name: 'Content Creator Flex Pack', category: 'packs-bundles', price: 37.95,
@@ -383,7 +516,7 @@ export const PRODUCTS = [
     tags: ['content-creator-props', 'mixed-denomination-pack', 'not-legal-tender', 'novelty-currency'],
     circulationOptions: true, customSerials: false,
     description: `A mixed pack of larger denominations built for "flex" style content and unboxing videos. ${disclaimer}`,
-    images: ['placeholder-flex-pack.svg'],
+    images: ['content-creator-flex-pack.webp'],
   },
 
   // --- Briefcases & Bags ---
@@ -393,7 +526,7 @@ export const PRODUCTS = [
     tags: ['briefcase-prop-set', 'film-prop-money', 'hundred-dollar-prop-note', 'not-legal-tender'],
     circulationOptions: true, customSerials: false,
     description: `Ten $100-style stacks pre-packed into a prop briefcase for a ready-to-shoot reveal scene. ${disclaimer}`,
-    images: ['placeholder-briefcase-50k.svg'],
+    images: ['briefcase-prop-set-50k.webp'],
   },
   {
     slug: 'briefcase-prop-set-250k', name: 'Briefcase Prop Set — $250,000', category: 'briefcases-bags', price: 179.0,
@@ -401,7 +534,7 @@ export const PRODUCTS = [
     tags: ['briefcase-prop-set', 'bulk-production-pack', 'hundred-dollar-prop-note', 'not-legal-tender'],
     circulationOptions: true, customSerials: false,
     description: `Fifty $100-style stacks pre-packed into a prop briefcase for high-stakes reveal or ransom-scene budgets. ${disclaimer}`,
-    images: ['placeholder-briefcase-250k.svg'],
+    images: ['briefcase-prop-set-250k.webp'],
   },
   {
     slug: 'duffel-bag-prop-set-500k', name: 'Duffel Bag Prop Set — $500,000', category: 'briefcases-bags', price: 229.0,
@@ -409,7 +542,7 @@ export const PRODUCTS = [
     tags: ['duffel-bag-prop', 'bulk-production-pack', 'hundred-dollar-prop-note', 'not-legal-tender'],
     circulationOptions: true, customSerials: false,
     description: `A hundred $100-style stacks pre-packed into a prop duffel bag for large-scale heist or transport scenes. ${disclaimer}`,
-    images: ['placeholder-duffel-500k.svg'],
+    images: ['duffel-bag-prop-set-500k.webp'],
   },
 
   // --- Confetti & Party Favors ---
@@ -419,7 +552,7 @@ export const PRODUCTS = [
     tags: ['money-confetti', 'party-prank-money', 'not-legal-tender', 'novelty-currency'],
     circulationOptions: false, customSerials: false,
     description: `Money-print confetti for celebrations, photo shoots, and content creation. ${disclaimer}`,
-    images: ['placeholder-confetti.svg'],
+    images: ['money-confetti-pack.webp'],
   },
   {
     slug: 'shredded-cash-bag', name: 'Shredded Cash Bag', category: 'confetti-party-favors', price: 16.95,
@@ -427,7 +560,7 @@ export const PRODUCTS = [
     tags: ['shredded-cash', 'party-prank-money', 'not-legal-tender', 'content-creator-props'],
     circulationOptions: false, customSerials: false,
     description: `A bag of shredded money-print paper for "money rain" shots and party dressing. ${disclaimer}`,
-    images: ['placeholder-shredded-cash.svg'],
+    images: ['shredded-cash-bag.webp'],
   },
   {
     slug: 'money-lei-single', name: 'Money Lei (Single)', category: 'confetti-party-favors', price: 12.95,
@@ -435,7 +568,7 @@ export const PRODUCTS = [
     tags: ['money-lei', 'gift-money-set', 'not-legal-tender', 'novelty-currency'],
     circulationOptions: false, customSerials: false,
     description: `A single money lei folded from prop notes, a popular gift for graduations and celebrations. ${disclaimer}`,
-    images: ['placeholder-lei-single.svg'],
+    images: ['money-lei-single.webp'],
   },
   {
     slug: 'money-lei-three-pack', name: 'Money Lei 3-Pack', category: 'confetti-party-favors', price: 29.95,
@@ -443,7 +576,7 @@ export const PRODUCTS = [
     tags: ['money-lei', 'gift-money-set', 'not-legal-tender', 'novelty-currency'],
     circulationOptions: false, customSerials: false,
     description: `Three money leis for graduation parties or wedding parties needing more than one. ${disclaimer}`,
-    images: ['placeholder-lei-three.svg'],
+    images: ['money-lei-three-pack.webp'],
   },
 
   // --- Display & Collectibles ---
@@ -453,7 +586,7 @@ export const PRODUCTS = [
     tags: ['display-collectible', 'australian-reserve-props', 'not-legal-tender', 'novelty-currency'],
     circulationOptions: false, customSerials: false,
     description: `A framed set of our three Australian denominations, glass-fronted for office or set-dressing display. ${disclaimer}`,
-    images: ['placeholder-display-frame.svg'],
+    images: ['denomination-display-frame.webp'],
   },
   {
     slug: 'limited-edition-collector-case', name: 'Limited Edition Collector Case', category: 'display-collectibles', price: 149.0,
@@ -461,7 +594,7 @@ export const PRODUCTS = [
     tags: ['limited-edition-prop', 'display-collectible', 'not-legal-tender', 'australian-reserve-props'],
     circulationOptions: false, customSerials: false,
     description: `A numbered, glass-cased collector set for buyers wanting a display piece rather than a working prop pack. ${disclaimer}`,
-    images: ['placeholder-collector-case.svg'],
+    images: ['limited-edition-collector-case.webp'],
   },
   {
     slug: 'prop-money-counter-display', name: 'Prop Money Counter (Display Only)', category: 'display-collectibles', price: 69.0,
@@ -469,7 +602,7 @@ export const PRODUCTS = [
     tags: ['display-case-accessory', 'film-prop-money', 'theatre-stage-money', 'production-pack'],
     circulationOptions: false, customSerials: false,
     description: 'A non-functional money-counter prop for set dressing behind cash-counting scenes — it does not actually count notes.',
-    images: ['placeholder-money-counter.svg'],
+    images: ['prop-money-counter-display.webp'],
   },
 
   // --- Personalised & Novelty ---
@@ -479,7 +612,7 @@ export const PRODUCTS = [
     tags: ['personalised-prop-note', 'gift-money-set', 'not-legal-tender', 'novelty-currency'],
     circulationOptions: false, customSerials: false,
     description: `A pack of 20 novelty notes printed with a photo you supply — a gag gift, not a currency reproduction of any real individual's likeness on legal tender. ${disclaimer}`,
-    images: ['placeholder-personalised-note.svg'],
+    images: ['personalised-photo-prop-note-pack.webp'],
   },
   {
     slug: 'personalised-novelty-big-cheque', name: 'Personalised Novelty Big Cheque', category: 'personalised-novelty', price: 39.95,
@@ -487,7 +620,7 @@ export const PRODUCTS = [
     tags: ['novelty-cheque', 'gift-money-set', 'not-legal-tender'],
     circulationOptions: false, customSerials: false,
     description: `An oversized novelty cheque with your own text and amount, made for prize-giving photos and presentations. ${chequeDisclaimer}`,
-    images: ['placeholder-novelty-cheque.svg'],
+    images: ['personalised-novelty-big-cheque.webp'],
   },
   {
     slug: 'custom-message-prop-note-gift-pack', name: 'Custom Message Prop Note Gift Pack', category: 'personalised-novelty', price: 32.95,
@@ -495,7 +628,7 @@ export const PRODUCTS = [
     tags: ['personalised-prop-note', 'gift-money-set', 'not-legal-tender', 'novelty-currency'],
     circulationOptions: false, customSerials: false,
     description: `Ten novelty notes carrying a custom printed message of your choice — for gifting, not for use as currency. ${disclaimer}`,
-    images: ['placeholder-custom-message-note.svg'],
+    images: ['custom-message-prop-note-gift-pack.webp'],
   },
 
   // --- Kids Play Money additions ---
@@ -505,7 +638,7 @@ export const PRODUCTS = [
     tags: ['classroom-play-money', 'educational-play-money', 'not-legal-tender', 'kids-play-money'],
     circulationOptions: false, customSerials: false,
     description: 'A bulk play money pack sized for a full classroom, so every student gets their own counting set.',
-    images: ['placeholder-classroom-pack.svg'],
+    images: ['classroom-play-money-bulk-pack.webp'],
   },
 
   // --- Gift Sets additions ---
@@ -515,7 +648,7 @@ export const PRODUCTS = [
     tags: ['gift-money-set', 'party-prank-money', 'not-legal-tender', 'novelty-currency'],
     circulationOptions: true, customSerials: false,
     description: `A birthday-themed gift box of mixed prop notes for a novelty cash gift. ${disclaimer}`,
-    images: ['placeholder-birthday-gift.svg'],
+    images: ['birthday-money-gift-box.webp'],
   },
   {
     slug: 'graduation-money-gift-set', name: 'Graduation Money Gift Set', category: 'gift-sets', price: 34.95,
@@ -523,7 +656,7 @@ export const PRODUCTS = [
     tags: ['gift-money-set', 'money-lei', 'not-legal-tender', 'novelty-currency'],
     circulationOptions: true, customSerials: false,
     description: `A graduation-themed gift set pairing mixed prop notes with a money lei. ${disclaimer}`,
-    images: ['placeholder-graduation-gift.svg'],
+    images: ['graduation-money-gift-set.webp'],
   },
 
   // --- Accessories additions ---
@@ -533,7 +666,7 @@ export const PRODUCTS = [
     tags: ['money-gun-device', 'party-prank-money', 'production-pack'],
     circulationOptions: false, customSerials: false,
     description: 'A refillable money gun for parties and content creation — compatible with our note-sized refill packs.',
-    images: ['placeholder-money-gun.svg'],
+    images: ['money-gun-device.webp'],
   },
   {
     slug: 'prop-money-display-case', name: 'Prop Money Display Case (Acrylic)', category: 'accessories', price: 27.95,
@@ -541,7 +674,7 @@ export const PRODUCTS = [
     tags: ['display-case-accessory', 'display-collectible', 'australian-reserve-props'],
     circulationOptions: false, customSerials: false,
     description: 'A clear acrylic case for displaying a single stack or small mixed set, sold empty.',
-    images: ['placeholder-display-case.svg'],
+    images: ['prop-money-display-case.webp'],
   },
   {
     slug: 'currency-bands-pack-50', name: 'Currency Bands (Pack of 50)', category: 'accessories', price: 6.95,
@@ -549,7 +682,7 @@ export const PRODUCTS = [
     tags: ['currency-band-accessory', 'production-pack'],
     circulationOptions: false, customSerials: false,
     description: 'Fifty currency-style paper bands for rebanding loose notes or building your own custom stacks.',
-    images: ['placeholder-currency-bands.svg'],
+    images: ['currency-bands-pack-50.webp'],
   },
 ]
 

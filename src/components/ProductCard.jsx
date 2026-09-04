@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import ProductArt from './ProductArt'
 import { getCategory, formatPrice, artLabelFor } from '@/lib/utils'
 import { NOTE_COLORS } from '@/config/site'
@@ -7,11 +8,23 @@ export default function ProductCard({ product }) {
   const category = getCategory(product.category)
   const colorKey = category?.color || 'neutral'
   const accent = NOTE_COLORS[colorKey]
+  const photo = product.images?.[0]
 
   return (
     <Link href={`/product/${product.slug}/`} className="product-card" style={{ '--tile-accent': accent, textDecoration: 'none', color: 'inherit' }}>
       <div className="product-frame">
-        <ProductArt colorKey={colorKey} label={artLabelFor(product)} />
+        {photo ? (
+          <Image
+            src={`/images/products/${photo}`}
+            alt={product.name}
+            width={1600}
+            height={1200}
+            loading="lazy"
+            style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+          />
+        ) : (
+          <ProductArt colorKey={colorKey} label={artLabelFor(product)} />
+        )}
       </div>
       <div className="product-body">
         {product.badge && <span className="product-badge">{product.badge}</span>}
