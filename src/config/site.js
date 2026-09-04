@@ -500,14 +500,6 @@ export const PRODUCTS = [
 
   // --- Kids Play Money additions ---
   {
-    slug: 'kids-coin-counting-set', name: 'Kids Coin Counting Set', category: 'kids-play-money', price: 16.95,
-    faceValueLabel: 'Play coins — not scaled to represent real value', badge: null,
-    tags: ['kids-play-money', 'educational-play-money', 'not-legal-tender'],
-    circulationOptions: false, customSerials: false,
-    description: 'A set of Australian-style play coins to pair with our play money notes for classroom counting exercises.',
-    images: ['placeholder-kids-coins.svg'],
-  },
-  {
     slug: 'classroom-play-money-bulk-pack', name: 'Classroom Play Money Bulk Pack', category: 'kids-play-money', price: 59.95,
     faceValueLabel: 'Enough play money for 30 students', badge: 'Classroom Friendly',
     tags: ['classroom-play-money', 'educational-play-money', 'not-legal-tender', 'kids-play-money'],
