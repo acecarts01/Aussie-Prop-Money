@@ -22,6 +22,7 @@ export function generateMetadata({ params }) {
 export default function BlogPost({ params }) {
   const post = POSTS.find((p) => p.slug === params.slug)
   if (!post) notFound()
+  const faqs = post.faqs || []
 
   const schema = {
     '@context': 'https://schema.org',
@@ -32,9 +33,16 @@ export default function BlogPost({ params }) {
     publisher: { '@type': 'Organization', name: SITE.name },
   }
 
+  const faqSchema = faqs.length > 0 ? {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+  } : null
+
   return (
     <div>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+      {faqSchema && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />}
       <PageHeader
         eyebrow={new Date(post.date).toLocaleDateString('en-AU', { year: 'numeric', month: 'long', day: 'numeric' })}
         title={post.title}
@@ -43,6 +51,21 @@ export default function BlogPost({ params }) {
 
       <div className="container section" style={{ maxWidth: '68ch' }}>
         {post.body.map((para, i) => <p key={i}>{para}</p>)}
+
+        {faqs.length > 0 && (
+          <div style={{ marginTop: '2.5rem' }}>
+            <h2 style={{ fontSize: '1.2rem' }}>Frequently Asked Questions</h2>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', marginTop: '1rem' }}>
+              {faqs.map((f) => (
+                <details key={f.q} className="callout">
+                  <summary style={{ fontWeight: 600, cursor: 'pointer' }}>{f.q}</summary>
+                  <p style={{ marginTop: '0.6rem', marginBottom: 0 }}>{f.a}</p>
+                </details>
+              ))}
+            </div>
+          </div>
+        )}
+
         <div className="callout" style={{ marginTop: '2rem' }}>
           Ready to order? <Link href="/shop/">Browse the full range</Link>.
         </div>
