@@ -129,12 +129,6 @@ export const CATEGORIES = [
       'Note stacks pre-packed into a briefcase or duffel bag for reveal scenes — a staple category at every major competitor we researched.',
   },
   {
-    slug: 'prop-coins',
-    name: 'Prop Coins',
-    color: 'fifty',
-    description: 'Australian-style prop coins, reproduced under the same size and marking rules as our notes.',
-  },
-  {
     slug: 'confetti-party-favors',
     name: 'Confetti & Party Favors',
     color: 'twenty',
@@ -187,9 +181,6 @@ export const PACKAGING_OPTIONS = [
 
 const disclaimer =
   'Reproduced at a size that differs from genuine Australian currency by at least 25%, per RBA reproduction guidance. Clearly marked NOT LEGAL TENDER on every note, with no replicated banknote security features. For film, theatre, education, and novelty use only.'
-
-const coinDisclaimer =
-  'Reproduced at a size that differs from genuine Australian coins, per RBA reproduction guidance. Clearly marked as a prop, with no replicated security or minting features. For film, theatre, education, and novelty use only.'
 
 const chequeDisclaimer =
   'A novelty presentation piece only — not a real, negotiable cheque and cannot be deposited or cashed.'
@@ -419,32 +410,6 @@ export const PRODUCTS = [
     circulationOptions: true, customSerials: false,
     description: `A hundred $100-style stacks pre-packed into a prop duffel bag for large-scale heist or transport scenes. ${disclaimer}`,
     images: ['placeholder-duffel-500k.svg'],
-  },
-
-  // --- Prop Coins ---
-  {
-    slug: 'prop-one-dollar-coin-roll', name: 'Prop $1 Coin Roll', category: 'prop-coins', price: 14.95,
-    faceValueLabel: '25 coins per roll', badge: null,
-    tags: ['prop-coin', 'novelty-currency', 'not-legal-tender', 'party-prank-money'],
-    circulationOptions: false, customSerials: false,
-    description: `A roll of 25 Australian $1-style prop coins for tabletop scenes, pranks, and photo props. ${coinDisclaimer}`,
-    images: ['placeholder-coin-one.svg'],
-  },
-  {
-    slug: 'prop-two-dollar-coin-roll', name: 'Prop $2 Coin Roll', category: 'prop-coins', price: 16.95,
-    faceValueLabel: '25 coins per roll', badge: null,
-    tags: ['prop-coin', 'novelty-currency', 'not-legal-tender', 'magic-trick-money'],
-    circulationOptions: false, customSerials: false,
-    description: `A roll of 25 Australian $2-style prop coins, popular for magic tricks and coin-toss scenes. ${coinDisclaimer}`,
-    images: ['placeholder-coin-two.svg'],
-  },
-  {
-    slug: 'gold-coin-prop-set', name: 'Gold Coin Prop Set', category: 'prop-coins', price: 24.95,
-    faceValueLabel: '20 large gold-tone coins', badge: null,
-    tags: ['gold-coin-prop', 'display-collectible', 'not-legal-tender', 'party-prank-money'],
-    circulationOptions: false, customSerials: false,
-    description: `A set of 20 large gold-tone prop coins for treasure-chest dressing, party favours, and photo props. ${coinDisclaimer}`,
-    images: ['placeholder-gold-coins.svg'],
   },
 
   // --- Confetti & Party Favors ---
