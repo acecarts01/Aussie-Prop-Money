@@ -300,6 +300,30 @@ export const CATEGORY_FAQS = {
   ],
 }
 
+// FAQs for core pages that aren't category/product pages.
+export const PAGE_FAQS = {
+  wholesale: [
+    { q: 'Is there a minimum order for wholesale pricing?', a: "No strict minimum — send your scene list or quantity needs through the enquiry form and we'll quote accordingly." },
+    { q: 'How long does a wholesale order take to fulfil?', a: 'Turnaround depends on volume — include your timeline in the enquiry and we\'ll confirm before you commit.' },
+    { q: 'Can I get a custom mix of denominations for a production?', a: "Yes — describe what you need in the enquiry form and we'll put together a custom quote." },
+  ],
+  about: [
+    { q: 'Is Australian Reserve Props a registered Australian business?', a: 'Business registration details (ABN) are being finalised — contact us directly if you need this confirmed before ordering.' },
+    { q: 'What happened to the predecessor site?', a: 'It operated briefly and went offline before this relaunch. A number of genuine customer reviews from that period were recovered and are published here with their original dates.' },
+    { q: 'Do you ship outside Australia?', a: 'No — we currently ship within Australia only, with no plans to expand internationally at this stage.' },
+  ],
+  contact: [
+    { q: "What's the fastest way to get a response?", a: 'Use the contact form below — once direct email and phone details are finalised, they\'ll be listed on this page too.' },
+    { q: 'Do you handle wholesale enquiries through this form?', a: 'For bulk or production orders, use the dedicated Wholesale enquiry form instead — it routes to the right place faster.' },
+    { q: 'Can I track an existing order here?', a: 'Order updates are sent by email — contact us with your order details if you need a status check.' },
+  ],
+  cart: [
+    { q: "Why isn't there a card payment option yet?", a: 'Card payment (Stripe/PayPal) is pending processor setup. Bank Transfer, PayID, and crypto are live now, all priced the same regardless of method.' },
+    { q: 'Is my cart saved if I close the browser?', a: "Yes — cart contents are stored in your browser's local storage and will still be there when you return, unless you clear site data." },
+    { q: 'Can I request custom serial numbers on my order?', a: 'No — every note uses a system-assigned placeholder serial. Custom or buyer-specified serials are not offered on any product.' },
+  ],
+}
+
 export const CIRCULATION_OPTIONS = [
   { id: 'clean', label: 'Standard Clean', desc: 'Fresh from print, crisp and flat', price: 0 },
   { id: 'light', label: 'Light Circulation', desc: 'Mild creases, lightly handled look', price: 5 },

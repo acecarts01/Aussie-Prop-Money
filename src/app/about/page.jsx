@@ -1,6 +1,7 @@
 import Breadcrumbs from '@/components/Breadcrumbs'
 import PageHeader from '@/components/PageHeader'
-import { SITE } from '@/config/site'
+import FaqBlock from '@/components/FaqBlock'
+import { SITE, PAGE_FAQS } from '@/config/site'
 import { absoluteUrl } from '@/lib/utils'
 
 export const metadata = {
@@ -50,6 +51,8 @@ export default function AboutPage() {
           a number of genuine customer reviews from that period were recovered and are published on this site with
           their original dates.
         </p>
+
+        <FaqBlock faqs={PAGE_FAQS.about} />
       </div>
     </div>
   )

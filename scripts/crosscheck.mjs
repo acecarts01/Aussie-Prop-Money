@@ -39,7 +39,7 @@ console.log('WEBFORGE CROSSCHECK — Australian Reserve Props\n')
 for (const dir of SCAN_DIRS) {
   try {
     walk(join(root, dir), (file) => {
-      if (file.endsWith('crosscheck.mjs') || file.endsWith('CLAUDE.md') || file.endsWith('keyword-map.md') || file.endsWith('PROJECT.md') || file.endsWith('_semrush-clean.json') || file.endsWith('product-photo-shotlist.csv')) return // these files legitimately document the banned/excluded words or are raw research data
+      if (file.endsWith('crosscheck.mjs') || file.endsWith('CLAUDE.md') || file.endsWith('keyword-map.md') || file.endsWith('PROJECT.md') || file.endsWith('keyword-assignments.md') || file.endsWith('_semrush-clean.json') || file.endsWith('product-photo-shotlist.csv')) return // these files legitimately document the banned/excluded words or are raw research data
       const text = readFileSync(file, 'utf8').toLowerCase()
       for (const term of BANNED_TERMS) {
         if (text.includes(term)) {

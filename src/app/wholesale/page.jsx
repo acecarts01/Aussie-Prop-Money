@@ -2,10 +2,12 @@ import Link from 'next/link'
 import WebForm from '@/components/WebForm'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import PageHeader from '@/components/PageHeader'
+import FaqBlock from '@/components/FaqBlock'
+import { PAGE_FAQS } from '@/config/site'
 import { absoluteUrl } from '@/lib/utils'
 
 export const metadata = {
-  title: 'Wholesale &amp; Bulk Prop Money — Film &amp; Theatre Productions',
+  title: 'Wholesale & Bulk Prop Money — Film & Theatre Productions',
   description: 'Bulk and wholesale prop money packages for film, TV, and theatre productions across Australia.',
   alternates: { canonical: absoluteUrl('/wholesale/') },
 }
@@ -55,6 +57,8 @@ export default function WholesalePage() {
             }
           />
         </div>
+
+        <FaqBlock faqs={PAGE_FAQS.wholesale} />
       </div>
     </div>
   )

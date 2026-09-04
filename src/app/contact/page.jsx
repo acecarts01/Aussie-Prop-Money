@@ -1,7 +1,8 @@
 import Breadcrumbs from '@/components/Breadcrumbs'
 import WebForm from '@/components/WebForm'
 import PageHeader from '@/components/PageHeader'
-import { SITE } from '@/config/site'
+import FaqBlock from '@/components/FaqBlock'
+import { SITE, PAGE_FAQS } from '@/config/site'
 import { absoluteUrl } from '@/lib/utils'
 
 export const metadata = {
@@ -49,6 +50,8 @@ export default function ContactPage() {
             }
           />
         </div>
+
+        <FaqBlock faqs={PAGE_FAQS.contact} />
       </div>
     </div>
   )

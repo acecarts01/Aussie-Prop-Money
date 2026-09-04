@@ -5,9 +5,10 @@ import Link from 'next/link'
 import QtyStepper from '@/components/QtyStepper'
 import WebForm from '@/components/WebForm'
 import PageHeader from '@/components/PageHeader'
+import FaqBlock from '@/components/FaqBlock'
 import { getCart, updateQty, removeFromCart, subtotal } from '@/lib/cart'
 import { formatPrice } from '@/lib/utils'
-import { SITE, PAYMENT_METHODS } from '@/config/site'
+import { SITE, PAYMENT_METHODS, PAGE_FAQS } from '@/config/site'
 
 export default function CartPage() {
   const [items, setItems] = useState([])
@@ -125,6 +126,8 @@ export default function CartPage() {
           </div>
         </>
       )}
+
+      <FaqBlock faqs={PAGE_FAQS.cart} />
       </div>
     </div>
   )
