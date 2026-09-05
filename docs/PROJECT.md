@@ -133,3 +133,40 @@ This will be built to webforge's design-quality gate (grid uniformity, no bare s
 5. Product photos, or proceed with generated placeholders for launch.
 6. Web3Forms access key (or proceed pending, chat-only ordering until set).
 7. Stripe/PayPal account status — live at launch, or added once approved?
+
+---
+
+## GSC / Bing Webmaster Tools setup — do this right after the first Vercel deploy
+
+The site ships with the verification meta-tag slots and IndexNow key already wired in (`src/config/site.js` →
+`gscVerification`, `bingVerification`, `indexNowKey`), but nothing is emitted yet — the placeholders suppress the
+tags entirely rather than shipping a broken verification claim. Once `thereservenote.com` (or whichever domain)
+is actually live on Vercel:
+
+**Google Search Console**
+1. Go to search.google.com/search-console → Add Property → enter the live domain.
+2. Choose the **HTML tag** verification method (not DNS — simpler here since Vercel manages DNS separately).
+3. Copy just the `content="..."` value it gives you (not the whole `<meta>` tag) into `SITE.gscVerification` in `src/config/site.js`.
+4. Rebuild (`npm run build`), commit, push — Vercel redeploys automatically.
+5. Back in Search Console, click Verify.
+6. Submit the sitemap: Search Console → Sitemaps → add `sitemap.xml`.
+
+**Bing Webmaster Tools**
+1. Go to bing.com/webmasters.
+2. Easiest path: **"Import from Google Search Console"** — if GSC is already verified (above), this adds the
+   Bing property with zero extra code needed. Skip straight to submitting the sitemap.
+3. If importing isn't available, use the meta tag method instead: copy the code into `SITE.bingVerification`,
+   rebuild, redeploy, then verify.
+4. Submit the sitemap: Bing Webmaster Tools → Sitemaps → add `sitemap.xml`.
+
+**IndexNow (Bing, and other participating engines — instant indexing, no account needed)**
+The key file is already live at `/{indexNowKey}.txt` (see `SITE.indexNowKey`). To notify engines of new/changed
+URLs immediately instead of waiting for a crawl, POST to `https://api.indexnow.org/indexnow` with:
+```json
+{ "host": "thereservenote.com", "key": "<SITE.indexNowKey>", "keyLocation": "https://thereservenote.com/<key>.txt", "urlList": ["https://thereservenote.com/product/..."] }
+```
+Worth doing once after the initial launch (submit every URL in the sitemap) and again after any future Mode 2
+content update.
+
+**Don't submit until the domain is actually live** — verifying and submitting a sitemap for a domain that isn't
+deployed yet just wastes the crawl budget and can return errors that are annoying to clear later.
