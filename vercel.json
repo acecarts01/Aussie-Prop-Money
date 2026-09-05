@@ -7,10 +7,10 @@
       "has": [
         {
           "type": "host",
-          "value": "www.thereservenote.com"
+          "value": "www.australianreserveprops.com"
         }
       ],
-      "destination": "https://thereservenote.com/:path*",
+      "destination": "https://australianreserveprops.com/:path*",
       "permanent": true
     }
   ],

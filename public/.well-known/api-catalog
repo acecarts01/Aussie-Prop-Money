@@ -1,21 +1,21 @@
 {
   "linkset": [
     {
-      "anchor": "https://thereservenote.com/",
+      "anchor": "https://australianreserveprops.com/",
       "https://www.iana.org/assignments/link-relations/service-doc": [
         {
-          "href": "https://thereservenote.com/faq/"
+          "href": "https://australianreserveprops.com/faq/"
         }
       ],
       "title": "Australian Reserve Props — Premium Australian Prop Notes for Film, Theatre & Play"
     },
     {
-      "anchor": "https://thereservenote.com/shop/",
+      "anchor": "https://australianreserveprops.com/shop/",
       "type": "text/html",
       "title": "Australian Reserve Props Product Catalog"
     },
     {
-      "anchor": "https://thereservenote.com/wholesale/",
+      "anchor": "https://australianreserveprops.com/wholesale/",
       "type": "text/html",
       "title": "Australian Reserve Props Wholesale"
     }

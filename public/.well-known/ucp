@@ -3,20 +3,20 @@
   "protocol_version": "1.0",
   "spec": "https://ucp.dev/specification/overview/",
   "schema": "https://ucp.dev/schema/v1.json",
-  "site": "https://thereservenote.com",
+  "site": "https://australianreserveprops.com",
   "name": "Australian Reserve Props",
   "description": "Premium Australian Prop Notes for Film, Theatre & Play",
   "services": [
     {
       "id": "product-catalog",
       "type": "catalog",
-      "url": "https://thereservenote.com/shop/",
+      "url": "https://australianreserveprops.com/shop/",
       "description": "Full product catalog"
     },
     {
       "id": "wholesale",
       "type": "b2b",
-      "url": "https://thereservenote.com/wholesale/",
+      "url": "https://australianreserveprops.com/wholesale/",
       "description": "Wholesale pricing and bulk ordering"
     }
   ],
@@ -27,12 +27,12 @@
     "content"
   ],
   "endpoints": {
-    "catalog": "https://thereservenote.com/shop/",
-    "contact": "https://thereservenote.com/contact/",
-    "agent_skills": "https://thereservenote.com/.well-known/agent-skills/index.json",
-    "mcp_server_card": "https://thereservenote.com/.well-known/mcp/server-card.json",
-    "api_catalog": "https://thereservenote.com/.well-known/api-catalog",
-    "llms_txt": "https://thereservenote.com/llms.txt"
+    "catalog": "https://australianreserveprops.com/shop/",
+    "contact": "https://australianreserveprops.com/contact/",
+    "agent_skills": "https://australianreserveprops.com/.well-known/agent-skills/index.json",
+    "mcp_server_card": "https://australianreserveprops.com/.well-known/mcp/server-card.json",
+    "api_catalog": "https://australianreserveprops.com/.well-known/api-catalog",
+    "llms_txt": "https://australianreserveprops.com/llms.txt"
   },
   "currency": "AUD",
   "minimum_order_usd": 0,

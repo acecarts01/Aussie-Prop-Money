@@ -1,5 +1,5 @@
 {
-  "issuer": "https://thereservenote.com",
+  "issuer": "https://australianreserveprops.com",
   "authorization_endpoint": null,
   "token_endpoint": null,
   "jwks_uri": null,
@@ -8,11 +8,11 @@
   "scopes_supported": [],
   "note": "Australian Reserve Props has no protected APIs. All resources are publicly accessible.",
   "public_resources": [
-    "https://thereservenote.com/shop/",
-    "https://thereservenote.com/blog/",
-    "https://thereservenote.com/faq/",
-    "https://thereservenote.com/wholesale/",
-    "https://thereservenote.com/llms.txt"
+    "https://australianreserveprops.com/shop/",
+    "https://australianreserveprops.com/blog/",
+    "https://australianreserveprops.com/faq/",
+    "https://australianreserveprops.com/wholesale/",
+    "https://australianreserveprops.com/llms.txt"
   ],
   "agent_auth": {
     "register_uri": null,

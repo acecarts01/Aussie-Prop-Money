@@ -4,31 +4,31 @@
     "name": "Australian Reserve Props",
     "version": "1.0.0",
     "description": "Premium Australian Prop Notes for Film, Theatre & Play",
-    "homepage": "https://thereservenote.com",
+    "homepage": "https://australianreserveprops.com",
     "contact": {
       "email": "[EMAIL]"
     }
   },
   "transport": {
     "type": "streamable-http",
-    "endpoint": "https://thereservenote.com/api/mcp"
+    "endpoint": "https://australianreserveprops.com/api/mcp"
   },
   "capabilities": {
     "resources": [
       {
         "name": "product-catalog",
         "description": "Full product catalog",
-        "uri": "https://thereservenote.com/shop/"
+        "uri": "https://australianreserveprops.com/shop/"
       },
       {
         "name": "wholesale-info",
         "description": "Wholesale pricing and ordering",
-        "uri": "https://thereservenote.com/wholesale/"
+        "uri": "https://australianreserveprops.com/wholesale/"
       },
       {
         "name": "blog",
         "description": "Educational content",
-        "uri": "https://thereservenote.com/blog/"
+        "uri": "https://australianreserveprops.com/blog/"
       }
     ],
     "commerce": {

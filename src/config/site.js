@@ -4,7 +4,7 @@
 
 export const SITE = {
   target: 'vercel',
-  domain: 'thereservenote.com', // ownership/registration not verified — confirm before production deploy
+  domain: 'australianreserveprops.com', // confirmed registered + connected in Vercel 2026-09-05
   name: 'Australian Reserve Props',
   tagline: 'Premium Australian Prop Notes for Film, Theatre & Play',
   locale: 'en-AU',

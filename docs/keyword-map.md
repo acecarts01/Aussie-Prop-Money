@@ -102,7 +102,7 @@ prop money australia wide delivery · fast prop money delivery · prop money nex
 
 ## 17. Brand / navigational (template — swap in final domain once confirmed)
 
-australian reserve props · australian reserve props reviews · australian reserve props shipping time · australian reserve props discount code · thereservenote.com reviews
+australian reserve props · australian reserve props reviews · australian reserve props shipping time · australian reserve props discount code · australianreserveprops.com reviews
 
 ## 18. Long-tail / geo — AU cities & states (assigned: local landing sections, GBP once registered)
 

@@ -1,5 +1,5 @@
 {
-  "issuer": "https://thereservenote.com",
+  "issuer": "https://australianreserveprops.com",
   "note": "Australian Reserve Props does not operate an OpenID Connect provider. All resources are publicly accessible.",
   "public_site": true,
   "authorization_endpoint": null,

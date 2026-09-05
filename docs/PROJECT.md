@@ -3,7 +3,7 @@
 Status: **Intake drafted, pending confirmation before Mode 3 build.** Items marked 🟡 PENDING need your input before the site goes live; the build can start without them (webforge's placeholder pattern).
 
 ## A — Identity
-- Domain: `thereservenote.com` 🟡 *ownership/registration not verified by Claude — confirm before production deploy*
+- Domain: `australianreserveprops.com` ✅ confirmed registered and connected in Vercel (2026-09-05). (thereservenote.com was the original placeholder suggestion — it turned out to already belong to an unrelated site and was never used.)
 - Site name: **Australian Reserve Props**
 - Tagline (proposed): "Premium Australian Prop Notes for Film, Theatre & Play"
 - Favicon/logo: see Design Direction below
@@ -126,7 +126,7 @@ This will be built to webforge's design-quality gate (grid uniformity, no bare s
 16 reviews supplied (not 45 as described — publishing exactly what was provided, not padding to the stated count). Full text carried into `src/config/site.js` REVIEWS at build time, with AggregateRating/Review schema since authenticity was confirmed. Names, dates, and star ratings as given: James Whitfield (5★, 14 Mar 2024) · Sophie Brennan (4★, 2 Jun 2024) · Marcus Delroy (5★, 19 Jul 2024) · Priya Nanthakumar (4★, 5 Aug 2024) · Liam O'Connell (5★, 23 Sep 2024) · Zara Hutchinson (5★, 11 Oct 2024) · Daniel Ferreira (4★, 30 Nov 2024) · Amelia Tran (5★, 8 Jan 2025) · Brett Cavanagh (5★, 17 Feb 2025) · Monique Adesanya (4★, 3 Apr 2025) · Tyler Nguyen (5★, 21 May 2025) · Rachel Simmons-Park (5★, 14 Jun 2025) · Omar El-Rashidi (4★, 29 Jul 2025) · Jessica Langford-Cole (5★, 5 Sep 2025) · Nathan Blackwood-Harris (4★, 18 Nov 2025) · Camille Dupont-Murray (5★, 3 Feb 2026).
 
 ## Open items before "build the site"
-1. Confirm domain ownership/registration for thereservenote.com (or thereservenote.com.au).
+1. Confirm domain ownership/registration for australianreserveprops.com (or australianreserveprops.com.au).
 2. Business location/state, contact email, phone/WhatsApp number.
 3. ABN/GST status.
 4. Confirm or edit proposed pricing (Section I table) and order rules (Section C).
@@ -140,7 +140,7 @@ This will be built to webforge's design-quality gate (grid uniformity, no bare s
 
 The site ships with the verification meta-tag slots and IndexNow key already wired in (`src/config/site.js` →
 `gscVerification`, `bingVerification`, `indexNowKey`), but nothing is emitted yet — the placeholders suppress the
-tags entirely rather than shipping a broken verification claim. Once `thereservenote.com` (or whichever domain)
+tags entirely rather than shipping a broken verification claim. Once `australianreserveprops.com` (or whichever domain)
 is actually live on Vercel:
 
 **Google Search Console**
@@ -163,7 +163,7 @@ is actually live on Vercel:
 The key file is already live at `/{indexNowKey}.txt` (see `SITE.indexNowKey`). To notify engines of new/changed
 URLs immediately instead of waiting for a crawl, POST to `https://api.indexnow.org/indexnow` with:
 ```json
-{ "host": "thereservenote.com", "key": "<SITE.indexNowKey>", "keyLocation": "https://thereservenote.com/<key>.txt", "urlList": ["https://thereservenote.com/product/..."] }
+{ "host": "australianreserveprops.com", "key": "<SITE.indexNowKey>", "keyLocation": "https://australianreserveprops.com/<key>.txt", "urlList": ["https://australianreserveprops.com/product/..."] }
 ```
 Worth doing once after the initial launch (submit every URL in the sitemap) and again after any future Mode 2
 content update.

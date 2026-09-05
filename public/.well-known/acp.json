@@ -5,8 +5,8 @@
   },
   "name": "Australian Reserve Props",
   "description": "Premium Australian Prop Notes for Film, Theatre & Play",
-  "api_base_url": "https://thereservenote.com",
-  "homepage": "https://thereservenote.com",
+  "api_base_url": "https://australianreserveprops.com",
+  "homepage": "https://australianreserveprops.com",
   "transports": [
     "https"
   ],

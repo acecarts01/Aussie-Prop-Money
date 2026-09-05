@@ -10,18 +10,18 @@ Australian Reserve Props is an Australia-based novelty currency brand establishe
 - Ships: Australia only
 
 ## Categories
-- [$20 Prop Notes](https://thereservenote.com/shop/twenty-dollar-notes/): $16.95-$49.95 AUD, Australian $20-style prop notes, sized for magic tricks, photo props, and mid-range prop budgets.
-- [$50 Prop Notes](https://thereservenote.com/shop/fifty-dollar-notes/): $18.95-$54.95 AUD, Australian $50-style prop notes, the most requested denomination for film and theatre productions.
-- [$100 Prop Notes](https://thereservenote.com/shop/hundred-dollar-notes/): $19.95-$59.95 AUD, Australian $100-style prop notes for briefcase scenes, high-stakes narratives, and premium-looking stacks.
-- [Vintage & Legacy Series](https://thereservenote.com/shop/vintage-series-notes/): $27.95-$34.95 AUD, Older-style Australian note designs for period productions, sourced from the same design pattern competitors like Prop Money Inc. use for their Vintage and Legacy Series lines.
-- [Packs & Bundles](https://thereservenote.com/shop/packs-bundles/): $34.95-$89.95 AUD, Mixed-denomination and bulk packs for productions and events needing more than a single note type.
-- [Briefcases & Bags](https://thereservenote.com/shop/briefcases-bags/): $129.00-$229.00 AUD, Note stacks pre-packed into a briefcase or duffel bag for reveal scenes — a staple category at every major competitor we researched.
-- [Confetti & Party Favors](https://thereservenote.com/shop/confetti-party-favors/): $9.95-$29.95 AUD, Money-print confetti, shredded cash, and money leis for parties, celebrations, and events.
-- [Display & Collectibles](https://thereservenote.com/shop/display-collectibles/): $69.00-$149.00 AUD, Framed and cased display pieces for collectors, offices, and set dressing.
-- [Personalised & Novelty](https://thereservenote.com/shop/personalised-novelty/): $32.95-$39.95 AUD, Personalised photo notes and novelty big cheques for gag gifts and presentations — never a real financial instrument.
-- [Kids Play Money](https://thereservenote.com/shop/kids-play-money/): $19.95-$59.95 AUD, Educational Australian-style play money for classrooms, pretend play, and teaching kids to count currency.
-- [Gift Sets](https://thereservenote.com/shop/gift-sets/): $29.95-$39.95 AUD, Novelty money gift boxes for birthdays, graduations, and gag gifts.
-- [Accessories](https://thereservenote.com/shop/accessories/): $6.95-$27.95 AUD, Money guns, refill packs, and display cases to go with your prop notes.
+- [$20 Prop Notes](https://australianreserveprops.com/shop/twenty-dollar-notes/): $16.95-$49.95 AUD, Australian $20-style prop notes, sized for magic tricks, photo props, and mid-range prop budgets.
+- [$50 Prop Notes](https://australianreserveprops.com/shop/fifty-dollar-notes/): $18.95-$54.95 AUD, Australian $50-style prop notes, the most requested denomination for film and theatre productions.
+- [$100 Prop Notes](https://australianreserveprops.com/shop/hundred-dollar-notes/): $19.95-$59.95 AUD, Australian $100-style prop notes for briefcase scenes, high-stakes narratives, and premium-looking stacks.
+- [Vintage & Legacy Series](https://australianreserveprops.com/shop/vintage-series-notes/): $27.95-$34.95 AUD, Older-style Australian note designs for period productions, sourced from the same design pattern competitors like Prop Money Inc. use for their Vintage and Legacy Series lines.
+- [Packs & Bundles](https://australianreserveprops.com/shop/packs-bundles/): $34.95-$89.95 AUD, Mixed-denomination and bulk packs for productions and events needing more than a single note type.
+- [Briefcases & Bags](https://australianreserveprops.com/shop/briefcases-bags/): $129.00-$229.00 AUD, Note stacks pre-packed into a briefcase or duffel bag for reveal scenes — a staple category at every major competitor we researched.
+- [Confetti & Party Favors](https://australianreserveprops.com/shop/confetti-party-favors/): $9.95-$29.95 AUD, Money-print confetti, shredded cash, and money leis for parties, celebrations, and events.
+- [Display & Collectibles](https://australianreserveprops.com/shop/display-collectibles/): $69.00-$149.00 AUD, Framed and cased display pieces for collectors, offices, and set dressing.
+- [Personalised & Novelty](https://australianreserveprops.com/shop/personalised-novelty/): $32.95-$39.95 AUD, Personalised photo notes and novelty big cheques for gag gifts and presentations — never a real financial instrument.
+- [Kids Play Money](https://australianreserveprops.com/shop/kids-play-money/): $19.95-$59.95 AUD, Educational Australian-style play money for classrooms, pretend play, and teaching kids to count currency.
+- [Gift Sets](https://australianreserveprops.com/shop/gift-sets/): $29.95-$39.95 AUD, Novelty money gift boxes for birthdays, graduations, and gag gifts.
+- [Accessories](https://australianreserveprops.com/shop/accessories/): $6.95-$27.95 AUD, Money guns, refill packs, and display cases to go with your prop notes.
 
 ## Compliance
 All products are reproduced to differ from genuine Australian currency by at least 25% in size, per RBA
@@ -29,13 +29,13 @@ reproduction guidance, are clearly marked NOT LEGAL TENDER, and carry no replica
 No custom or buyer-specified serial numbers are offered under any circumstances.
 
 ## Key pages
-- [Shop](https://thereservenote.com/shop/): full catalog
-- [Wholesale](https://thereservenote.com/wholesale/): bulk/production orders
-- [FAQ](https://thereservenote.com/faq/): legal and ordering questions
-- [Blog](https://thereservenote.com/blog/): buying guides
+- [Shop](https://australianreserveprops.com/shop/): full catalog
+- [Wholesale](https://australianreserveprops.com/wholesale/): bulk/production orders
+- [FAQ](https://australianreserveprops.com/faq/): legal and ordering questions
+- [Blog](https://australianreserveprops.com/blog/): buying guides
 
 ## Optional
-- [API Catalog](https://thereservenote.com/.well-known/api-catalog)
-- [Agent Skills](https://thereservenote.com/.well-known/agent-skills/index.json)
-- [MCP Server Card](https://thereservenote.com/.well-known/mcp/server-card.json)
-- [Auth](https://thereservenote.com/auth.md)
+- [API Catalog](https://australianreserveprops.com/.well-known/api-catalog)
+- [Agent Skills](https://australianreserveprops.com/.well-known/agent-skills/index.json)
+- [MCP Server Card](https://australianreserveprops.com/.well-known/mcp/server-card.json)
+- [Auth](https://australianreserveprops.com/auth.md)

@@ -23,7 +23,7 @@ Authority: Crimes (Currency) Act 1981 (Cth) + RBA "Reproducing Banknotes" guidan
 - Never commit `node_modules/`, `.next/`, `out/`.
 
 ## Live placeholders (site is not fully live until these are set)
-- `SITE.domain` — thereservenote.com (ownership/registration not yet verified by Claude — confirm before production deploy)
+- `SITE.domain` — australianreserveprops.com (confirmed registered + connected in Vercel 2026-09-05)
 - Contact email/phone/WhatsApp — pending, using `[EMAIL]` / `[NUMBER]` placeholders
 - Business location/HQ (state/city) — pending, required before AI-visibility schema (`foundingLocation`, `areaServed`) can ship truthfully
 - ABN / GST registration status — pending, needed for `.com.au` registration and invoicing
@@ -31,7 +31,7 @@ Authority: Crimes (Currency) Act 1981 (Cth) + RBA "Reproducing Banknotes" guidan
 - Stripe/PayPal account — pending setup; checkout ships with Bank Transfer + PayID + BTC/USDT/ETH/BNB live, card processor added once account is approved
 
 ## Brand facts (only these are true — never invent more)
-- Site name: Australian Reserve Props. Domain: thereservenote.com.
+- Site name: Australian Reserve Props. Domain: australianreserveprops.com.
 - Founded 2024. Predecessor site went offline; select reviews recovered from that period (client-confirmed genuine, published with dates as given).
 - Market: Australia only (no cross-border shipping/marketing).
 - Product: Australian-styled novelty/prop currency notes ($20/$50/$100 minimum, plus vintage series), packs, briefcases, confetti/leis, display collectibles, personalised novelty, kids play money, gift sets, accessories.
