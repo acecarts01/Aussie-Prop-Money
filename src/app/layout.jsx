@@ -22,6 +22,14 @@ const publicSans = Public_Sans({
   display: 'swap',
 })
 
+// Only emit a verification tag once a real code replaces the [PENDING] placeholder —
+// a placeholder value in a live <meta> tag would just be a broken verification claim.
+const isLive = (v) => typeof v === 'string' && v.length > 0 && !v.startsWith('[')
+
+const verification = {}
+if (isLive(SITE.gscVerification)) verification.google = SITE.gscVerification
+if (isLive(SITE.bingVerification)) verification.other = { 'msvalidate.01': SITE.bingVerification }
+
 export const metadata = {
   metadataBase: new URL(absoluteUrl('/')),
   title: {
@@ -42,6 +50,7 @@ export const metadata = {
     description: SITE.brandStatement.slice(0, 155),
   },
   alternates: { canonical: absoluteUrl('/') },
+  ...(Object.keys(verification).length > 0 ? { verification } : {}),
 }
 
 export const viewport = {

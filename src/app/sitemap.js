@@ -4,9 +4,11 @@ export default function sitemap() {
   const base = `https://${SITE.domain}`
   const now = new Date().toISOString()
 
+  // /cart/ and /search/ are excluded — dynamic, personalised pages with no
+  // fixed content of their own, not worth submitting to GSC/BWT as indexable URLs.
   const staticRoutes = [
     '/', '/shop/', '/wholesale/', '/about/', '/faq/', '/contact/', '/blog/',
-    '/cart/', '/search/', '/shipping/', '/refund/', '/privacy/', '/terms/',
+    '/shipping/', '/refund/', '/privacy/', '/terms/',
   ].map((route) => ({ url: `${base}${route}`, lastModified: now }))
 
   const categoryRoutes = CATEGORIES.map((c) => ({ url: `${base}/shop/${c.slug}/`, lastModified: now }))

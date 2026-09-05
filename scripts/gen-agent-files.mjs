@@ -23,6 +23,12 @@ function write(relPath, content) {
 
 // A — robots.txt is handled by src/app/robots.js (Next native). Nothing to do here.
 
+// IndexNow key file — self-service, no account needed. Bing (and other IndexNow-
+// participating engines) verify ownership by fetching this exact file at the root.
+// Ping the API after deploy: POST https://api.indexnow.org/indexnow with
+// { host, key, keyLocation, urlList }. See docs/PROJECT.md for the exact call.
+write(`${SITE.indexNowKey}.txt`, SITE.indexNowKey)
+
 // B — llms.txt
 const categoryLines = CATEGORIES.map((c) => {
   const prices = PRODUCTS.filter((p) => p.category === c.slug).map((p) => p.price)

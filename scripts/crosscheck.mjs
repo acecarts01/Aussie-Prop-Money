@@ -52,7 +52,7 @@ for (const dir of SCAN_DIRS) {
 }
 
 // 2. Placeholder check (warning only, pre-launch)
-const placeholders = ['[EMAIL]', '[NUMBER]', '[WHATSAPP_NUMBER]', '[LOCATION_PENDING]', '[ADDRESS_PENDING]', '[ABN_PENDING]']
+const placeholders = ['[EMAIL]', '[NUMBER]', '[WHATSAPP_NUMBER]', '[LOCATION_PENDING]', '[ADDRESS_PENDING]', '[ABN_PENDING]', '[GSC_VERIFICATION_PENDING]', '[BING_VERIFICATION_PENDING]']
 try {
   const siteConfig = readFileSync(join(root, 'src/config/site.js'), 'utf8')
   for (const p of placeholders) {
