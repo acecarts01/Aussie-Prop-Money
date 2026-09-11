@@ -10,14 +10,19 @@ export const SITE = {
   locale: 'en-AU',
   currency: 'AUD',
   foundingYear: 2024,
-  // Never fabricated — fill in when supplied, per CLAUDE.md Rule 5.
-  location: '[LOCATION_PENDING]',
-  address: '[ADDRESS_PENDING]',
-  email: '[EMAIL]',
-  phone: '[NUMBER]',
-  whatsapp: '[WHATSAPP_NUMBER]',
-  abn: '[ABN_PENDING]',
-  gstRegistered: null, // null = unknown/pending — do not display a GST claim until this is set
+  // Business details — supplied by the client 2026-09-12 (ABR lookup). Never fabricated.
+  // Anything order/checkout-related can be overridden per-environment in Vercel
+  // (Project → Settings → Environment Variables). NEXT_PUBLIC_* values are inlined
+  // at build time, so a change needs a redeploy to take effect.
+  legalName: 'Money 365 Pty Ltd',
+  location: 'The Ponds, NSW 2769',
+  address: { locality: 'The Ponds', region: 'NSW', postcode: '2769', country: 'AU' },
+  email: process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'info@australianreserveprops.com', // Zoho Mail
+  phone: process.env.NEXT_PUBLIC_WHATSAPP || '+61 480 804 189', // WhatsApp number doubles as the contact number
+  whatsapp: process.env.NEXT_PUBLIC_WHATSAPP || '+61 480 804 189',
+  abn: '84 676 764 971',
+  abnRegisteredFrom: '2024-04-22',
+  gstRegistered: true, // registered from 22 Apr 2024
   // Search engine verification — PENDING. Create the property in each tool AFTER the domain is live on
   // Vercel, paste the code/key it gives you here, rebuild, redeploy. See docs/PROJECT.md for the exact steps.
   // Two GSC tokens: one per Google account that owns the property. Google issues a
@@ -40,11 +45,13 @@ export const SITE = {
 
 export const FORMS = {
   provider: 'web3forms',
-  web3formsKey: '', // PENDING — until set, forms redirect straight to thank-you; chat is the only live order channel
-  contactEmail: SITE.email,
-  orderEmail: SITE.email,
-  wholesaleEmail: SITE.email,
-  turnstileSiteKey: '',
+  // Set NEXT_PUBLIC_WEB3FORMS_KEY in Vercel (the key is public by design — it only
+  // identifies the inbox). Until it is set, forms redirect straight to thank-you.
+  web3formsKey: process.env.NEXT_PUBLIC_WEB3FORMS_KEY || '',
+  contactEmail: process.env.NEXT_PUBLIC_CONTACT_EMAIL || SITE.email,
+  orderEmail: process.env.NEXT_PUBLIC_ORDER_EMAIL || SITE.email,
+  wholesaleEmail: process.env.NEXT_PUBLIC_WHOLESALE_EMAIL || SITE.email,
+  turnstileSiteKey: process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || '',
 }
 
 export const CHAT = {

@@ -112,6 +112,7 @@ export default function CartPage() {
                   <WebForm
                     subject="New order request — Australian Reserve Props"
                     fromName="Website Cart"
+                    to="order"
                     thankYouHref="/thank-you-order/"
                     submitLabel="Send order request"
                     fields={

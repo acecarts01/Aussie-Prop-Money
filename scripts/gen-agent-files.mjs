@@ -44,7 +44,8 @@ ${SITE.brandStatement}
 
 ## Contact
 - Email: ${email}
-- Phone: ${phone}
+- WhatsApp: ${phone}
+- Business: ${SITE.legalName} · ABN ${SITE.abn} · ${SITE.location}
 - Ships: Australia only
 
 ## Categories

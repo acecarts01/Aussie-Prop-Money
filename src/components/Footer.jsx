@@ -9,6 +9,8 @@ function encodedEmail(email) {
 export default function Footer() {
   const livePayments = PAYMENT_METHODS.filter((m) => m.live).map((m) => m.label.replace(/\s*\(.*\)$/, ''))
   const hasEmail = SITE.email && !SITE.email.startsWith('[')
+  const hasWhatsapp = SITE.whatsapp && !SITE.whatsapp.startsWith('[')
+  const waHref = `https://wa.me/${(SITE.whatsapp || '').replace(/D/g, '')}`
 
   return (
     <footer className="site-footer">
@@ -63,11 +65,9 @@ export default function Footer() {
               <li><Link href="/terms/">Terms</Link></li>
             </ul>
             <p style={{ marginTop: '1rem', fontSize: '0.85rem' }}>
-              {hasEmail ? (
-                <a href={`mailto:${encodedEmail(SITE.email)}`} dangerouslySetInnerHTML={{ __html: encodedEmail(SITE.email) }} />
-              ) : (
-                'Direct contact details are being finalised — use the contact form.'
-              )}
+              {hasEmail && <a href={`mailto:${encodedEmail(SITE.email)}`} style={{ display: 'block', marginBottom: '0.3rem' }} dangerouslySetInnerHTML={{ __html: encodedEmail(SITE.email) }} />}
+              {hasWhatsapp && <a href={waHref} target="_blank" rel="noopener noreferrer" style={{ display: 'block' }}>WhatsApp {SITE.whatsapp}</a>}
+              {!hasEmail && !hasWhatsapp && 'Direct contact details are being finalised — use the contact form.'}
             </p>
           </div>
         </div>
@@ -77,7 +77,7 @@ export default function Footer() {
         </p>
 
         <div className="footer-bottom">
-          <span>© {new Date().getFullYear()} {SITE.name}</span>
+          <span>© {new Date().getFullYear()} {SITE.name} · {SITE.legalName} · ABN {SITE.abn}{SITE.gstRegistered ? ' · GST registered' : ''} · {SITE.location}</span>
           <span>Australia only · Australia Post tracked</span>
         </div>
       </div>

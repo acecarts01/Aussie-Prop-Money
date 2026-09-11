@@ -81,6 +81,7 @@ export default function WholesalePage() {
             <WebForm
               subject="Production / wholesale enquiry — Australian Reserve Props"
               fromName="Wholesale Form"
+              to="wholesale"
               thankYouHref="/thank-you-wholesale/"
               submitLabel="Send quote request"
               fields={

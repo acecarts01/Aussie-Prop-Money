@@ -23,7 +23,7 @@ export default function ContactPage() {
         title="Talk to the print room"
         subtitle={pendingContact
           ? 'Direct contact details are being finalised — the form below reaches us in the meantime.'
-          : 'Email us directly, or use the form below. We answer every production enquiry.'}
+          : 'Email or WhatsApp us directly, or use the form below. We answer every production enquiry.'}
         breadcrumbs={<Breadcrumbs trail={[{ label: 'Contact', href: '/contact/' }]} />}
       />
 
@@ -41,6 +41,16 @@ export default function ContactPage() {
             <p style={{ color: 'var(--ink-2)' }}>
               Running a multi-scene production? Use the <Link href="/wholesale/">production &amp; wholesale form</Link> so everything prints in one run.
             </p>
+            {!pendingContact && (
+              <div className="card card-pad" style={{ margin: '1.25rem 0' }}>
+                <span className="eyebrow">Direct</span>
+                <div style={{ marginTop: '0.4rem', display: 'grid', gap: '0.35rem' }}>
+                  <a href={`mailto:${SITE.email.replace('@', '&#64;')}`} dangerouslySetInnerHTML={{ __html: SITE.email.replace('@', '&#64;') }} />
+                  <a href={`https://wa.me/${SITE.whatsapp.replace(/\D/g, '')}`} target="_blank" rel="noopener noreferrer">WhatsApp {SITE.whatsapp}</a>
+                  <span style={{ color: 'var(--ink-3)', fontSize: '0.9rem' }}>{SITE.legalName} · ABN {SITE.abn} · {SITE.location}</span>
+                </div>
+              </div>
+            )}
             <ComplianceBadge />
           </div>
           <div className="card card-pad">

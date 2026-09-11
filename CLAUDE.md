@@ -29,15 +29,21 @@ Authority: Crimes (Currency) Act 1981 (Cth) + RBA "Reproducing Banknotes" guidan
 - **Bing Webmaster Tools**: set up via "Import from Google Search Console" — no Bing-specific token needed (`SITE.bingVerification` is intentionally empty).
 - **IndexNow**: key file live at `/{SITE.indexNowKey}.txt`; all sitemap URLs submitted (202 Accepted). Re-submit after any content update — see docs/PROJECT.md for the call.
 
-## Live placeholders (still pending)
-- Contact email/phone/WhatsApp — pending, using `[EMAIL]` / `[NUMBER]` placeholders
-- Business location/HQ (state/city) — pending, required before AI-visibility schema (`foundingLocation`, `areaServed`) can ship truthfully
-- ABN / GST registration status — pending, needed for `.com.au` registration and invoicing
-- Web3Forms access key — pending; forms redirect straight to thank-you page until set (no order emails are sent yet)
-- Stripe/PayPal account — pending setup; checkout ships with Bank Transfer + PayID + BTC/USDT/ETH/BNB live, card processor added once account is approved
+## Environment variables (Vercel → Settings → Environment Variables)
+Anything order/checkout-related is read from `NEXT_PUBLIC_*` env vars in `src/config/site.js` with safe defaults — see `.env.example`. Static site, so values are inlined at build time: change → redeploy. Never put bank/PayID/wallet details in env vars or code (they would ship in the client bundle); payment details go out by email after confirmation.
+- `NEXT_PUBLIC_WEB3FORMS_KEY` — **still pending**; forms redirect straight to thank-you until set (no order emails are sent yet)
+- `NEXT_PUBLIC_CONTACT_EMAIL` / `NEXT_PUBLIC_ORDER_EMAIL` / `NEXT_PUBLIC_WHOLESALE_EMAIL` — default info@australianreserveprops.com
+- `NEXT_PUBLIC_WHATSAPP` — default +61 480 804 189
+- `NEXT_PUBLIC_TURNSTILE_SITE_KEY` — optional
+
+## Still pending
+- Stripe/PayPal account — checkout ships with Bank Transfer + PayID + BTC/USDT/ETH/BNB live, card processor added once account is approved
+- Real social profiles (`SITE.sameAs` is empty — never invent)
 
 ## Brand facts (only these are true — never invent more)
 - Site name: Australian Reserve Props. Domain: australianreserveprops.com.
+- Legal entity: Money 365 Pty Ltd (Australian Private Company), ABN 84 676 764 971, active and GST-registered from 22 Apr 2024. Main business location: The Ponds, NSW 2769. (Supplied 2026-09-12 from the ABR record.)
+- Official email: info@australianreserveprops.com (Zoho Mail). WhatsApp: +61 480 804 189 — also used as the contact number; no separate landline supplied.
 - Founded 2024. Predecessor site went offline; select reviews recovered from that period (client-confirmed genuine, published with dates as given).
 - Market: Australia only (no cross-border shipping/marketing).
 - Product: Australian-styled novelty/prop currency notes ($20/$50/$100 minimum, plus vintage series), packs, briefcases, confetti/leis, display collectibles, personalised novelty, kids play money, gift sets, accessories.
