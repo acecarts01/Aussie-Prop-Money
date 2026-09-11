@@ -25,9 +25,12 @@ const publicSans = Public_Sans({
 // Only emit a verification tag once a real code replaces the [PENDING] placeholder —
 // a placeholder value in a live <meta> tag would just be a broken verification claim.
 const isLive = (v) => typeof v === 'string' && v.length > 0 && !v.startsWith('[')
+// Accepts a single token or an array of tokens (one per Google account owning the property).
+const liveList = (v) => (Array.isArray(v) ? v : [v]).filter(isLive)
 
 const verification = {}
-if (isLive(SITE.gscVerification)) verification.google = SITE.gscVerification
+const gsc = liveList(SITE.gscVerification)
+if (gsc.length) verification.google = gsc.length === 1 ? gsc[0] : gsc
 if (isLive(SITE.bingVerification)) verification.other = { 'msvalidate.01': SITE.bingVerification }
 
 export const metadata = {
