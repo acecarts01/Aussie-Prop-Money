@@ -136,7 +136,29 @@ This will be built to webforge's design-quality gate (grid uniformity, no bare s
 
 ---
 
-## GSC / Bing Webmaster Tools setup — do this right after the first Vercel deploy
+## ✅ Launch record — completed 2026-09-11
+
+**Vercel.** Site deployed as project `aussie-prop-money` in the **ACE** team (acecarts01). Root cause of the earlier
+"Verification Required": a duplicate project (`aussiepropmoney`) in the old Prop Money team (acecarts36) still held
+the domain. Fixed by adding two `_vercel` TXT ownership records in ACE's DNS, then the duplicate project was deleted.
+Apex `australianreserveprops.com` is primary; `www` is a 308 redirect to it (this ordering matters — reversing it
+creates a redirect loop with the site's own `www → apex` rule in `vercel.json`).
+
+**Google Search Console.** The property `https://australianreserveprops.com/` was originally created under the
+acecarts36 Google account. Rather than leave it there, acecarts01 verified it directly: Google issues a separate
+token per account, so a second token was added to `SITE.gscVerification` (both are emitted). Verified via HTML tag.
+Sitemap `sitemap.xml` submitted successfully.
+
+**Bing Webmaster Tools.** Set up via "Import from Google Search Console" under acecarts01 — inherits GSC's
+verification, so no Bing token is needed (`SITE.bingVerification` is intentionally empty).
+
+**IndexNow.** All 79 sitemap URLs submitted to `api.indexnow.org` → `202 Accepted`.
+
+Everything below this line is the original pre-launch runbook, kept for reference / future re-runs.
+
+---
+
+## GSC / Bing Webmaster Tools setup — (original runbook)
 
 The site ships with the verification meta-tag slots and IndexNow key already wired in (`src/config/site.js` →
 `gscVerification`, `bingVerification`, `indexNowKey`), but nothing is emitted yet — the placeholders suppress the

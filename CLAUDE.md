@@ -22,8 +22,14 @@ Authority: Crimes (Currency) Act 1981 (Cth) + RBA "Reproducing Banknotes" guidan
 - Emails entity-encoded (`&#64;`) everywhere, including JSON-LD.
 - Never commit `node_modules/`, `.next/`, `out/`.
 
-## Live placeholders (site is not fully live until these are set)
-- `SITE.domain` — australianreserveprops.com (confirmed registered + connected in Vercel 2026-09-05)
+## Deployment & search-engine status (as of 2026-09-11)
+- **LIVE** at https://australianreserveprops.com — Vercel project `aussie-prop-money` in the **ACE** team (acecarts01). Apex is primary; `www` 308-redirects to apex. The old duplicate project in the Prop Money team has been deleted — there is exactly one project now.
+- **Vercel ownership**: two `_vercel` TXT records (apex + www) in ACE's DNS. Leave them in place.
+- **Google Search Console**: verified under acecarts01@gmail.com via HTML tag. Two GSC tokens are emitted (see `SITE.gscVerification`) — one per Google account that has owned the property. Don't remove either. Sitemap submitted.
+- **Bing Webmaster Tools**: set up via "Import from Google Search Console" — no Bing-specific token needed (`SITE.bingVerification` is intentionally empty).
+- **IndexNow**: key file live at `/{SITE.indexNowKey}.txt`; all sitemap URLs submitted (202 Accepted). Re-submit after any content update — see docs/PROJECT.md for the call.
+
+## Live placeholders (still pending)
 - Contact email/phone/WhatsApp — pending, using `[EMAIL]` / `[NUMBER]` placeholders
 - Business location/HQ (state/city) — pending, required before AI-visibility schema (`foundingLocation`, `areaServed`) can ship truthfully
 - ABN / GST registration status — pending, needed for `.com.au` registration and invoicing
