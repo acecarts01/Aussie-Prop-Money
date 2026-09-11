@@ -84,7 +84,7 @@ export default function AddToCartButton({ product }) {
       <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', flexWrap: 'wrap' }}>
         <QtyStepper value={qty} onChange={setQty} />
         <button type="button" className="btn btn-accent" onClick={handleAdd}>
-          {added ? 'Added ✓' : 'Add to Cart'}
+          {added ? 'Added to order ✓' : 'Add to order'}
         </button>
       </div>
     </div>

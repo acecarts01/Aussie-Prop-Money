@@ -2,35 +2,36 @@ import Link from 'next/link'
 import Image from 'next/image'
 import ProductArt from './ProductArt'
 import { getCategory, formatPrice, artLabelFor } from '@/lib/utils'
-import { NOTE_COLORS } from '@/config/site'
 
-export default function ProductCard({ product }) {
+export default function ProductCard({ product, priority = false }) {
   const category = getCategory(product.category)
-  const colorKey = category?.color || 'neutral'
-  const accent = NOTE_COLORS[colorKey]
   const photo = product.images?.[0]
 
   return (
-    <Link href={`/product/${product.slug}/`} className="product-card" style={{ '--tile-accent': accent, textDecoration: 'none', color: 'inherit' }}>
-      <div className="product-frame">
+    <Link href={`/product/${product.slug}/`} className="product-card">
+      <div className="plate">
+        {product.badge && <span className="specimen-tag">{product.badge}</span>}
         {photo ? (
           <Image
             src={`/images/products/${photo}`}
             alt={product.name}
             width={1600}
             height={1200}
-            loading="lazy"
-            style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+            loading={priority ? 'eager' : 'lazy'}
+            priority={priority}
           />
         ) : (
-          <ProductArt colorKey={colorKey} label={artLabelFor(product)} />
+          <ProductArt colorKey={category?.color} label={artLabelFor(product)} />
         )}
       </div>
       <div className="product-body">
-        {product.badge && <span className="product-badge">{product.badge}</span>}
-        <h3 style={{ fontSize: '1.05rem', margin: 0 }}>{product.name}</h3>
-        <p style={{ margin: 0, fontSize: '0.85rem', color: 'var(--ink-faint)' }}>{product.faceValueLabel}</p>
-        <span className="product-price">{formatPrice(product.price)}</span>
+        <p className="meta">{category?.name}</p>
+        <h3>{product.name}</h3>
+        <p className="meta">{product.faceValueLabel}</p>
+        <div className="row">
+          <span className="product-price">{formatPrice(product.price)}</span>
+          <span className="go">View →</span>
+        </div>
       </div>
     </Link>
   )

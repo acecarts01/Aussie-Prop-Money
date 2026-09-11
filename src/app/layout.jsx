@@ -1,4 +1,4 @@
-import { Fraunces, Public_Sans } from 'next/font/google'
+import { Archivo, Manrope } from 'next/font/google'
 import '../styles/globals.css'
 import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
@@ -7,18 +7,19 @@ import { SITE } from '@/config/site'
 import { absoluteUrl } from '@/lib/utils'
 
 // next/font self-hosts these at build time — no runtime request to Google Fonts,
-// no render-blocking @import chain. Replaces the old globals.css @import.
-const fraunces = Fraunces({
+// no render-blocking @import chain.
+// Archivo is a variable face with a width axis: headlines use it condensed
+// (font-stretch in CSS) for the "production house" display voice.
+const archivo = Archivo({
   subsets: ['latin'],
-  weight: ['500', '600', '700'],
-  variable: '--font-fraunces',
+  axes: ['wdth'],
+  variable: '--font-archivo',
   display: 'swap',
 })
 
-const publicSans = Public_Sans({
+const manrope = Manrope({
   subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  variable: '--font-public-sans',
+  variable: '--font-manrope',
   display: 'swap',
 })
 
@@ -87,7 +88,7 @@ const websiteSchema = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang={SITE.locale} className={`${fraunces.variable} ${publicSans.variable}`}>
+    <html lang={SITE.locale} className={`${archivo.variable} ${manrope.variable}`}>
       <head>
         <script src="/js/webmcp.js" defer />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }} />

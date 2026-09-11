@@ -1,4 +1,4 @@
-export default function FaqBlock({ faqs, title = 'Frequently Asked Questions' }) {
+export default function FaqBlock({ faqs, title = 'Frequently asked questions' }) {
   if (!faqs || faqs.length === 0) return null
 
   const schema = {
@@ -8,15 +8,12 @@ export default function FaqBlock({ faqs, title = 'Frequently Asked Questions' })
   }
 
   return (
-    <div style={{ marginTop: '3rem', maxWidth: '640px' }}>
+    <div style={{ marginTop: '3rem' }}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
-      <h2 style={{ fontSize: '1.2rem' }}>{title}</h2>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', marginTop: '1rem' }}>
+      <h2 style={{ fontSize: '1.4rem', marginBottom: '0.9rem' }}>{title}</h2>
+      <div className="faq-list">
         {faqs.map((f) => (
-          <details key={f.q} className="callout">
-            <summary style={{ fontWeight: 600, cursor: 'pointer' }}>{f.q}</summary>
-            <p style={{ marginTop: '0.6rem', marginBottom: 0 }}>{f.a}</p>
-          </details>
+          <details key={f.q}><summary>{f.q}</summary><p>{f.a}</p></details>
         ))}
       </div>
     </div>

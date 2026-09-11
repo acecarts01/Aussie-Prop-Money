@@ -1,13 +1,14 @@
 'use client'
 
 import Link from 'next/link'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { SITE, CATEGORIES } from '@/config/site'
+import { getCart } from '@/lib/cart'
 
 const NAV_LINKS = [
   { href: '/shop/', label: 'Shop' },
-  { href: '/wholesale/', label: 'Wholesale' },
-  { href: '/blog/', label: 'Blog' },
+  { href: '/wholesale/', label: 'Production' },
+  { href: '/blog/', label: 'Guides' },
   { href: '/faq/', label: 'FAQ' },
   { href: '/about/', label: 'About' },
   { href: '/contact/', label: 'Contact' },
@@ -15,28 +16,41 @@ const NAV_LINKS = [
 
 export default function Nav() {
   const [open, setOpen] = useState(false)
+  const [count, setCount] = useState(0)
+
+  useEffect(() => {
+    const sync = () => setCount(getCart().reduce((n, i) => n + i.qty, 0))
+    sync()
+    window.addEventListener('cart-updated', sync)
+    return () => window.removeEventListener('cart-updated', sync)
+  }, [])
 
   return (
     <header className="site-header">
+      <div className="announce">
+        <em>Not legal tender</em> · Reduced-scale prop currency<span className="announce-more"> for film, theatre &amp; performance · Ships Australia-wide</span>
+      </div>
+
       <div className="container nav-row">
-        <Link href="/" className="brand">
+        <Link href="/" className="brand" aria-label={`${SITE.name} — home`}>
           <span className="brand-mark" aria-hidden="true">ARP</span>
-          {SITE.name}
+          <span className="brand-word">
+            Australian Reserve Props
+            <small>Prop money · Est. {SITE.foundingYear}</small>
+          </span>
         </Link>
 
         <nav aria-label="Primary">
           <ul className="nav-links">
             {NAV_LINKS.map((l) => (
-              <li key={l.href}>
-                <Link href={l.href}>{l.label}</Link>
-              </li>
+              <li key={l.href}><Link href={l.href}>{l.label}</Link></li>
             ))}
           </ul>
         </nav>
 
         <div className="nav-actions">
-          <Link href="/cart/" className="btn btn-outline tap-target" aria-label="View cart">
-            Cart
+          <Link href="/cart/" className="btn btn-outline tap-target" aria-label={`Cart, ${count} item${count === 1 ? '' : 's'}`}>
+            Cart{count > 0 ? ` · ${count}` : ''}
           </Link>
           <button
             type="button"
@@ -54,19 +68,11 @@ export default function Nav() {
       {open && (
         <div id="mobile-menu" className="container mobile-menu">
           {NAV_LINKS.map((l) => (
-            <Link key={l.href} href={l.href} onClick={() => setOpen(false)}>
-              {l.label}
-            </Link>
+            <Link key={l.href} href={l.href} onClick={() => setOpen(false)}>{l.label}</Link>
           ))}
-          <div style={{ marginTop: '0.5rem', display: 'flex', flexWrap: 'wrap', gap: '0.4rem' }}>
+          <div className="chip-row" style={{ marginTop: '1rem' }}>
             {CATEGORIES.map((c) => (
-              <Link
-                key={c.slug}
-                href={`/shop/${c.slug}/`}
-                onClick={() => setOpen(false)}
-                className="chip"
-                style={{ textDecoration: 'none' }}
-              >
+              <Link key={c.slug} href={`/shop/${c.slug}/`} onClick={() => setOpen(false)} className="chip">
                 {c.name}
               </Link>
             ))}

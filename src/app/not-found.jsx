@@ -1,13 +1,15 @@
-import Link from 'next/link'
+import ThankYou from '@/components/ThankYou'
 
 export const metadata = { robots: { index: false, follow: true } }
 
 export default function NotFound() {
   return (
-    <div className="container section" style={{ maxWidth: '60ch', textAlign: 'center' }}>
-      <h1>Page Not Found</h1>
-      <p>That page doesn&rsquo;t exist. Try the shop instead.</p>
-      <Link href="/shop/" className="btn btn-accent">Go to Shop</Link>
-    </div>
+    <ThankYou
+      eyebrow="404 · Missing reel"
+      title="That page is not in the can"
+      body="The link is broken or the page has moved. The full range is one click away."
+      primary={{ label: 'Shop film-ready packs', href: '/shop/' }}
+      secondary={{ label: 'Home', href: '/' }}
+    />
   )
 }

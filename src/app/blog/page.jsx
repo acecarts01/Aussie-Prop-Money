@@ -5,29 +5,29 @@ import { POSTS } from '@/config/site'
 import { absoluteUrl } from '@/lib/utils'
 
 export const metadata = {
-  title: 'Blog — Prop Money Guides for Australia',
-  description: 'Buying guides, legal explainers, and use-case tips for Australian prop money.',
+  title: 'Guides — Prop Money for Film, Theatre & Content in Australia',
+  description: 'Buying guides, legal explainers and use-case notes for studio-grade prop money — written for crews, teachers and creators.',
   alternates: { canonical: absoluteUrl('/blog/') },
 }
 
 export default function BlogIndex() {
+  const posts = [...POSTS].sort((a, b) => (a.date < b.date ? 1 : -1))
   return (
     <div>
       <PageHeader
-        eyebrow="Guides & Explainers"
-        title="Blog"
-        breadcrumbs={<Breadcrumbs trail={[{ label: 'Blog', href: '/blog/' }]} />}
+        eyebrow="Guides & explainers"
+        title="Read before you shoot"
+        subtitle="What the law actually says, what reads on camera, and how much to order — from the people who print it."
+        breadcrumbs={<Breadcrumbs trail={[{ label: 'Guides', href: '/blog/' }]} />}
       />
-
-      <div className="container section" style={{ maxWidth: '760px' }}>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-          {POSTS.map((p) => (
-            <Link key={p.slug} href={`/blog/${p.slug}/`} className="card" style={{ padding: '1.25rem', textDecoration: 'none', color: 'inherit' }}>
-              <h2 style={{ fontSize: '1.1rem', margin: 0 }}>{p.title}</h2>
-              <p style={{ color: 'var(--ink-faint)', fontSize: '0.85rem' }}>
-                {new Date(p.date).toLocaleDateString('en-AU', { year: 'numeric', month: 'long', day: 'numeric' })}
-              </p>
-              <p style={{ margin: 0 }}>{p.excerpt}</p>
+      <div className="container section">
+        <div className="grid grid-3">
+          {posts.map((p) => (
+            <Link key={p.slug} href={`/blog/${p.slug}/`} className="card card-pad blog-card">
+              <span className="date">{new Date(p.date).toLocaleDateString('en-AU', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+              <h3>{p.title}</h3>
+              <p>{p.excerpt}</p>
+              <span className="go">Read →</span>
             </Link>
           ))}
         </div>

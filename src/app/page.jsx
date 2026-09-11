@@ -1,19 +1,27 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import ProductCard from '@/components/ProductCard'
-import { CATEGORIES, PRODUCTS, FAQS, REVIEWS, SITE, NOTE_COLORS } from '@/config/site'
+import SectionHead from '@/components/SectionHead'
+import TrustBadges from '@/components/TrustBadges'
+import UseCaseSplit from '@/components/UseCaseSplit'
+import ComplianceBadge from '@/components/ComplianceBadge'
+import Icon from '@/components/Icon'
+import { CATEGORIES, PRODUCTS, FAQS, REVIEWS, POSTS, SITE, HERO, COMPLIANCE } from '@/config/site'
 import { absoluteUrl } from '@/lib/utils'
 
 export const metadata = {
-  title: 'Prop Money Australia — Australian Reserve Props',
+  title: 'Prop Money Australia — Studio-Grade, Screen-Ready | Australian Reserve Props',
   description:
-    'Compliance-first Australian prop money for film, theatre, content creation, education, and gifting. $20, $50, and $100 denominations, Australia-wide shipping.',
+    'Studio-grade prop money for film, theatre and performance. Reduced-scale, RBA-compliant, clearly marked NOT LEGAL TENDER. $20, $50 and $100 stacks, packs and briefcase sets, shipped Australia-wide.',
   alternates: { canonical: absoluteUrl('/') },
 }
+
+const HOME_FAQS = FAQS.slice(0, 5)
 
 const faqSchema = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
-  mainEntity: FAQS.map((f) => ({
+  mainEntity: HOME_FAQS.map((f) => ({
     '@type': 'Question',
     name: f.q,
     acceptedAnswer: { '@type': 'Answer', text: f.a },
@@ -25,11 +33,7 @@ const aggregateSchema = {
   '@context': 'https://schema.org',
   '@type': 'Product',
   name: SITE.name,
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: avgRating,
-    reviewCount: REVIEWS.length,
-  },
+  aggregateRating: { '@type': 'AggregateRating', ratingValue: avgRating, reviewCount: REVIEWS.length },
   review: REVIEWS.slice(0, 8).map((r) => ({
     '@type': 'Review',
     author: { '@type': 'Person', name: r.name },
@@ -39,7 +43,20 @@ const aggregateSchema = {
   })),
 }
 
-const bestSellers = PRODUCTS.filter((p) => p.badge === 'Best Seller' || p.badge === 'Most Requested' || p.badge === 'Creator Favourite' || p.badge === 'Party Favourite').slice(0, 4)
+// Featured: the three flagship stacks + the production/reveal sets + two use-case items.
+const FEATURED_SLUGS = [
+  'hundred-dollar-prop-note-stack',
+  'fifty-dollar-prop-note-stack',
+  'twenty-dollar-prop-note-stack',
+  'briefcase-prop-set-250k',
+  'bulk-production-pack',
+  'duffel-bag-prop-set-500k',
+  'content-creator-flex-pack',
+  'money-gun-refill-pack',
+]
+const featured = FEATURED_SLUGS.map((s) => PRODUCTS.find((p) => p.slug === s)).filter(Boolean)
+const productionReviews = REVIEWS.filter((r) => /film|theatre|production|stage|set|shoot|crew/i.test(r.text)).slice(0, 3)
+const latestPosts = [...POSTS].sort((a, b) => (a.date < b.date ? 1 : -1)).slice(0, 3)
 
 export default function HomePage() {
   return (
@@ -47,135 +64,175 @@ export default function HomePage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(aggregateSchema) }} />
 
-      <section className="hero luxury-band">
-        <div className="container hero-grid">
-          <div>
-            <span className="eyebrow">Australia-Only · Compliance-First</span>
-            <h1 style={{ fontSize: 'clamp(2rem, 5vw, 3.2rem)' }}>Prop Money Australia, Done Properly</h1>
-            <hr className="gold-rule" />
-            <p style={{ maxWidth: '48ch', fontSize: '1.05rem', color: 'rgba(243,239,231,0.78)' }}>
-              Australian-note-styled prop currency for film, theatre, content creation, education, and gifting —
-              $20, $50, and $100 denominations, reproduced to RBA reproduction guidance and clearly marked NOT LEGAL TENDER.
-            </p>
-            <div style={{ display: 'flex', gap: '0.75rem', marginTop: '1.5rem', flexWrap: 'wrap' }}>
-              <Link href="/shop/" className="btn btn-accent">Shop All Denominations</Link>
-              <Link href="/wholesale/" className="btn btn-outline">Bulk / Production Orders</Link>
+      {/* 1 — Hero */}
+      <section className="hero-cine gridlines" aria-labelledby="hero-h1">
+        <div className="hero-media" aria-hidden="true">
+          <Image src={`/images/products/${HERO.image}`} alt="" fill priority sizes="100vw" />
+        </div>
+        <div className="hero-scrim" aria-hidden="true" />
+        <div className="container">
+          <div className="hero-inner">
+            <span className="eyebrow rise">Prop currency for production</span>
+            <h1 id="hero-h1" className="rise rise-2">
+              <span className="line">{HERO.h1Lines[0]}</span>
+              <span className="line">{HERO.h1Lines[1]}</span>
+              <span className="line accent">{HERO.h1Lines[2]}</span>
+            </h1>
+            <p className="hero-sub rise rise-3">{HERO.sub}</p>
+            <div className="hero-cta rise rise-3">
+              <Link href={HERO.ctaPrimary.href} className="btn btn-accent">
+                {HERO.ctaPrimary.label} <span className="arrow"><Icon name="arrow" size={16} /></span>
+              </Link>
+              <Link href={HERO.ctaSecondary.href} className="btn btn-outline">{HERO.ctaSecondary.label}</Link>
+            </div>
+            <div className="rise rise-4"><ComplianceBadge size="lg" /></div>
+            <div className="hero-meta rise rise-4" style={{ marginTop: '1.4rem' }}>
+              {HERO.meta.map(([k, v]) => (
+                <span key={k}>{k}: <b>{v}</b></span>
+              ))}
             </div>
           </div>
-          <div className="hero-fan" aria-hidden="true">
-            {[
-              { key: 'twenty', rot: -14, x: 20 },
-              { key: 'fifty', rot: 4, x: 90 },
-              { key: 'hundred', rot: 22, x: 160 },
-            ].map((n, i) => (
-              <div
-                key={n.key}
-                className="hero-note"
-                style={{
-                  background: NOTE_COLORS[n.key],
-                  left: `${n.x}px`,
-                  top: '60px',
-                  transform: `rotate(${n.rot}deg)`,
-                  animationDelay: `${i * 90}ms`,
-                }}
-              >
-                ${n.key === 'twenty' ? 20 : n.key === 'fifty' ? 50 : 100}
+        </div>
+        <span className="hero-corner" aria-hidden="true">{HERO.cornerTag}</span>
+      </section>
+
+      {/* 2 — Trust badges */}
+      <section className="section-tight surface-1" aria-label="Trust and compliance signals">
+        <div className="container"><TrustBadges /></div>
+      </section>
+
+      {/* 3 — Use-case split */}
+      <section className="section surface-2">
+        <div className="container">
+          <SectionHead
+            eyebrow="Built for the job"
+            title="Three ways it gets used. One standard."
+            sub="Film, stage, and social all put different demands on a stack. The print quality, sizing, and marking stay the same across all of them."
+          />
+          <UseCaseSplit />
+        </div>
+      </section>
+
+      {/* 4 — Compliance, up front */}
+      <section className="section surface-1 compliance-section">
+        <div className="slate" aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0 }} />
+        <div className="container compliance-grid">
+          <div>
+            <SectionHead eyebrow={COMPLIANCE.eyebrow} title={COMPLIANCE.title} sub={COMPLIANCE.lede} />
+            <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
+              {COMPLIANCE.links.map((l, i) => (
+                <Link key={l.href} href={l.href} className={`btn ${i === 0 ? 'btn-outline' : 'btn-ghost'}`}>{l.label}</Link>
+              ))}
+            </div>
+          </div>
+          <div className="isnt-grid">
+            <div className="isnt-col">
+              <h4 className="is">What it is</h4>
+              <ul>{COMPLIANCE.is.map((t) => <li key={t}>{t}</li>)}</ul>
+            </div>
+            <div className="isnt-col">
+              <h4>What it isn&rsquo;t</h4>
+              <ul>{COMPLIANCE.isnt.map((t) => <li key={t}>{t}</li>)}</ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 5 — Featured products */}
+      <section className="section surface-2">
+        <div className="container">
+          <SectionHead
+            eyebrow="Featured"
+            title="Screen-ready stacks, sets & packs"
+            sub="Three denominations, $20 and up. Bundles sized from a single close-up to a full vault dressing."
+          />
+          <div className="grid grid-4">
+            {featured.map((p, i) => <ProductCard key={p.slug} product={p} priority={i < 2} />)}
+          </div>
+          <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', marginTop: '2rem' }}>
+            <Link href="/shop/" className="btn btn-accent">Browse the full range <span className="arrow"><Icon name="arrow" size={16} /></span></Link>
+            {CATEGORIES.filter((c) => ['twenty-dollar-notes', 'fifty-dollar-notes', 'hundred-dollar-notes'].includes(c.slug)).map((c) => (
+              <Link key={c.slug} href={`/shop/${c.slug}/`} className="chip">{c.name}</Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Stat strip — real numbers only */}
+      <section aria-label="At a glance">
+        <div className="stat-strip">
+          <div className="stat"><b>{SITE.foundingYear}</b><span>Established</span></div>
+          <div className="stat"><b>{PRODUCTS.length}</b><span>Products</span></div>
+          <div className="stat"><b>{CATEGORIES.length}</b><span>Categories</span></div>
+          <div className="stat"><b>AU</b><span>Ships nationwide</span></div>
+        </div>
+      </section>
+
+      {/* From set — real reviews from production use */}
+      <section className="section surface-1">
+        <div className="container">
+          <SectionHead
+            eyebrow="Set reports"
+            title={`${avgRating}★ across ${REVIEWS.length} reports`}
+            sub="Recovered from our predecessor site and confirmed genuine. These are the ones from stage and set."
+          />
+          <div className="grid grid-3">
+            {productionReviews.map((r) => (
+              <div key={r.name + r.date} className="card review-card">
+                <div className="review-stars" aria-label={`${r.rating} out of 5`}>{'★'.repeat(r.rating)}{'☆'.repeat(5 - r.rating)}</div>
+                <blockquote>{r.text.length > 240 ? `${r.text.slice(0, 240)}…` : r.text}</blockquote>
+                <span className="who">{r.name} · {new Date(r.date).toLocaleDateString('en-AU', { year: 'numeric', month: 'short' })}</span>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="section">
-        <div className="container trust-bar">
-          <div className="trust-item">🇦🇺 Australia-wide shipping only</div>
-          <div className="trust-item">📏 RBA-compliant reproduction sizing</div>
-          <div className="trust-item">🎬 Trusted by theatre &amp; production crews</div>
-          <div className="trust-item">🔒 No custom serial numbers, ever</div>
-        </div>
-      </section>
-
-      <section className="section section-tint">
-        <div className="container">
-          <div className="section-head">
-            <span className="eyebrow">Shop by Denomination</span>
-            <h2>Every Australian Note, One Range</h2>
-            <hr className="gold-rule" />
-          </div>
-          <div className="grid grid-4">
-            {CATEGORIES.filter((c) => ['twenty-dollar-notes','fifty-dollar-notes','hundred-dollar-notes'].includes(c.slug)).map((c) => (
-              <Link
-                key={c.slug}
-                href={`/shop/${c.slug}/`}
-                className="card"
-                style={{ textDecoration: 'none', color: 'inherit', padding: '1.5rem', borderTop: `4px solid ${NOTE_COLORS[c.color]}` }}
-              >
-                <h3 style={{ fontSize: '1.1rem' }}>{c.name}</h3>
-                <p style={{ fontSize: '0.85rem', color: 'var(--ink-faint)', margin: 0 }}>{c.description}</p>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="section">
-        <div className="container">
-          <div className="section-head">
-            <span className="eyebrow">Best Sellers</span>
-            <h2>Popular With Productions &amp; Creators</h2>
-            <hr className="gold-rule" />
-          </div>
-          <div className="grid grid-4">
-            {bestSellers.map((p) => <ProductCard key={p.slug} product={p} />)}
-          </div>
-        </div>
-      </section>
-
-      <section className="section section-tint">
-        <div className="container" style={{ maxWidth: '72ch' }}>
-          <span className="eyebrow">About {SITE.name}</span>
-          <h2>Built Compliance-First, From the Start</h2>
-          <hr className="gold-rule" />
-          <p>{SITE.brandStatement}</p>
-          <p>
-            We ship within Australia only, price every pack the same regardless of payment method, and never offer
-            custom or buyer-specified serial numbers — every note carries a system-assigned placeholder serial.
+      {/* Authority — the AI-visibility payload */}
+      <section className="section surface-2 gridlines">
+        <div className="container" style={{ maxWidth: '76ch' }}>
+          <SectionHead eyebrow={`About ${SITE.name}`} title="Compliance-first from day one" />
+          <p className="lede">{SITE.brandStatement}</p>
+          <p style={{ color: 'var(--ink-2)' }}>
+            Most prop money sold to Australian buyers is printed to US-dollar specs or without much thought to the Crimes (Currency) Act 1981. We built this range specifically for Australian productions: every note is reduced-scale, carries no replicated security features, and is marked NOT LEGAL TENDER. Every product is priced the same regardless of how you pay, and we never offer custom serial numbers.
           </p>
+          <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', marginTop: '0.5rem' }}>
+            <Link href="/about/" className="btn btn-outline">Our story</Link>
+            <Link href="/wholesale/" className="btn btn-ghost">Production &amp; wholesale →</Link>
+          </div>
         </div>
       </section>
 
-      <section className="section">
-        <div className="container" style={{ maxWidth: '72ch' }}>
-          <div className="section-head">
-            <span className="eyebrow">Frequently Asked</span>
-            <h2>Common Questions</h2>
-            <hr className="gold-rule" />
-          </div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-            {FAQS.map((f) => (
-              <details key={f.q} className="callout">
-                <summary style={{ fontWeight: 600, cursor: 'pointer' }}>{f.q}</summary>
-                <p style={{ marginTop: '0.6rem', marginBottom: 0 }}>{f.a}</p>
+      {/* 6 — FAQ */}
+      <section className="section surface-1">
+        <div className="container" style={{ maxWidth: '76ch' }}>
+          <SectionHead eyebrow="Straight answers" title="Legality, realism, delivery" />
+          <div className="faq-list">
+            {HOME_FAQS.map((f) => (
+              <details key={f.q}>
+                <summary>{f.q}</summary>
+                <p>{f.a}</p>
               </details>
             ))}
           </div>
+          <div style={{ marginTop: '1.25rem' }}>
+            <Link href="/faq/" className="btn btn-ghost">All questions →</Link>
+          </div>
         </div>
       </section>
 
-      <section className="section section-tint">
+      {/* Guides */}
+      <section className="section surface-2">
         <div className="container">
-          <div className="section-head">
-            <span className="eyebrow">Customer Reviews</span>
-            <h2>{avgRating}★ from {REVIEWS.length} Reviews</h2>
-            <hr className="gold-rule" />
-          </div>
+          <SectionHead eyebrow="Guides" title="Read before you shoot" />
           <div className="grid grid-3">
-            {REVIEWS.slice(0, 6).map((r) => (
-              <div key={r.name + r.date} className="card review-card">
-                <div className="review-stars" aria-label={`${r.rating} out of 5 stars`}>{'★'.repeat(r.rating)}{'☆'.repeat(5 - r.rating)}</div>
-                <p style={{ fontSize: '0.9rem' }}>{r.text.length > 220 ? `${r.text.slice(0, 220)}…` : r.text}</p>
-                <p style={{ fontSize: '0.8rem', color: 'var(--ink-faint)', margin: 0 }}>{r.name} · {new Date(r.date).toLocaleDateString('en-AU', { year: 'numeric', month: 'short', day: 'numeric' })}</p>
-              </div>
+            {latestPosts.map((p) => (
+              <Link key={p.slug} href={`/blog/${p.slug}/`} className="card card-pad blog-card">
+                <span className="date">{new Date(p.date).toLocaleDateString('en-AU', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+                <h3>{p.title}</h3>
+                <p>{p.excerpt}</p>
+                <span className="go">Read →</span>
+              </Link>
             ))}
           </div>
         </div>

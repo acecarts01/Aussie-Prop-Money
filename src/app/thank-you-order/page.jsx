@@ -1,10 +1,13 @@
+import ThankYou from '@/components/ThankYou'
+
 export const metadata = { robots: { index: false, follow: true } }
 
 export default function ThankYouOrder() {
   return (
-    <div className="container section" style={{ maxWidth: '60ch', textAlign: 'center' }}>
-      <h1>Order Request Received</h1>
-      <p>We&rsquo;ll be in touch shortly with payment details for your chosen method.</p>
-    </div>
+    <ThankYou
+      eyebrow="Order request received"
+      title="Received. Confirming next."
+      body="We will be in touch shortly with payment details for your chosen method. Nothing prints until you have confirmed."
+    />
   )
 }

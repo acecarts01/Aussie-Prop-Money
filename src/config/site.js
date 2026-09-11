@@ -6,7 +6,7 @@ export const SITE = {
   target: 'vercel',
   domain: 'australianreserveprops.com', // confirmed registered + connected in Vercel 2026-09-05
   name: 'Australian Reserve Props',
-  tagline: 'Premium Australian Prop Notes for Film, Theatre & Play',
+  tagline: 'Studio-Grade Prop Money for Film, Theatre & Performance',
   locale: 'en-AU',
   currency: 'AUD',
   foundingYear: 2024,
@@ -84,8 +84,9 @@ export const PAYMENT_METHODS = [
   },
 ]
 
-// Note Palette — one real AUD polymer note colour per denomination.
-// Used as CSS custom properties (see globals.css) and referenced by slug below.
+// Note colours — retained only for the ProductArt placeholder fallback (no product
+// currently uses it; all 38 have photography). The live design system uses ONE
+// accent (--accent, polymer-$100 green) — see globals.css.
 export const NOTE_COLORS = {
   five: '#8B3A7A',
   ten: '#1F6FB2',
@@ -93,6 +94,85 @@ export const NOTE_COLORS = {
   fifty: '#D9A02A',
   hundred: '#1F7A4D',
   neutral: '#3A342C',
+}
+
+// ---------------------------------------------------------------------------
+// Homepage content (v2 design). Every claim here is backed by a brand fact in
+// CLAUDE.md or by the client-confirmed reviews — nothing aspirational.
+// ---------------------------------------------------------------------------
+export const HERO = {
+  // Primary keyword ("prop money australia") sits in the H1; the rest is the brand voice.
+  h1Lines: ['Studio-Grade', 'Prop Money Australia.', 'Screen-Ready.'],
+  sub: 'Trusted by theatre and production crews for realistic, compliant prop currency — built to production spec, not toy-shop standard. Every note is reduced-scale, clearly marked NOT LEGAL TENDER, and carries no replicated security features.',
+  ctaPrimary: { label: 'Shop Film-Ready Packs', href: '/shop/' },
+  ctaSecondary: { label: 'Production & Wholesale', href: '/wholesale/' },
+  meta: [
+    ['Ships', 'Australia-wide'],
+    ['Minimum note', '$20'],
+    ['Payment', 'Bank · PayID · Crypto'],
+  ],
+  image: 'briefcase-prop-set-250k.webp', // full-bleed backdrop under a heavy scrim; swap for a hero shoot when available
+  cornerTag: 'ARP · REEL 01 · NOT LEGAL TENDER',
+}
+
+export const TRUST_BADGES = [
+  { icon: 'clapper', title: 'For Motion Picture & Performance Use', text: 'Made for film, TV, theatre, content and events — and clearly marked as such on every note.' },
+  { icon: 'ruler', title: 'RBA-Compliant Sizing', text: 'Reduced-scale reproductions with no replicated security features, per RBA reproduction guidance.' },
+  { icon: 'set', title: 'Production-Tested', text: 'Used on stage and set by the theatre groups and crews whose reports appear on this site.' },
+  { icon: 'au', title: 'Australia-Based · Ships Australia-Wide', text: 'An Australian business shipping domestically via Australia Post with tracking.' },
+  { icon: 'lock', title: 'Secure, Transparent Ordering', text: 'Bank Transfer, PayID and crypto, all at the same price. No method is discounted or hidden.' },
+]
+
+// The category split by use case. Each links to a real category page; the
+// sub-mood comes from the product photography, the framing stays cohesive.
+export const USE_CASES = [
+  {
+    num: '01',
+    title: 'Film & Production',
+    text: 'Briefcase reveals, register scenes, vault dressing. Banded stacks and bulk packs that hold up under set lighting and repeated takes.',
+    href: '/shop/briefcases-bags/',
+    image: 'briefcase-prop-set-50k.webp',
+    cta: 'Shop production packs',
+  },
+  {
+    num: '02',
+    title: 'Theatre & Performance',
+    text: 'Stage-safe stacks that read from the back row, survive three-show weekends, and don\'t crinkle on a live mic.',
+    href: '/shop/fifty-dollar-notes/',
+    image: 'fifty-dollar-prop-note-stack.webp',
+    cta: 'Shop stage stacks',
+  },
+  {
+    num: '03',
+    title: 'Party, Prank & Content',
+    text: 'Money guns, leis, confetti and flex-pack stacks for celebrations and social content — clearly marked, loud on camera.',
+    href: '/shop/confetti-party-favors/',
+    image: 'money-gun-refill-pack.webp',
+    cta: 'Shop party & content',
+  },
+]
+
+// What it is / isn't — the compliance block, written as brand confidence.
+export const COMPLIANCE = {
+  eyebrow: 'The Fine Print, Up Front',
+  title: 'What This Is. What It Isn\'t.',
+  lede: 'Prop money is a legitimate, long-standing part of film and theatre craft. It is legal to make and sell in Australia inside clear rules — and we build to those rules, not around them.',
+  is: [
+    'Reduced-scale reproductions that differ from genuine notes by at least 25% (RBA reproduction guidance)',
+    'Clearly marked NOT LEGAL TENDER on every note — visible in-frame if you want it to be',
+    'Made for film, TV, theatre, content creation, education, and novelty use',
+    'Priced identically across every payment method',
+  ],
+  isnt: [
+    'Not currency and never usable as payment',
+    'No replicated banknote security features — no clear window, no colour-shift, no microprint',
+    'No custom or buyer-specified serial numbers, on any product, at any order size',
+    'Not something we\'ll market on "privacy" or "discretion" — we don\'t, and we won\'t',
+  ],
+  links: [
+    { label: 'Read the legal explainer', href: '/blog/is-prop-money-legal-in-australia/' },
+    { label: 'Full FAQ', href: '/faq/' },
+  ],
 }
 
 export const CATEGORIES = [
@@ -122,7 +202,7 @@ export const CATEGORIES = [
     name: 'Vintage & Legacy Series',
     color: 'fifty',
     description:
-      'Older-style Australian note designs for period productions, sourced from the same design pattern competitors like Prop Money Inc. use for their Vintage and Legacy Series lines.',
+      'Older-style Australian note designs for period productions — the look of a different decade without the compliance shortcuts, still reduced-scale and marked NOT LEGAL TENDER.',
   },
   {
     slug: 'packs-bundles',
@@ -136,7 +216,7 @@ export const CATEGORIES = [
     name: 'Briefcases & Bags',
     color: 'neutral',
     description:
-      'Note stacks pre-packed into a briefcase or duffel bag for reveal scenes — a staple category at every major competitor we researched.',
+      'Note stacks pre-packed into a briefcase or duffel bag for reveal scenes — open the lid and the shot is dressed.',
   },
   {
     slug: 'confetti-party-favors',

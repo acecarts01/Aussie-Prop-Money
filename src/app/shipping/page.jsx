@@ -1,21 +1,22 @@
-import Breadcrumbs from '@/components/Breadcrumbs'
+import LegalPage from '@/components/LegalPage'
 import { SITE } from '@/config/site'
-import { absoluteUrl } from '@/lib/utils'
+import { absoluteUrl, formatPrice } from '@/lib/utils'
 
-export const metadata = { title: 'Shipping', alternates: { canonical: absoluteUrl('/shipping/') } }
+export const metadata = {
+  title: 'Shipping — Australia-Wide Tracked Delivery',
+  description: 'Australian Reserve Props ships prop money Australia-wide via tracked Australia Post. Free shipping over $75, flat $9.95 on smaller orders. No international shipping.',
+  alternates: { canonical: absoluteUrl('/shipping/') },
+}
 
 export default function ShippingPage() {
   return (
-    <div className="container section" style={{ maxWidth: '68ch' }}>
-      <Breadcrumbs trail={[{ label: 'Shipping', href: '/shipping/' }]} />
-      <h1>Shipping</h1>
-      <hr className="gold-rule" />
+    <LegalPage crumb="Shipping" href="/shipping/" title="Shipping" subtitle="Australia only. Tracked. Free over the threshold.">
       <p>We ship within Australia only — no international shipping or marketing at this time.</p>
       <ul>
-        <li>Free shipping on orders over {SITE.orderRules.freeShippingThreshold} AUD.</li>
-        <li>Flat rate of {SITE.orderRules.flatShippingFee} AUD on smaller orders.</li>
+        <li>Free shipping on orders over {formatPrice(SITE.orderRules.freeShippingThreshold)}.</li>
+        <li>Flat rate of {formatPrice(SITE.orderRules.flatShippingFee)} on smaller orders.</li>
         <li>Shipped via Australia Post with tracking.</li>
       </ul>
-    </div>
+    </LegalPage>
   )
 }
