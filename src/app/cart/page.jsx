@@ -9,11 +9,12 @@ import FaqBlock from '@/components/FaqBlock'
 import ComplianceBadge from '@/components/ComplianceBadge'
 import { getCart, updateQty, removeFromCart, subtotal } from '@/lib/cart'
 import { formatPrice } from '@/lib/utils'
-import { SITE, PAYMENT_METHODS, PAGE_FAQS } from '@/config/site'
+import { SITE, PAYMENT_METHODS, PAGE_FAQS, ORDER } from '@/config/site'
+import VerifiedBusiness from '@/components/VerifiedBusiness'
 
 export default function CartPage() {
   const [items, setItems] = useState([])
-  const [paymentMethod, setPaymentMethod] = useState('bank-transfer')
+  const [paymentMethod, setPaymentMethod] = useState('payid')
 
   useEffect(() => {
     const sync = () => setItems(getCart())
@@ -22,9 +23,11 @@ export default function CartPage() {
     return () => window.removeEventListener('cart-updated', sync)
   }, [])
 
+  const method = PAYMENT_METHODS.find((m) => m.id === paymentMethod) || PAYMENT_METHODS[0]
   const sub = subtotal(items)
+  const discount = method.discount ? Math.round(sub * method.discount * 100) / 100 : 0
   const shipping = sub === 0 || sub >= SITE.orderRules.freeShippingThreshold ? 0 : SITE.orderRules.flatShippingFee
-  const total = sub + shipping
+  const total = sub - discount + shipping
 
   const summary = items
     .map((i) => `${i.qty} x ${i.name}${i.circulation ? ` (${i.circulation}` : ''}${i.packaging ? `${i.circulation ? ', ' : ' ('}${i.packaging})` : i.circulation ? ')' : ''} — ${formatPrice(i.price * i.qty)}`)
@@ -73,6 +76,7 @@ export default function CartPage() {
 
               <div className="cart-totals">
                 <span>Subtotal: {formatPrice(sub)}</span>
+                {discount > 0 && <span style={{ color: 'var(--accent)' }}>Crypto discount ({Math.round(ORDER.cryptoDiscount * 100)}%): −{formatPrice(discount)}</span>}
                 <span>Shipping: {shipping === 0 ? 'Free' : formatPrice(shipping)}</span>
                 {shipping > 0 && (
                   <span style={{ fontSize: '0.85rem', color: 'var(--ink-3)' }}>
@@ -87,15 +91,16 @@ export default function CartPage() {
                   <span className="eyebrow">How it works</span>
                   <h2 style={{ fontSize: '1.5rem' }}>Send the request. We confirm. Then it prints.</h2>
                   <p style={{ color: 'var(--ink-2)' }}>
-                    We reply with payment details for your chosen method. No card payment is live yet — Bank Transfer, PayID and crypto are all priced the same, with no method discounted over another.
+                    Your confirmation email carries the payment details for the method you pick — PayID, Bank Transfer, or crypto with {Math.round(ORDER.cryptoDiscount * 100)}% off the goods subtotal. Printing starts when payment clears.
                   </p>
-                  <ComplianceBadge />
+                  <VerifiedBusiness compact />
+                  <div style={{ marginTop: '1rem' }}><ComplianceBadge /></div>
                 </div>
                 <div className="card card-pad">
                   <fieldset style={{ border: 'none', padding: 0, margin: '0 0 1rem' }}>
                     <legend className="eyebrow" style={{ marginBottom: '0.6rem' }}>Preferred payment method</legend>
                     {PAYMENT_METHODS.map((m) => (
-                      <label key={m.id} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.45rem', opacity: m.live ? 1 : 0.5 }}>
+                      <label key={m.id} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.6rem', marginBottom: '0.6rem', opacity: m.live ? 1 : 0.5 }}>
                         <input
                           type="radio"
                           name="payment_method"
@@ -104,20 +109,23 @@ export default function CartPage() {
                           checked={paymentMethod === m.id}
                           onChange={() => setPaymentMethod(m.id)}
                         />
-                        {m.label} {!m.live && '(coming soon)'}
+                        <span>{m.label}{!m.live && ' (coming soon)'}<br /><small style={{ color: 'var(--ink-3)' }}>{m.note}</small></span>
                       </label>
                     ))}
                   </fieldset>
 
                   <WebForm
-                    subject="New order request — Australian Reserve Props"
-                    fromName="Website Cart"
-                    to="order"
+                    kind="order"
                     thankYouHref="/thank-you-order/"
                     submitLabel="Send order request"
                     fields={
                       <>
                         <input type="hidden" name="order_summary" value={summary} />
+                        <input type="hidden" name="payment_method" value={method.label} />
+                        <input type="hidden" name="payment_method_id" value={method.id} />
+                        <input type="hidden" name="order_subtotal" value={formatPrice(sub)} />
+                        {discount > 0 && <input type="hidden" name="order_discount" value={`−${formatPrice(discount)}`} />}
+                        <input type="hidden" name="order_shipping" value={shipping === 0 ? 'Free' : formatPrice(shipping)} />
                         <input type="hidden" name="order_total" value={formatPrice(total)} />
                         <div className="field"><label htmlFor="name">Name</label><input id="name" name="name" type="text" required /></div>
                         <div className="field"><label htmlFor="email">Email</label><input id="email" name="email" type="email" required /></div>

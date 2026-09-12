@@ -3,6 +3,7 @@ import Breadcrumbs from '@/components/Breadcrumbs'
 import PageHeader from '@/components/PageHeader'
 import FaqBlock from '@/components/FaqBlock'
 import ComplianceBadge from '@/components/ComplianceBadge'
+import VerifiedBusiness from '@/components/VerifiedBusiness'
 import Icon from '@/components/Icon'
 import { SITE, PAGE_FAQS, PRODUCTS, CATEGORIES } from '@/config/site'
 import { absoluteUrl } from '@/lib/utils'
@@ -23,7 +24,7 @@ const DIFF = [
   ['Australian spec, not US', 'Built around the Crimes (Currency) Act 1981 and RBA reproduction guidance — not repackaged US-dollar props.'],
   ['Reduced-scale, always', 'Every note differs from genuine currency by at least 25% and carries no replicated security features.'],
   ['Marked, and proud of it', 'NOT LEGAL TENDER on every note. Visible in frame if you want it. It\'s the whole point.'],
-  ['One price, every method', 'Bank transfer, PayID or crypto — same price. No method discounted, no "discreet" angle.'],
+  ['A registered company, on the record', 'Money 365 Pty Ltd, ABN 84 676 764 971, GST registered. Look us up on the Australian Business Register before you order.'],
   ['No custom serials', 'System-assigned placeholder serials only. On every product. At any volume.'],
   ['Production-tested', 'The set reports on this site are real, recovered from our predecessor site and confirmed genuine.'],
 ]
@@ -69,6 +70,7 @@ export default function AboutPage() {
       </section>
 
       <section className="section surface-1">
+        <div className="container" style={{ marginBottom: '2.5rem' }}><VerifiedBusiness /></div>
         <div className="container" style={{ display: 'flex', flexWrap: 'wrap', gap: '1.5rem', alignItems: 'center', justifyContent: 'space-between' }}>
           <ComplianceBadge size="lg" />
           <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>

@@ -4,6 +4,7 @@ import WebForm from '@/components/WebForm'
 import PageHeader from '@/components/PageHeader'
 import FaqBlock from '@/components/FaqBlock'
 import ComplianceBadge from '@/components/ComplianceBadge'
+import VerifiedBusiness from '@/components/VerifiedBusiness'
 import { SITE, PAGE_FAQS } from '@/config/site'
 import { absoluteUrl } from '@/lib/utils'
 
@@ -43,20 +44,19 @@ export default function ContactPage() {
             </p>
             {!pendingContact && (
               <div className="card card-pad" style={{ margin: '1.25rem 0' }}>
-                <span className="eyebrow">Direct</span>
-                <div style={{ marginTop: '0.4rem', display: 'grid', gap: '0.35rem' }}>
-                  <a href={`mailto:${SITE.email.replace('@', '&#64;')}`} dangerouslySetInnerHTML={{ __html: SITE.email.replace('@', '&#64;') }} />
-                  <a href={`https://wa.me/${SITE.whatsapp.replace(/\D/g, '')}`} target="_blank" rel="noopener noreferrer">WhatsApp {SITE.whatsapp}</a>
-                  <span style={{ color: 'var(--ink-3)', fontSize: '0.9rem' }}>{SITE.legalName} · ABN {SITE.abn} · {SITE.location}</span>
-                </div>
+                <span className="eyebrow">Direct contact</span>
+                <ul className="contact-list">
+                  <li><span>Email</span><a href={`mailto:${SITE.email.replace('@', '&#64;')}`} dangerouslySetInnerHTML={{ __html: SITE.email.replace('@', '&#64;') }} /></li>
+                  <li><span>WhatsApp</span><a href={`https://wa.me/${SITE.whatsapp.replace(/\D/g, '')}`} target="_blank" rel="noopener noreferrer">{SITE.whatsapp}</a></li>
+                </ul>
               </div>
             )}
-            <ComplianceBadge />
+            <VerifiedBusiness />
+            <div style={{ marginTop: '1.25rem' }}><ComplianceBadge /></div>
           </div>
           <div className="card card-pad">
             <WebForm
-              subject="Contact form — Australian Reserve Props"
-              fromName="Contact Form"
+              kind="contact"
               thankYouHref="/thank-you-contact/"
               submitLabel="Send message"
               fields={

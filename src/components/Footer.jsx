@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import ComplianceBadge from './ComplianceBadge'
+import VerifiedBusiness from './VerifiedBusiness'
 import { SITE, CATEGORIES, PAYMENT_METHODS } from '@/config/site'
 
 function encodedEmail(email) {
@@ -7,10 +8,10 @@ function encodedEmail(email) {
 }
 
 export default function Footer() {
-  const livePayments = PAYMENT_METHODS.filter((m) => m.live).map((m) => m.label.replace(/\s*\(.*\)$/, ''))
+  const livePayments = PAYMENT_METHODS.filter((m) => m.live).map((m) => (m.id === 'crypto' ? 'Crypto (10% off)' : m.label))
   const hasEmail = SITE.email && !SITE.email.startsWith('[')
   const hasWhatsapp = SITE.whatsapp && !SITE.whatsapp.startsWith('[')
-  const waHref = `https://wa.me/${(SITE.whatsapp || '').replace(/D/g, '')}`
+  const waHref = `https://wa.me/${(SITE.whatsapp || '').replace(/\D/g, '')}`
 
   return (
     <footer className="site-footer">
@@ -64,20 +65,27 @@ export default function Footer() {
               <li><Link href="/privacy/">Privacy</Link></li>
               <li><Link href="/terms/">Terms</Link></li>
             </ul>
-            <p style={{ marginTop: '1rem', fontSize: '0.85rem' }}>
-              {hasEmail && <a href={`mailto:${encodedEmail(SITE.email)}`} style={{ display: 'block', marginBottom: '0.3rem' }} dangerouslySetInnerHTML={{ __html: encodedEmail(SITE.email) }} />}
-              {hasWhatsapp && <a href={waHref} target="_blank" rel="noopener noreferrer" style={{ display: 'block' }}>WhatsApp {SITE.whatsapp}</a>}
-              {!hasEmail && !hasWhatsapp && 'Direct contact details are being finalised — use the contact form.'}
-            </p>
+          </div>
+
+          <div className="footer-col">
+            <h4>Contact</h4>
+            <ul className="contact-list">
+              {hasEmail && <li><span>Email</span><a href={`mailto:${encodedEmail(SITE.email)}`} dangerouslySetInnerHTML={{ __html: encodedEmail(SITE.email) }} /></li>}
+              {hasWhatsapp && <li><span>WhatsApp</span><a href={waHref} target="_blank" rel="noopener noreferrer">{SITE.whatsapp}</a></li>}
+            </ul>
           </div>
         </div>
 
+        <div className="footer-verified">
+          <VerifiedBusiness compact />
+        </div>
+
         <p className="footer-legal">
-          All products sold by {SITE.name} are novelty prop items — reproductions sized to differ from genuine Australian currency by at least 25% in line with Reserve Bank of Australia reproduction guidance, carrying no replicated banknote security features and clearly marked NOT LEGAL TENDER. They are not currency, cannot be used as payment, and are sold for film, television, theatre, content creation, education, and novelty use only. We do not offer custom or buyer-specified serial numbers on any product. Prices are identical across all payment methods. Australian Consumer Law rights apply.
+          All products sold by {SITE.name} are novelty prop items — reproductions sized to differ from genuine Australian currency by at least 25% in line with Reserve Bank of Australia reproduction guidance, carrying no replicated banknote security features and clearly marked NOT LEGAL TENDER. They are not currency, cannot be used as payment, and are sold for film, television, theatre, content creation, education, and novelty use only. We do not offer custom or buyer-specified serial numbers on any product. {SITE.name} is a trading name of {SITE.legalName} (ABN {SITE.abn}). Australian Consumer Law rights apply.
         </p>
 
         <div className="footer-bottom">
-          <span>© {new Date().getFullYear()} {SITE.name} · {SITE.legalName} · ABN {SITE.abn}{SITE.gstRegistered ? ' · GST registered' : ''} · {SITE.location}</span>
+          <span>© {new Date().getFullYear()} {SITE.legalName} · {SITE.location}</span>
           <span>Australia only · Australia Post tracked</span>
         </div>
       </div>

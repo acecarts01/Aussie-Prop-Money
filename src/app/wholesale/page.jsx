@@ -79,9 +79,7 @@ export default function WholesalePage() {
           </div>
           <div className="card card-pad">
             <WebForm
-              subject="Production / wholesale enquiry — Australian Reserve Props"
-              fromName="Wholesale Form"
-              to="wholesale"
+              kind="wholesale"
               thankYouHref="/thank-you-wholesale/"
               submitLabel="Send quote request"
               fields={

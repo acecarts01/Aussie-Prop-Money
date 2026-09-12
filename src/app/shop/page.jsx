@@ -18,7 +18,7 @@ export default function ShopPage() {
       <PageHeader
         eyebrow="The full range"
         title="Buy prop money Australia — full range"
-        subtitle="Every stack, set and pack we make, grouped by how it gets used. All reduced-scale, all marked NOT LEGAL TENDER, all the same price on every payment method."
+        subtitle="Every stack, set and pack we make, grouped by how it gets used. All reduced-scale, all marked NOT LEGAL TENDER, all from one registered Australian company."
         breadcrumbs={<Breadcrumbs trail={[{ label: 'Shop', href: '/shop/' }]} />}
       />
 

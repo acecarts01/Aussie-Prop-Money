@@ -3,6 +3,7 @@ import Image from 'next/image'
 import ProductCard from '@/components/ProductCard'
 import SectionHead from '@/components/SectionHead'
 import TrustBadges from '@/components/TrustBadges'
+import VerifiedBusiness from '@/components/VerifiedBusiness'
 import UseCaseSplit from '@/components/UseCaseSplit'
 import ComplianceBadge from '@/components/ComplianceBadge'
 import Icon from '@/components/Icon'
@@ -99,6 +100,7 @@ export default function HomePage() {
       {/* 2 — Trust badges */}
       <section className="section-tight surface-1" aria-label="Trust and compliance signals">
         <div className="container"><TrustBadges /></div>
+        <div className="container" style={{ marginTop: '1.5rem' }}><VerifiedBusiness /></div>
       </section>
 
       {/* 3 — Use-case split */}

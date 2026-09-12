@@ -27,8 +27,16 @@ export default function Nav() {
 
   return (
     <header className="site-header">
-      <div className="announce">
-        <em>Not legal tender</em> · Reduced-scale prop currency<span className="announce-more"> for film, theatre &amp; performance · Ships Australia-wide</span>
+      <div className="topbar">
+        <div className="container topbar-row">
+          <a href={SITE.abrUrl} target="_blank" rel="noopener noreferrer" className="topbar-abn" aria-label={`ABN ${SITE.abn}, ${SITE.legalName} — verify on the Australian Business Register`}>
+            <span className="topbar-abn-num">ABN {SITE.abn}</span>
+            <span className="topbar-abn-name">{SITE.legalName} · Registered Australian company · Verify <span aria-hidden="true">↗</span></span>
+          </a>
+          <div className="announce">
+            <em>Not legal tender</em> · Reduced-scale prop currency<span className="announce-more"> for film, theatre &amp; performance · Ships Australia-wide</span>
+          </div>
+        </div>
       </div>
 
       <div className="container nav-row">

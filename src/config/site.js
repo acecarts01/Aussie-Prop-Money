@@ -11,18 +11,22 @@ export const SITE = {
   currency: 'AUD',
   foundingYear: 2024,
   // Business details — supplied by the client 2026-09-12 (ABR lookup). Never fabricated.
-  // Anything order/checkout-related can be overridden per-environment in Vercel
-  // (Project → Settings → Environment Variables). NEXT_PUBLIC_* values are inlined
-  // at build time, so a change needs a redeploy to take effect.
+  // Order/checkout mail is configured entirely by server-side Vercel environment
+  // variables — see .env.example and src/app/api/send/route.js.
   legalName: 'Money 365 Pty Ltd',
   location: 'The Ponds, NSW 2769',
   address: { locality: 'The Ponds', region: 'NSW', postcode: '2769', country: 'AU' },
-  email: process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'info@australianreserveprops.com', // Zoho Mail
-  phone: process.env.NEXT_PUBLIC_WHATSAPP || '+61 480 804 189', // WhatsApp number doubles as the contact number
-  whatsapp: process.env.NEXT_PUBLIC_WHATSAPP || '+61 480 804 189',
+  email: 'info@australianreserveprops.com', // Zoho Mail
+  phone: '+61 480 804 189', // WhatsApp number doubles as the contact number
+  whatsapp: '+61 480 804 189',
   abn: '84 676 764 971',
   abnRegisteredFrom: '2024-04-22',
+  abnStatus: 'Active',
+  entityType: 'Australian Private Company',
   gstRegistered: true, // registered from 22 Apr 2024
+  gstRegisteredFrom: '2024-04-22',
+  // Official Australian Business Register record — the public verification link shown next to the ABN.
+  abrUrl: 'https://abr.business.gov.au/ABN/View?id=84676764971',
   // Search engine verification — PENDING. Create the property in each tool AFTER the domain is live on
   // Vercel, paste the code/key it gives you here, rebuild, redeploy. See docs/PROJECT.md for the exact steps.
   // Two GSC tokens: one per Google account that owns the property. Google issues a
@@ -43,15 +47,12 @@ export const SITE = {
   sameAs: [], // no real social profiles supplied yet — never invent
 }
 
+// Forms post to the site's own API route (src/app/api/send/route.js), which sends
+// email through SMTP configured entirely with Vercel environment variables
+// (SMTP_HOST / SMTP_PORT / SMTP_USER / SMTP_PASS / ORDER_TO / CONTACT_TO /
+// WHOLESALE_TO / MAIL_FROM). No third-party form service is involved.
 export const FORMS = {
-  provider: 'web3forms',
-  // Set NEXT_PUBLIC_WEB3FORMS_KEY in Vercel (the key is public by design — it only
-  // identifies the inbox). Until it is set, forms redirect straight to thank-you.
-  web3formsKey: process.env.NEXT_PUBLIC_WEB3FORMS_KEY || '',
-  contactEmail: process.env.NEXT_PUBLIC_CONTACT_EMAIL || SITE.email,
-  orderEmail: process.env.NEXT_PUBLIC_ORDER_EMAIL || SITE.email,
-  wholesaleEmail: process.env.NEXT_PUBLIC_WHOLESALE_EMAIL || SITE.email,
-  turnstileSiteKey: process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || '',
+  endpoint: '/api/send/', // trailing slash — the site uses trailingSlash: true, avoids a 308 on POST
 }
 
 export const CHAT = {
@@ -61,33 +62,32 @@ export const CHAT = {
   ],
 }
 
-// Payment methods — presented neutrally, per the CLAUDE.md compliance rule.
-// None carries a differential discount that would steer buyers toward a
-// harder-to-reverse rail, and none is marketed on the basis of privacy.
+// Payment methods — client decision 2026-09-12: PayID, Bank Transfer, and crypto
+// with a 10% discount. The discount is presented as a plain price incentive only;
+// no method is ever described in terms of privacy or discretion.
+export const ORDER = {
+  cryptoDiscount: 0.10, // 10% off the goods subtotal when paying in crypto (shipping excluded)
+}
+
 export const PAYMENT_METHODS = [
-  {
-    id: 'bank-transfer',
-    label: 'Bank Transfer (BACS)',
-    note: 'Direct bank transfer. Details sent after order confirmation.',
-    live: true,
-  },
   {
     id: 'payid',
     label: 'PayID',
-    note: 'Instant transfer via PayID.',
+    note: 'Instant transfer from any Australian bank app. Details sent with your order confirmation.',
+    live: true,
+  },
+  {
+    id: 'bank-transfer',
+    label: 'Bank Transfer',
+    note: 'Direct deposit to our Australian business account. Details sent with your order confirmation.',
     live: true,
   },
   {
     id: 'crypto',
-    label: 'Cryptocurrency (BTC, USDT, ETH, BNB)',
-    note: 'Same price as any other method — no discount is applied for paying in crypto.',
+    label: 'Crypto (BTC, USDT, ETH, BNB) — 10% off',
+    note: '10% discount on the goods subtotal when paying in crypto. Wallet details sent with your order confirmation.',
+    discount: ORDER.cryptoDiscount,
     live: true,
-  },
-  {
-    id: 'card',
-    label: 'Card (Stripe / PayPal)',
-    note: 'Coming soon — pending payment processor setup.',
-    live: false,
   },
 ]
 
@@ -116,7 +116,7 @@ export const HERO = {
   meta: [
     ['Ships', 'Australia-wide'],
     ['Minimum note', '$20'],
-    ['Payment', 'Bank · PayID · Crypto'],
+    ['Payment', 'PayID · Bank · Crypto (10% off)'],
   ],
   image: 'briefcase-prop-set-250k.webp', // full-bleed backdrop under a heavy scrim; swap for a hero shoot when available
   cornerTag: 'ARP · REEL 01 · NOT LEGAL TENDER',
@@ -127,7 +127,7 @@ export const TRUST_BADGES = [
   { icon: 'ruler', title: 'RBA-Compliant Sizing', text: 'Reduced-scale reproductions with no replicated security features, per RBA reproduction guidance.' },
   { icon: 'set', title: 'Production-Tested', text: 'Used on stage and set by the theatre groups and crews whose reports appear on this site.' },
   { icon: 'au', title: 'Australia-Based · Ships Australia-Wide', text: 'An Australian business shipping domestically via Australia Post with tracking.' },
-  { icon: 'lock', title: 'Secure, Transparent Ordering', text: 'Bank Transfer, PayID and crypto, all at the same price. No method is discounted or hidden.' },
+  { icon: 'lock', title: 'Registered Australian Company', text: 'Money 365 Pty Ltd, ABN 84 676 764 971, GST registered — verifiable on the Australian Business Register.' },
 ]
 
 // The category split by use case. Each links to a real category page; the
@@ -415,7 +415,7 @@ export const PAGE_FAQS = {
     { q: 'Can I track an existing order here?', a: 'Order updates are sent by email — contact us with your order details if you need a status check.' },
   ],
   cart: [
-    { q: "Why isn't there a card payment option yet?", a: 'Card payment (Stripe/PayPal) is pending processor setup. Bank Transfer, PayID, and crypto are live now, all priced the same regardless of method.' },
+    { q: "Why isn't there a card payment option yet?", a: 'Card payment is not offered at the moment. PayID and Bank Transfer are live, and crypto (BTC, USDT, ETH, BNB) is live with a 10% discount on the goods subtotal.' },
     { q: 'Is my cart saved if I close the browser?', a: "Yes — cart contents are stored in your browser's local storage and will still be there when you return, unless you clear site data." },
     { q: 'Can I request custom serial numbers on my order?', a: 'No — every note uses a system-assigned placeholder serial. Custom or buyer-specified serials are not offered on any product.' },
   ],
@@ -822,7 +822,7 @@ export const FAQS = [
   },
   {
     q: 'What payment methods do you accept?',
-    a: 'Bank transfer (BACS), PayID, and cryptocurrency (BTC, USDT, ETH, BNB) are live now. Card payment via Stripe or PayPal is planned once processor setup is complete.',
+    a: 'PayID, Bank Transfer, and cryptocurrency (BTC, USDT, ETH, BNB). Paying in crypto takes 10% off the goods subtotal. Payment details are sent with your order confirmation.',
   },
   {
     q: 'How fast is delivery within Australia?',

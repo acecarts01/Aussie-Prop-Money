@@ -28,7 +28,7 @@ Home, Shop (mega-menu by denomination + by use-case), Wholesale/Bulk, About, FAQ
 ## E — Checkout & Payment
 - Payment methods: **Stripe and/or PayPal** (🟡 pending account setup/approval), **Bank Transfer**, **PayID**, **Crypto (BTC, USDT, ETH, BNB)**.
 - No payment method is marketed as anonymous/low-profile/untraceable (compliance rule, CLAUDE.md).
-- WhatsApp checkout: optional, default off. Email/order-form checkout: yes (Web3Forms).
+- WhatsApp checkout: optional, default off. Email/order-form checkout: yes, via the site's own /api/send route + SMTP (Vercel env vars).
 
 ## F — Live Chat
 Proposed: WhatsApp (link channel) + Email (link channel). No widget by default (adds a blocking script) — say the word if you want one (max one: Tawk.to / Crisp / JivoChat).
@@ -80,7 +80,7 @@ Primary: **prop money australia**. Full secondary cluster: see `docs/keyword-map
 See Section I table. 🟡 Product photos not yet supplied — placeholders will be generated (`npm run images` contact sheet) until real photos (2000px+, white background, product filling frame) are provided.
 
 ## L — Forms
-Provider: `web3forms` (works without a domain being fully live). 🟡 Access key pending — until set, forms redirect straight to the thank-you page and no order emails are sent (chat/WhatsApp is the only live order channel in the meantime).
+Provider: own `/api/send` route (nodemailer over SMTP). All credentials are Vercel environment variables — see `.env.example`. 🟡 SMTP_PASS pending — until set, forms return 503 with a WhatsApp fallback and no order emails are sent.
 
 ## M — Hosting / Deploy Target
 **Vercel**, GitHub-based, no client backend (confirmed).
@@ -131,7 +131,7 @@ This will be built to webforge's design-quality gate (grid uniformity, no bare s
 3. ABN/GST status.
 4. Confirm or edit proposed pricing (Section I table) and order rules (Section C).
 5. Product photos, or proceed with generated placeholders for launch.
-6. Web3Forms access key (or proceed pending, chat-only ordering until set).
+6. Zoho SMTP app password + payment details as Vercel env vars (see .env.example).
 7. Stripe/PayPal account status — live at launch, or added once approved?
 
 ---

@@ -101,7 +101,7 @@ export default function ProductPage({ params }) {
             {product.badge && <span className="product-badge">{product.badge}</span>}
             <h1 style={{ fontSize: 'clamp(2rem, 4.2vw, 3.2rem)', marginTop: '0.6rem' }}>{product.name}</h1>
             <p style={{ color: 'var(--ink-2)', margin: '0 0 0.5rem' }}>{product.faceValueLabel}</p>
-            <p className="product-price" style={{ fontSize: '1.9rem', padding: 0, margin: '0 0 1rem' }}>{formatPrice(product.price)} <span style={{ fontSize: '0.75rem', color: 'var(--ink-3)', letterSpacing: '0.12em', fontFamily: 'var(--font-body)', fontWeight: 600 }}>AUD · same price on every payment method</span></p>
+            <p className="product-price" style={{ fontSize: '1.9rem', padding: 0, margin: '0 0 1rem' }}>{formatPrice(product.price)} <span style={{ fontSize: '0.75rem', color: 'var(--ink-3)', letterSpacing: '0.12em', fontFamily: 'var(--font-body)', fontWeight: 600 }}>AUD · 10% off when paying in cryptont method</span></p>
             <hr className="gold-rule" />
             <p style={{ color: 'var(--ink-2)' }}>{product.description}</p>
 

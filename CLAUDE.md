@@ -1,6 +1,6 @@
 # Australian Reserve Props — project instructions
 
-Mobile-first Next.js (App Router) ecommerce store selling legal novelty/prop currency (Australian-note styled) to the domestic AU market only. Deploy target: **Vercel**, no client backend. Framework Preset on Vercel must be Next.js.
+Mobile-first Next.js (App Router) ecommerce store selling legal novelty/prop currency (Australian-note styled) to the domestic AU market only. Deploy target: **Vercel**; the only server code is the `/api/send` mail route. Framework Preset on Vercel must be Next.js.
 
 ## Non-negotiable: currency-reproduction compliance
 Authority: Crimes (Currency) Act 1981 (Cth) + RBA "Reproducing Banknotes" guidance; Meta/TikTok ad policy on deceptive content; Australian Consumer Law (misleading conduct, fake reviews).
@@ -29,15 +29,17 @@ Authority: Crimes (Currency) Act 1981 (Cth) + RBA "Reproducing Banknotes" guidan
 - **Bing Webmaster Tools**: set up via "Import from Google Search Console" — no Bing-specific token needed (`SITE.bingVerification` is intentionally empty).
 - **IndexNow**: key file live at `/{SITE.indexNowKey}.txt`; all sitemap URLs submitted (202 Accepted). Re-submit after any content update — see docs/PROJECT.md for the call.
 
-## Environment variables (Vercel → Settings → Environment Variables)
-Anything order/checkout-related is read from `NEXT_PUBLIC_*` env vars in `src/config/site.js` with safe defaults — see `.env.example`. Static site, so values are inlined at build time: change → redeploy. Never put bank/PayID/wallet details in env vars or code (they would ship in the client bundle); payment details go out by email after confirmation.
-- `NEXT_PUBLIC_WEB3FORMS_KEY` — **still pending**; forms redirect straight to thank-you until set (no order emails are sent yet)
-- `NEXT_PUBLIC_CONTACT_EMAIL` / `NEXT_PUBLIC_ORDER_EMAIL` / `NEXT_PUBLIC_WHOLESALE_EMAIL` — default info@australianreserveprops.com
-- `NEXT_PUBLIC_WHATSAPP` — default +61 480 804 189
-- `NEXT_PUBLIC_TURNSTILE_SITE_KEY` — optional
+## Order & contact mail — Vercel environment variables only
+Forms post to `/api/send` (`src/app/api/send/route.js`), which sends mail over SMTP (nodemailer). Every setting is a **server-side** Vercel env var (Project → Settings → Environment Variables); nothing reaches the browser. No third-party form service. See `.env.example` for the full list.
+- Required: `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS` (Zoho app password). Until set, the API returns 503 and the form shows a WhatsApp fallback — **no order emails are sent yet**.
+- Optional inboxes: `ORDER_TO`, `CONTACT_TO`, `WHOLESALE_TO`, `MAIL_FROM`.
+- Optional payment instructions injected into the customer's confirmation email: `PAYID_ID`, `PAYID_NAME`, `BANK_NAME`, `BANK_BSB`, `BANK_ACCOUNT`, `BANK_ACCOUNT_NAME`, `CRYPTO_BTC/USDT/ETH/BNB`.
+
+## Payment methods (client decision 2026-09-12)
+PayID, Bank Transfer, and crypto (BTC/USDT/ETH/BNB) with a **10% discount on the goods subtotal** (`ORDER.cryptoDiscount`). No card processor. The discount is a plain price incentive — it is never framed as privacy, anonymity or "discretion" (that part of the compliance rule still stands).
 
 ## Still pending
-- Stripe/PayPal account — checkout ships with Bank Transfer + PayID + BTC/USDT/ETH/BNB live, card processor added once account is approved
+- SMTP credentials + payment details in Vercel (above)
 - Real social profiles (`SITE.sameAs` is empty — never invent)
 
 ## Brand facts (only these are true — never invent more)
@@ -47,5 +49,5 @@ Anything order/checkout-related is read from `NEXT_PUBLIC_*` env vars in `src/co
 - Founded 2024. Predecessor site went offline; select reviews recovered from that period (client-confirmed genuine, published with dates as given).
 - Market: Australia only (no cross-border shipping/marketing).
 - Product: Australian-styled novelty/prop currency notes ($20/$50/$100 minimum, plus vintage series), packs, briefcases, confetti/leis, display collectibles, personalised novelty, kids play money, gift sets, accessories.
-- Payment methods: Bank Transfer, PayID, crypto (BTC/USDT/ETH/BNB), Stripe/PayPal (pending account approval).
+- Payment methods: PayID, Bank Transfer, crypto (BTC/USDT/ETH/BNB) at 10% off. No card payment.
 - No invented statistics, awards, press mentions, named clients, or partnerships. Ever.
