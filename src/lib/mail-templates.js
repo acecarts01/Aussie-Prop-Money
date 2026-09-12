@@ -41,7 +41,7 @@ const MODELS = {
 
 export const MODEL_NAMES = Object.keys(MODELS)
 export function pickModel(name) {
-  return MODELS[name] || MODELS.cinema
+  return MODELS[name] || MODELS.studio
 }
 
 // ---------- primitives ----------
@@ -230,4 +230,50 @@ ${section(m, 'Details', kv(m, rows))}
 ${section(m, null, button(m, 'Reply', `mailto:${esc(data.email)}?subject=${encodeURIComponent(`Re: your ${kind} enquiry — ${SITE.name}`)}`), { tone: 'card2' })}
 ${footer(m)}`
   return { subject: `${title} — ${data.name}`, html: shell(m, inner, `${data.name}: ${(data.message || data.details || '').slice(0, 90)}`) }
+}
+
+// ---------- 4. tax invoice / payment received (sent by the owner from /admin/invoice/) ----------
+// Australian tax invoice essentials: seller name + ABN, the words "Tax invoice",
+// date, description of goods, price, and a GST statement. GST registered → the
+// total is treated as GST-inclusive and the GST component is shown as 1/11th.
+export function taxInvoiceEmail({ model, inv }) {
+  const m = pickModel(model)
+  const gst = inv.gst || ''
+  const totalRows = [
+    ['Subtotal', inv.subtotal],
+    inv.discount ? ['Crypto discount (10%)', inv.discount] : null,
+    ['Shipping', inv.shipping],
+    gst ? ['Includes GST', gst] : null,
+    [inv.paid ? 'Total paid' : 'Total due', inv.total, true],
+  ]
+  const status = inv.paid
+    ? `<table role="presentation" cellpadding="0" cellspacing="0"><tr><td style="background:${m.accent};color:${m.accentInk};${display}font-size:11px;letter-spacing:0.14em;padding:7px 11px;border-radius:4px">PAID · ${esc(inv.paidDate || fmtDate())}</td></tr></table>`
+    : `<table role="presentation" cellpadding="0" cellspacing="0"><tr><td style="border:1px solid ${m.line};color:${m.ink2};${display}font-size:11px;letter-spacing:0.14em;padding:7px 11px;border-radius:4px">AWAITING PAYMENT</td></tr></table>`
+  const inner = `
+${header(m, { eyebrow: inv.paid ? 'Tax invoice · payment received' : 'Tax invoice', title: inv.paid ? `Paid. Now printing.` : `Invoice ${inv.invoiceNo}`, ref: inv.invoiceNo })}
+${section(m, null, `<table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr>
+    <td valign="top"><p style="${font}font-size:15px;line-height:1.6;color:${m.ink};margin:0 16px 0 0">${inv.paid
+      ? `Thanks ${esc(inv.name.split(' ')[0])} — your payment for order <strong>${esc(inv.ref)}</strong> has cleared. Your set is now in production; the tracking number follows on dispatch.`
+      : `Hi ${esc(inv.name.split(' ')[0])} — here is your tax invoice for order <strong>${esc(inv.ref)}</strong>. Payment details are below.`}</p></td>
+    <td valign="top" align="right" style="white-space:nowrap">${status}</td>
+  </tr></table>`)}
+${section(m, 'Invoice', kv(m, [
+    ['Invoice number', inv.invoiceNo],
+    ['Invoice date', inv.date || fmtDate()],
+    ['Order reference', inv.ref],
+    ['Billed to', `${inv.name}\n${inv.email}${inv.address ? `\n${inv.address}` : ''}`],
+    ['Supplier', `${SITE.legalName} (trading as ${SITE.name})\nABN ${SITE.abn} · GST registered\n${SITE.location}, Australia`],
+    ['Payment method', inv.paymentMethod || '—'],
+  ]))}
+${section(m, 'Items', `${itemsTable(m, inv.items)}<div style="height:10px"></div>${totals(m, totalRows)}
+  <p style="${font}font-size:12px;color:${m.ink3};margin:12px 0 0">All amounts in AUD. ${gst ? 'Total price includes GST.' : ''}</p>`)}
+${inv.paid
+    ? section(m, 'What happens next', `<p style="${font}font-size:14px;line-height:1.6;color:${m.ink};margin:0">${esc(inv.note || 'Printing and packing to spec — circulation level and banding exactly as ordered. You will receive an Australia Post tracking number by email on dispatch.')}</p>`, { tone: 'card2' })
+    : section(m, 'Payment', `<p style="${font}font-size:14px;line-height:1.6;color:${m.ink};margin:0">${nl2br(inv.note || `Use ${inv.ref} as the payment reference. Printing starts the moment payment clears.`)}</p>`, { tone: 'card2' })}
+${section(m, null, button(m, 'Questions? Reply to this email', `mailto:${esc(SITE.email)}?subject=${encodeURIComponent(`Order ${inv.ref}`)}`))}
+${footer(m)}`
+  return {
+    subject: inv.paid ? `Payment received — tax invoice ${inv.invoiceNo} — ${SITE.name}` : `Tax invoice ${inv.invoiceNo} — ${SITE.name}`,
+    html: shell(m, inner, `${inv.paid ? 'Paid' : 'Invoice'} ${inv.invoiceNo} · ${inv.total}`),
+  }
 }

@@ -9,7 +9,7 @@ export default function robots() {
   const base = `https://${SITE.domain}`
   return {
     rules: [
-      { userAgent: '*', allow: '/' },
+      { userAgent: '*', allow: '/', disallow: ['/admin/', '/api/'] },
       ...AI_BOTS.map((agent) => ({ userAgent: agent, allow: '/' })),
     ],
     sitemap: `${base}/sitemap.xml`,

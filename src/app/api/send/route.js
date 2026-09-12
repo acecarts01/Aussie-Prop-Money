@@ -13,7 +13,7 @@ import { customerOrderEmail, internalOrderEmail, internalGenericEmail, orderRef,
  *   SMTP_PASS      Zoho app-specific password (NOT the mailbox login password)
  *   MAIL_FROM      optional, defaults to SMTP_USER
  *   ORDER_TO / CONTACT_TO / WHOLESALE_TO   optional inboxes, default to SMTP_USER
- *   MAIL_TEMPLATE  'cinema' | 'studio' | 'ticket' — visual model for every email (default cinema)
+ *   MAIL_TEMPLATE  'cinema' | 'studio' | 'ticket' — visual model for every email (default studio — client choice 2026-09-12)
  *
  * Payment instructions for the customer confirmation email (all optional — a
  * method whose details are missing falls back to "details to follow"):
@@ -102,7 +102,7 @@ export async function POST(req) {
   const mail = transporter()
 
   // Visual model: env default, overridable per request only for the design preview.
-  const model = MODEL_NAMES.includes(data.template) ? data.template : (MODEL_NAMES.includes(env('MAIL_TEMPLATE')) ? env('MAIL_TEMPLATE') : 'cinema')
+  const model = MODEL_NAMES.includes(data.template) ? data.template : (MODEL_NAMES.includes(env('MAIL_TEMPLATE')) ? env('MAIL_TEMPLATE') : 'studio')
 
   try {
     if (data.kind === 'order') {

@@ -33,6 +33,8 @@ Authority: Crimes (Currency) Act 1981 (Cth) + RBA "Reproducing Banknotes" guidan
 Forms post to `/api/send` (`src/app/api/send/route.js`), which sends mail over SMTP (nodemailer). Every setting is a **server-side** Vercel env var (Project → Settings → Environment Variables); nothing reaches the browser. No third-party form service. See `.env.example` for the full list.
 - `SMTP_HOST=smtp.zoho.com` (global cluster — `.com.au` fails with 535), `SMTP_PORT=465`, `SMTP_USER`, `SMTP_PASS` (Zoho app password). **Configured and verified with a live test order 2026-09-12.** Without them the API returns 503 and the form shows a WhatsApp fallback.
 - Optional inboxes: `ORDER_TO`, `CONTACT_TO`, `WHOLESALE_TO`, `MAIL_FROM`.
+- Email design: `src/lib/mail-templates.js` — three models, `MAIL_TEMPLATE` selects (default **studio**, client choice 2026-09-12). Every order sends TWO designed emails at once: the internal notification (to ORDER_TO) and the customer confirmation (pro-forma invoice with `ARP-…` reference and payment instructions).
+- Tax invoice / payment-received email: owner sends it from the private page `/admin/invoice/` (noindex, robots-disallowed) → `/api/invoice`, protected by `ADMIN_KEY` (Secret env var). GST shown as 1/11th of the total — prices are treated as GST-inclusive; confirm with the client's accountant.
 - Optional payment instructions injected into the customer's confirmation email: `PAYID_ID`, `PAYID_NAME`, `BANK_NAME`, `BANK_BSB`, `BANK_ACCOUNT`, `BANK_ACCOUNT_NAME`, `CRYPTO_BTC/USDT/ETH/BNB`.
 
 ## Payment methods (client decision 2026-09-12)
