@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import nodemailer from 'nodemailer'
 import { SITE } from '@/config/site'
+import { customerOrderEmail, internalOrderEmail, internalGenericEmail, orderRef, MODEL_NAMES } from '@/lib/mail-templates'
 
 /**
  * Order / contact / wholesale mail — runs on Vercel, configured ONLY by
@@ -12,6 +13,7 @@ import { SITE } from '@/config/site'
  *   SMTP_PASS      Zoho app-specific password (NOT the mailbox login password)
  *   MAIL_FROM      optional, defaults to SMTP_USER
  *   ORDER_TO / CONTACT_TO / WHOLESALE_TO   optional inboxes, default to SMTP_USER
+ *   MAIL_TEMPLATE  'cinema' | 'studio' | 'ticket' — visual model for every email (default cinema)
  *
  * Payment instructions for the customer confirmation email (all optional — a
  * method whose details are missing falls back to "details to follow"):
@@ -33,7 +35,6 @@ const KINDS = {
   wholesale: { to: () => env('WHOLESALE_TO', env('SMTP_USER')), subject: (d) => `Production / wholesale enquiry — ${d.name || 'website'}` },
 }
 
-const esc = (v) => String(v ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]))
 const isEmail = (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(v || ''))
 
 function smtpReady() {
@@ -69,13 +70,7 @@ function paymentInstructions(method) {
   return null
 }
 
-function table(rows) {
-  return `<table cellpadding="6" style="border-collapse:collapse;font:14px/1.5 -apple-system,Segoe UI,Roboto,sans-serif">${rows
-    .map(([k, v]) => `<tr><td style="color:#666;padding-right:16px;vertical-align:top"><strong>${esc(k)}</strong></td><td style="white-space:pre-wrap">${esc(v)}</td></tr>`)
-    .join('')}</table>`
-}
-
-const SKIP = new Set(['kind', 'botcheck', 'reply_to'])
+const SKIP = new Set(['kind', 'botcheck', 'reply_to', 'template'])
 
 export async function POST(req) {
   let data
@@ -106,31 +101,31 @@ export async function POST(req) {
   const from = `"${SITE.name}" <${env('MAIL_FROM', env('SMTP_USER'))}>`
   const mail = transporter()
 
-  try {
-    // 1. Internal notification.
-    await mail.sendMail({
-      from,
-      to: kind.to(),
-      replyTo: data.email,
-      subject: kind.subject(data),
-      text: rows.map(([k, v]) => `${k}: ${v}`).join('\n'),
-      html: `<p>New ${esc(data.kind)} submission from ${esc(SITE.domain)}.</p>${table(rows)}`,
-    })
+  // Visual model: env default, overridable per request only for the design preview.
+  const model = MODEL_NAMES.includes(data.template) ? data.template : (MODEL_NAMES.includes(env('MAIL_TEMPLATE')) ? env('MAIL_TEMPLATE') : 'cinema')
 
-    // 2. Customer acknowledgement (orders get payment instructions when configured).
+  try {
     if (data.kind === 'order') {
+      const ref = orderRef()
       const pay = paymentInstructions(data.payment_method_id)
-      const summary = [['Order', data.order_summary], ['Subtotal', data.order_subtotal], data.order_discount ? ['Crypto discount', data.order_discount] : null, ['Shipping', data.order_shipping], ['Total', data.order_total]].filter(Boolean)
-      const payHtml = pay
-        ? `<h3 style="margin:24px 0 8px">${esc(pay.title)}</h3>${table(pay.lines)}<p>Please use your name (<strong>${esc(data.name)}</strong>) as the payment reference and reply to this email once sent. Printing starts when payment clears.</p>`
-        : `<p>We will reply shortly with payment details for <strong>${esc(data.payment_method || 'your chosen method')}</strong>. Printing starts when payment clears.</p>`
+
+      // 1. Internal notification.
+      const internal = internalOrderEmail({ model, data, ref })
+      await mail.sendMail({ from, to: kind.to(), replyTo: data.email, subject: internal.subject, html: internal.html, text: rows.map(([k, v]) => `${k}: ${v}`).join('\n') })
+
+      // 2. Customer confirmation (carries payment instructions when configured).
+      const customer = customerOrderEmail({ model, data, pay, ref })
+      const payText = pay ? `${pay.title}\n${pay.lines.map(([k, v]) => `${k}: ${v}`).join('\n')}\nReference: ${ref}` : `We will reply shortly with payment details for ${data.payment_method || 'your chosen method'}.`
       await mail.sendMail({
         from,
         to: data.email,
-        subject: `Your order request — ${SITE.name}`,
-        text: `Thanks ${data.name} — we have your order request.\n\n${summary.map(([k, v]) => `${k}: ${v}`).join('\n')}\n\n${pay ? `${pay.title}\n${pay.lines.map(([k, v]) => `${k}: ${v}`).join('\n')}\nUse your name as the payment reference.` : `We will reply shortly with payment details for ${data.payment_method || 'your chosen method'}.`}\n\n${SITE.legalName} · ABN ${SITE.abn}\nAll products are novelty props — NOT LEGAL TENDER.`,
-        html: `<div style="font:15px/1.6 -apple-system,Segoe UI,Roboto,sans-serif;max-width:600px"><h2 style="margin:0 0 8px">Thanks ${esc(data.name)} — we have your order request.</h2>${table(summary)}${payHtml}<p style="color:#666;font-size:13px;margin-top:24px">${esc(SITE.legalName)} · ABN ${esc(SITE.abn)} · ${esc(SITE.location)}<br>All products are reduced-scale novelty props, clearly marked NOT LEGAL TENDER, for film, theatre, education and novelty use only.</p></div>`,
+        subject: customer.subject,
+        html: customer.html,
+        text: `Thanks ${data.name} — order ${ref} received.\n\n${data.order_summary}\nSubtotal: ${data.order_subtotal}\n${data.order_discount ? `Crypto discount: ${data.order_discount}\n` : ''}Shipping: ${data.order_shipping}\nTotal: ${data.order_total}\n\n${payText}\n\n${SITE.legalName} · ABN ${SITE.abn}\nAll products are novelty props — NOT LEGAL TENDER.`,
       })
+    } else {
+      const generic = internalGenericEmail({ model, kind: data.kind, data, rows })
+      await mail.sendMail({ from, to: kind.to(), replyTo: data.email, subject: generic.subject, html: generic.html, text: rows.map(([k, v]) => `${k}: ${v}`).join('\n') })
     }
 
     return NextResponse.json({ ok: true })
