@@ -73,19 +73,19 @@ export const PAYMENT_METHODS = [
   {
     id: 'payid',
     label: 'PayID',
-    note: 'Instant transfer from any Australian bank app. Details sent with your order confirmation.',
+    note: 'Instant transfer from any Australian bank app. Details sent with your tax invoice once we confirm the method.',
     live: true,
   },
   {
     id: 'bank-transfer',
     label: 'Bank Transfer',
-    note: 'Direct deposit to our Australian business account. Details sent with your order confirmation.',
+    note: 'Direct deposit to our Australian business account. Details sent with your tax invoice once we confirm the method.',
     live: true,
   },
   {
     id: 'crypto',
     label: 'Crypto (BTC, USDT, ETH, BNB) — 10% off',
-    note: '10% discount on the goods subtotal when paying in crypto. Wallet details sent with your order confirmation.',
+    note: '10% discount on the goods subtotal when paying in crypto. Wallet details sent with your tax invoice once we confirm the method.',
     discount: ORDER.cryptoDiscount,
     live: true,
   },

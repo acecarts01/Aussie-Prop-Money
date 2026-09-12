@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server'
 import nodemailer from 'nodemailer'
 import { SITE } from '@/config/site'
 import { taxInvoiceEmail, MODEL_NAMES } from '@/lib/mail-templates'
+import { paymentInstructions } from '@/lib/payment-details'
 
 /**
  * Owner-only: sends a designed tax invoice / payment-received email to a
@@ -67,6 +68,8 @@ export async function POST(req) {
     // GST-inclusive pricing: GST component is 1/11th of the total.
     gst: body.gstInclusive === false ? '' : money(total / 11),
     paymentMethod: body.paymentMethod || '',
+    // Unpaid invoices carry the payment details for the chosen method (from env vars) when configured.
+    pay: body.paid ? null : paymentInstructions(body.paymentMethod),
     note: body.note || '',
   }
 
@@ -84,7 +87,7 @@ export async function POST(req) {
       replyTo: env('MAIL_FROM', env('SMTP_USER')),
       subject: email.subject,
       html: email.html,
-      text: `${email.subject}\n\nOrder ${inv.ref}\n${inv.items}\nSubtotal: ${inv.subtotal}\n${inv.discount ? `Discount: ${inv.discount}\n` : ''}Shipping: ${inv.shipping}\n${inv.gst ? `Includes GST: ${inv.gst}\n` : ''}Total: ${inv.total}\n\n${SITE.legalName} · ABN ${SITE.abn}`,
+      text: `${email.subject}\n\nOrder ${inv.ref}\n${inv.items}\nSubtotal: ${inv.subtotal}\n${inv.discount ? `Discount: ${inv.discount}\n` : ''}Shipping: ${inv.shipping}\n${inv.gst ? `Includes GST: ${inv.gst}\n` : ''}Total: ${inv.total}\n\n${inv.pay ? `${inv.pay.title}\n${inv.pay.lines.map(([k, v]) => `${k}: ${v}`).join('\n')}\n\n` : ''}${inv.note ? inv.note + '\n\n' : ''}${SITE.legalName} · ABN ${SITE.abn}`,
     })
     return NextResponse.json({ ok: true, invoiceNo: inv.invoiceNo })
   } catch (err) {

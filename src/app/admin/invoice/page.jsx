@@ -14,7 +14,7 @@ export default function AdminInvoicePage() {
         <div className="container">
           <span className="eyebrow">Owner tools</span>
           <h1>Send a tax invoice</h1>
-          <p>Paste the order details from the notification email, tick &ldquo;Paid&rdquo; once the money has landed, and send. The customer gets the same Studio-design email as their order confirmation; a copy lands in your inbox.</p>
+          <p>Two uses. First, after you&rsquo;ve confirmed the payment method with the customer: paste the order details and send the <strong>awaiting-payment</strong> tax invoice with the payment details. Second, once the money lands: tick <strong>Payment received</strong> and send the paid version. The customer gets the same Studio-design email as their order confirmation; a copy lands in your inbox.</p>
         </div>
       </div>
       <section className="section surface-1">

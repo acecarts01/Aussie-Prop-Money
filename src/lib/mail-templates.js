@@ -165,7 +165,7 @@ function itemsTable(m, summary) {
 }
 
 // ---------- 1. customer order confirmation (doubles as the pro-forma invoice) ----------
-export function customerOrderEmail({ model, data, pay, ref }) {
+export function customerOrderEmail({ model, data, ref }) {
   const m = pickModel(model)
   const totalRows = [
     ['Subtotal', data.order_subtotal],
@@ -173,10 +173,7 @@ export function customerOrderEmail({ model, data, pay, ref }) {
     ['Shipping', data.order_shipping],
     ['Total due', data.order_total, true],
   ]
-  const payBlock = pay
-    ? section(m, `Pay by ${pay.title}`, `${kv(m, pay.lines, { mono: true })}
-        <p style="${font}font-size:13px;line-height:1.6;color:${m.ink2};margin:14px 0 0">Use <strong style="color:${m.ink}">${esc(ref)}</strong> as the payment reference. Reply to this email once sent — printing starts the moment payment clears.</p>`, { tone: 'card2' })
-    : section(m, 'Payment', `<p style="${font}font-size:14px;line-height:1.6;color:${m.ink};margin:0">You chose <strong>${esc(data.payment_method || 'your method')}</strong>. We reply within business hours with the payment details, then printing starts the moment payment clears.</p>`, { tone: 'card2' })
+  const payBlock = section(m, 'Payment — to be confirmed', `<p style="${font}font-size:14px;line-height:1.6;color:${m.ink};margin:0">You selected <strong>${esc(data.payment_method || 'a payment method')}</strong>. Nothing is due yet: we confirm the method with you first, then send a tax invoice carrying the exact payment details and your order reference. If you&rsquo;d prefer a different method, just reply to this email.</p>`, { tone: 'card2' })
 
   const inner = `
 ${header(m, { eyebrow: 'Order confirmation', title: `Thanks, ${data.name.split(' ')[0]}. It's in.`, ref })}
@@ -185,10 +182,10 @@ ${section(m, 'Order details', kv(m, [['Order reference', ref], ['Date', fmtDate(
 ${section(m, 'Items', `${itemsTable(m, data.order_summary)}<div style="height:10px"></div>${totals(m, totalRows)}`)}
 ${payBlock}
 ${section(m, 'What happens next', `<table role="presentation" cellpadding="0" cellspacing="0">${[
-    ['1', 'Pay', 'Use the details above with the order reference.'],
-    ['2', 'We confirm', 'You get a payment-received email and a print date.'],
-    ['3', 'Print & pack', 'Circulation level and banding exactly as ordered.'],
-    ['4', 'Tracked delivery', 'Australia Post tracking number sent on dispatch.'],
+    ['1', 'We confirm your payment method', 'Reply to this email if you want to change it.'],
+    ['2', 'Tax invoice with payment details', 'Sent to this address with the order reference to quote.'],
+    ['3', 'You pay · we confirm', 'You get a paid tax invoice and a print date the moment it clears.'],
+    ['4', 'Print, pack, tracked delivery', 'Circulation level and banding exactly as ordered. Australia Post tracking on dispatch.'],
   ].map(([n, t, d]) => `<tr>
       <td valign="top" style="padding:0 12px 10px 0"><div style="width:24px;height:24px;border-radius:12px;background:${m.accent};color:${m.accentInk};${display}font-size:12px;line-height:24px;text-align:center">${n}</div></td>
       <td valign="top" style="padding:0 0 10px"><div style="${font}font-size:14px;font-weight:700;color:${m.ink}">${t}</div><div style="${font}font-size:13px;color:${m.ink2}">${d}</div></td>
@@ -269,7 +266,7 @@ ${section(m, 'Items', `${itemsTable(m, inv.items)}<div style="height:10px"></div
   <p style="${font}font-size:12px;color:${m.ink3};margin:12px 0 0">All amounts in AUD. ${gst ? 'Total price includes GST.' : ''}</p>`)}
 ${inv.paid
     ? section(m, 'What happens next', `<p style="${font}font-size:14px;line-height:1.6;color:${m.ink};margin:0">${esc(inv.note || 'Printing and packing to spec — circulation level and banding exactly as ordered. You will receive an Australia Post tracking number by email on dispatch.')}</p>`, { tone: 'card2' })
-    : section(m, 'Payment', `<p style="${font}font-size:14px;line-height:1.6;color:${m.ink};margin:0">${nl2br(inv.note || `Use ${inv.ref} as the payment reference. Printing starts the moment payment clears.`)}</p>`, { tone: 'card2' })}
+    : section(m, inv.pay ? `Pay by ${inv.pay.title}` : 'Payment', `${inv.pay ? kv(m, inv.pay.lines, { mono: true }) + '<div style="height:12px"></div>' : ''}<p style="${font}font-size:14px;line-height:1.6;color:${m.ink};margin:0">${nl2br(inv.note || `Use ${inv.ref} as the payment reference. Reply to this email once sent — printing starts the moment payment clears.`)}</p>`, { tone: 'card2' })}
 ${section(m, null, button(m, 'Questions? Reply to this email', `mailto:${esc(SITE.email)}?subject=${encodeURIComponent(`Order ${inv.ref}`)}`))}
 ${footer(m)}`
   return {

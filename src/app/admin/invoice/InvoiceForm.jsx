@@ -13,7 +13,7 @@ const F = ({ id, label, hint, children }) => (
 export default function InvoiceForm() {
   const [status, setStatus] = useState('idle') // idle | sending | sent | error
   const [msg, setMsg] = useState('')
-  const [paid, setPaid] = useState(true)
+  const [paid, setPaid] = useState(false)
 
   async function onSubmit(e) {
     e.preventDefault()
@@ -73,7 +73,7 @@ export default function InvoiceForm() {
       </div>
 
       <div className="grid grid-2">
-        <F id="paymentMethod" label="Payment method">
+        <F id="paymentMethod" label="Payment method (confirmed with the customer)" hint="Unpaid invoices include the details for this method from your Vercel env vars, if set.">
           <select id="paymentMethod" name="paymentMethod" defaultValue="PayID">
             <option>PayID</option>
             <option>Bank Transfer</option>
@@ -85,14 +85,14 @@ export default function InvoiceForm() {
 
       <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap', margin: '0.5rem 0 1rem' }}>
         <label style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
-          <input type="checkbox" checked={paid} onChange={(e) => setPaid(e.target.checked)} /> Payment received (sends the &ldquo;Paid — now printing&rdquo; version)
+          <input type="checkbox" checked={paid} onChange={(e) => setPaid(e.target.checked)} /> Payment received — sends the &ldquo;Paid · now printing&rdquo; version instead of the awaiting-payment invoice
         </label>
         <label style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
           <input type="checkbox" name="gstInclusive" defaultChecked /> Prices include GST (shows the 1/11th GST component)
         </label>
       </div>
 
-      <F id="note" label="Note to customer (optional)" hint="Replaces the default next-steps line."><textarea id="note" name="note" rows={2} /></F>
+      <F id="note" label="Payment details / note to customer (optional)" hint="Shown in the Payment section. Use this to type the PayID, BSB/account or wallet address if it isn't set in Vercel, or to add any instruction."><textarea id="note" name="note" rows={3} /></F>
 
       <div className="form-status" aria-live="polite">
         {status === 'sent' && <p style={{ color: 'var(--accent)' }}>{msg}</p>}

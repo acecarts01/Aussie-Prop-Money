@@ -15,11 +15,9 @@ import { customerOrderEmail, internalOrderEmail, internalGenericEmail, orderRef,
  *   ORDER_TO / CONTACT_TO / WHOLESALE_TO   optional inboxes, default to SMTP_USER
  *   MAIL_TEMPLATE  'cinema' | 'studio' | 'ticket' — visual model for every email (default studio — client choice 2026-09-12)
  *
- * Payment instructions for the customer confirmation email (all optional — a
- * method whose details are missing falls back to "details to follow"):
- *   PAYID_ID, PAYID_NAME
- *   BANK_NAME, BANK_BSB, BANK_ACCOUNT, BANK_ACCOUNT_NAME
- *   CRYPTO_BTC, CRYPTO_USDT, CRYPTO_ETH, CRYPTO_BNB
+ * The customer confirmation deliberately carries NO payment details — the owner
+ * confirms the method first and sends the tax invoice (with details) from
+ * /admin/invoice/. See src/lib/payment-details.js and src/app/api/invoice/route.js.
  *
  * None of these values ever reach the browser.
  */
@@ -49,25 +47,6 @@ function transporter() {
     secure: port === 465,
     auth: { user: env('SMTP_USER'), pass: env('SMTP_PASS') },
   })
-}
-
-function paymentInstructions(method) {
-  if (method === 'payid') {
-    const id = env('PAYID_ID')
-    if (!id) return null
-    return { title: 'PayID', lines: [['PayID', id], ['Account name', env('PAYID_NAME', SITE.legalName)]] }
-  }
-  if (method === 'bank-transfer') {
-    const bsb = env('BANK_BSB'), acct = env('BANK_ACCOUNT')
-    if (!bsb || !acct) return null
-    return { title: 'Bank transfer', lines: [['Bank', env('BANK_NAME')], ['Account name', env('BANK_ACCOUNT_NAME', SITE.legalName)], ['BSB', bsb], ['Account number', acct]].filter(([, v]) => v) }
-  }
-  if (method === 'crypto') {
-    const wallets = [['BTC', env('CRYPTO_BTC')], ['USDT', env('CRYPTO_USDT')], ['ETH', env('CRYPTO_ETH')], ['BNB', env('CRYPTO_BNB')]].filter(([, v]) => v)
-    if (!wallets.length) return null
-    return { title: 'Crypto (10% discount applied)', lines: wallets }
-  }
-  return null
 }
 
 const SKIP = new Set(['kind', 'botcheck', 'reply_to', 'template'])
@@ -107,15 +86,14 @@ export async function POST(req) {
   try {
     if (data.kind === 'order') {
       const ref = orderRef()
-      const pay = paymentInstructions(data.payment_method_id)
 
       // 1. Internal notification.
       const internal = internalOrderEmail({ model, data, ref })
       await mail.sendMail({ from, to: kind.to(), replyTo: data.email, subject: internal.subject, html: internal.html, text: rows.map(([k, v]) => `${k}: ${v}`).join('\n') })
 
-      // 2. Customer confirmation (carries payment instructions when configured).
-      const customer = customerOrderEmail({ model, data, pay, ref })
-      const payText = pay ? `${pay.title}\n${pay.lines.map(([k, v]) => `${k}: ${v}`).join('\n')}\nReference: ${ref}` : `We will reply shortly with payment details for ${data.payment_method || 'your chosen method'}.`
+      // 2. Customer confirmation — method acknowledged, details follow in the tax invoice.
+      const customer = customerOrderEmail({ model, data, ref })
+      const payText = `You selected ${data.payment_method || 'a payment method'}. We confirm it with you first, then send a tax invoice with the payment details and your order reference.`
       await mail.sendMail({
         from,
         to: data.email,
