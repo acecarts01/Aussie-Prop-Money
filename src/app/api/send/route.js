@@ -6,7 +6,7 @@ import { SITE } from '@/config/site'
  * Order / contact / wholesale mail — runs on Vercel, configured ONLY by
  * environment variables (Project → Settings → Environment Variables):
  *
- *   SMTP_HOST      e.g. smtp.zoho.com.au (or smtp.zoho.com)
+ *   SMTP_HOST      smtp.zoho.com for this mailbox (global cluster; .com.au rejects the login)
  *   SMTP_PORT      465 (SSL) or 587 (STARTTLS)
  *   SMTP_USER      info@australianreserveprops.com
  *   SMTP_PASS      Zoho app-specific password (NOT the mailbox login password)

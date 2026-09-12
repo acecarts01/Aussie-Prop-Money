@@ -31,7 +31,7 @@ Authority: Crimes (Currency) Act 1981 (Cth) + RBA "Reproducing Banknotes" guidan
 
 ## Order & contact mail — Vercel environment variables only
 Forms post to `/api/send` (`src/app/api/send/route.js`), which sends mail over SMTP (nodemailer). Every setting is a **server-side** Vercel env var (Project → Settings → Environment Variables); nothing reaches the browser. No third-party form service. See `.env.example` for the full list.
-- Required: `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS` (Zoho app password). Until set, the API returns 503 and the form shows a WhatsApp fallback — **no order emails are sent yet**.
+- `SMTP_HOST=smtp.zoho.com` (global cluster — `.com.au` fails with 535), `SMTP_PORT=465`, `SMTP_USER`, `SMTP_PASS` (Zoho app password). **Configured and verified with a live test order 2026-09-12.** Without them the API returns 503 and the form shows a WhatsApp fallback.
 - Optional inboxes: `ORDER_TO`, `CONTACT_TO`, `WHOLESALE_TO`, `MAIL_FROM`.
 - Optional payment instructions injected into the customer's confirmation email: `PAYID_ID`, `PAYID_NAME`, `BANK_NAME`, `BANK_BSB`, `BANK_ACCOUNT`, `BANK_ACCOUNT_NAME`, `CRYPTO_BTC/USDT/ETH/BNB`.
 
@@ -39,7 +39,7 @@ Forms post to `/api/send` (`src/app/api/send/route.js`), which sends mail over S
 PayID, Bank Transfer, and crypto (BTC/USDT/ETH/BNB) with a **10% discount on the goods subtotal** (`ORDER.cryptoDiscount`). No card processor. The discount is a plain price incentive — it is never framed as privacy, anonymity or "discretion" (that part of the compliance rule still stands).
 
 ## Still pending
-- SMTP credentials + payment details in Vercel (above)
+- Payment-detail env vars (`PAYID_ID`, `BANK_*`, `CRYPTO_*`) — not yet set; confirmation emails say "details to follow" until they are
 - Real social profiles (`SITE.sameAs` is empty — never invent)
 
 ## Brand facts (only these are true — never invent more)
