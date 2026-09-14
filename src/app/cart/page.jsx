@@ -26,8 +26,11 @@ export default function CartPage() {
   const method = PAYMENT_METHODS.find((m) => m.id === paymentMethod) || PAYMENT_METHODS[0]
   const sub = subtotal(items)
   const discount = method.discount ? Math.round(sub * method.discount * 100) / 100 : 0
-  const shipping = sub === 0 || sub >= SITE.orderRules.freeShippingThreshold ? 0 : SITE.orderRules.flatShippingFee
+  const shipping = 0 // free on every order (minimum order clears any threshold)
   const total = sub - discount + shipping
+  const minOrder = SITE.orderRules.minOrder
+  const belowMin = sub > 0 && sub < minOrder
+  const shortBy = Math.max(0, Math.round((minOrder - sub) * 100) / 100)
 
   const summary = items
     .map((i) => `${i.qty} x ${i.name}${i.circulation ? ` (${i.circulation}` : ''}${i.packaging ? `${i.circulation ? ', ' : ' ('}${i.packaging})` : i.circulation ? ')' : ''} — ${formatPrice(i.price * i.qty)}`)
@@ -74,15 +77,17 @@ export default function CartPage() {
                 </table>
               </div>
 
+              {belowMin && (
+                <div className="callout" role="status" style={{ margin: '1.25rem 0 0' }}>
+                  <strong>Minimum order is {formatPrice(minOrder)}.</strong> You&rsquo;re {formatPrice(shortBy)} short — add another stack, pack or set to send this order.{' '}
+                  <Link href="/shop/">Browse the range →</Link>
+                </div>
+              )}
+
               <div className="cart-totals">
                 <span>Subtotal: {formatPrice(sub)}</span>
                 {discount > 0 && <span style={{ color: 'var(--accent)' }}>Crypto discount ({Math.round(ORDER.cryptoDiscount * 100)}%): −{formatPrice(discount)}</span>}
-                <span>Shipping: {shipping === 0 ? 'Free' : formatPrice(shipping)}</span>
-                {shipping > 0 && (
-                  <span style={{ fontSize: '0.85rem', color: 'var(--ink-3)' }}>
-                    Free shipping over {formatPrice(SITE.orderRules.freeShippingThreshold)}
-                  </span>
-                )}
+                <span>Shipping: Free · Australia Post tracked</span>
                 <strong>Total: {formatPrice(total)}</strong>
               </div>
 
@@ -114,6 +119,12 @@ export default function CartPage() {
                     ))}
                   </fieldset>
 
+                  {belowMin ? (
+                    <div style={{ color: 'var(--ink-2)', fontSize: '0.95rem' }}>
+                      <span className="eyebrow">Order request</span>
+                      <p style={{ margin: 0 }}>Available once the goods subtotal reaches {formatPrice(minOrder)}. Current subtotal: <strong>{formatPrice(sub)}</strong>.</p>
+                    </div>
+                  ) : (
                   <WebForm
                     kind="order"
                     thankYouHref="/thank-you-order/"
@@ -133,6 +144,7 @@ export default function CartPage() {
                       </>
                     }
                   />
+                  )}
                 </div>
               </div>
             </>

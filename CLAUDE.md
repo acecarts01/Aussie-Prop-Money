@@ -52,4 +52,5 @@ PayID, Bank Transfer, and crypto (BTC/USDT/ETH/BNB) with a **10% discount on the
 - Market: Australia only (no cross-border shipping/marketing).
 - Product: Australian-styled novelty/prop currency notes ($20/$50/$100 minimum, plus vintage series), packs, briefcases, confetti/leis, display collectibles, personalised novelty, kids play money, gift sets, accessories.
 - Payment methods: PayID, Bank Transfer, crypto (BTC/USDT/ETH/BNB) at 10% off. No card payment.
+- Minimum order: $350 AUD goods subtotal (`SITE.orderRules.minOrder`, enforced in checkout UI and in `/api/send`). Shipping is free on every order. Client decision 2026-09-14.
 - No invented statistics, awards, press mentions, named clients, or partnerships. Ever.

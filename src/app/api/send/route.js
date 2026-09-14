@@ -65,6 +65,12 @@ export async function POST(req) {
   const kind = KINDS[data.kind]
   if (!kind) return NextResponse.json({ ok: false, error: 'Unknown form' }, { status: 400 })
   if (!data.name || !isEmail(data.email)) return NextResponse.json({ ok: false, error: 'Name and a valid email are required' }, { status: 400 })
+  if (data.kind === 'order') {
+    const sub = Number(String(data.order_subtotal || '').replace(/[^0-9.]/g, '')) || 0
+    if (sub < SITE.orderRules.minOrder) {
+      return NextResponse.json({ ok: false, error: `Minimum order is ${SITE.orderRules.minOrder} AUD — please add to your order.` }, { status: 400 })
+    }
+  }
 
   if (!smtpReady()) {
     return NextResponse.json(

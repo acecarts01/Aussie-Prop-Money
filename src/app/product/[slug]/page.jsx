@@ -112,8 +112,8 @@ export default function ProductPage({ params }) {
             <AddToCartButton product={product} />
 
             <ul style={{ listStyle: 'none', padding: 0, margin: '1.5rem 0 0', display: 'grid', gap: '0.5rem', fontSize: '0.9rem', color: 'var(--ink-2)' }}>
-              <li style={{ display: 'flex', gap: '0.6rem', alignItems: 'center' }}><span style={{ color: 'var(--accent)' }}><Icon name="check" size={16} /></span>Ships Australia-wide via Australia Post, tracked</li>
-              <li style={{ display: 'flex', gap: '0.6rem', alignItems: 'center' }}><span style={{ color: 'var(--accent)' }}><Icon name="check" size={16} /></span>Free shipping over {formatPrice(SITE.orderRules.freeShippingThreshold)} · flat {formatPrice(SITE.orderRules.flatShippingFee)} under</li>
+              <li style={{ display: 'flex', gap: '0.6rem', alignItems: 'center' }}><span style={{ color: 'var(--accent)' }}><Icon name="check" size={16} /></span>Minimum order {formatPrice(SITE.orderRules.minOrder)} · ships Australia-wide via Australia Post, tracked</li>
+              <li style={{ display: 'flex', gap: '0.6rem', alignItems: 'center' }}><span style={{ color: 'var(--accent)' }}><Icon name="check" size={16} /></span>Free tracked shipping on every order</li>
               <li style={{ display: 'flex', gap: '0.6rem', alignItems: 'center' }}><span style={{ color: 'var(--accent)' }}><Icon name="check" size={16} /></span>System-assigned serials only — no custom serial numbers on any product</li>
             </ul>
           </div>
