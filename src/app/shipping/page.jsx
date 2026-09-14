@@ -4,7 +4,7 @@ import { absoluteUrl, formatPrice } from '@/lib/utils'
 
 export const metadata = {
   title: 'Shipping — Australia-Wide Tracked Delivery',
-  description: 'Australian Reserve Props ships prop money Australia-wide via tracked Australia Post. Free tracked shipping on every order; minimum order $350. No international shipping.',
+  description: 'Australian Reserve Props ships prop money Australia-wide via tracked Australia Post. Free tracked shipping on every order; minimum order $250. No international shipping.',
   alternates: { canonical: absoluteUrl('/shipping/') },
 }
 

@@ -53,5 +53,5 @@ PayID, Bank Transfer, and crypto (BTC/USDT/ETH/BNB) with a **10% discount on the
 - Product: Australian-styled novelty/prop currency notes ($20/$50/$100 minimum, plus vintage series), packs, briefcases, confetti/leis, display collectibles, personalised novelty, kids play money, gift sets, accessories.
 - Payment methods: PayID, Bank Transfer, crypto (BTC/USDT/ETH/BNB) at 10% off. No card payment.
 - Pricing 2026-09-14: all base prices +5% with charm rounding (.95 under $100, whole dollar at $100+; avg +5.35%). Every currency product carries `noteCount`, `faceValue`, `tier`, `mix`; the face-value return (pay → receive → multiplier) is rendered by `src/lib/value.js` + `ValueReturn` / `YieldCallout`. Audit: `docs/pricing-2026-09-14.md` / `.json`.
-- Minimum order: $350 AUD goods subtotal (`SITE.orderRules.minOrder`, enforced in checkout UI and in `/api/send`). Shipping is free on every order. Client decision 2026-09-14.
+- Minimum order: $250 AUD goods subtotal (reduced from $350 later on 2026-09-14) (`SITE.orderRules.minOrder`, enforced in checkout UI and in `/api/send`). Shipping is free on every order. Client decision 2026-09-14.
 - No invented statistics, awards, press mentions, named clients, or partnerships. Ever.

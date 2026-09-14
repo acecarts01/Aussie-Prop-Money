@@ -40,8 +40,8 @@ export const SITE = {
   brandStatement:
     'Australian Reserve Props is an Australia-based novelty currency brand established in 2024, offering compliance-first prop money for film, theatre, content creation, education, and gifting. Australian Reserve Props ships Australia-wide and specialises in Australian-note-styled prop currency across our $20, $50, and $100 denominations. Every note is reproduced under RBA reproduction guidance, clearly marked NOT LEGAL TENDER, and sold for novelty and production use only.',
   orderRules: {
-    minOrder: 350, // AUD, goods subtotal before discount — client decision 2026-09-14
-    freeShippingThreshold: 0, // every order clears the $350 minimum, so shipping is always free
+    minOrder: 250, // AUD, goods subtotal before discount — client decision 2026-09-14 (was 350 earlier the same day)
+    freeShippingThreshold: 0, // every order clears the $250 minimum, so shipping is always free
     flatShippingFee: 9.95,
   },
   sameAs: [], // no real social profiles supplied yet — never invent
@@ -115,7 +115,7 @@ export const HERO = {
   ctaSecondary: { label: 'Production & Wholesale', href: '/wholesale/' },
   meta: [
     ['Ships', 'Australia-wide'],
-    ['Minimum order', '$350'],
+    ['Minimum order', '$250'],
     ['Payment', 'PayID · Bank · Crypto (10% off)'],
   ],
   image: 'briefcase-prop-set-250k.webp', // full-bleed backdrop under a heavy scrim; swap for a hero shoot when available
@@ -415,7 +415,7 @@ export const PAGE_FAQS = {
     { q: 'Can I track an existing order here?', a: 'Order updates are sent by email — contact us with your order details if you need a status check.' },
   ],
   cart: [
-    { q: 'Is there a minimum order?', a: 'Yes — $350 AUD (goods subtotal, before any crypto discount). Below that the order request cannot be sent; add another stack or pack to reach it. Production and wholesale orders are quoted separately.' },
+    { q: 'Is there a minimum order?', a: 'Yes — $250 AUD (goods subtotal, before any crypto discount). Below that the order request cannot be sent; add another stack or pack to reach it. Production and wholesale orders are quoted separately.' },
     { q: "Why isn't there a card payment option yet?", a: 'Card payment is not offered at the moment. PayID and Bank Transfer are live, and crypto (BTC, USDT, ETH, BNB) is live with a 10% discount on the goods subtotal.' },
     { q: 'Is my cart saved if I close the browser?', a: "Yes — cart contents are stored in your browser's local storage and will still be there when you return, unless you clear site data." },
     { q: 'Can I request custom serial numbers on my order?', a: 'No — every note uses a system-assigned placeholder serial. Custom or buyer-specified serials are not offered on any product.' },

@@ -635,3 +635,18 @@ input[type="radio"] { accent-color: var(--accent); width: 20px; height: 20px; ma
 .yield-table td a:hover { text-decoration: underline; }
 .yield-table .tag { margin-left: 0.5rem; font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); font-weight: 700; }
 .yield-foot { margin: 0.9rem 0 0; font-size: 0.78rem; color: var(--ink-3); }
+
+/* ---------- Card quantity + add ---------- */
+.product-card h3 a { color: inherit; text-decoration: none; }
+.product-card h3 a:hover { color: var(--accent); }
+.product-card .go { font-family: var(--font-display); font-stretch: 88%; font-weight: 700; font-size: 0.7rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-2); text-decoration: none; margin-top: 0.35rem; }
+.product-card .go:hover { color: var(--accent); }
+.card-add { margin-top: auto; padding-top: 0.75rem; border-top: 1px solid var(--line); display: flex; flex-direction: column; gap: 0.55rem; }
+.card-add-prices { display: flex; align-items: baseline; justify-content: space-between; gap: 0.75rem; flex-wrap: wrap; }
+.card-add-prices .product-price { margin: 0; padding: 0; }
+.card-crypto { font-size: 0.8rem; color: var(--accent); font-weight: 700; font-variant-numeric: tabular-nums; }
+.card-crypto em { font-style: normal; font-weight: 600; color: var(--ink-3); font-size: 0.72rem; letter-spacing: 0.04em; }
+.card-add-row { display: flex; align-items: center; gap: 0.6rem; }
+.card-add-row > div { flex: 0 0 auto; }
+.card-add-btn { flex: 1; min-height: 42px; padding: 0.55rem 0.9rem; font-size: 0.78rem; letter-spacing: 0.08em; white-space: nowrap; }
+.card-min { margin: 0; font-size: 0.74rem; color: var(--ink-3); }

@@ -15,7 +15,7 @@ export default function TermsPage() {
         <li>All products are novelty/prop items only. They are NOT LEGAL TENDER and must not be used to deceive anyone into believing they are genuine currency.</li>
         <li>Products are reproduced to differ from genuine Australian currency by at least 25% in size, per RBA reproduction guidance, and do not replicate banknote security features.</li>
         <li>We do not offer custom or buyer-specified serial numbers under any circumstances.</li>
-        <li>Minimum order value is $350 AUD (goods subtotal, before any discount). We ship within Australia only.</li>
+        <li>Minimum order value is $250 AUD (goods subtotal, before any discount). We ship within Australia only.</li>
         <li>Misuse of products for fraud or attempted deception is illegal and is not something we support, enable, or condone.</li>
       </ul>
     </LegalPage>

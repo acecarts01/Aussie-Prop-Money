@@ -35,7 +35,7 @@
     "llms_txt": "https://australianreserveprops.com/llms.txt"
   },
   "currency": "AUD",
-  "minimum_order_usd": 350,
+  "minimum_order_usd": 250,
   "payment_methods": [
     "bank-transfer",
     "payid",

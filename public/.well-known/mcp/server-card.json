@@ -42,7 +42,7 @@
         "crypto-BNB"
       ],
       "currency": "AUD",
-      "minimumOrder": 350,
+      "minimumOrder": 250,
       "freeShipping": 0,
       "ships": "Australia only"
     }
