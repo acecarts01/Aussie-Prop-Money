@@ -7,6 +7,9 @@ import AddToCartButton from '@/components/AddToCartButton'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import ValueTable from '@/components/ValueTable'
 import BundleCompare from '@/components/BundleCompare'
+import ValueReturn from '@/components/ValueReturn'
+import YieldCallout from '@/components/YieldCallout'
+import { valueReturn } from '@/lib/value'
 import SubmitSetReport from '@/components/SubmitSetReport'
 import ComplianceBadge from '@/components/ComplianceBadge'
 import Icon from '@/components/Icon'
@@ -100,8 +103,15 @@ export default function ProductPage({ params }) {
           <div id="buy">
             {product.badge && <span className="product-badge">{product.badge}</span>}
             <h1 style={{ fontSize: 'clamp(2rem, 4.2vw, 3.2rem)', marginTop: '0.6rem' }}>{product.name}</h1>
-            <p style={{ color: 'var(--ink-2)', margin: '0 0 0.5rem' }}>{product.faceValueLabel}</p>
-            <p className="product-price" style={{ fontSize: '1.9rem', padding: 0, margin: '0 0 1rem' }}>{formatPrice(product.price)} <span style={{ fontSize: '0.75rem', color: 'var(--ink-3)', letterSpacing: '0.12em', fontFamily: 'var(--font-body)', fontWeight: 600 }}>AUD · 10% off when paying in cryptont method</span></p>
+            {valueReturn(product) ? (
+              <ValueReturn product={product} size="hero" />
+            ) : (
+              <>
+                <p style={{ color: 'var(--ink-2)', margin: '0 0 0.5rem' }}>{product.faceValueLabel}</p>
+                <p className="product-price" style={{ fontSize: '1.9rem', padding: 0, margin: '0 0 1rem' }}>{formatPrice(product.price)}</p>
+              </>
+            )}
+            <p style={{ fontSize: '0.75rem', color: 'var(--ink-3)', letterSpacing: '0.12em', fontWeight: 600, textTransform: 'uppercase', margin: '0.6rem 0 1rem' }}>AUD · GST inc. · 10% off when paying in crypto</p>
             <hr className="gold-rule" />
             <p style={{ color: 'var(--ink-2)' }}>{product.description}</p>
 
@@ -123,13 +133,16 @@ export default function ProductPage({ params }) {
       {/* Compare / value */}
       <section className="section surface-2">
         <div className="container grid grid-2" style={{ alignItems: 'start' }}>
-          <BundleCompare product={product} />
-          {isNoteStack && (
-            <div>
-              <h2 style={{ fontSize: '1.3rem', marginBottom: '0.9rem' }}>Face value by denomination</h2>
-              <ValueTable currentSlug={product.slug} />
-            </div>
-          )}
+          <div>
+            <BundleCompare product={product} />
+            {isNoteStack && (
+              <div style={{ marginTop: '2rem' }}>
+                <h2 style={{ fontSize: '1.3rem', marginBottom: '0.9rem' }}>Face value by denomination</h2>
+                <ValueTable currentSlug={product.slug} />
+              </div>
+            )}
+          </div>
+          <YieldCallout product={product} />
         </div>
       </section>
 

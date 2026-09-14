@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { PRODUCTS } from '@/config/site'
 import { formatPrice } from '@/lib/utils'
+import { valueReturn, fmtFace } from '@/lib/value'
 
 // Sibling products in the same category, side by side: note count / face value /
 // price. Gives the "which size do I need" answer without leaving the page.
@@ -18,8 +19,17 @@ export default function BundleCompare({ product }) {
             <Link key={p.slug} href={`/product/${p.slug}/`} className={`bundle${p.slug === product.slug ? ' current' : ''}`} aria-current={p.slug === product.slug ? 'page' : undefined}>
               <span className="k">{p.slug === product.slug ? 'Viewing' : 'Option'}</span>
               <span className="n">{label}</span>
-              <span className="v">{p.faceValueLabel}</span>
-              <span className="p">{formatPrice(p.price)}</span>
+              {valueReturn(p) ? (
+                <>
+                  <span className="v">{fmtFace(p.faceValue)} face value · {p.noteCount.toLocaleString('en-AU')} notes</span>
+                  <span className="p">{formatPrice(p.price)} <em className="x">{valueReturn(p).multiplier}×</em></span>
+                </>
+              ) : (
+                <>
+                  <span className="v">{p.faceValueLabel}</span>
+                  <span className="p">{formatPrice(p.price)}</span>
+                </>
+              )}
             </Link>
           )
         })}

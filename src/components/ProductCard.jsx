@@ -2,6 +2,8 @@ import Link from 'next/link'
 import Image from 'next/image'
 import ProductArt from './ProductArt'
 import { getCategory, formatPrice, artLabelFor } from '@/lib/utils'
+import ValueReturn from './ValueReturn'
+import { valueReturn } from '@/lib/value'
 
 export default function ProductCard({ product, priority = false }) {
   const category = getCategory(product.category)
@@ -27,7 +29,7 @@ export default function ProductCard({ product, priority = false }) {
       <div className="product-body">
         <p className="meta">{category?.name}</p>
         <h3>{product.name}</h3>
-        <p className="meta">{product.faceValueLabel}</p>
+        {valueReturn(product) ? <ValueReturn product={product} size="card" /> : <p className="meta">{product.faceValueLabel}</p>}
         <div className="row">
           <span className="product-price">{formatPrice(product.price)}</span>
           <span className="go">View →</span>

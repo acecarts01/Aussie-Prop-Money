@@ -445,7 +445,8 @@ export const PRODUCTS = [
     slug: 'twenty-dollar-prop-note-stack',
     name: '$20 AUD Prop Note Stack',
     category: 'twenty-dollar-notes',
-    price: 24.95,
+    price: 25.95,
+    noteCount: 100, faceValue: 2000, tier: 'starter', mix: '100 × $20',
     faceValueLabel: '$2,000 face value per stack',
     badge: null,
     tags: ['twenty-dollar-prop-note', 'novelty-currency', 'not-legal-tender', 'magic-trick-money'],
@@ -458,7 +459,8 @@ export const PRODUCTS = [
     slug: 'fifty-dollar-prop-note-stack',
     name: '$50 AUD Prop Note Stack',
     category: 'fifty-dollar-notes',
-    price: 27.95,
+    price: 28.95,
+    noteCount: 100, faceValue: 5000, tier: 'starter', mix: '100 × $50',
     faceValueLabel: '$5,000 face value per stack',
     badge: 'Most Requested',
     tags: ['fifty-dollar-prop-note', 'novelty-currency', 'not-legal-tender', 'film-prop-money'],
@@ -471,7 +473,8 @@ export const PRODUCTS = [
     slug: 'hundred-dollar-prop-note-stack',
     name: '$100 AUD Prop Note Stack',
     category: 'hundred-dollar-notes',
-    price: 29.95,
+    price: 30.95,
+    noteCount: 100, faceValue: 10000, tier: 'starter', mix: '100 × $100',
     faceValueLabel: '$10,000 face value per stack',
     badge: 'Best Seller',
     tags: ['hundred-dollar-prop-note', 'novelty-currency', 'not-legal-tender', 'film-prop-money'],
@@ -484,7 +487,8 @@ export const PRODUCTS = [
     slug: 'mixed-denomination-starter-pack',
     name: 'Mixed Denomination Starter Pack',
     category: 'packs-bundles',
-    price: 34.95,
+    price: 36.95,
+    noteCount: 56, faceValue: 3000, tier: 'starter', mix: '20 × $20 · 20 × $50 · 16 × $100',
     faceValueLabel: 'Approx. $3,000 mixed face value',
     badge: null,
     tags: ['mixed-denomination-pack', 'novelty-currency', 'not-legal-tender', 'gift-money-set'],
@@ -497,7 +501,8 @@ export const PRODUCTS = [
     slug: 'bulk-production-pack',
     name: 'Bulk Production Pack',
     category: 'packs-bundles',
-    price: 89.95,
+    price: 93.95,
+    noteCount: 660, faceValue: 50000, tier: 'production', mix: '100 × $20 · 160 × $50 · 400 × $100',
     faceValueLabel: 'Approx. $50,000 mixed face value',
     badge: 'For Productions',
     tags: ['bulk-production-pack', 'film-prop-money', 'theatre-stage-money', 'not-legal-tender'],
@@ -510,7 +515,8 @@ export const PRODUCTS = [
     slug: 'kids-play-money-educational-set',
     name: 'Kids Play Money Educational Set',
     category: 'kids-play-money',
-    price: 19.95,
+    price: 20.95,
+    noteCount: 0, faceValue: null, tier: 'education', mix: 'Play money — not scaled to face value',
     faceValueLabel: 'Play money — not scaled to represent real value',
     badge: 'Classroom Friendly',
     tags: ['kids-play-money', 'educational-play-money', 'not-legal-tender', 'australian-reserve-props'],
@@ -524,7 +530,8 @@ export const PRODUCTS = [
     slug: 'prop-money-gift-box-set',
     name: 'Prop Money Gift Box Set',
     category: 'gift-sets',
-    price: 39.95,
+    price: 41.95,
+    noteCount: 85, faceValue: 5000, tier: 'starter', mix: '25 × $20 · 30 × $50 · 30 × $100',
     faceValueLabel: 'Approx. $5,000 mixed face value, gift-boxed',
     badge: 'Gift Ready',
     tags: ['gift-money-set', 'mixed-denomination-pack', 'novelty-currency', 'australian-reserve-props'],
@@ -537,7 +544,8 @@ export const PRODUCTS = [
     slug: 'money-gun-refill-pack',
     name: 'Money Gun Refill Pack ($50 Notes)',
     category: 'accessories',
-    price: 16.95,
+    price: 17.95,
+    noteCount: 50, faceValue: 2500, tier: 'starter', mix: '50 × $50',
     faceValueLabel: '$2,500 face value per refill',
     badge: null,
     tags: ['money-gun-refill', 'fifty-dollar-prop-note', 'party-prank-money', 'not-legal-tender'],
@@ -549,7 +557,8 @@ export const PRODUCTS = [
 
   // --- Denomination half packs & jumbo packs ---
   {
-    slug: 'twenty-dollar-half-pack', name: '$20 AUD Prop Note Half Pack', category: 'twenty-dollar-notes', price: 16.95,
+    slug: 'twenty-dollar-half-pack', name: '$20 AUD Prop Note Half Pack', category: 'twenty-dollar-notes', price: 17.95,
+    noteCount: 50, faceValue: 1000, tier: 'starter', mix: '50 × $20',
     faceValueLabel: '$1,000 face value per pack (50 notes)', badge: null,
     tags: ['twenty-dollar-prop-note', 'novelty-currency', 'not-legal-tender', 'magic-trick-money'],
     circulationOptions: true, customSerials: false,
@@ -557,7 +566,8 @@ export const PRODUCTS = [
     images: ['twenty-dollar-half-pack.webp'],
   },
   {
-    slug: 'twenty-dollar-jumbo-pack', name: '$20 AUD Prop Note Jumbo Pack', category: 'twenty-dollar-notes', price: 49.95,
+    slug: 'twenty-dollar-jumbo-pack', name: '$20 AUD Prop Note Jumbo Pack', category: 'twenty-dollar-notes', price: 51.95,
+    noteCount: 250, faceValue: 5000, tier: 'starter', mix: '250 × $20',
     faceValueLabel: '$5,000 face value per pack (250 notes)', badge: null,
     tags: ['twenty-dollar-prop-note', 'bulk-production-pack', 'not-legal-tender', 'magic-trick-money'],
     circulationOptions: true, customSerials: false,
@@ -565,7 +575,8 @@ export const PRODUCTS = [
     images: ['twenty-dollar-jumbo-pack.webp'],
   },
   {
-    slug: 'fifty-dollar-half-pack', name: '$50 AUD Prop Note Half Pack', category: 'fifty-dollar-notes', price: 18.95,
+    slug: 'fifty-dollar-half-pack', name: '$50 AUD Prop Note Half Pack', category: 'fifty-dollar-notes', price: 19.95,
+    noteCount: 50, faceValue: 2500, tier: 'starter', mix: '50 × $50',
     faceValueLabel: '$2,500 face value per pack (50 notes)', badge: null,
     tags: ['fifty-dollar-prop-note', 'novelty-currency', 'not-legal-tender', 'film-prop-money'],
     circulationOptions: true, customSerials: false,
@@ -573,7 +584,8 @@ export const PRODUCTS = [
     images: ['fifty-dollar-half-pack.webp'],
   },
   {
-    slug: 'fifty-dollar-jumbo-pack', name: '$50 AUD Prop Note Jumbo Pack', category: 'fifty-dollar-notes', price: 54.95,
+    slug: 'fifty-dollar-jumbo-pack', name: '$50 AUD Prop Note Jumbo Pack', category: 'fifty-dollar-notes', price: 57.95,
+    noteCount: 250, faceValue: 12500, tier: 'starter', mix: '250 × $50',
     faceValueLabel: '$12,500 face value per pack (250 notes)', badge: null,
     tags: ['fifty-dollar-prop-note', 'bulk-production-pack', 'not-legal-tender', 'film-prop-money'],
     circulationOptions: true, customSerials: false,
@@ -581,7 +593,8 @@ export const PRODUCTS = [
     images: ['fifty-dollar-jumbo-pack.webp'],
   },
   {
-    slug: 'hundred-dollar-half-pack', name: '$100 AUD Prop Note Half Pack', category: 'hundred-dollar-notes', price: 19.95,
+    slug: 'hundred-dollar-half-pack', name: '$100 AUD Prop Note Half Pack', category: 'hundred-dollar-notes', price: 20.95,
+    noteCount: 50, faceValue: 5000, tier: 'starter', mix: '50 × $100',
     faceValueLabel: '$5,000 face value per pack (50 notes)', badge: null,
     tags: ['hundred-dollar-prop-note', 'novelty-currency', 'not-legal-tender', 'film-prop-money'],
     circulationOptions: true, customSerials: false,
@@ -589,7 +602,8 @@ export const PRODUCTS = [
     images: ['hundred-dollar-half-pack.webp'],
   },
   {
-    slug: 'hundred-dollar-jumbo-pack', name: '$100 AUD Prop Note Jumbo Pack', category: 'hundred-dollar-notes', price: 59.95,
+    slug: 'hundred-dollar-jumbo-pack', name: '$100 AUD Prop Note Jumbo Pack', category: 'hundred-dollar-notes', price: 62.95,
+    noteCount: 250, faceValue: 25000, tier: 'production', mix: '250 × $100',
     faceValueLabel: '$25,000 face value per pack (250 notes)', badge: null,
     tags: ['hundred-dollar-prop-note', 'bulk-production-pack', 'not-legal-tender', 'film-prop-money'],
     circulationOptions: true, customSerials: false,
@@ -599,7 +613,8 @@ export const PRODUCTS = [
 
   // --- Vintage & Legacy Series ---
   {
-    slug: 'vintage-twenty-note-stack', name: 'Vintage $20 Note Stack', category: 'vintage-series-notes', price: 27.95,
+    slug: 'vintage-twenty-note-stack', name: 'Vintage $20 Note Stack', category: 'vintage-series-notes', price: 28.95,
+    noteCount: 100, faceValue: 2000, tier: 'starter', mix: '100 × $20 (older design)',
     faceValueLabel: '$2,000 face value per stack (older design)', badge: null,
     tags: ['vintage-prop-note', 'twenty-dollar-prop-note', 'not-legal-tender', 'theatre-stage-money'],
     circulationOptions: true, customSerials: false,
@@ -607,7 +622,8 @@ export const PRODUCTS = [
     images: ['vintage-twenty-note-stack.webp'],
   },
   {
-    slug: 'vintage-fifty-note-stack', name: 'Vintage $50 Note Stack', category: 'vintage-series-notes', price: 31.95,
+    slug: 'vintage-fifty-note-stack', name: 'Vintage $50 Note Stack', category: 'vintage-series-notes', price: 33.95,
+    noteCount: 100, faceValue: 5000, tier: 'starter', mix: '100 × $50 (older design)',
     faceValueLabel: '$5,000 face value per stack (older design)', badge: null,
     tags: ['vintage-prop-note', 'fifty-dollar-prop-note', 'not-legal-tender', 'theatre-stage-money'],
     circulationOptions: true, customSerials: false,
@@ -615,7 +631,8 @@ export const PRODUCTS = [
     images: ['vintage-fifty-note-stack.webp'],
   },
   {
-    slug: 'vintage-hundred-note-stack', name: 'Vintage $100 Note Stack', category: 'vintage-series-notes', price: 34.95,
+    slug: 'vintage-hundred-note-stack', name: 'Vintage $100 Note Stack', category: 'vintage-series-notes', price: 36.95,
+    noteCount: 100, faceValue: 10000, tier: 'starter', mix: '100 × $100 (older design)',
     faceValueLabel: '$10,000 face value per stack (older design)', badge: null,
     tags: ['vintage-prop-note', 'hundred-dollar-prop-note', 'not-legal-tender', 'theatre-stage-money'],
     circulationOptions: true, customSerials: false,
@@ -625,7 +642,8 @@ export const PRODUCTS = [
 
   // --- Packs & Bundles additions ---
   {
-    slug: 'wedding-event-pack', name: 'Wedding & Event Pack', category: 'packs-bundles', price: 44.95,
+    slug: 'wedding-event-pack', name: 'Wedding & Event Pack', category: 'packs-bundles', price: 46.95,
+    noteCount: 65, faceValue: 3500, tier: 'starter', mix: '25 × $20 · 20 × $50 · 20 × $100',
     faceValueLabel: 'Approx. $3,500 mixed face value', badge: null,
     tags: ['mixed-denomination-pack', 'gift-money-set', 'not-legal-tender', 'novelty-currency'],
     circulationOptions: true, customSerials: false,
@@ -633,7 +651,8 @@ export const PRODUCTS = [
     images: ['wedding-event-pack.webp'],
   },
   {
-    slug: 'content-creator-flex-pack', name: 'Content Creator Flex Pack', category: 'packs-bundles', price: 37.95,
+    slug: 'content-creator-flex-pack', name: 'Content Creator Flex Pack', category: 'packs-bundles', price: 39.95,
+    noteCount: 66, faceValue: 4000, tier: 'starter', mix: '20 × $20 · 20 × $50 · 26 × $100',
     faceValueLabel: 'Approx. $4,000 mixed face value', badge: 'Creator Favourite',
     tags: ['content-creator-props', 'mixed-denomination-pack', 'not-legal-tender', 'novelty-currency'],
     circulationOptions: true, customSerials: false,
@@ -643,7 +662,8 @@ export const PRODUCTS = [
 
   // --- Briefcases & Bags ---
   {
-    slug: 'briefcase-prop-set-50k', name: 'Briefcase Prop Set — $50,000', category: 'briefcases-bags', price: 129.0,
+    slug: 'briefcase-prop-set-50k', name: 'Briefcase Prop Set — $50,000', category: 'briefcases-bags', price: 135.00,
+    noteCount: 500, faceValue: 50000, tier: 'production', mix: '5 stacks × 100 × $100',
     faceValueLabel: '$50,000 face value, packed in a prop briefcase', badge: null,
     tags: ['briefcase-prop-set', 'film-prop-money', 'hundred-dollar-prop-note', 'not-legal-tender'],
     circulationOptions: true, customSerials: false,
@@ -651,25 +671,28 @@ export const PRODUCTS = [
     images: ['briefcase-prop-set-50k.webp'],
   },
   {
-    slug: 'briefcase-prop-set-250k', name: 'Briefcase Prop Set — $250,000', category: 'briefcases-bags', price: 179.0,
+    slug: 'briefcase-prop-set-250k', name: 'Briefcase Prop Set — $250,000', category: 'briefcases-bags', price: 188.00,
+    noteCount: 2500, faceValue: 250000, tier: 'director', mix: '25 stacks × 100 × $100',
     faceValueLabel: '$250,000 face value, packed in a prop briefcase', badge: 'For Productions',
     tags: ['briefcase-prop-set', 'bulk-production-pack', 'hundred-dollar-prop-note', 'not-legal-tender'],
     circulationOptions: true, customSerials: false,
-    description: `Fifty $100-style stacks pre-packed into a prop briefcase for high-stakes reveal or ransom-scene budgets. ${disclaimer}`,
+    description: `Twenty-five $100-style stacks — 2,500 notes — pre-packed into a prop briefcase for the high-stakes reveal. ${disclaimer}`,
     images: ['briefcase-prop-set-250k.webp'],
   },
   {
-    slug: 'duffel-bag-prop-set-500k', name: 'Duffel Bag Prop Set — $500,000', category: 'briefcases-bags', price: 229.0,
+    slug: 'duffel-bag-prop-set-500k', name: 'Duffel Bag Prop Set — $500,000', category: 'briefcases-bags', price: 240.00,
+    noteCount: 5000, faceValue: 500000, tier: 'director', mix: '50 stacks × 100 × $100',
     faceValueLabel: '$500,000 face value, packed in a prop duffel bag', badge: 'For Productions',
     tags: ['duffel-bag-prop', 'bulk-production-pack', 'hundred-dollar-prop-note', 'not-legal-tender'],
     circulationOptions: true, customSerials: false,
-    description: `A hundred $100-style stacks pre-packed into a prop duffel bag for large-scale heist or transport scenes. ${disclaimer}`,
+    description: `Fifty $100-style stacks — 5,000 notes — pre-packed into a prop duffel bag for large-scale reveal and transport scenes. ${disclaimer}`,
     images: ['duffel-bag-prop-set-500k.webp'],
   },
 
   // --- Confetti & Party Favors ---
   {
-    slug: 'money-confetti-pack', name: 'Money Confetti Pack', category: 'confetti-party-favors', price: 9.95,
+    slug: 'money-confetti-pack', name: 'Money Confetti Pack', category: 'confetti-party-favors', price: 10.95,
+    noteCount: 0, faceValue: null, tier: 'party', mix: '200 g shredded prop-note confetti',
     faceValueLabel: '200g pack', badge: null,
     tags: ['money-confetti', 'party-prank-money', 'not-legal-tender', 'novelty-currency'],
     circulationOptions: false, customSerials: false,
@@ -677,7 +700,8 @@ export const PRODUCTS = [
     images: ['money-confetti-pack.webp'],
   },
   {
-    slug: 'shredded-cash-bag', name: 'Shredded Cash Bag', category: 'confetti-party-favors', price: 16.95,
+    slug: 'shredded-cash-bag', name: 'Shredded Cash Bag', category: 'confetti-party-favors', price: 17.95,
+    noteCount: 0, faceValue: null, tier: 'party', mix: '500 g shredded prop notes',
     faceValueLabel: '500g bag', badge: null,
     tags: ['shredded-cash', 'party-prank-money', 'not-legal-tender', 'content-creator-props'],
     circulationOptions: false, customSerials: false,
@@ -685,7 +709,8 @@ export const PRODUCTS = [
     images: ['shredded-cash-bag.webp'],
   },
   {
-    slug: 'money-lei-single', name: 'Money Lei (Single)', category: 'confetti-party-favors', price: 12.95,
+    slug: 'money-lei-single', name: 'Money Lei (Single)', category: 'confetti-party-favors', price: 13.95,
+    noteCount: 0, faceValue: null, tier: 'party', mix: 'One lei folded from prop notes',
     faceValueLabel: 'One lei, folded from prop notes', badge: null,
     tags: ['money-lei', 'gift-money-set', 'not-legal-tender', 'novelty-currency'],
     circulationOptions: false, customSerials: false,
@@ -693,7 +718,8 @@ export const PRODUCTS = [
     images: ['money-lei-single.webp'],
   },
   {
-    slug: 'money-lei-three-pack', name: 'Money Lei 3-Pack', category: 'confetti-party-favors', price: 29.95,
+    slug: 'money-lei-three-pack', name: 'Money Lei 3-Pack', category: 'confetti-party-favors', price: 30.95,
+    noteCount: 0, faceValue: null, tier: 'party', mix: 'Three leis folded from prop notes',
     faceValueLabel: 'Three leis, folded from prop notes', badge: 'Gift Ready',
     tags: ['money-lei', 'gift-money-set', 'not-legal-tender', 'novelty-currency'],
     circulationOptions: false, customSerials: false,
@@ -703,7 +729,8 @@ export const PRODUCTS = [
 
   // --- Display & Collectibles ---
   {
-    slug: 'denomination-display-frame', name: 'Complete Denomination Display Frame', category: 'display-collectibles', price: 89.0,
+    slug: 'denomination-display-frame', name: 'Complete Denomination Display Frame', category: 'display-collectibles', price: 93.95,
+    noteCount: 3, faceValue: null, tier: 'display', mix: '1 × $20, $50, $100 — framed',
     faceValueLabel: 'One note from each of our three denominations, framed', badge: null,
     tags: ['display-collectible', 'australian-reserve-props', 'not-legal-tender', 'novelty-currency'],
     circulationOptions: false, customSerials: false,
@@ -711,7 +738,8 @@ export const PRODUCTS = [
     images: ['denomination-display-frame.webp'],
   },
   {
-    slug: 'limited-edition-collector-case', name: 'Limited Edition Collector Case', category: 'display-collectibles', price: 149.0,
+    slug: 'limited-edition-collector-case', name: 'Limited Edition Collector Case', category: 'display-collectibles', price: 156.00,
+    noteCount: 3, faceValue: null, tier: 'display', mix: 'Numbered full-denomination set',
     faceValueLabel: 'Numbered case, full note set', badge: 'Limited',
     tags: ['limited-edition-prop', 'display-collectible', 'not-legal-tender', 'australian-reserve-props'],
     circulationOptions: false, customSerials: false,
@@ -719,7 +747,8 @@ export const PRODUCTS = [
     images: ['limited-edition-collector-case.webp'],
   },
   {
-    slug: 'prop-money-counter-display', name: 'Prop Money Counter (Display Only)', category: 'display-collectibles', price: 69.0,
+    slug: 'prop-money-counter-display', name: 'Prop Money Counter (Display Only)', category: 'display-collectibles', price: 72.95,
+    noteCount: 0, faceValue: null, tier: 'display', mix: 'Non-functional display prop',
     faceValueLabel: 'Non-functional display prop', badge: null,
     tags: ['display-case-accessory', 'film-prop-money', 'theatre-stage-money', 'production-pack'],
     circulationOptions: false, customSerials: false,
@@ -729,7 +758,8 @@ export const PRODUCTS = [
 
   // --- Personalised & Novelty ---
   {
-    slug: 'personalised-photo-prop-note-pack', name: 'Personalised Photo Prop Note Pack', category: 'personalised-novelty', price: 34.95,
+    slug: 'personalised-photo-prop-note-pack', name: 'Personalised Photo Prop Note Pack', category: 'personalised-novelty', price: 36.95,
+    noteCount: 20, faceValue: null, tier: 'novelty', mix: '20 personalised notes',
     faceValueLabel: '20 notes printed with your supplied photo', badge: null,
     tags: ['personalised-prop-note', 'gift-money-set', 'not-legal-tender', 'novelty-currency'],
     circulationOptions: false, customSerials: false,
@@ -737,7 +767,8 @@ export const PRODUCTS = [
     images: ['personalised-photo-prop-note-pack.webp'],
   },
   {
-    slug: 'personalised-novelty-big-cheque', name: 'Personalised Novelty Big Cheque', category: 'personalised-novelty', price: 39.95,
+    slug: 'personalised-novelty-big-cheque', name: 'Personalised Novelty Big Cheque', category: 'personalised-novelty', price: 41.95,
+    noteCount: 1, faceValue: null, tier: 'novelty', mix: 'One large-format presentation cheque',
     faceValueLabel: 'Large-format presentation cheque, custom text', badge: null,
     tags: ['novelty-cheque', 'gift-money-set', 'not-legal-tender'],
     circulationOptions: false, customSerials: false,
@@ -745,7 +776,8 @@ export const PRODUCTS = [
     images: ['personalised-novelty-big-cheque.webp'],
   },
   {
-    slug: 'custom-message-prop-note-gift-pack', name: 'Custom Message Prop Note Gift Pack', category: 'personalised-novelty', price: 32.95,
+    slug: 'custom-message-prop-note-gift-pack', name: 'Custom Message Prop Note Gift Pack', category: 'personalised-novelty', price: 34.95,
+    noteCount: 10, faceValue: null, tier: 'novelty', mix: '10 custom-message notes',
     faceValueLabel: '10 notes with a custom printed message', badge: null,
     tags: ['personalised-prop-note', 'gift-money-set', 'not-legal-tender', 'novelty-currency'],
     circulationOptions: false, customSerials: false,
@@ -755,7 +787,8 @@ export const PRODUCTS = [
 
   // --- Kids Play Money additions ---
   {
-    slug: 'classroom-play-money-bulk-pack', name: 'Classroom Play Money Bulk Pack', category: 'kids-play-money', price: 59.95,
+    slug: 'classroom-play-money-bulk-pack', name: 'Classroom Play Money Bulk Pack', category: 'kids-play-money', price: 62.95,
+    noteCount: 0, faceValue: null, tier: 'education', mix: 'Play money for 30 students',
     faceValueLabel: 'Enough play money for 30 students', badge: 'Classroom Friendly',
     tags: ['classroom-play-money', 'educational-play-money', 'not-legal-tender', 'kids-play-money'],
     circulationOptions: false, customSerials: false,
@@ -765,7 +798,8 @@ export const PRODUCTS = [
 
   // --- Gift Sets additions ---
   {
-    slug: 'birthday-money-gift-box', name: 'Birthday Money Gift Box', category: 'gift-sets', price: 29.95,
+    slug: 'birthday-money-gift-box', name: 'Birthday Money Gift Box', category: 'gift-sets', price: 30.95,
+    noteCount: 55, faceValue: 2500, tier: 'starter', mix: '25 × $20 · 20 × $50 · 10 × $100',
     faceValueLabel: 'Approx. $2,500 mixed face value, gift-boxed', badge: null,
     tags: ['gift-money-set', 'party-prank-money', 'not-legal-tender', 'novelty-currency'],
     circulationOptions: true, customSerials: false,
@@ -773,7 +807,8 @@ export const PRODUCTS = [
     images: ['birthday-money-gift-box.webp'],
   },
   {
-    slug: 'graduation-money-gift-set', name: 'Graduation Money Gift Set', category: 'gift-sets', price: 34.95,
+    slug: 'graduation-money-gift-set', name: 'Graduation Money Gift Set', category: 'gift-sets', price: 36.95,
+    noteCount: 56, faceValue: 3000, tier: 'starter', mix: '20 × $20 · 20 × $50 · 16 × $100',
     faceValueLabel: 'Approx. $3,000 mixed face value, gift-boxed', badge: null,
     tags: ['gift-money-set', 'money-lei', 'not-legal-tender', 'novelty-currency'],
     circulationOptions: true, customSerials: false,
@@ -783,7 +818,8 @@ export const PRODUCTS = [
 
   // --- Accessories additions ---
   {
-    slug: 'money-gun-device', name: 'Money Gun (Device, Refillable)', category: 'accessories', price: 24.95,
+    slug: 'money-gun-device', name: 'Money Gun (Device, Refillable)', category: 'accessories', price: 25.95,
+    noteCount: 0, faceValue: null, tier: 'accessory', mix: 'Reusable device, refills separate',
     faceValueLabel: 'Reusable device — refills sold separately', badge: null,
     tags: ['money-gun-device', 'party-prank-money', 'production-pack'],
     circulationOptions: false, customSerials: false,
@@ -791,7 +827,8 @@ export const PRODUCTS = [
     images: ['money-gun-device.webp'],
   },
   {
-    slug: 'prop-money-display-case', name: 'Prop Money Display Case (Acrylic)', category: 'accessories', price: 27.95,
+    slug: 'prop-money-display-case', name: 'Prop Money Display Case (Acrylic)', category: 'accessories', price: 28.95,
+    noteCount: 0, faceValue: null, tier: 'accessory', mix: 'Holds one stack or a small set',
     faceValueLabel: 'Holds one stack or a small mixed set', badge: null,
     tags: ['display-case-accessory', 'display-collectible', 'australian-reserve-props'],
     circulationOptions: false, customSerials: false,
@@ -799,7 +836,8 @@ export const PRODUCTS = [
     images: ['prop-money-display-case.webp'],
   },
   {
-    slug: 'currency-bands-pack-50', name: 'Currency Bands (Pack of 50)', category: 'accessories', price: 6.95,
+    slug: 'currency-bands-pack-50', name: 'Currency Bands (Pack of 50)', category: 'accessories', price: 7.95,
+    noteCount: 0, faceValue: null, tier: 'accessory', mix: '50 paper bands',
     faceValueLabel: '50 paper bands, sold separately from notes', badge: null,
     tags: ['currency-band-accessory', 'production-pack'],
     circulationOptions: false, customSerials: false,

@@ -592,3 +592,46 @@ td.num { font-variant-numeric: tabular-nums; }
 input[type="radio"] { accent-color: var(--accent); width: 20px; height: 20px; margin: 3px 0 0; flex: 0 0 auto; }
 /* Keep the chat button clear of the mobile sticky CTA */
 @media (max-width: 700px) { .chat-hub { bottom: 5.25rem; } }
+
+
+/* ---------- Face-value return ---------- */
+.value-strip { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.35rem 0.5rem; margin: 0.2rem 0 0.4rem; font-size: 0.82rem; color: var(--ink-2); }
+.value-strip .pay { color: var(--ink-3); }
+.value-strip .arrow { color: var(--accent); }
+.value-strip .get { color: var(--ink); font-weight: 700; }
+.value-strip .mult { margin-left: auto; font-family: var(--font-display); font-stretch: 85%; font-weight: 800; font-size: 0.78rem; letter-spacing: 0.06em; color: var(--accent-ink); background: var(--accent); padding: 0.1rem 0.45rem; border-radius: 3px; }
+
+.value-hero { display: grid; grid-template-columns: 1fr auto 1.4fr auto; align-items: center; gap: 0.75rem 1rem; padding: 1.1rem 1.25rem; margin: 0.75rem 0 0.25rem; background: var(--bg-3); border: 1px solid var(--line); border-left: 4px solid var(--accent); border-radius: var(--radius-lg); }
+.value-col { display: flex; flex-direction: column; gap: 0.15rem; min-width: 0; }
+.value-col .k { font-size: 0.66rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-3); font-weight: 700; }
+.value-col .v { font-family: var(--font-display); font-stretch: 85%; font-weight: 800; font-size: clamp(1.5rem, 3vw, 2.1rem); line-height: 1; letter-spacing: 0.01em; font-variant-numeric: tabular-nums; }
+.value-col .v.pay { color: var(--ink); }
+.value-col .v.get { color: var(--accent); }
+.value-col .s { font-size: 0.78rem; color: var(--ink-2); }
+.value-arrow { font-family: var(--font-display); font-size: 1.8rem; color: var(--accent); line-height: 1; }
+.value-badge { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.1rem; min-width: 84px; padding: 0.6rem 0.75rem; background: var(--accent); color: var(--accent-ink); border-radius: var(--radius); text-align: center; }
+.value-badge .mult { font-family: var(--font-display); font-stretch: 85%; font-weight: 800; font-size: 1.5rem; line-height: 1; }
+.value-badge .lbl { font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700; }
+@media (max-width: 600px) {
+  .value-hero { grid-template-columns: 1fr 1fr; }
+  .value-arrow { display: none; }
+  .value-badge { grid-column: 1 / -1; flex-direction: row; gap: 0.6rem; justify-content: center; }
+}
+
+.bundle .p .x { font-style: normal; margin-left: 0.4rem; font-size: 0.72rem; color: var(--accent); }
+.cart-face { margin-top: 0.5rem; padding-top: 0.5rem; border-top: 1px dashed var(--line); font-size: 0.85rem; color: var(--ink-2); }
+.cart-face strong { color: var(--accent); }
+
+.yield { background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: clamp(1.25rem, 3vw, 1.75rem); }
+.yield-head h2 { font-size: 1.3rem; margin-bottom: 0.4rem; }
+.yield-head p { color: var(--ink-2); font-size: 0.95rem; margin: 0 0 1rem; }
+.yield-table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+.yield-table th { text-align: left; font-size: 0.66rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-3); padding: 0.4rem 0.5rem 0.5rem 0; border-bottom: 1px solid var(--line); }
+.yield-table td { padding: 0.6rem 0.5rem 0.6rem 0; border-bottom: 1px solid var(--line); vertical-align: middle; }
+.yield-table th.num, .yield-table td.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.yield-table td.face { color: var(--accent); font-weight: 700; }
+.yield-table tr.current td { background: var(--accent-dim); }
+.yield-table td a { color: var(--ink); text-decoration: none; font-weight: 600; }
+.yield-table td a:hover { text-decoration: underline; }
+.yield-table .tag { margin-left: 0.5rem; font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); font-weight: 700; }
+.yield-foot { margin: 0.9rem 0 0; font-size: 0.78rem; color: var(--ink-3); }

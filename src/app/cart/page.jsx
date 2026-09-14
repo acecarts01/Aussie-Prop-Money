@@ -9,6 +9,7 @@ import FaqBlock from '@/components/FaqBlock'
 import ComplianceBadge from '@/components/ComplianceBadge'
 import { getCart, updateQty, removeFromCart, subtotal } from '@/lib/cart'
 import { formatPrice } from '@/lib/utils'
+import { cartFaceValue, fmtFace } from '@/lib/value'
 import { SITE, PAYMENT_METHODS, PAGE_FAQS, ORDER } from '@/config/site'
 import VerifiedBusiness from '@/components/VerifiedBusiness'
 
@@ -89,6 +90,9 @@ export default function CartPage() {
                 {discount > 0 && <span style={{ color: 'var(--accent)' }}>Crypto discount ({Math.round(ORDER.cryptoDiscount * 100)}%): −{formatPrice(discount)}</span>}
                 <span>Shipping: Free · Australia Post tracked</span>
                 <strong>Total: {formatPrice(total)}</strong>
+                {cartFaceValue(items) > 0 && (
+                  <span className="cart-face">Prop face value in this order: <strong>{fmtFace(cartFaceValue(items))}</strong> · {Math.round(cartFaceValue(items) / Math.max(sub, 1))}× what you pay</span>
+                )}
               </div>
 
               <div className="grid grid-2" style={{ alignItems: 'start' }}>
