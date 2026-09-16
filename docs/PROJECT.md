@@ -154,6 +154,14 @@ verification, so no Bing token is needed (`SITE.bingVerification` is intentional
 
 **IndexNow.** All 79 sitemap URLs submitted to `api.indexnow.org` → `202 Accepted`.
 
+## Full audit + 20 new blog posts — 2026-09-16
+
+**Full site sweep (Technical / SEO / AI-visibility / Agent-ready) — all clean, no fixes needed:** build + crosscheck pass 0/0; all 79 (now 99) sitemap URLs return 200 with no redirect chains; www→apex and http→https both single-hop 308s; all security headers present (CSP, HSTS, X-Frame-Options, Referrer-Policy, Permissions-Policy); zero horizontal scroll at 375px; single H1 per page; valid JSON-LD on every page type checked (Store/Organization, WebSite, Product, BlogPosting, FAQPage, BreadcrumbList); `llms.txt` well-formed per spec; `auth.md` correct; all 8 `.well-known/*` files return 200; rich Organization schema with real foundingDate/foundingLocation/ABN. One gap found and fixed: blog posts only linked out once (generic `/shop/` CTA) — added a tag→category lookup (`TAG_TO_CATEGORY` in `src/app/blog/[slug]/page.jsx`) that renders 1-3 real "Related categories" links per post, applied automatically to all 38 posts.
+
+**20 new blog posts added** (`POSTS` in `src/config/site.js`, now 38 total), covering previously-untouched keyword-map clusters: film/TV/music-video/student-film use cases (§5), content-creator sub-angles (§6), party/prank/magic occasions (§8), seasonal gifting — Halloween/Christmas/NYE/Valentine's (§13), deeper compliance explainers — realism, RBA rules, materials (§14), and shipping/delivery (§16). Dated 2026-05-30 through 2026-09-15 (weekly-ish cadence continuing on from the existing 18, never future-dated). All pass the compliance banned-terms crosscheck (3 initial hits — "counterfeit", "1:1 scale", "spendable" — caught and rewritten before shipping).
+
+**IndexNow re-submitted** for the 20 new URLs + `/blog/` + `/sitemap.xml` → `200 OK`.
+
 Everything below this line is the original pre-launch runbook, kept for reference / future re-runs.
 
 ---

@@ -3,8 +3,48 @@ import Link from 'next/link'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import PageHeader from '@/components/PageHeader'
 import ComplianceBadge from '@/components/ComplianceBadge'
-import { POSTS, SITE } from '@/config/site'
+import { POSTS, SITE, CATEGORIES } from '@/config/site'
 import { absoluteUrl, seoTitle, seoDescription, ogMeta } from '@/lib/utils'
+
+// Maps a post's free-text tags to real shop category slugs, so every post
+// links out to 2-3 relevant categories instead of only the generic /shop/
+// CTA — the internal-linking standard WebForge audits for.
+const TAG_TO_CATEGORY = {
+  'twenty-dollar-prop-note': 'twenty-dollar-notes',
+  'fifty-dollar-prop-note': 'fifty-dollar-notes',
+  'hundred-dollar-prop-note': 'hundred-dollar-notes',
+  'vintage-prop-note': 'vintage-series-notes',
+  'mixed-denomination-pack': 'packs-bundles',
+  'bulk-production-pack': 'packs-bundles',
+  'production-pack': 'packs-bundles',
+  'wedding-event-pack': 'packs-bundles',
+  'briefcase-prop-set': 'briefcases-bags',
+  'duffel-bag-prop': 'briefcases-bags',
+  'money-confetti': 'confetti-party-favors',
+  'shredded-cash': 'confetti-party-favors',
+  'money-lei': 'confetti-party-favors',
+  'party-prank-money': 'confetti-party-favors',
+  'display-collectible': 'display-collectibles',
+  'limited-edition-prop': 'display-collectibles',
+  'display-case-accessory': 'display-collectibles',
+  'personalised-prop-note': 'personalised-novelty',
+  'novelty-cheque': 'personalised-novelty',
+  'kids-play-money': 'kids-play-money',
+  'classroom-play-money': 'kids-play-money',
+  'educational-play-money': 'kids-play-money',
+  'gift-money-set': 'gift-sets',
+  'birthday-money-gift-box': 'gift-sets',
+  'money-gun-device': 'accessories',
+  'money-gun-refill': 'accessories',
+  'currency-band-accessory': 'accessories',
+  'content-creator-props': 'packs-bundles',
+  'magic-trick-money': 'twenty-dollar-notes',
+}
+
+function relatedCategoriesFor(tags = []) {
+  const slugs = [...new Set(tags.map((t) => TAG_TO_CATEGORY[t]).filter(Boolean))]
+  return slugs.map((slug) => CATEGORIES.find((c) => c.slug === slug)).filter(Boolean).slice(0, 3)
+}
 
 export function generateStaticParams() {
   return POSTS.map((p) => ({ slug: p.slug }))
@@ -25,6 +65,7 @@ export default function BlogPost({ params }) {
   const post = POSTS.find((p) => p.slug === params.slug)
   if (!post) notFound()
   const faqs = post.faqs || []
+  const related = relatedCategoriesFor(post.tags)
 
   const schema = {
     '@context': 'https://schema.org',
@@ -65,6 +106,17 @@ export default function BlogPost({ params }) {
             <div className="faq-list">
               {faqs.map((f) => (
                 <details key={f.q}><summary>{f.q}</summary><p>{f.a}</p></details>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {related.length > 0 && (
+          <div style={{ marginTop: '2.5rem' }}>
+            <h2 style={{ fontSize: '1.4rem', marginBottom: '0.9rem' }}>Related categories</h2>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem' }}>
+              {related.map((c) => (
+                <Link key={c.slug} href={`/shop/${c.slug}/`} className="btn btn-outline">{c.name} →</Link>
               ))}
             </div>
           </div>

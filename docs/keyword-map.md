@@ -6,6 +6,8 @@ Internal only — never shipped to `public/` (webforge Rule 12: a public keyword
 
 **Refreshed 2026-08-29** to match the current catalog: $20 AUD is the minimum denomination ($5/$10 discontinued), Prop Coins was removed entirely, and five categories were added since the original version of this file — Vintage & Legacy Series, Briefcases & Bags, Confetti & Party Favors, Display & Collectibles, and Personalised & Novelty.
 
+**Blog coverage as of 2026-09-16** (38 posts live — see `POSTS` in `src/config/site.js`): clusters §5 (film/photography), §6 (content creators), §8 (pranks/magic/parties), §13 (seasonal), §14 (informational/compliance), and §16 (delivery) are now substantially covered. Still largely open for the next content round: §12 gifting sub-angles beyond what §8/§13 already touch, §15 comparison content (handle carefully — neutral, no disparaging specific competitors), §18 geo/city terms (better as one consolidated "shipping across Australia" angle than per-city thin pages — see §16 post already published), and §19 accessories.
+
 ---
 
 ## Primary keyword
