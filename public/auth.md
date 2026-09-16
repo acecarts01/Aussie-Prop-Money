@@ -8,7 +8,7 @@ No registration is needed. All resources below are public.
 | Resource | URL |
 |---|---|
 | Shop | https://australianreserveprops.com/shop/ |
-| Product catalog (API) | https://australianreserveprops.com/api/products |
+| Product catalog (JSON, read-only) | https://australianreserveprops.com/api/products/ |
 | FAQ | https://australianreserveprops.com/faq/ |
 | Wholesale | https://australianreserveprops.com/wholesale/ |
 

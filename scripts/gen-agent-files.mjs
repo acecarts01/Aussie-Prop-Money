@@ -3,7 +3,7 @@
 import { mkdirSync, writeFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { dirname, join } from 'node:path'
-import { SITE, CATEGORIES, PRODUCTS, FORMS } from '../src/config/site.js'
+import { SITE, CATEGORIES, PRODUCTS, POSTS, FAQS, PAYMENT_METHODS, ORDER } from '../src/config/site.js'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const root = join(__dirname, '..')
@@ -19,6 +19,16 @@ function write(relPath, content) {
   const full = join(pub, relPath)
   mkdirSync(dirname(full), { recursive: true })
   writeFileSync(full, content, 'utf8')
+}
+
+// Extensionless .well-known files: Vercel's static CDN serves them as application/octet-stream and
+// ignores Content-Type overrides in vercel.json, so on the Vercel target they are emitted into
+// src/generated/ and served by src/app/wk/[name]/route.js via rewrites. The static target keeps
+// them as plain files (Cloudflare's _headers handles the type).
+const WK = {}
+function writeWellKnown(name, type, content) {
+  if (isStatic) return write(`.well-known/${name}`, content)
+  WK[name] = { type, content }
 }
 
 // A — robots.txt is handled by src/app/robots.js (Next native). Nothing to do here.
@@ -51,6 +61,12 @@ ${SITE.brandStatement}
 ## Categories
 ${categoryLines}
 
+## Ordering
+- Minimum order: $${SITE.orderRules.minOrder} AUD (goods subtotal). Shipping is free Australia-wide.
+- Payment methods: ${PAYMENT_METHODS.map((m) => m.label).join(', ')}. The crypto discount is ${Math.round(ORDER.cryptoDiscount * 100)}% off the goods subtotal.
+- Flow: submit an order request on the site → we confirm the preferred payment method by email → tax invoice with payment details → printed to order and shipped.
+- Prices are in AUD and include GST. Every product page states the number of notes and the prop face value received.
+
 ## Compliance
 All products are reproduced to differ from genuine Australian currency by at least 25% in size, per RBA
 reproduction guidance, are clearly marked NOT LEGAL TENDER, and carry no replicated banknote security features.
@@ -67,6 +83,52 @@ No custom or buyer-specified serial numbers are offered under any circumstances.
 - [Agent Skills](${base}/.well-known/agent-skills/index.json)
 - [MCP Server Card](${base}/.well-known/mcp/server-card.json)
 - [Auth](${base}/auth.md)
+- [llms-full.txt](${base}/llms-full.txt): every product and guide with prices and summaries
+`)
+
+// B2 — llms-full.txt: the complete catalogue + guides for AI assistants that want everything in one fetch
+const money = (n) => '$' + Number(n).toFixed(2)
+const productLines = CATEGORIES.map((c) => {
+  const items = PRODUCTS.filter((p) => p.category === c.slug)
+  if (!items.length) return ''
+  const lines = items.map((p) => {
+    const bits = [money(p.price) + ' AUD']
+    if (p.noteCount) bits.push(p.noteCount + ' notes')
+    if (p.faceValue) bits.push('$' + p.faceValue.toLocaleString('en-AU') + ' prop face value')
+    return '- [' + p.name + '](' + base + '/product/' + p.slug + '/) — ' + bits.join(' · ') + '. ' + (p.description || '')
+  })
+  return '### ' + c.name + '\n' + lines.join('\n')
+}).filter(Boolean).join('\n\n')
+const postLines = POSTS.map((p) => '- [' + p.title + '](' + base + '/blog/' + p.slug + '/) (' + p.date + ') — ' + (p.excerpt || '')).join('\n')
+const faqLines = FAQS.map((f) => '**' + f.q + '**\n' + f.a).join('\n\n')
+
+write('llms-full.txt', `# ${SITE.name} — full reference
+
+${SITE.brandStatement}
+
+Business: ${SITE.legalName} · ABN ${SITE.abn} · ${SITE.location} · ${email} · WhatsApp ${phone}
+Ships: Australia only. Minimum order $${SITE.orderRules.minOrder} AUD, free shipping. Payment: ${PAYMENT_METHODS.map((m) => m.label).join(', ')}.
+
+## Products
+${productLines}
+
+## Guides
+${postLines}
+
+## FAQ
+${faqLines}
+
+## Compliance
+Every note is reduced-scale (differs from genuine AUD notes by at least 25%), marked NOT LEGAL TENDER, carries no replicated
+security features, and is sold for film, theatre, education and novelty use only. No custom or buyer-specified serial numbers.
+`)
+
+// security.txt (RFC 9116)
+const nextYear = new Date(); nextYear.setFullYear(nextYear.getFullYear() + 1)
+write('.well-known/security.txt', `Contact: mailto:${email}
+Expires: ${nextYear.toISOString().slice(0, 19)}Z
+Preferred-Languages: en
+Canonical: ${base}/.well-known/security.txt
 `)
 
 // C — auth.md
@@ -80,7 +142,7 @@ No registration is needed. All resources below are public.
 | Resource | URL |
 |---|---|
 | Shop | ${base}/shop/ |
-| Product catalog (API) | ${base}/api/products |
+| Product catalog (JSON, read-only) | ${base}/api/products/ |
 | FAQ | ${base}/faq/ |
 | Wholesale | ${base}/wholesale/ |
 
@@ -100,10 +162,11 @@ Age restriction: none. This site sells novelty currency only — not legal tende
 `)
 
 // D — api-catalog
-write('.well-known/api-catalog', JSON.stringify({
+writeWellKnown('api-catalog', 'application/linkset+json', JSON.stringify({
   linkset: [
     { anchor: `${base}/`, 'https://www.iana.org/assignments/link-relations/service-doc': [{ href: `${base}/faq/` }], title: `${SITE.name} — ${SITE.tagline}` },
     { anchor: `${base}/shop/`, type: 'text/html', title: `${SITE.name} Product Catalog` },
+    { anchor: `${base}/api/products/`, type: 'application/json', title: `${SITE.name} Product Catalog (JSON, read-only)` },
     { anchor: `${base}/wholesale/`, type: 'text/html', title: `${SITE.name} Wholesale` },
   ],
 }, null, 2))
@@ -152,7 +215,7 @@ write('.well-known/mcp/server-card.json', JSON.stringify({
 }, null, 2))
 
 // G, H, I — OAuth/OIDC discovery stubs
-write('.well-known/oauth-protected-resource', JSON.stringify({
+writeWellKnown('oauth-protected-resource', 'application/json', JSON.stringify({
   resource: base,
   resource_name: `${SITE.name} Public Catalog`,
   authorization_servers: [],
@@ -164,7 +227,7 @@ write('.well-known/oauth-protected-resource', JSON.stringify({
   note: `All resources on ${domain} are publicly accessible. No OAuth tokens are required.`,
 }, null, 2))
 
-write('.well-known/oauth-authorization-server', JSON.stringify({
+writeWellKnown('oauth-authorization-server', 'application/json', JSON.stringify({
   issuer: base,
   authorization_endpoint: null,
   token_endpoint: null,
@@ -177,7 +240,7 @@ write('.well-known/oauth-authorization-server', JSON.stringify({
   agent_auth: { register_uri: null, identity_types_supported: ['none'], credential_types_supported: ['none'], notes: 'No registration required.' },
 }, null, 2))
 
-write('.well-known/openid-configuration', JSON.stringify({
+writeWellKnown('openid-configuration', 'application/json', JSON.stringify({
   issuer: base,
   note: `${SITE.name} does not operate an OpenID Connect provider. All resources are publicly accessible.`,
   public_site: true,
@@ -205,15 +268,16 @@ write('.well-known/acp.json', JSON.stringify({
     ordering: 'human-assisted',
     payment_methods: ['bank-transfer', 'payid', 'crypto-BTC', 'crypto-USDT', 'crypto-ETH', 'crypto-BNB'],
     currency: SITE.currency,
-    minimum_order_usd: SITE.orderRules.minOrder,
-    free_shipping_threshold_usd: SITE.orderRules.freeShippingThreshold,
+    minimum_order: SITE.orderRules.minOrder,
+    minimum_order_currency: SITE.currency,
+    free_shipping: 'all orders',
   },
   contact: { email },
   legal: { age_restriction: 'none', region: 'AU', ships_to: 'Australia only', product_type: 'novelty currency', compliance: 'RBA reproduction guidance + Crimes (Currency) Act 1981' },
 }, null, 2))
 
 // K — ucp
-write('.well-known/ucp', JSON.stringify({
+writeWellKnown('ucp', 'application/json', JSON.stringify({
   ucp: '1.0',
   protocol_version: '1.0',
   spec: 'https://ucp.dev/specification/overview/',
@@ -235,7 +299,8 @@ write('.well-known/ucp', JSON.stringify({
     llms_txt: `${base}/llms.txt`,
   },
   currency: SITE.currency,
-  minimum_order_usd: SITE.orderRules.minOrder,
+  minimum_order: SITE.orderRules.minOrder,
+    minimum_order_currency: SITE.currency,
   payment_methods: ['bank-transfer', 'payid', 'crypto-BTC', 'crypto-USDT', 'crypto-ETH', 'crypto-BNB'],
   legal: { age_restriction: 'none', product_type: 'novelty currency', compliance: 'RBA reproduction guidance + Crimes (Currency) Act 1981' },
 }, null, 2))
@@ -286,6 +351,7 @@ if (SITE.target === 'vercel') {
   const vercelJson = {
     '$schema': 'https://openapi.vercel.sh/vercel.json',
     trailingSlash: true,
+    rewrites: Object.keys(WK).map((name) => ({ source: `/.well-known/${name}`, destination: `/wk/${name}/` })),
     redirects: [
       { source: '/:path*', has: [{ type: 'host', value: `www.${domain}` }], destination: `${base}/:path*`, permanent: true },
     ],
@@ -315,6 +381,8 @@ if (SITE.target === 'vercel') {
     ],
   }
   writeFileSync(join(root, 'vercel.json'), JSON.stringify(vercelJson, null, 2), 'utf8')
+  mkdirSync(join(root, 'src/generated'), { recursive: true })
+  writeFileSync(join(root, 'src/generated/well-known.json'), JSON.stringify(WK, null, 2), 'utf8')
 }
 
 console.log(`[gen-agent-files] wrote agent-ready files + config for domain: ${domain}${isStatic ? ' (static target)' : ''}`)

@@ -66,3 +66,20 @@ export function ogMeta(title, path, image, extra = {}) {
 export function relatedProducts(product, count = 4) {
   return PRODUCTS.filter((p) => p.slug !== product.slug && p.category === product.category).slice(0, count)
 }
+
+// ItemList of product pages for shop/category listings — tells crawlers which products the
+// listing contains and in what order, without repeating full Product entities off their own page.
+export function itemListSchema(products, name) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name,
+    numberOfItems: products.length,
+    itemListElement: products.map((p, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: p.name,
+      url: absoluteUrl(`/product/${p.slug}/`),
+    })),
+  }
+}

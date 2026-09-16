@@ -5,7 +5,7 @@ import Breadcrumbs from '@/components/Breadcrumbs'
 import PageHeader from '@/components/PageHeader'
 import ComplianceBadge from '@/components/ComplianceBadge'
 import { CATEGORIES, CATEGORY_KEYWORDS, CATEGORY_FAQS } from '@/config/site'
-import { getCategory, productsIn, absoluteUrl, seoTitle, seoDescription, ogMeta } from '@/lib/utils'
+import { getCategory, productsIn, absoluteUrl, seoTitle, seoDescription, ogMeta, itemListSchema } from '@/lib/utils'
 
 export function generateStaticParams() {
   return CATEGORIES.map((c) => ({ cat: c.slug }))
@@ -38,6 +38,7 @@ export default function CategoryPage({ params }) {
   return (
     <div>
       {faqSchema && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />}
+      {products.length > 0 && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema(products, `${category.name} — prop money`)) }} />}
       <PageHeader
         eyebrow="Shop"
         title={category.name}

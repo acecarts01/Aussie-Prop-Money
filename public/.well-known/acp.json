@@ -27,8 +27,9 @@
       "crypto-BNB"
     ],
     "currency": "AUD",
-    "minimum_order_usd": 250,
-    "free_shipping_threshold_usd": 0
+    "minimum_order": 250,
+    "minimum_order_currency": "AUD",
+    "free_shipping": "all orders"
   },
   "contact": {
     "email": "info@australianreserveprops.com"

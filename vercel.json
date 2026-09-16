@@ -1,6 +1,28 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "trailingSlash": true,
+  "rewrites": [
+    {
+      "source": "/.well-known/api-catalog",
+      "destination": "/wk/api-catalog/"
+    },
+    {
+      "source": "/.well-known/oauth-protected-resource",
+      "destination": "/wk/oauth-protected-resource/"
+    },
+    {
+      "source": "/.well-known/oauth-authorization-server",
+      "destination": "/wk/oauth-authorization-server/"
+    },
+    {
+      "source": "/.well-known/openid-configuration",
+      "destination": "/wk/openid-configuration/"
+    },
+    {
+      "source": "/.well-known/ucp",
+      "destination": "/wk/ucp/"
+    }
+  ],
   "redirects": [
     {
       "source": "/:path*",

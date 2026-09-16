@@ -3,8 +3,8 @@ import ProductCard from '@/components/ProductCard'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import PageHeader from '@/components/PageHeader'
 import ComplianceBadge from '@/components/ComplianceBadge'
-import { CATEGORIES } from '@/config/site'
-import { productsIn, absoluteUrl, ogMeta } from '@/lib/utils'
+import { CATEGORIES, PRODUCTS } from '@/config/site'
+import { productsIn, absoluteUrl, ogMeta, itemListSchema } from '@/lib/utils'
 
 export const metadata = {
   title: 'Buy Prop Money Australia — Full Range | ARP',
@@ -16,6 +16,7 @@ export const metadata = {
 export default function ShopPage() {
   return (
     <div>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema(PRODUCTS, 'Australian Reserve Props — full range')) }} />
       <PageHeader
         eyebrow="The full range"
         title="Buy prop money Australia — full range"

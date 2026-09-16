@@ -65,10 +65,8 @@ try {
 
 // 3. Required agent-ready files present
 const requiredPublic = [
-  'llms.txt', 'auth.md', 'js/webmcp.js',
-  '.well-known/api-catalog', '.well-known/agent-skills/index.json', '.well-known/mcp/server-card.json',
-  '.well-known/oauth-protected-resource', '.well-known/oauth-authorization-server', '.well-known/openid-configuration',
-  '.well-known/acp.json', '.well-known/ucp',
+  'llms.txt', 'llms-full.txt', 'auth.md', 'js/webmcp.js',
+  '.well-known/agent-skills/index.json', '.well-known/mcp/server-card.json', '.well-known/acp.json', '.well-known/security.txt',
 ]
 for (const f of requiredPublic) {
   try {
@@ -77,6 +75,18 @@ for (const f of requiredPublic) {
     console.log(`FAIL  Missing required agent-ready file: public/${f} — run "npm run build" (prebuild generates it) first`)
     errors++
   }
+}
+// Extensionless .well-known documents are served by src/app/wk/[name]/route.js on Vercel (static
+// CDN can't set their Content-Type); they must exist in the generated module instead.
+const requiredWellKnown = ['api-catalog', 'oauth-protected-resource', 'oauth-authorization-server', 'openid-configuration', 'ucp']
+try {
+  const wk = JSON.parse(readFileSync(join(root, 'src/generated/well-known.json'), 'utf8'))
+  for (const name of requiredWellKnown) {
+    if (!wk[name]) { console.log(`FAIL  Missing generated .well-known document: ${name}`); errors++ }
+  }
+} catch {
+  console.log('FAIL  src/generated/well-known.json missing — run "npm run build" first')
+  errors++
 }
 
 // 4. vercel.json present (Vercel target)

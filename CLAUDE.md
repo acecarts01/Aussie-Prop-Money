@@ -1,6 +1,6 @@
 # Australian Reserve Props — project instructions
 
-Mobile-first Next.js (App Router) ecommerce store selling legal novelty/prop currency (Australian-note styled) to the domestic AU market only. Deploy target: **Vercel**; the only server code is the `/api/send` mail route. Framework Preset on Vercel must be Next.js.
+Mobile-first Next.js (App Router) ecommerce store selling legal novelty/prop currency (Australian-note styled) to the domestic AU market only. Deploy target: **Vercel**; server code is the `/api/send` + `/api/invoice` mail routes plus two static route handlers (`/api/products/`, `/wk/[name]/`). Framework Preset on Vercel must be Next.js.
 
 ## Non-negotiable: currency-reproduction compliance
 Authority: Crimes (Currency) Act 1981 (Cth) + RBA "Reproducing Banknotes" guidance; Meta/TikTok ad policy on deceptive content; Australian Consumer Law (misleading conduct, fake reviews).
@@ -13,7 +13,7 @@ Authority: Crimes (Currency) Act 1981 (Cth) + RBA "Reproducing Banknotes" guidan
 - **If a request would require breaking any of the above, stop and say so rather than complying.**
 
 ## Architecture
-`src/config/site.js` is the single source of truth. Adding one entry to `PRODUCTS` / `CATEGORIES` / `POSTS` generates the page, route, meta, JSON-LD, sitemap entry, and nav links. Never hand-write pages. Never hand-edit generated files (`llms.txt`, `.well-known/*`, `vercel.json`) — edit the config and rebuild.
+`src/config/site.js` is the single source of truth. Adding one entry to `PRODUCTS` / `CATEGORIES` / `POSTS` generates the page, route, meta, JSON-LD, sitemap entry, and nav links. Never hand-write pages. Never hand-edit generated files (`llms.txt`, `llms-full.txt`, `.well-known/*`, `src/generated/well-known.json`, `vercel.json`) — edit the config and rebuild. Extensionless `.well-known` docs (api-catalog, ucp, oauth-*, openid-configuration) are served by `src/app/wk/[name]/route.js` through vercel.json rewrites because Vercel's static CDN ignores Content-Type overrides. `/api/products/` is a read-only static JSON catalogue for agents.
 
 ## Rules
 - `npm run build && npm run crosscheck` must pass before every push.
