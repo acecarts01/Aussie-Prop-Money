@@ -15,7 +15,7 @@ export default function ProductCard({ product, priority = false }) {
 
   return (
     <div className="product-card">
-      <Link href={href} className="plate" aria-label={product.name}>
+      <Link href={href} className="plate" tabIndex={-1} aria-hidden="true">
         {product.badge && <span className="specimen-tag">{product.badge}</span>}
         {photo ? (
           <Image
@@ -25,6 +25,7 @@ export default function ProductCard({ product, priority = false }) {
             height={1200}
             loading={priority ? 'eager' : 'lazy'}
             priority={priority}
+            sizes="(max-width: 600px) 100vw, (max-width: 1000px) 50vw, 25vw"
           />
         ) : (
           <ProductArt colorKey={category?.color} label={artLabelFor(product)} />

@@ -3,11 +3,12 @@ import Breadcrumbs from '@/components/Breadcrumbs'
 import PageHeader from '@/components/PageHeader'
 import ComplianceBadge from '@/components/ComplianceBadge'
 import { FAQS, CATEGORY_FAQS } from '@/config/site'
-import { absoluteUrl } from '@/lib/utils'
+import { absoluteUrl, seoTitle, seoDescription, ogMeta } from '@/lib/utils'
 
 export const metadata = {
-  title: 'FAQ — Is Prop Money Legal in Australia? Realism, Sizing, Delivery',
-  description: 'Straight answers on legality, realism on camera, sizing rules, serial numbers, payment methods and Australia-wide delivery for studio-grade prop money.',
+  title: seoTitle('FAQ — Is Prop Money Legal in Australia? Realism, Sizing, Delivery'),
+  description: seoDescription('Straight answers on legality, realism on camera, sizing rules, serial numbers, payment methods and Australia-wide delivery for studio-grade prop money.'),
+  ...ogMeta(seoTitle('FAQ — Is Prop Money Legal in Australia? Realism, Sizing, Delivery'), '/faq/'),
   alternates: { canonical: absoluteUrl('/faq/') },
 }
 

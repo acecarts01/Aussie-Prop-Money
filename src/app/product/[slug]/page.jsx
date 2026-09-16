@@ -14,7 +14,7 @@ import SubmitSetReport from '@/components/SubmitSetReport'
 import ComplianceBadge from '@/components/ComplianceBadge'
 import Icon from '@/components/Icon'
 import { PRODUCTS, SITE, CATEGORY_FAQS, REVIEWS } from '@/config/site'
-import { getProduct, getCategory, relatedProducts, formatPrice, absoluteUrl, artLabelFor } from '@/lib/utils'
+import { getProduct, getCategory, relatedProducts, formatPrice, absoluteUrl, artLabelFor, seoTitle, seoDescription, ogMeta } from '@/lib/utils'
 
 export function generateStaticParams() {
   return PRODUCTS.map((p) => ({ slug: p.slug }))
@@ -25,10 +25,10 @@ export function generateMetadata({ params }) {
   if (!product) return {}
   const photo = product.images?.[0]
   return {
-    title: product.name,
-    description: product.description.slice(0, 155),
+    title: seoTitle(product.name),
+    description: seoDescription(product.description),
     alternates: { canonical: absoluteUrl(`/product/${product.slug}/`) },
-    openGraph: photo ? { images: [absoluteUrl(`/images/products/${photo}`)] } : undefined,
+    ...ogMeta(seoTitle(product.name), `/product/${product.slug}/`, photo ? { url: absoluteUrl(`/images/products/${photo}`), width: 1600, height: 1200, alt: product.name } : undefined),
   }
 }
 

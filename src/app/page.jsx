@@ -8,12 +8,12 @@ import UseCaseSplit from '@/components/UseCaseSplit'
 import ComplianceBadge from '@/components/ComplianceBadge'
 import Icon from '@/components/Icon'
 import { CATEGORIES, PRODUCTS, FAQS, REVIEWS, POSTS, SITE, HERO, COMPLIANCE } from '@/config/site'
-import { absoluteUrl } from '@/lib/utils'
+import { absoluteUrl, ogMeta } from '@/lib/utils'
 
 export const metadata = {
-  title: 'Prop Money Australia — Studio-Grade, Screen-Ready | Australian Reserve Props',
-  description:
-    'Studio-grade prop money for film, theatre and performance. Reduced-scale, RBA-compliant, clearly marked NOT LEGAL TENDER. $20, $50 and $100 stacks, packs and briefcase sets, shipped Australia-wide.',
+  title: 'Prop Money Australia | Australian Reserve Props',
+  description: 'Studio-grade prop money for film, theatre and content. Reduced-scale, RBA-compliant, marked NOT LEGAL TENDER. $20, $50 and $100 stacks, packs and briefcases.',
+  ...ogMeta('Prop Money Australia | Australian Reserve Props', '/'),
   alternates: { canonical: absoluteUrl('/') },
 }
 
@@ -29,21 +29,6 @@ const faqSchema = {
   })),
 }
 
-const avgRating = (REVIEWS.reduce((s, r) => s + r.rating, 0) / REVIEWS.length).toFixed(1)
-const aggregateSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'Product',
-  name: SITE.name,
-  aggregateRating: { '@type': 'AggregateRating', ratingValue: avgRating, reviewCount: REVIEWS.length },
-  review: REVIEWS.slice(0, 8).map((r) => ({
-    '@type': 'Review',
-    author: { '@type': 'Person', name: r.name },
-    datePublished: r.date,
-    reviewRating: { '@type': 'Rating', ratingValue: r.rating, bestRating: 5 },
-    reviewBody: r.text,
-  })),
-}
-
 // Featured: the three flagship stacks + the production/reveal sets + two use-case items.
 const FEATURED_SLUGS = [
   'hundred-dollar-prop-note-stack',
@@ -55,6 +40,7 @@ const FEATURED_SLUGS = [
   'content-creator-flex-pack',
   'money-gun-refill-pack',
 ]
+const avgRating = (REVIEWS.reduce((s, r) => s + r.rating, 0) / REVIEWS.length).toFixed(1)
 const featured = FEATURED_SLUGS.map((s) => PRODUCTS.find((p) => p.slug === s)).filter(Boolean)
 const productionReviews = REVIEWS.filter((r) => /film|theatre|production|stage|set|shoot|crew/i.test(r.text)).slice(0, 3)
 const latestPosts = [...POSTS].sort((a, b) => (a.date < b.date ? 1 : -1)).slice(0, 3)
@@ -63,7 +49,6 @@ export default function HomePage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(aggregateSchema) }} />
 
       {/* 1 — Hero */}
       <section className="hero-cine gridlines" aria-labelledby="hero-h1">
@@ -129,11 +114,11 @@ export default function HomePage() {
           </div>
           <div className="isnt-grid">
             <div className="isnt-col">
-              <h4 className="is">What it is</h4>
+              <h3 className="is">What it is</h3>
               <ul>{COMPLIANCE.is.map((t) => <li key={t}>{t}</li>)}</ul>
             </div>
             <div className="isnt-col">
-              <h4>What it isn&rsquo;t</h4>
+              <h3>What it isn&rsquo;t</h3>
               <ul>{COMPLIANCE.isnt.map((t) => <li key={t}>{t}</li>)}</ul>
             </div>
           </div>

@@ -5,7 +5,7 @@ import Breadcrumbs from '@/components/Breadcrumbs'
 import PageHeader from '@/components/PageHeader'
 import ComplianceBadge from '@/components/ComplianceBadge'
 import { CATEGORIES, CATEGORY_KEYWORDS, CATEGORY_FAQS } from '@/config/site'
-import { getCategory, productsIn, absoluteUrl } from '@/lib/utils'
+import { getCategory, productsIn, absoluteUrl, seoTitle, seoDescription, ogMeta } from '@/lib/utils'
 
 export function generateStaticParams() {
   return CATEGORIES.map((c) => ({ cat: c.slug }))
@@ -16,8 +16,9 @@ export function generateMetadata({ params }) {
   if (!category) return {}
   const kw = CATEGORY_KEYWORDS[category.slug]
   return {
-    title: `${category.name} — Prop Money Australia`,
-    description: kw ? `${category.description} Covers ${kw.primary} and related styles.` : category.description,
+    title: seoTitle(`${category.name} — Prop Money Australia`),
+    description: seoDescription(kw ? `${category.description} Covers ${kw.primary} and related styles.` : category.description),
+    ...ogMeta(seoTitle(`${category.name} — Prop Money Australia`), `/shop/${category.slug}/`),
     alternates: { canonical: absoluteUrl(`/shop/${category.slug}/`) },
   }
 }

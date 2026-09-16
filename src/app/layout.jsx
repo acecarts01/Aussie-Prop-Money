@@ -4,7 +4,7 @@ import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
 import ChatHub from '@/components/ChatHub'
 import { SITE } from '@/config/site'
-import { absoluteUrl } from '@/lib/utils'
+import { absoluteUrl, seoDescription } from '@/lib/utils'
 
 // next/font self-hosts these at build time — no runtime request to Google Fonts,
 // no render-blocking @import chain.
@@ -36,22 +36,23 @@ if (isLive(SITE.bingVerification)) verification.other = { 'msvalidate.01': SITE.
 
 export const metadata = {
   metadataBase: new URL(absoluteUrl('/')),
-  title: {
-    default: `${SITE.name} — ${SITE.tagline}`,
-    template: `%s | ${SITE.name}`,
-  },
-  description: SITE.brandStatement.slice(0, 155),
+  // Pages set complete titles via seoTitle() (≤60 chars) — no template suffix, so nothing doubles up.
+  title: { default: `Prop Money Australia | ${SITE.name}`, template: '%s' },
+  description: seoDescription(SITE.brandStatement),
   openGraph: {
     type: 'website',
     siteName: SITE.name,
-    title: SITE.name,
-    description: SITE.brandStatement.slice(0, 155),
+    locale: 'en_AU',
+    title: `Prop Money Australia | ${SITE.name}`,
+    description: seoDescription(SITE.brandStatement),
     url: absoluteUrl('/'),
+    images: [{ url: absoluteUrl('/og-default.jpg'), width: 1200, height: 630, alt: `${SITE.name} — studio-grade prop money, reduced-scale and marked NOT LEGAL TENDER` }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: SITE.name,
-    description: SITE.brandStatement.slice(0, 155),
+    title: `Prop Money Australia | ${SITE.name}`,
+    description: seoDescription(SITE.brandStatement),
+    images: [absoluteUrl('/og-default.jpg')],
   },
   alternates: { canonical: absoluteUrl('/') },
   ...(Object.keys(verification).length > 0 ? { verification } : {}),

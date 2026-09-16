@@ -4,7 +4,7 @@ import Breadcrumbs from '@/components/Breadcrumbs'
 import PageHeader from '@/components/PageHeader'
 import ComplianceBadge from '@/components/ComplianceBadge'
 import { POSTS, SITE } from '@/config/site'
-import { absoluteUrl } from '@/lib/utils'
+import { absoluteUrl, seoTitle, seoDescription, ogMeta } from '@/lib/utils'
 
 export function generateStaticParams() {
   return POSTS.map((p) => ({ slug: p.slug }))
@@ -14,9 +14,10 @@ export function generateMetadata({ params }) {
   const post = POSTS.find((p) => p.slug === params.slug)
   if (!post) return {}
   return {
-    title: post.title,
-    description: post.excerpt,
+    title: seoTitle(post.seoTitle || post.title),
+    description: seoDescription(post.excerpt),
     alternates: { canonical: absoluteUrl(`/blog/${post.slug}/`) },
+    ...ogMeta(seoTitle(post.seoTitle || post.title), `/blog/${post.slug}/`, undefined, { type: 'article', publishedTime: post.date }),
   }
 }
 

@@ -1,10 +1,11 @@
 import LegalPage from '@/components/LegalPage'
 import { SITE } from '@/config/site'
-import { absoluteUrl, formatPrice } from '@/lib/utils'
+import { absoluteUrl, formatPrice, seoTitle, seoDescription, ogMeta } from '@/lib/utils'
 
 export const metadata = {
-  title: 'Shipping — Australia-Wide Tracked Delivery',
-  description: 'Australian Reserve Props ships prop money Australia-wide via tracked Australia Post. Free tracked shipping on every order; minimum order $250. No international shipping.',
+  title: seoTitle('Shipping — Australia-Wide Tracked Delivery'),
+  description: seoDescription('Australian Reserve Props ships prop money Australia-wide via tracked Australia Post. Free tracked shipping on every order; minimum order $250. No international shipping.'),
+  ...ogMeta(seoTitle('Shipping — Australia-Wide Tracked Delivery'), '/shipping/'),
   alternates: { canonical: absoluteUrl('/shipping/') },
 }
 

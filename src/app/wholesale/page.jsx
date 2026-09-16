@@ -6,11 +6,12 @@ import FaqBlock from '@/components/FaqBlock'
 import ComplianceBadge from '@/components/ComplianceBadge'
 import Icon from '@/components/Icon'
 import { PAGE_FAQS, PRODUCTS } from '@/config/site'
-import { absoluteUrl, formatPrice } from '@/lib/utils'
+import { absoluteUrl, formatPrice, seoTitle, seoDescription, ogMeta } from '@/lib/utils'
 
 export const metadata = {
-  title: 'Production & Wholesale Prop Money — Film, TV & Theatre Volume Orders',
-  description: 'Bulk and wholesale prop money for film, TV and theatre productions across Australia. Consistent stacks across scenes, custom denomination mixes, pre-banded reveal sets.',
+  title: seoTitle('Production & Wholesale Prop Money — Film, TV & Theatre Volume Orders'),
+  description: seoDescription('Bulk and wholesale prop money for film, TV and theatre productions across Australia. Consistent stacks across scenes, custom denomination mixes, pre-banded reveal sets.'),
+  ...ogMeta(seoTitle('Production & Wholesale Prop Money — Film, TV & Theatre Volume Orders'), '/wholesale/'),
   alternates: { canonical: absoluteUrl('/wholesale/') },
 }
 

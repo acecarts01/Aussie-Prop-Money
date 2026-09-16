@@ -4,11 +4,12 @@ import Breadcrumbs from '@/components/Breadcrumbs'
 import PageHeader from '@/components/PageHeader'
 import ComplianceBadge from '@/components/ComplianceBadge'
 import { CATEGORIES } from '@/config/site'
-import { productsIn, absoluteUrl } from '@/lib/utils'
+import { productsIn, absoluteUrl, ogMeta } from '@/lib/utils'
 
 export const metadata = {
-  title: 'Buy Prop Money Australia — Full Range | Australian Reserve Props',
-  description: 'Screen-ready prop money by denomination, bundle size and use case — $20, $50 and $100 stacks, briefcase sets, bulk production packs, party and content props. Ships Australia-wide.',
+  title: 'Buy Prop Money Australia — Full Range | ARP',
+  description: 'Screen-ready prop money by denomination, bundle and use case: $20, $50 and $100 stacks, briefcase sets, bulk packs, party and content props. Ships Australia-wide.',
+  ...ogMeta('Buy Prop Money Australia — Full Range | ARP', '/shop/'),
   alternates: { canonical: absoluteUrl('/shop/') },
 }
 

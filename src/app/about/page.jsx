@@ -6,11 +6,12 @@ import ComplianceBadge from '@/components/ComplianceBadge'
 import VerifiedBusiness from '@/components/VerifiedBusiness'
 import Icon from '@/components/Icon'
 import { SITE, PAGE_FAQS, PRODUCTS, CATEGORIES } from '@/config/site'
-import { absoluteUrl } from '@/lib/utils'
+import { absoluteUrl, seoTitle, seoDescription, ogMeta } from '@/lib/utils'
 
 export const metadata = {
-  title: 'About Australian Reserve Props — Compliance-First Prop Money',
-  description: 'An Australia-based prop money brand founded in 2024. Reduced-scale, RBA-compliant prop currency for film, theatre, content and events — and the rules we build to.',
+  title: seoTitle('About Australian Reserve Props — Compliance-First Prop Money'),
+  description: seoDescription('An Australia-based prop money brand founded in 2024. Reduced-scale, RBA-compliant prop currency for film, theatre, content and events — and the rules we build to.'),
+  ...ogMeta(seoTitle('About Australian Reserve Props — Compliance-First Prop Money'), '/about/'),
   alternates: { canonical: absoluteUrl('/about/') },
 }
 

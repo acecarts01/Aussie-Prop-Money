@@ -1,10 +1,11 @@
 import LegalPage from '@/components/LegalPage'
 import { SITE } from '@/config/site'
-import { absoluteUrl } from '@/lib/utils'
+import { absoluteUrl, seoTitle, seoDescription, ogMeta } from '@/lib/utils'
 
 export const metadata = {
-  title: 'Privacy Policy — Australian Reserve Props',
-  description: 'What Australian Reserve Props collects when you order or enquire, how cart data is stored in your browser, and how to request access or deletion.',
+  title: seoTitle('Privacy Policy — Australian Reserve Props'),
+  description: seoDescription('What Australian Reserve Props collects when you order or enquire, how cart data is stored in your browser, and how to request access or deletion.'),
+  ...ogMeta(seoTitle('Privacy Policy — Australian Reserve Props'), '/privacy/'),
   alternates: { canonical: absoluteUrl('/privacy/') },
 }
 

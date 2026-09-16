@@ -6,11 +6,12 @@ import FaqBlock from '@/components/FaqBlock'
 import ComplianceBadge from '@/components/ComplianceBadge'
 import VerifiedBusiness from '@/components/VerifiedBusiness'
 import { SITE, PAGE_FAQS } from '@/config/site'
-import { absoluteUrl } from '@/lib/utils'
+import { absoluteUrl, seoTitle, seoDescription, ogMeta } from '@/lib/utils'
 
 export const metadata = {
-  title: 'Contact Australian Reserve Props — Orders, Productions, Questions',
-  description: 'Contact Australian Reserve Props for orders, production and wholesale enquiries, or questions about compliant prop money in Australia.',
+  title: seoTitle('Contact Australian Reserve Props — Orders, Productions, Questions'),
+  description: seoDescription('Contact Australian Reserve Props for orders, production and wholesale enquiries, or questions about compliant prop money in Australia.'),
+  ...ogMeta(seoTitle('Contact Australian Reserve Props — Orders, Productions, Questions'), '/contact/'),
   alternates: { canonical: absoluteUrl('/contact/') },
 }
 

@@ -977,7 +977,8 @@ export const REVIEWS = [
 export const POSTS = [
   {
     slug: 'is-prop-money-legal-in-australia',
-    title: 'Is Prop Money Legal in Australia? A Straight Answer',
+seoTitle: "Is Prop Money Legal in Australia?",
+        title: 'Is Prop Money Legal in Australia? A Straight Answer',
     date: '2026-01-10',
     excerpt:
       'What the Crimes (Currency) Act 1981 and RBA reproduction guidelines actually require, in plain English.',
@@ -997,7 +998,8 @@ export const POSTS = [
   },
   {
     slug: 'prop-money-buying-guide-for-australian-filmmakers',
-    title: 'Prop Money Buying Guide for Australian Filmmakers',
+seoTitle: "Prop Money Buying Guide for Filmmakers",
+        title: 'Prop Money Buying Guide for Australian Filmmakers',
     date: '2026-01-24',
     excerpt: 'What to actually check before you order a stack for your next shoot.',
     keywordPrimary: 'prop money buying guide',
@@ -1016,7 +1018,8 @@ export const POSTS = [
   },
   {
     slug: 'prop-money-for-content-creators',
-    title: 'How Content Creators Use Prop Money (The Right Way)',
+seoTitle: "How Content Creators Use Prop Money",
+        title: 'How Content Creators Use Prop Money (The Right Way)',
     date: '2026-02-07',
     excerpt: 'TikTok, YouTube, and Instagram all have policies here — what to know before you film.',
     keywordPrimary: 'prop money for content creators',
@@ -1035,7 +1038,8 @@ export const POSTS = [
   },
   {
     slug: 'whats-on-the-australian-100-dollar-note',
-    title: "What's Actually on the Australian $100 Note?",
+seoTitle: "What's on the Australian $100 Note?",
+        title: "What's Actually on the Australian $100 Note?",
     date: '2026-02-14',
     excerpt: 'The real design story behind Australia\'s highest-value note — before you shop the prop version.',
     keywordPrimary: 'australian 100 dollar note',
@@ -1056,7 +1060,8 @@ export const POSTS = [
   },
   {
     slug: 'whats-on-the-australian-50-dollar-note',
-    title: "What's Actually on the Australian $50 Note?",
+seoTitle: "What's on the Australian $50 Note?",
+        title: "What's Actually on the Australian $50 Note?",
     date: '2026-02-21',
     excerpt: 'Australia\'s most-used note carries two genuinely remarkable stories.',
     keywordPrimary: 'australian 50 dollar bill',
@@ -1077,7 +1082,8 @@ export const POSTS = [
   },
   {
     slug: 'whats-on-the-australian-20-dollar-note',
-    title: "What's Actually on the Australian $20 Note?",
+seoTitle: "What's on the Australian $20 Note?",
+        title: "What's Actually on the Australian $20 Note?",
     date: '2026-02-28',
     excerpt: 'A note built around rescue, resilience, and reinvention.',
     keywordPrimary: 'australian $20 note',
@@ -1098,7 +1104,8 @@ export const POSTS = [
   },
   {
     slug: 'how-to-spot-fake-australian-currency',
-    title: 'How to Spot Fake Australian Currency (And Why Our Prop Money Is Built Differently)',
+seoTitle: "How to Spot Fake Australian Currency",
+        title: 'How to Spot Fake Australian Currency (And Why Our Prop Money Is Built Differently)',
     date: '2026-03-07',
     excerpt: 'The features genuine notes use to prove they\'re real — and why compliant prop money deliberately skips every one of them.',
     keywordPrimary: 'how to spot a fake $100 dollar note australia',
@@ -1119,7 +1126,8 @@ export const POSTS = [
   },
   {
     slug: 'money-guns-explained',
-    title: 'Money Guns Explained: What They Are and How to Use Them',
+seoTitle: "Money Guns Explained: How They Work",
+        title: 'Money Guns Explained: What They Are and How to Use Them',
     date: '2026-03-14',
     excerpt: 'The device behind every "make it rain" moment, and what to actually load it with.',
     keywordPrimary: 'money guns',
@@ -1140,7 +1148,8 @@ export const POSTS = [
   },
   {
     slug: 'cash-lei-graduation-gift-guide',
-    title: 'Cash Leis Explained: Australia\'s Growing Graduation Gift Tradition',
+seoTitle: "Cash Leis: The Graduation Gift Guide",
+        title: 'Cash Leis Explained: Australia\'s Growing Graduation Gift Tradition',
     date: '2026-03-21',
     excerpt: 'Why a money lei has become a popular alternative to a plain envelope of cash.',
     keywordPrimary: 'cash lei',
@@ -1161,7 +1170,8 @@ export const POSTS = [
   },
   {
     slug: 'teaching-kids-to-count-australian-money',
-    title: 'Teaching Kids to Count Money: A Guide to Australian Play Money',
+seoTitle: "Teaching Kids to Count Australian Money",
+        title: 'Teaching Kids to Count Money: A Guide to Australian Play Money',
     date: '2026-03-28',
     excerpt: 'A practical approach to using play money for real counting and money-recognition skills.',
     keywordPrimary: 'australian play money printable',
@@ -1182,7 +1192,8 @@ export const POSTS = [
   },
   {
     slug: 'history-of-australian-banknote-design',
-    title: 'A Short History of Australian Banknote Design',
+seoTitle: "History of Australian Banknote Design",
+        title: 'A Short History of Australian Banknote Design',
     date: '2026-04-04',
     excerpt: 'From pre-decimal pound notes to the current polymer series.',
     keywordPrimary: 'australian banknotes',
@@ -1203,7 +1214,8 @@ export const POSTS = [
   },
   {
     slug: 'why-productions-use-briefcase-reveals',
-    title: 'Why Film Productions Still Use the Briefcase Reveal',
+seoTitle: "Why Productions Use the Briefcase Reveal",
+        title: 'Why Film Productions Still Use the Briefcase Reveal',
     date: '2026-04-11',
     excerpt: 'One of the most enduring visual shortcuts in film and TV, and how to prop it properly.',
     keywordPrimary: 'money briefcase prop',
@@ -1224,7 +1236,8 @@ export const POSTS = [
   },
   {
     slug: 'money-dance-wedding-traditions-australia',
-    title: 'Money Dance Traditions and How to Prop Your Reception',
+seoTitle: "Money Dance Wedding Traditions in Australia",
+        title: 'Money Dance Traditions and How to Prop Your Reception',
     date: '2026-04-18',
     excerpt: 'A guest-favourite wedding tradition, and how couples are adapting it for modern receptions.',
     keywordPrimary: 'wedding money dance australia',
@@ -1245,7 +1258,8 @@ export const POSTS = [
   },
   {
     slug: 'prop-money-vs-play-money-vs-real-money',
-    title: "Prop Money vs Play Money vs Real Money: What's the Difference?",
+seoTitle: "Prop Money vs Play Money vs Real Money",
+        title: "Prop Money vs Play Money vs Real Money: What's the Difference?",
     date: '2026-04-25',
     excerpt: 'Three products that all involve printed paper — and three very different intended uses.',
     keywordPrimary: 'prop money vs real money',
@@ -1266,7 +1280,8 @@ export const POSTS = [
   },
   {
     slug: 'novelty-cash-gift-ideas-australia',
-    title: '10 Novelty Cash Gift Ideas for Birthdays and Graduations',
+seoTitle: "10 Novelty Cash Gift Ideas (Australia)",
+        title: '10 Novelty Cash Gift Ideas for Birthdays and Graduations',
     date: '2026-05-02',
     excerpt: 'Ways to make a cash gift feel like more than an envelope handoff.',
     keywordPrimary: 'novelty money gift box australia',
@@ -1288,7 +1303,8 @@ export const POSTS = [
   },
   {
     slug: 'producers-guide-to-bulk-prop-money',
-    title: "A Producer's Guide to Bulk Prop Money for Film and TV",
+seoTitle: "Producer's Guide to Bulk Prop Money",
+        title: "A Producer's Guide to Bulk Prop Money for Film and TV",
     date: '2026-05-09',
     excerpt: 'Ordering at production scale is a different exercise to a single stack for a student film.',
     keywordPrimary: 'bulk fake money',
@@ -1309,7 +1325,8 @@ export const POSTS = [
   },
   {
     slug: 'personalised-prop-money-gift-ideas',
-    title: 'Personalised Prop Money: Creative Gift and Prank Ideas',
+seoTitle: "Personalised Prop Money Gift Ideas",
+        title: 'Personalised Prop Money: Creative Gift and Prank Ideas',
     date: '2026-05-16',
     excerpt: 'What personalisation actually means here — and what it never means.',
     keywordPrimary: 'personalised photo money note',
@@ -1330,7 +1347,8 @@ export const POSTS = [
   },
   {
     slug: 'novelty-big-cheque-guide-australia',
-    title: 'The Novelty Big Cheque: A Presentation Tradition Explained',
+seoTitle: "The Novelty Big Cheque, Explained",
+        title: 'The Novelty Big Cheque: A Presentation Tradition Explained',
     date: '2026-05-23',
     excerpt: 'The oversized cheque handed over at fun runs, raffles, and workplace send-offs.',
     keywordPrimary: 'novelty big cheque australia',

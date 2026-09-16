@@ -32,6 +32,37 @@ export function artLabelFor(product) {
   return product.name.split(' ')[0].toUpperCase().slice(0, 10)
 }
 
+// ---- SEO helpers (audit 2026-09-16) ----
+// Title ≤ 60 chars: full brand suffix when it fits, short suffix when it doesn't, bare otherwise.
+export function seoTitle(base) {
+  const b = String(base).trim()
+  if (b.length + 3 + SITE.name.length <= 60) return `${b} | ${SITE.name}`
+  if (b.length + 6 <= 60) return `${b} | ARP`
+  return b.length <= 60 ? b : b.slice(0, 57).replace(/\s+\S*$/, '') + '…'
+}
+
+const DESC_TAIL = ['Reduced-scale, marked NOT LEGAL TENDER.', 'Ships Australia-wide.', 'Registered Australian company.']
+// Description in the 120–158 band: trim long copy at a word boundary; pad short copy with whole brand sentences.
+export function seoDescription(text) {
+  let d = String(text || '').replace(/s+/g, ' ').trim()
+  if (d.length > 158) d = d.slice(0, 155).replace(/s+S*$/, '').replace(/[,;:—-]$/, '') + '…'
+  if (d.length < 120) {
+    if (!/[.!?…]$/.test(d)) d += '.'
+    for (const t of DESC_TAIL) { if (d.length + 1 + t.length <= 158) d += ' ' + t; else break }
+  }
+  return d
+}
+
+// Open Graph + Twitter blocks for a page. Next replaces (does not merge) the layout's openGraph
+// when a page sets its own, so every page passes through here to keep the default image.
+export function ogMeta(title, path, image, extra = {}) {
+  const img = image || { url: absoluteUrl('/og-default.jpg'), width: 1200, height: 630, alt: `${SITE.name} — studio-grade prop money` }
+  return {
+    openGraph: { type: 'website', siteName: SITE.name, locale: 'en_AU', title, url: absoluteUrl(path), images: [img], ...extra },
+    twitter: { card: 'summary_large_image', title, images: [img.url] },
+  }
+}
+
 export function relatedProducts(product, count = 4) {
   return PRODUCTS.filter((p) => p.slug !== product.slug && p.category === product.category).slice(0, count)
 }

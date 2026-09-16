@@ -1,9 +1,10 @@
 import LegalPage from '@/components/LegalPage'
-import { absoluteUrl } from '@/lib/utils'
+import { absoluteUrl, seoTitle, seoDescription, ogMeta } from '@/lib/utils'
 
 export const metadata = {
-  title: 'Refund Policy — Australian Reserve Props',
-  description: 'Damaged, misprinted or incorrect prop money orders are replaced or refunded within 14 days of delivery. Printed to order, so no change-of-mind returns once shipped.',
+  title: seoTitle('Refund Policy — Australian Reserve Props'),
+  description: seoDescription('Damaged, misprinted or incorrect prop money orders are replaced or refunded within 14 days of delivery. Printed to order, so no change-of-mind returns once shipped.'),
+  ...ogMeta(seoTitle('Refund Policy — Australian Reserve Props'), '/refund/'),
   alternates: { canonical: absoluteUrl('/refund/') },
 }
 

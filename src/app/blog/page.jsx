@@ -2,11 +2,12 @@ import Link from 'next/link'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import PageHeader from '@/components/PageHeader'
 import { POSTS } from '@/config/site'
-import { absoluteUrl } from '@/lib/utils'
+import { absoluteUrl, seoTitle, seoDescription, ogMeta } from '@/lib/utils'
 
 export const metadata = {
-  title: 'Guides — Prop Money for Film, Theatre & Content in Australia',
-  description: 'Buying guides, legal explainers and use-case notes for studio-grade prop money — written for crews, teachers and creators.',
+  title: seoTitle('Guides — Prop Money for Film, Theatre & Content in Australia'),
+  description: seoDescription('Buying guides, legal explainers and use-case notes for studio-grade prop money — written for crews, teachers and creators.'),
+  ...ogMeta(seoTitle('Guides — Prop Money for Film, Theatre & Content in Australia'), '/blog/'),
   alternates: { canonical: absoluteUrl('/blog/') },
 }
 

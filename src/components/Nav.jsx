@@ -29,7 +29,7 @@ export default function Nav() {
     <header className="site-header">
       <div className="topbar">
         <div className="container topbar-row">
-          <a href={SITE.abrUrl} target="_blank" rel="noopener noreferrer" className="topbar-abn" aria-label={`ABN ${SITE.abn}, ${SITE.legalName} — verify on the Australian Business Register`}>
+          <a href={SITE.abrUrl} target="_blank" rel="noopener noreferrer" className="topbar-abn">
             <span className="topbar-abn-num">ABN {SITE.abn}</span>
             <span className="topbar-abn-name">{SITE.legalName} · Registered Australian company · Verify <span aria-hidden="true">↗</span></span>
           </a>
@@ -40,7 +40,7 @@ export default function Nav() {
       </div>
 
       <div className="container nav-row">
-        <Link href="/" className="brand" aria-label={`${SITE.name} — home`}>
+        <Link href="/" className="brand">
           <span className="brand-mark" aria-hidden="true">ARP</span>
           <span className="brand-word">
             Australian Reserve Props
