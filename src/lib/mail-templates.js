@@ -112,14 +112,32 @@ function kv(rows, bg2 = card) {
     }).join('')}</table>`
 }
 
+// Parses one "order_summary" line into { qty, desc, price }. Anchors on the
+// TRAILING dollar amount rather than a specific dash character between desc
+// and price: the separator in submitted text is sometimes an em dash, an en
+// dash, a plain hyphen, or (when copy/paste mangles the encoding) the U+FFFD
+// replacement glyph — matching a literal "—" made the whole regex fail on
+// any of those, silently dropping the price and defaulting qty to 1. A line
+// like "1 x Briefcase Prop Set — $250,000 — $188.00" also has an embedded
+// dollar figure that isn't the price, so the match must take the LAST one.
+function parseOrderLine(line) {
+  const priceMatch = line.match(/(\$[\d,]+(?:\.\d{1,2})?)\s*$/)
+  const price = priceMatch ? priceMatch[1] : ''
+  let rest = priceMatch ? line.slice(0, priceMatch.index) : line
+  const qtyMatch = rest.match(/^\s*(\d+)\s*[×x]\s*/)
+  const qty = qtyMatch ? qtyMatch[1] : '1'
+  if (qtyMatch) rest = rest.slice(qtyMatch[0].length)
+  const desc = rest.replace(/[\s\-‐-―�]+$/u, '').trim() || line
+  return { qty, desc, price }
+}
+
 // ---------- items table for order emails ----------
 function itemsTable(summary, bg2 = card) {
   const lines = String(summary || '').split('\n').filter(Boolean)
   return `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" bgcolor="${bg2}" style="background:${bg2};background-color:${bg2}">${lines
     .map((l) => {
-      const match = l.match(/^(.+?)\s*—\s*(.+)$/)
-      const left = match ? match[1] : l
-      const price = match ? match[2] : ''
+      const { qty, desc, price } = parseOrderLine(l)
+      const left = qty !== '1' ? `${qty} × ${desc}` : desc
       return `<tr>
         <td bgcolor="${bg2}" style="background:${bg2};background-color:${bg2};${font}font-size:14px;color:${ink};padding:12px 0;border-bottom:1px dashed ${line}"><strong>${esc(left)}</strong></td>
         <td align="right" bgcolor="${bg2}" style="background:${bg2};background-color:${bg2};${font}font-size:14px;color:${ink};padding:12px 0;border-bottom:1px dashed ${line};white-space:nowrap;font-weight:700;vertical-align:top">${esc(price)}</td>
@@ -137,10 +155,7 @@ function invoiceItemsTable(summary, bg2 = card) {
       <td align="right" bgcolor="${card2}" style="background:${card2};background-color:${card2};padding:10px 14px;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:${ink3};font-weight:700;width:80px">Amount</td>
     </tr>
     ${lines.map((l) => {
-      const match = l.match(/^(?:(\d+)\s*[×x]\s*)?(.+?)\s*—\s*(.+)$/)
-      const qty = match?.[1] || '1'
-      const desc = match?.[2] || l
-      const price = match?.[3] || ''
+      const { qty, desc, price } = parseOrderLine(l)
       return `<tr><td bgcolor="${bg2}" style="background:${bg2};background-color:${bg2};padding:12px 14px;font-size:14px;color:${ink};border-top:1px solid ${line}">${esc(desc)}</td><td align="center" bgcolor="${bg2}" style="background:${bg2};background-color:${bg2};padding:12px 8px;font-size:14px;color:${ink};border-top:1px solid ${line}">${esc(qty)}</td><td align="right" bgcolor="${bg2}" style="background:${bg2};background-color:${bg2};padding:12px 14px;font-size:14px;color:${ink};border-top:1px solid ${line};font-weight:700">${esc(price)}</td></tr>`
     }).join('')}
   </table>`
