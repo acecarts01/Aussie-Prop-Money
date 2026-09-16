@@ -5,3 +5,6 @@ out/
 .env.local
 docs/_contact-sheet.png
 .DS_Store
+
+.vercel
+.env*
