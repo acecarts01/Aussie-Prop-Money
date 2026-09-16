@@ -44,8 +44,8 @@ export function seoTitle(base) {
 const DESC_TAIL = ['Reduced-scale, marked NOT LEGAL TENDER.', 'Ships Australia-wide.', 'Registered Australian company.']
 // Description in the 120–158 band: trim long copy at a word boundary; pad short copy with whole brand sentences.
 export function seoDescription(text) {
-  let d = String(text || '').replace(/s+/g, ' ').trim()
-  if (d.length > 158) d = d.slice(0, 155).replace(/s+S*$/, '').replace(/[,;:—-]$/, '') + '…'
+  let d = String(text || '').replace(/\s+/g, ' ').trim()
+  if (d.length > 158) d = d.slice(0, 155).replace(/\s+\S*$/, '').replace(/[,;:—-]$/, '') + '…'
   if (d.length < 120) {
     if (!/[.!?…]$/.test(d)) d += '.'
     for (const t of DESC_TAIL) { if (d.length + 1 + t.length <= 158) d += ' ' + t; else break }

@@ -405,7 +405,7 @@ export const PAGE_FAQS = {
     { q: 'Can I get a custom mix of denominations for a production?', a: "Yes — describe what you need in the enquiry form and we'll put together a custom quote." },
   ],
   about: [
-    { q: 'Is Australian Reserve Props a registered Australian business?', a: 'Business registration details (ABN) are being finalised — contact us directly if you need this confirmed before ordering.' },
+    { q: 'Is Australian Reserve Props a registered Australian business?', a: 'Yes. Australian Reserve Props is operated by Money 365 Pty Ltd, ABN 84 676 764 971, an active GST-registered Australian Private Company based in The Ponds, NSW. You can verify this on the Australian Business Register.' },
     { q: 'What happened to the predecessor site?', a: 'It operated briefly and went offline before this relaunch. A number of genuine customer reviews from that period were recovered and are published here with their original dates.' },
     { q: 'Do you ship outside Australia?', a: 'No — we currently ship within Australia only, with no plans to expand internationally at this stage.' },
   ],
