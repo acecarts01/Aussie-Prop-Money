@@ -53,7 +53,7 @@ export default function HomePage() {
       {/* 1 — Hero */}
       <section className="hero-cine gridlines" aria-labelledby="hero-h1">
         <div className="hero-media" aria-hidden="true">
-          <Image src={`/images/products/${HERO.image}`} alt="" fill priority sizes="100vw" />
+          <Image src={`/images/products/${HERO.image}`} alt="Briefcase prop money set — studio-grade Australian prop currency by Australian Reserve Props" fill priority sizes="100vw" />
         </div>
         <div className="hero-scrim" aria-hidden="true" />
         <div className="container">

@@ -10,7 +10,7 @@ export default function UseCaseSplit() {
         <Link key={u.href} href={u.href} className="usecase">
           <div className="plate">
             <span className="specimen-tag">{u.num}</span>
-            <Image src={`/images/products/${u.image}`} alt="" width={1600} height={1200} loading="lazy" sizes="(max-width: 600px) 100vw, 33vw" />
+            <Image src={`/images/products/${u.image}`} alt={`${u.title} — prop money for ${u.title.toLowerCase()}`} width={1600} height={1200} loading="lazy" sizes="(max-width: 600px) 100vw, 33vw" />
           </div>
           <div className="body">
             <span className="num">Use case {u.num}</span>
