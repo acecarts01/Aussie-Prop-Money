@@ -162,6 +162,14 @@ verification, so no Bing token is needed (`SITE.bingVerification` is intentional
 
 **IndexNow re-submitted** for the 20 new URLs + `/blog/` + `/sitemap.xml` → `200 OK`.
 
+## 20 more blog posts, backed by a real Semrush export — 2026-09-25
+
+A real keyword export appeared at `C:\VERCEL PROJECTS\Aussie Prop Money\keywords export cluster\` (Semrush, AU database, ~30k-row broad-match seed exports dated 2026-09-04 and 2026-09-12) — the first live volume/KD data available for this project, superseding keyword-map.md's "no live data" caveat for the terms it actually covers. The raw export is heavily noise-dominated (broad-match seed expansion pulls in unrelated terms — nerf guns, GDP statistics, unclaimed-money records) and needed hard topical filtering before it was usable; most already-high-value real terms turned out to already be covered by existing pages. Genuine new signal found: **"fake money" (1,600/mo AU, Commercial, unclaimed as a primary target)**, **"play money" + "australian play money" (720 + 320/mo, ties directly to the Kids Play Money category)**, a **"how does a money gun work" / "where to buy" long-tail cluster**, and a **"how to make a money lei" DIY-tutorial cluster** (many 20-40/mo variants). "money box" (3,600/mo) was tempting on volume alone but is mostly generic piggy-bank search intent — used carefully, reframed toward our actual display-case/collector-case products rather than chased blindly.
+
+**20 more posts added** (`POSTS` now 58 total): the 4 real-data-backed topics above, plus the remaining unused keyword-map clusters — gifting sub-angles (§12: for him/her/teenager, under $25, Easter/Mother's/Father's Day, retirement/farewell), accessories & care (§19: display cases, storage/care guide), and a few editorially-chosen additions with no direct keyword-map line but clear catalog fit (corporate/conference events, casino-night theming, a plain-English pricing guide, a Monopoly-money comparison, school/university projects). Dated 2026-09-16 through 2026-09-25 (2/day — a short sprint rather than the previous batch's weekly cadence, since the gap between sessions had already passed the last post's date). Crosscheck passed on the first full run this time — no banned-term hits, lesson applied from last batch.
+
+Full sweep re-run before shipping: build + crosscheck 0/0, all 119 sitemap URLs (up from 99) return 200, JSON-LD valid on a fresh post, related-category links render correctly. IndexNow re-submitted for the new 20 + `/blog/` + `/sitemap.xml` → `200 OK`.
+
 Everything below this line is the original pre-launch runbook, kept for reference / future re-runs.
 
 ---
