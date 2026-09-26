@@ -100,7 +100,7 @@ export default function CartPage() {
                   <span className="eyebrow">How it works</span>
                   <h2 style={{ fontSize: '1.5rem' }}>Send the request. We confirm. Then it prints.</h2>
                   <p style={{ color: 'var(--ink-2)' }}>
-                    Pick PayID, Bank Transfer, or crypto ({Math.round(ORDER.cryptoDiscount * 100)}% off the goods subtotal). We confirm the method with you first, then send a tax invoice with the payment details. Printing starts when payment clears.
+                    Pick PayID/Osko, Bank Transfer (via Osko), or crypto ({Math.round(ORDER.cryptoDiscount * 100)}% off the goods subtotal). We confirm the method with you first, then send a tax invoice with the payment details — provided once your order is placed and a payment method is chosen. Printing starts when payment clears.
                   </p>
                   <VerifiedBusiness compact />
                   <div style={{ marginTop: '1rem' }}><ComplianceBadge /></div>

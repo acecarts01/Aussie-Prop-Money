@@ -20,7 +20,7 @@ npm run crosscheck    # compliance + structural scan
 - `docs/PROJECT.md` — full intake record and open items. `docs/keyword-map.md` — internal keyword research, never shipped publicly.
 
 ## Known placeholders (see CLAUDE.md → Live placeholders)
-Contact details, business location, ABN/GST status, Web3Forms key, and card payment (Stripe/PayPal) are all pending — the site works without them (chat/email ordering, Bank Transfer/PayID/crypto checkout) and each is a one-line config change once supplied.
+Contact details, business location, ABN/GST status, Web3Forms key, and card payment (Stripe/PayPal) are all pending — the site works without them (chat/email ordering, Bank Transfer via Osko/PayID via Osko/crypto checkout) and each is a one-line config change once supplied.
 
 ## Product photos
 No real photos supplied yet — `src/components/ProductArt.jsx` renders an inline SVG placeholder per product, colour-matched to its denomination. Replace with real photography (2000px+, white background) and wire up `scripts/images.mjs` (not yet built — add when photos arrive) when ready.

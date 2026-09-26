@@ -20,12 +20,12 @@ export function paymentInstructions(method) {
   if (id === 'payid') {
     const pid = env('PAYID_ID')
     if (!pid) return null
-    return { title: 'PayID', lines: [['PayID', pid], ['Account name', env('PAYID_NAME', SITE.legalName)]] }
+    return { title: 'PayID/Osko', lines: [['PayID', pid], ['Account name', env('PAYID_NAME', SITE.legalName)], ['Transfer via', 'Osko (instant)']] }
   }
   if (id === 'bank-transfer') {
     const bsb = env('BANK_BSB'), acct = env('BANK_ACCOUNT')
     if (!bsb || !acct) return null
-    return { title: 'Bank transfer', lines: [['Bank', env('BANK_NAME')], ['Account name', env('BANK_ACCOUNT_NAME', SITE.legalName)], ['BSB', bsb], ['Account number', acct]].filter(([, v]) => v) }
+    return { title: 'Bank Transfer (via Osko)', lines: [['Bank', env('BANK_NAME')], ['Account name', env('BANK_ACCOUNT_NAME', SITE.legalName)], ['BSB', bsb], ['Account number', acct], ['Transfer via', 'Osko (instant)']].filter(([, v]) => v) }
   }
   if (id === 'crypto') {
     const wallets = [['BTC', env('CRYPTO_BTC')], ['USDT', env('CRYPTO_USDT')], ['ETH', env('CRYPTO_ETH')], ['BNB', env('CRYPTO_BNB')]].filter(([, v]) => v)

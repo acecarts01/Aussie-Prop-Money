@@ -4,7 +4,7 @@ import { absoluteUrl, formatPrice, seoTitle, seoDescription, ogMeta } from '@/li
 
 export const metadata = {
   title: seoTitle('Shipping — Australia-Wide Tracked Delivery'),
-  description: seoDescription('Australian Reserve Props ships prop money Australia-wide via tracked Australia Post. Free tracked shipping on every order; minimum order $250. No international shipping.'),
+  description: seoDescription('Australian Reserve Props ships prop money Australia-wide via tracked Australia Post. Free tracked shipping on every order; minimum order $350. No international shipping.'),
   ...ogMeta(seoTitle('Shipping — Australia-Wide Tracked Delivery'), '/shipping/'),
   alternates: { canonical: absoluteUrl('/shipping/') },
 }

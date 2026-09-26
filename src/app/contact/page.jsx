@@ -49,6 +49,7 @@ export default function ContactPage() {
                 <ul className="contact-list">
                   <li><span>Email</span><a href={`mailto:${SITE.email.replace('@', '&#64;')}`} dangerouslySetInnerHTML={{ __html: SITE.email.replace('@', '&#64;') }} /></li>
                   <li><span>WhatsApp</span><a href={`https://wa.me/${SITE.whatsapp.replace(/\D/g, '')}`} target="_blank" rel="noopener noreferrer">{SITE.whatsapp}</a></li>
+                  <li><span>Call / Text</span><a href={`tel:${SITE.phone.replace(/\s/g, '')}`}>{SITE.phone}</a></li>
                 </ul>
               </div>
             )}

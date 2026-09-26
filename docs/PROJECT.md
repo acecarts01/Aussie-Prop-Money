@@ -170,6 +170,20 @@ A real keyword export appeared at `C:\VERCEL PROJECTS\Aussie Prop Money\keywords
 
 Full sweep re-run before shipping: build + crosscheck 0/0, all 119 sitemap URLs (up from 99) return 200, JSON-LD valid on a fresh post, related-category links render correctly. IndexNow re-submitted for the new 20 + `/blog/` + `/sitemap.xml` → `200 OK`.
 
+## Contact, minimum order, payment, and full re-pricing — 2026-09-26
+
+**GSC / BWMT follow-up:** Bing's IndexNow dashboard confirmed 141 URLs received the prior night. GSC's manual "Request Indexing" quota was still exhausted on retry the next day (it does not appear to reset strictly at local midnight) — deferred, retry again later.
+
+**Contact:** `SITE.phone`/`SITE.whatsapp` (+61 480 804 189) is now explicitly presented as a Call/Text contact option, not just WhatsApp — added a "Call / Text" line with a `tel:` link next to the WhatsApp line in `Footer.jsx` and `contact/page.jsx`. The JSON-LD `telephone` field already used this number, no change needed there.
+
+**Minimum order:** raised from $250 back to $350 AUD (`SITE.orderRules.minOrder`). Fixed 4 places that hardcoded the old figure in copy rather than reading the config (`shipping/page.jsx` meta description, `terms/page.jsx`, and two spots in `site.js`'s hero `meta` array and cart FAQ) — everywhere else already read `SITE.orderRules.minOrder` dynamically.
+
+**Payment methods:** relabelled PayID → "PayID/Osko" and Bank Transfer → "Bank Transfer (via Osko)" across `PAYMENT_METHODS` (site.js), `payment-details.js`, the admin invoice form, cart page copy, and the payment FAQ — Osko is the real, correct name for the instant-transfer rail both methods actually use, not a compliance euphemism. Reconfirmed the existing flow already matches the client's stated model: payment details are only provided after the order is placed and a method is chosen, never upfront.
+
+**Full re-pricing (see `docs/pricing-2026-09-26.md` / `.json` for the complete table):** client decision — every currency product's price is now **20% of its prop face value** (flat 5× multiplier), replacing the old production-cost-based pricing that sat at 0.05%–1.8% of face value. This is a genuinely large jump (roughly 15×–420× per product, since the old prices were never a percentage of face value to begin with) — flagged clearly rather than assumed to be a typo, since the instruction was an explicit, unambiguous formula. Applied via a script matching each product's `price:`/`faceValue:` pair (23 of 38 products have a `faceValue`; the other 15 — accessories, confetti, display cases, personalised novelty, kids play money — aren't currency-denominated and were left untouched). One blog post (`how-much-does-prop-money-cost-in-australia`) had specific old-dollar examples rewritten to describe the new rule instead of citing now-wrong figures; a full-text search found no other hardcoded old prices anywhere in `src/`. `src/lib/value.js` reads `price`/`faceValue` dynamically, so the 5× badge and cart face-value totals updated automatically with no code change needed there.
+
+Verified locally before deploy: build + crosscheck 0/0, product page shows "$2,000 → $10,000 · 5× face value" correctly, cart page shows the new Osko payment copy and $350 minimum, footer/contact show the new Call/Text line with a working `tel:` link.
+
 Everything below this line is the original pre-launch runbook, kept for reference / future re-runs.
 
 ---

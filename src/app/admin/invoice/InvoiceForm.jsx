@@ -17,9 +17,9 @@ const F = ({ id, label, hint, children }) => (
 function matchPaymentMethod(raw) {
   const s = String(raw || '').toLowerCase()
   if (s.includes('crypto') || s.includes('btc') || s.includes('usdt') || s.includes('eth') || s.includes('bnb')) return 'Crypto (BTC, USDT, ETH, BNB) — 10% off'
-  if (s.includes('bank')) return 'Bank Transfer'
-  if (s.includes('payid')) return 'PayID'
-  return 'PayID'
+  if (s.includes('bank')) return 'Bank Transfer (via Osko)'
+  if (s.includes('payid')) return 'PayID/Osko'
+  return 'PayID/Osko'
 }
 
 function InvoiceFormInner() {
@@ -100,8 +100,8 @@ function InvoiceFormInner() {
       <div className="grid grid-2">
         <F id="paymentMethod" label="Payment method (confirmed with the customer)" hint="Unpaid invoices include the details for this method from your Vercel env vars, if set.">
           <select id="paymentMethod" name="paymentMethod" defaultValue={pre.paymentMethod}>
-            <option>PayID</option>
-            <option>Bank Transfer</option>
+            <option>PayID/Osko</option>
+            <option>Bank Transfer (via Osko)</option>
             <option>Crypto (BTC, USDT, ETH, BNB) — 10% off</option>
           </select>
         </F>

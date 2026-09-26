@@ -37,8 +37,8 @@ Forms post to `/api/send` (`src/app/api/send/route.js`), which sends mail over S
 - Tax invoice / payment-received email: owner sends it from the private page `/admin/invoice/` (noindex, robots-disallowed) → `/api/invoice`, protected by `ADMIN_KEY` (Secret env var). GST shown as 1/11th of the total — prices are treated as GST-inclusive; confirm with the client's accountant. Known bug (2026-09-16, not yet fixed): the items-table parser in `invoiceItemsTable()` mis-parses quantity (always shows 1) and the em-dash separator can mojibake to `�` in some submissions — needs a more tolerant regex.
 - Optional payment instructions injected into the **awaiting-payment tax invoice** (not the confirmation): `PAYID_ID`, `PAYID_NAME`, `BANK_NAME`, `BANK_BSB`, `BANK_ACCOUNT`, `BANK_ACCOUNT_NAME`, `CRYPTO_BTC/USDT/ETH/BNB`.
 
-## Payment methods (client decision 2026-09-12)
-PayID, Bank Transfer, and crypto (BTC/USDT/ETH/BNB) with a **10% discount on the goods subtotal** (`ORDER.cryptoDiscount`). No card processor. The discount is a plain price incentive — it is never framed as privacy, anonymity or "discretion" (that part of the compliance rule still stands).
+## Payment methods (client decision 2026-09-12, Osko emphasis added 2026-09-26)
+PayID/Osko, Bank Transfer (also via Osko), and crypto (BTC/USDT/ETH/BNB) with a **10% discount on the goods subtotal** (`ORDER.cryptoDiscount`). No card processor. Both PayID and Bank Transfer are explicitly framed as going through Osko (the real-time NPP payment rail) — this is a factual payment-rail detail, not a compliance framing device. Payment details for whichever method is chosen are provided only after the order is placed and the method is confirmed — never upfront. The crypto discount is a plain price incentive — it is never framed as privacy, anonymity or "discretion" (that part of the compliance rule still stands).
 
 ## Still pending
 - Payment-detail env vars (`PAYID_ID`, `BANK_*`, `CRYPTO_*`) — not yet set; confirmation emails say "details to follow" until they are
@@ -47,11 +47,11 @@ PayID, Bank Transfer, and crypto (BTC/USDT/ETH/BNB) with a **10% discount on the
 ## Brand facts (only these are true — never invent more)
 - Site name: Australian Reserve Props. Domain: australianreserveprops.com.
 - Legal entity: Money 365 Pty Ltd (Australian Private Company), ABN 84 676 764 971, active and GST-registered from 22 Apr 2024. Main business location: The Ponds, NSW 2769. (Supplied 2026-09-12 from the ABR record.)
-- Official email: info@australianreserveprops.com (Zoho Mail). WhatsApp: +61 480 804 189 — also used as the contact number; no separate landline supplied.
+- Official email: info@australianreserveprops.com (Zoho Mail). WhatsApp: +61 480 804 189 — the same number is also used for direct calls and SMS/text (client decision 2026-09-26); no separate landline supplied.
 - Founded 2024. Predecessor site went offline; select reviews recovered from that period (client-confirmed genuine, published with dates as given).
 - Market: Australia only (no cross-border shipping/marketing).
 - Product: Australian-styled novelty/prop currency notes ($20/$50/$100 minimum, plus vintage series), packs, briefcases, confetti/leis, display collectibles, personalised novelty, kids play money, gift sets, accessories.
-- Payment methods: PayID, Bank Transfer, crypto (BTC/USDT/ETH/BNB) at 10% off. No card payment.
-- Pricing 2026-09-14: all base prices +5% with charm rounding (.95 under $100, whole dollar at $100+; avg +5.35%). Every currency product carries `noteCount`, `faceValue`, `tier`, `mix`; the face-value return (pay → receive → multiplier) is rendered by `src/lib/value.js` + `ValueReturn` / `YieldCallout`. Audit: `docs/pricing-2026-09-14.md` / `.json`.
-- Minimum order: $250 AUD goods subtotal (reduced from $350 later on 2026-09-14) (`SITE.orderRules.minOrder`, enforced in checkout UI and in `/api/send`). Shipping is free on every order. Client decision 2026-09-14.
+- Payment methods: PayID/Osko, Bank Transfer (via Osko), crypto (BTC/USDT/ETH/BNB) at 10% off. No card payment. Payment details are never sent until after the order is placed and the method is confirmed.
+- Pricing 2026-09-26: every currency product's price is set to **20% of its face value** (client decision — see `docs/pricing-2026-09-26.md`). Every currency product carries `noteCount`, `faceValue`, `tier`, `mix`; the face-value return (pay → receive → multiplier) is rendered by `src/lib/value.js` + `ValueReturn` / `YieldCallout`. Superseded: the 2026-09-14 "+5% charm rounding" pass (`docs/pricing-2026-09-14.md` / `.json`, kept for history).
+- Minimum order: $350 AUD goods subtotal (`SITE.orderRules.minOrder`, enforced in checkout UI and in `/api/send`). Shipping is free on every order. Client decision 2026-09-26 (raised back from $250).
 - No invented statistics, awards, press mentions, named clients, or partnerships. Ever.

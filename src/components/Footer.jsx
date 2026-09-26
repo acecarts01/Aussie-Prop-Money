@@ -72,6 +72,7 @@ export default function Footer() {
             <ul className="contact-list">
               {hasEmail && <li><span>Email</span><a href={`mailto:${encodedEmail(SITE.email)}`} dangerouslySetInnerHTML={{ __html: encodedEmail(SITE.email) }} /></li>}
               {hasWhatsapp && <li><span>WhatsApp</span><a href={waHref} target="_blank" rel="noopener noreferrer">{SITE.whatsapp}</a></li>}
+              {hasWhatsapp && <li><span>Call / Text</span><a href={`tel:${SITE.phone.replace(/\s/g, '')}`}>{SITE.phone}</a></li>}
             </ul>
           </div>
         </div>
