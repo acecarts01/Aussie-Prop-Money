@@ -67,7 +67,7 @@ export default function ProductPage({ params }) {
   } : null
 
   return (
-    <div>
+    <div className="has-sticky-cta">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
       {faqSchema && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />}
 
