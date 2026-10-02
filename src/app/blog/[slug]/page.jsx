@@ -46,6 +46,16 @@ function relatedCategoriesFor(tags = []) {
   return slugs.map((slug) => CATEGORIES.find((c) => c.slug === slug)).filter(Boolean).slice(0, 3)
 }
 
+// Post-to-post linking (the spoke-to-spoke layer of the hub-and-spoke graph) —
+// ranks other posts by shared tags, falling back to most recent if no overlap.
+function relatedPostsFor(post) {
+  const scored = POSTS
+    .filter((p) => p.slug !== post.slug)
+    .map((p) => ({ p, score: p.tags?.filter((t) => post.tags?.includes(t)).length || 0 }))
+    .sort((a, b) => b.score - a.score || new Date(b.p.date) - new Date(a.p.date))
+  return scored.slice(0, 3).map((s) => s.p)
+}
+
 export function generateStaticParams() {
   return POSTS.map((p) => ({ slug: p.slug }))
 }
@@ -66,6 +76,7 @@ export default function BlogPost({ params }) {
   if (!post) notFound()
   const faqs = post.faqs || []
   const related = relatedCategoriesFor(post.tags)
+  const relatedPosts = relatedPostsFor(post)
 
   const schema = {
     '@context': 'https://schema.org',
@@ -117,6 +128,17 @@ export default function BlogPost({ params }) {
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem' }}>
               {related.map((c) => (
                 <Link key={c.slug} href={`/shop/${c.slug}/`} className="btn btn-outline">{c.name} →</Link>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {relatedPosts.length > 0 && (
+          <div style={{ marginTop: '2.5rem' }}>
+            <h2 style={{ fontSize: '1.4rem', marginBottom: '0.9rem' }}>Related guides</h2>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem' }}>
+              {relatedPosts.map((p) => (
+                <Link key={p.slug} href={`/blog/${p.slug}/`} className="btn btn-outline">{p.title} →</Link>
               ))}
             </div>
           </div>

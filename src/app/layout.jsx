@@ -65,7 +65,7 @@ export const viewport = {
 
 const orgSchema = {
   '@context': 'https://schema.org',
-  '@type': ['Store', 'Organization'],
+  '@type': ['Store', 'Organization', 'LocalBusiness'],
   name: SITE.name,
   description: SITE.brandStatement,
   url: absoluteUrl('/'),

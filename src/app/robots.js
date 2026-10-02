@@ -2,7 +2,7 @@ import { SITE } from '@/config/site'
 
 const AI_BOTS = [
   'GPTBot', 'ChatGPT-User', 'ClaudeBot', 'Claude-Web', 'PerplexityBot', 'Applebot',
-  'Amazonbot', 'Bytespider', 'CCBot', 'Google-Extended', 'Meta-ExternalAgent', 'cohere-ai',
+  'Amazonbot', 'Bytespider', 'CCBot', 'Google-Extended', 'Meta-ExternalAgent', 'cohere-ai', 'anthropic-ai',
 ]
 
 export default function robots() {
