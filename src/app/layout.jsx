@@ -57,6 +57,11 @@ export const metadata = {
     images: [absoluteUrl('/og-default.jpg')],
   },
   alternates: { canonical: absoluteUrl('/') },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, 'max-snippet': -1, 'max-image-preview': 'large', 'max-video-preview': -1 },
+  },
   ...(Object.keys(verification).length > 0 ? { verification } : {}),
 }
 

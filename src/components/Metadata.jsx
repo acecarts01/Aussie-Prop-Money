@@ -37,9 +37,6 @@ export default function Metadata({
       {title && <title>{title}</title>}
       {description && <meta name="description" content={description} />}
       {url && <link rel="canonical" href={url} />}
-      <meta name="robots" content="index, follow" />
-      <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-      <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
 
       {/* OpenGraph Social Sharing Card Data */}
       <meta property="og:site_name" content={SITE.name} />
