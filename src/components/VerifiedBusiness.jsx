@@ -1,3 +1,6 @@
+'use client'
+
+import { motion } from 'motion/react'
 import { SITE } from '@/config/site'
 import Icon from './Icon'
 
@@ -17,19 +20,32 @@ export default function VerifiedBusiness({ compact = false }) {
 
   if (compact) {
     return (
-      <div className="verified verified-compact">
+      <motion.div 
+        initial={{ opacity: 0, x: -10 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+        className="verified verified-compact"
+      >
         <span className="verified-icon" aria-hidden="true"><Icon name="check" size={16} /></span>
         <div>
           <strong>ABN {SITE.abn}</strong>
           <span className="verified-entity">{SITE.legalName} · {SITE.abnStatus} · GST registered</span>
           {abrLink}
         </div>
-      </div>
+      </motion.div>
     )
   }
 
   return (
-    <section className="verified" aria-labelledby="verified-title">
+    <motion.section 
+      initial={{ opacity: 0, scale: 0.98 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+      className="verified" 
+      aria-labelledby="verified-title"
+    >
       <div className="verified-head">
         <span className="eyebrow">Registered Australian business</span>
         <h2 id="verified-title">You&rsquo;ve found the source. Check the record, then stop searching.</h2>
@@ -38,6 +54,7 @@ export default function VerifiedBusiness({ compact = false }) {
         </p>
       </div>
       <dl className="verified-grid">
+        {/* We could animate these grid items too if desired */}
         <div>
           <dt>ABN</dt>
           <dd className="verified-abn">{SITE.abn}</dd>
@@ -64,6 +81,6 @@ export default function VerifiedBusiness({ compact = false }) {
           <dd>{abrLink}</dd>
         </div>
       </dl>
-    </section>
+    </motion.section>
   )
 }

@@ -4,8 +4,9 @@ import PageHeader from '@/components/PageHeader'
 import FaqBlock from '@/components/FaqBlock'
 import ComplianceBadge from '@/components/ComplianceBadge'
 import VerifiedBusiness from '@/components/VerifiedBusiness'
+import Metadata from '@/components/Metadata'
 import Icon from '@/components/Icon'
-import { SITE, PAGE_FAQS, PRODUCTS, CATEGORIES } from '@/config/site'
+import { SITE, PAGE_FAQS, PRODUCTS, CATEGORIES, DIRECTORIES } from '@/config/site'
 import { absoluteUrl, seoTitle, seoDescription, ogMeta } from '@/lib/utils'
 
 export const metadata = {
@@ -33,7 +34,13 @@ const DIFF = [
 export default function AboutPage() {
   return (
     <div>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+      <Metadata 
+        title={metadata.title}
+        description={metadata.description}
+        canonical="/about/"
+        schemas={[schema]}
+        includeSiteSchemas={true}
+      />
       <PageHeader
         eyebrow={`Est. ${SITE.foundingYear} · Australia`}
         title="Built to the rules. Built for the shot."
@@ -77,6 +84,20 @@ export default function AboutPage() {
           <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
             <Link href="/shop/" className="btn btn-accent">Shop film-ready packs</Link>
             <Link href="/contact/" className="btn btn-outline">Contact</Link>
+          </div>
+        </div>
+        <div className="container" style={{ marginTop: '3rem' }}>
+          <span className="eyebrow">Industry Presence</span>
+          <h2 style={{ fontSize: '1.4rem', marginBottom: '1rem' }}>Australian Business Directories</h2>
+          <p style={{ color: 'var(--ink-2)', marginBottom: '1.5rem', maxWidth: '70ch' }}>
+            To ensure trust and domain authority within the Australian market, {SITE.name} is proud to be featured across high-authority local business networks and classified platforms.
+          </p>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem' }}>
+            {DIRECTORIES.map((dir) => (
+              <a key={dir.name} href={dir.href} target="_blank" rel="noopener noreferrer" className="chip">
+                {dir.name} ↗
+              </a>
+            ))}
           </div>
         </div>
         <div className="container"><FaqBlock faqs={PAGE_FAQS.about} /></div>

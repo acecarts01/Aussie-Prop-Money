@@ -1,7 +1,10 @@
+'use client'
+
 import Link from 'next/link'
+import { motion } from 'motion/react'
 import ComplianceBadge from './ComplianceBadge'
 import VerifiedBusiness from './VerifiedBusiness'
-import { SITE, CATEGORIES, PAYMENT_METHODS } from '@/config/site'
+import { SITE, CATEGORIES, PAYMENT_METHODS, DIRECTORIES } from '@/config/site'
 
 function encodedEmail(email) {
   return email.replace('@', '&#64;')
@@ -17,7 +20,12 @@ export default function Footer() {
     <footer className="site-footer">
       <div className="container">
         <div className="footer-grid">
-          <div className="footer-col">
+          <motion.div 
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="footer-col"
+          >
             <span className="brand-word" style={{ display: 'block' }}>
               Australian Reserve Props
               <small>Studio-grade prop money · Est. {SITE.foundingYear}</small>
@@ -34,18 +42,30 @@ export default function Footer() {
               <span>Ships Australia-wide</span>
               <span>{livePayments.join(' · ')}</span>
             </div>
-          </div>
+          </motion.div>
 
-          <div className="footer-col">
+          <motion.div 
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="footer-col"
+          >
             <h4>Shop</h4>
             <ul>
               {CATEGORIES.map((c) => (
                 <li key={c.slug}><Link href={`/shop/${c.slug}/`}>{c.name}</Link></li>
               ))}
             </ul>
-          </div>
+          </motion.div>
 
-          <div className="footer-col">
+          <motion.div 
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="footer-col"
+          >
             <h4>Company</h4>
             <ul>
               <li><Link href="/about/">About</Link></li>
@@ -55,9 +75,15 @@ export default function Footer() {
               <li><Link href="/contact/">Contact</Link></li>
               <li><Link href="/cart/">Cart</Link></li>
             </ul>
-          </div>
+          </motion.div>
 
-          <div className="footer-col">
+          <motion.div 
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.3 }}
+            className="footer-col"
+          >
             <h4>Legal &amp; support</h4>
             <ul>
               <li><Link href="/shipping/">Shipping</Link></li>
@@ -65,16 +91,37 @@ export default function Footer() {
               <li><Link href="/privacy/">Privacy</Link></li>
               <li><Link href="/terms/">Terms</Link></li>
             </ul>
-          </div>
+          </motion.div>
 
-          <div className="footer-col">
+          <motion.div 
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.4 }}
+            className="footer-col"
+          >
             <h4>Contact</h4>
             <ul className="contact-list">
               {hasEmail && <li><span>Email</span><a href={`mailto:${encodedEmail(SITE.email)}`} dangerouslySetInnerHTML={{ __html: encodedEmail(SITE.email) }} /></li>}
               {hasWhatsapp && <li><span>WhatsApp</span><a href={waHref} target="_blank" rel="noopener noreferrer">{SITE.whatsapp}</a></li>}
               {hasWhatsapp && <li><span>Call / Text</span><a href={`tel:${SITE.phone.replace(/\s/g, '')}`}>{SITE.phone}</a></li>}
             </ul>
-          </div>
+          </motion.div>
+
+          <motion.div 
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.5 }}
+            className="footer-col"
+          >
+            <h4>Industry Resources</h4>
+            <ul>
+              {DIRECTORIES.slice(0, 6).map((d) => (
+                <li key={d.name}><a href={d.href} target="_blank" rel="noopener noreferrer">{d.name}</a></li>
+              ))}
+            </ul>
+          </motion.div>
         </div>
 
         <div className="footer-verified">

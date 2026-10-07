@@ -4,8 +4,10 @@ import Breadcrumbs from '@/components/Breadcrumbs'
 import PageHeader from '@/components/PageHeader'
 import FaqBlock from '@/components/FaqBlock'
 import ComplianceBadge from '@/components/ComplianceBadge'
+import Metadata from '@/components/Metadata'
+import YieldChart from '@/components/YieldChart'
 import Icon from '@/components/Icon'
-import { PAGE_FAQS, PRODUCTS } from '@/config/site'
+import { PAGE_FAQS, PRODUCTS, SITE } from '@/config/site'
 import { absoluteUrl, formatPrice, seoTitle, seoDescription, ogMeta } from '@/lib/utils'
 
 export const metadata = {
@@ -25,9 +27,24 @@ const HOW = [
   ['Pre-banded, pre-packed', 'Sets arrive ready for the reveal. Circulation level and band style to spec.'],
 ]
 
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'Prop Money Production & Wholesale',
+  provider: { '@type': 'Organization', name: SITE.name },
+  areaServed: 'AU',
+  description: metadata.description
+}
+
 export default function WholesalePage() {
   return (
     <div>
+      <Metadata 
+        title={metadata.title}
+        description={metadata.description}
+        canonical="/wholesale/"
+        schemas={[schema]}
+      />
       <PageHeader
         eyebrow="For productions & agencies"
         title="Production volume, one print run"
@@ -68,6 +85,9 @@ export default function WholesalePage() {
           <p style={{ color: 'var(--ink-2)', marginTop: '1rem', maxWidth: '70ch' }}>
             Beyond these, quotes are custom: mixed denominations, multiple sets, reshoot buffers. As with every product, serials are system-assigned — no custom or buyer-specified serial numbers at any order size.
           </p>
+          <div style={{ marginTop: '3rem', maxWidth: '800px' }}>
+            <YieldChart title="Production Value Scaling — Cost vs On-Camera Assets" />
+          </div>
         </div>
       </section>
 

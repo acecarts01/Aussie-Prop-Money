@@ -8,7 +8,7 @@ export default function ComplianceBadge({ size = 'md', text }) {
       <span className="txt">
         {text || (
           <>
-            <em>Not legal tender</em> · Reduced-scale prop currency · For film, theatre &amp; performance use
+            <em>Not legal tender</em> · RBA-COMPLIANT SIZING · For film, theatre &amp; performance use
           </>
         )}
       </span>

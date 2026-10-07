@@ -4,19 +4,22 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 3000 -H 0.0.0.0",
     "prebuild": "node scripts/gen-agent-files.mjs",
-    "build": "next build",
-    "build:static": "cross-env TARGET=static node scripts/gen-agent-files.mjs && cross-env TARGET=static next build",
+    "build": "cross-env NODE_ENV=production next build",
+    "build:static": "cross-env TARGET=static NODE_ENV=production node scripts/gen-agent-files.mjs && cross-env TARGET=static NODE_ENV=production next build",
     "images": "node scripts/images.mjs",
     "crosscheck": "node scripts/crosscheck.mjs",
     "start": "next start"
   },
   "dependencies": {
+    "d3": "^7.9.0",
+    "motion": "^14.0.0",
     "next": "^15.0.0",
     "nodemailer": "^6.10.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-markdown": "^10.1.0",
     "sharp": "^0.35.4"
   },
   "devDependencies": {

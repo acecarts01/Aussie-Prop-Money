@@ -4,11 +4,15 @@ import ProductCard from '@/components/ProductCard'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import PageHeader from '@/components/PageHeader'
 import ComplianceBadge from '@/components/ComplianceBadge'
-import { CATEGORIES, CATEGORY_KEYWORDS, CATEGORY_FAQS } from '@/config/site'
+import FaqBlock from '@/components/FaqBlock'
+import Metadata from '@/components/Metadata'
+import { CATEGORIES, BRANDS, CATEGORY_KEYWORDS, CATEGORY_FAQS } from '@/config/site'
 import { getCategory, productsIn, absoluteUrl, seoTitle, seoDescription, ogMeta, itemListSchema } from '@/lib/utils'
 
 export function generateStaticParams() {
-  return CATEGORIES.map((c) => ({ cat: c.slug }))
+  const cats = CATEGORIES.map((c) => ({ cat: c.slug }))
+  const brands = BRANDS.map((b) => ({ cat: b.slug }))
+  return [...cats, ...brands]
 }
 
 export function generateMetadata({ params }) {
@@ -29,16 +33,9 @@ export default function CategoryPage({ params }) {
   const products = productsIn(category.slug)
   const faqs = CATEGORY_FAQS[category.slug] || []
 
-  const faqSchema = faqs.length > 0 ? {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
-  } : null
-
   return (
     <div>
-      {faqSchema && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />}
-      {products.length > 0 && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema(products, `${category.name} — prop money`)) }} />}
+      <Metadata schemas={products.length > 0 ? [itemListSchema(products, `${category.name} — prop money`)] : []} />
       <PageHeader
         eyebrow="Shop"
         title={category.name}
@@ -74,16 +71,7 @@ export default function CategoryPage({ params }) {
               <Link href="/wholesale/" className="btn btn-ghost">Production volume →</Link>
             </div>
           </div>
-          {faqs.length > 0 && (
-            <div>
-              <h2 style={{ fontSize: '1.4rem', marginBottom: '0.9rem' }}>Questions</h2>
-              <div className="faq-list">
-                {faqs.map((f) => (
-                  <details key={f.q}><summary>{f.q}</summary><p>{f.a}</p></details>
-                ))}
-              </div>
-            </div>
-          )}
+          <FaqBlock faqs={faqs} title="Questions" />
         </div>
       </section>
     </div>

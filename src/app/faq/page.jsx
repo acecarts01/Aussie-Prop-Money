@@ -2,6 +2,7 @@ import Link from 'next/link'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import PageHeader from '@/components/PageHeader'
 import ComplianceBadge from '@/components/ComplianceBadge'
+import FaqBlock from '@/components/FaqBlock'
 import { FAQS, CATEGORY_FAQS } from '@/config/site'
 import { absoluteUrl, seoTitle, seoDescription, ogMeta } from '@/lib/utils'
 
@@ -17,16 +18,9 @@ const CATEGORY_PICKS = ['fifty-dollar-notes', 'briefcases-bags', 'packs-bundles'
 const extra = CATEGORY_PICKS.flatMap((slug) => (CATEGORY_FAQS[slug] || []).slice(0, 1))
 const ALL = [...FAQS, ...extra]
 
-const schema = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: ALL.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
-}
-
 export default function FaqPage() {
   return (
     <div>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
       <PageHeader
         eyebrow="Straight answers"
         title="Legality. Realism. Delivery."
@@ -35,11 +29,7 @@ export default function FaqPage() {
       />
 
       <div className="container section grid grid-2" style={{ alignItems: 'start' }}>
-        <div className="faq-list">
-          {ALL.map((f) => (
-            <details key={f.q}><summary>{f.q}</summary><p>{f.a}</p></details>
-          ))}
-        </div>
+        <FaqBlock faqs={ALL} title="" />
         <aside className="card card-pad" style={{ position: 'sticky', top: '6rem' }}>
           <span className="eyebrow">The short version</span>
           <h2 style={{ fontSize: '1.4rem' }}>Legal to make. Never money.</h2>

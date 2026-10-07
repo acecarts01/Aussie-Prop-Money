@@ -2,7 +2,7 @@ const isStatic = process.env.TARGET === 'static'
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: isStatic ? 'export' : undefined,
+  output: isStatic ? 'export' : 'standalone',
   trailingSlash: true,
   images: isStatic
     ? { unoptimized: true }

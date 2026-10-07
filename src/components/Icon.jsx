@@ -34,6 +34,36 @@ const PATHS = {
   ),
   arrow: <path d="M5 12h14M13 6l6 6-6 6" />,
   check: <path d="m5 12 4.5 4.5L19 7" />,
+  btc: (
+    <>
+      <circle cx="12" cy="12" r="10" fill="#F7931A" stroke="none" />
+      <path d="M16 11.2c0-2.4-1.2-3.2-3.6-3.2h-3.4v8h3.8c2.4 0 3.2-0.8 3.2-3.2v-1.6zm-5-1.6h1.8c1 0 1.4 0.4 1.4 1.2v0.4c0 0.8-0.4 1.2-1.4 1.2H11v-2.8z" fill="white" stroke="none" />
+    </>
+  ),
+  eth: (
+    <>
+      <circle cx="12" cy="12" r="10" fill="#627EEA" stroke="none" />
+      <path d="M12 4l-0.1 0.3v10.6l0.1 0.1 5-2.9-5-8.1z" fill="white" fillOpacity="0.6" stroke="none" />
+      <path d="M12 4l-5 8.1 5 2.9v-11z" fill="white" stroke="none" />
+      <path d="M12 15.1l-0.1 0.1v4.7l0.1 0.1 5-7.1-5 2.2z" fill="white" fillOpacity="0.6" stroke="none" />
+      <path d="M12 20v-4.9l-5-2.2 5 7.1z" fill="white" stroke="none" />
+    </>
+  ),
+  usdt: (
+    <>
+      <circle cx="12" cy="12" r="10" fill="#26A17B" stroke="none" />
+      <path d="M12.6 7.2v1.8h2.4v1.8H9v-1.8h2.4V7.2H6.6V5.4h10.8v1.8h-4.8zm0 5.4v5.4h-1.2v-5.4H6.6V10.8h10.8v1.8h-4.8z" fill="white" stroke="none" />
+    </>
+  ),
+  bnb: (
+    <>
+      <circle cx="12" cy="12" r="10" fill="#F3BA2F" stroke="none" />
+      <path d="M12 8.4l1.8 1.8 1.8-1.8-1.8-1.8L12 8.4zm3.6 3.6l1.8-1.8-1.8-1.8L13.8 12l1.8 1.8zm-3.6 3.6l1.8-1.8-1.8-1.8L10.2 12l1.8 1.8zm-3.6-3.6l-1.8 1.8 1.8 1.8L10.2 12l-1.8-1.8zm3.6 0.9l0.9-0.9-0.9-0.9-0.9 0.9 0.9 0.9z" fill="white" stroke="none" />
+    </>
+  ),
+  trustpilot: (
+    <path d="m12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27z" fill="currentColor" stroke="none" />
+  ),
 }
 
 export default function Icon({ name, size = 18, label }) {

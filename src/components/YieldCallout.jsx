@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { formatPrice } from '@/lib/utils'
 import { yieldLadder, fmtFace } from '@/lib/value'
+import YieldChart from './YieldChart'
 
 const SIZE_NAME = { 50: 'Half pack · single strap', 100: 'Full stack', 250: 'Jumbo pack' }
 
@@ -42,6 +43,7 @@ export default function YieldCallout({ product }) {
           })}
         </tbody>
       </table>
+      <YieldChart currentSlug={product.slug} customData={ladder} title="Strap vs Stack vs Jumbo — Scaling Curve" />
       <p className="yield-foot">Face value is the value printed on the prop notes. Every note is reduced-scale, marked NOT LEGAL TENDER, and carries no replicated security features.</p>
     </div>
   )

@@ -1,57 +1,159 @@
+'use client'
+
+import { useState, useMemo } from 'react'
 import Link from 'next/link'
 import ProductCard from '@/components/ProductCard'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import PageHeader from '@/components/PageHeader'
 import ComplianceBadge from '@/components/ComplianceBadge'
-import { CATEGORIES, PRODUCTS } from '@/config/site'
-import { productsIn, absoluteUrl, ogMeta, itemListSchema } from '@/lib/utils'
-
-export const metadata = {
-  title: 'Buy Prop Money Australia — Full Range | ARP',
-  description: 'Screen-ready prop money by denomination, bundle and use case: $20, $50 and $100 stacks, briefcase sets, bulk packs, party and content props. Ships Australia-wide.',
-  ...ogMeta('Buy Prop Money Australia — Full Range | ARP', '/shop/'),
-  alternates: { canonical: absoluteUrl('/shop/') },
-}
+import Metadata from '@/components/Metadata'
+import { CATEGORIES, PRODUCTS, BRANDS } from '@/config/site'
+import { absoluteUrl, itemListSchema, formatPrice } from '@/lib/utils'
 
 export default function ShopPage() {
+  const [selectedCategory, setSelectedCategory] = useState('all')
+  const [selectedBrand, setSelectedBrand] = useState('all')
+  const [priceRange, setPriceRange] = useState([0, 5000])
+
+  const filteredProducts = useMemo(() => {
+    return PRODUCTS.filter((p) => {
+      const catMatch = selectedCategory === 'all' || p.category === selectedCategory
+      const brandMatch = selectedBrand === 'all' || p.brand === selectedBrand
+      const priceMatch = p.price >= priceRange[0] && p.price <= priceRange[1]
+      return catMatch && brandMatch && priceMatch
+    })
+  }, [selectedCategory, selectedBrand, priceRange])
+
+  const schema = useMemo(() => itemListSchema(PRODUCTS, 'Australian Reserve Props — full range'), [])
+
   return (
     <div>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema(PRODUCTS, 'Australian Reserve Props — full range')) }} />
+      <Metadata 
+        title="Shop Prop Money Australia — Full Range"
+        description="Browse our complete range of studio-grade, RBA-compliant prop notes. $20, $50, $100 denominations, bulk packs and more."
+        canonical="/shop/"
+        schemas={[schema]}
+      />
       <PageHeader
         eyebrow="The full range"
         title="Buy prop money Australia — full range"
-        subtitle="Every stack, set and pack we make, grouped by how it gets used. All reduced-scale, all marked NOT LEGAL TENDER, all from one registered Australian company."
+        subtitle="Every stack, set and pack we make, grouped by denomination and brand. Use the filters to find exactly what your production needs."
         breadcrumbs={<Breadcrumbs trail={[{ label: 'Shop', href: '/shop/' }]} />}
       />
 
       <div className="container section-tight">
-        <nav aria-label="Categories" className="chip-row">
-          {CATEGORIES.map((c) => (
-            <a key={c.slug} href={`#${c.slug}`} className="chip">{c.name}</a>
-          ))}
-        </nav>
+        <div className="shop-layout" style={{ display: 'grid', gridTemplateColumns: '260px 1fr', gap: '2.5rem', alignItems: 'start' }}>
+          {/* Sidebar Filter */}
+          <aside className="shop-sidebar card card-pad" style={{ position: 'sticky', top: '100px' }}>
+            <div style={{ marginBottom: '1.5rem' }}>
+              <h4 style={{ fontSize: '0.9rem', marginBottom: '1rem', color: 'var(--accent)' }}>Categories</h4>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                <button 
+                  onClick={() => setSelectedCategory('all')} 
+                  className={`btn btn-ghost ${selectedCategory === 'all' ? 'btn-accent' : ''}`}
+                  style={{ justifyContent: 'flex-start', fontSize: '0.85rem', minHeight: 'auto', padding: '0.5rem' }}
+                >
+                  All Categories
+                </button>
+                {CATEGORIES.map((c) => (
+                  <button 
+                    key={c.slug} 
+                    onClick={() => setSelectedCategory(c.slug)} 
+                    className={`btn btn-ghost ${selectedCategory === c.slug ? 'btn-accent' : ''}`}
+                    style={{ justifyContent: 'flex-start', fontSize: '0.85rem', minHeight: 'auto', padding: '0.5rem', textAlign: 'left' }}
+                  >
+                    {c.name}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div style={{ marginBottom: '1.5rem' }}>
+              <h4 style={{ fontSize: '0.9rem', marginBottom: '1rem', color: 'var(--accent)' }}>Brands</h4>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                <button 
+                  onClick={() => setSelectedBrand('all')} 
+                  className={`btn btn-ghost ${selectedBrand === 'all' ? 'btn-accent' : ''}`}
+                  style={{ justifyContent: 'flex-start', fontSize: '0.85rem', minHeight: 'auto', padding: '0.5rem' }}
+                >
+                  All Brands
+                </button>
+                {BRANDS.map((b) => (
+                  <button 
+                    key={b.slug} 
+                    onClick={() => setSelectedBrand(b.slug)} 
+                    className={`btn btn-ghost ${selectedBrand === b.slug ? 'btn-accent' : ''}`}
+                    style={{ justifyContent: 'flex-start', fontSize: '0.85rem', minHeight: 'auto', padding: '0.5rem', textAlign: 'left' }}
+                  >
+                    {b.name}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <h4 style={{ fontSize: '0.9rem', marginBottom: '1rem', color: 'var(--accent)' }}>Max Price</h4>
+              <input 
+                type="range" 
+                min="0" 
+                max="5000" 
+                step="100" 
+                value={priceRange[1]} 
+                onChange={(e) => setPriceRange([0, parseInt(e.target.value)])}
+                style={{ width: '100%', accentColor: 'var(--accent)' }}
+              />
+              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.8rem', color: 'var(--ink-2)', marginTop: '0.5rem' }}>
+                <span>$0</span>
+                <span>{formatPrice(priceRange[1])}</span>
+              </div>
+            </div>
+
+            <button 
+              className="btn btn-outline" 
+              style={{ width: '100%', marginTop: '1.5rem', fontSize: '0.8rem' }}
+              onClick={() => {
+                setSelectedCategory('all');
+                setSelectedBrand('all');
+                setPriceRange([0, 5000]);
+              }}
+            >
+              Reset Filters
+            </button>
+          </aside>
+
+          {/* Product Grid */}
+          <main>
+            <div style={{ marginBottom: '1.5rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <span style={{ color: 'var(--ink-3)', fontSize: '0.9rem' }}>
+                Showing <strong>{filteredProducts.length}</strong> products
+              </span>
+            </div>
+
+            {filteredProducts.length === 0 ? (
+              <div className="card card-pad" style={{ textAlign: 'center', padding: '4rem 1rem' }}>
+                <p style={{ color: 'var(--ink-2)' }}>No products match your current filters.</p>
+                <button onClick={() => { setSelectedCategory('all'); setSelectedBrand('all'); setPriceRange([0, 5000]); }} className="btn btn-ghost">Clear all filters</button>
+              </div>
+            ) : (
+              <div className="grid grid-3">
+                {filteredProducts.map((p) => <ProductCard key={p.slug} product={p} />)}
+              </div>
+            )}
+          </main>
+        </div>
       </div>
 
-      <div className="container">
-        {CATEGORIES.map((category, i) => {
-          const products = productsIn(category.slug)
-          if (products.length === 0) return null
-          return (
-            <section key={category.slug} id={category.slug} className="section-tight" style={{ scrollMarginTop: '6rem', borderTop: i === 0 ? 0 : '1px solid var(--line)' }}>
-              <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', gap: '1rem', marginBottom: '1.25rem', flexWrap: 'wrap' }}>
-                <div style={{ maxWidth: '62ch' }}>
-                  <h2 style={{ fontSize: 'clamp(1.5rem, 3vw, 2.2rem)', margin: 0 }}>{category.name}</h2>
-                  <p style={{ margin: '0.5rem 0 0', color: 'var(--ink-2)' }}>{category.description}</p>
-                </div>
-                <Link href={`/shop/${category.slug}/`} className="btn btn-ghost">View category →</Link>
-              </div>
-              <div className="grid grid-4">
-                {products.map((p) => <ProductCard key={p.slug} product={p} />)}
-              </div>
-            </section>
-          )
-        })}
-      </div>
+      <style jsx>{`
+        @media (max-width: 900px) {
+          .shop-layout {
+            grid-template-columns: 1fr !important;
+          }
+          .shop-sidebar {
+            position: static !important;
+            margin-bottom: 2rem;
+          }
+        }
+      `}</style>
 
       <section className="section surface-2">
         <div className="container" style={{ display: 'flex', flexWrap: 'wrap', gap: '1.5rem', alignItems: 'center', justifyContent: 'space-between' }}>

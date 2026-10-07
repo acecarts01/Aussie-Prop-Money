@@ -12,6 +12,7 @@ import { formatPrice } from '@/lib/utils'
 import { cartFaceValue, fmtFace } from '@/lib/value'
 import { SITE, PAYMENT_METHODS, PAGE_FAQS, ORDER } from '@/config/site'
 import VerifiedBusiness from '@/components/VerifiedBusiness'
+import Icon from '@/components/Icon'
 
 export default function CartPage() {
   const [items, setItems] = useState([])
@@ -87,7 +88,17 @@ export default function CartPage() {
 
               <div className="cart-totals">
                 <span>Subtotal: {formatPrice(sub)}</span>
-                {discount > 0 && <span style={{ color: 'var(--accent)' }}>Crypto discount ({Math.round(ORDER.cryptoDiscount * 100)}%): −{formatPrice(discount)}</span>}
+                {discount > 0 && (
+                  <span style={{ color: 'var(--accent)', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                    <span style={{ display: 'flex', gap: '0.2rem' }}>
+                      <Icon name="btc" size={14} />
+                      <Icon name="eth" size={14} />
+                      <Icon name="usdt" size={14} />
+                      <Icon name="bnb" size={14} />
+                    </span>
+                    Crypto discount ({Math.round(ORDER.cryptoDiscount * 100)}%): −{formatPrice(discount)}
+                  </span>
+                )}
                 <span>Shipping: Free · Australia Post tracked</span>
                 <strong>Total: {formatPrice(total)}</strong>
                 {cartFaceValue(items) > 0 && (
@@ -116,10 +127,27 @@ export default function CartPage() {
                           value={m.label}
                           disabled={!m.live}
                           checked={paymentMethod === m.id}
-                          onChange={() => setPaymentMethod(m.id)}
-                        />
-                        <span>{m.label}{!m.live && ' (coming soon)'}<br /><small style={{ color: 'var(--ink-3)' }}>{m.note}</small></span>
-                      </label>
+                        onChange={() => setPaymentMethod(m.id)}
+                      />
+                      <span>
+                        <span style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontWeight: 700 }}>
+                          {m.id === 'crypto' && (
+                            <span style={{ display: 'flex', gap: '0.2rem' }}>
+                              <Icon name="btc" size={14} />
+                              <Icon name="eth" size={14} />
+                              <Icon name="usdt" size={14} />
+                              <Icon name="bnb" size={14} />
+                            </span>
+                          )}
+                          {m.id === 'payid' && <Icon name="check" size={14} style={{ color: 'var(--accent)' }} />}
+                          {m.id === 'bank-transfer' && <Icon name="au" size={14} style={{ color: 'var(--accent)' }} />}
+                          {m.label}
+                        </span>
+                        {!m.live && ' (coming soon)'}
+                        <br />
+                        <small style={{ color: 'var(--ink-3)' }}>{m.note}</small>
+                      </span>
+                    </label>
                     ))}
                   </fieldset>
 

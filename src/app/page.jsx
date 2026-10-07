@@ -7,7 +7,12 @@ import VerifiedBusiness from '@/components/VerifiedBusiness'
 import UseCaseSplit from '@/components/UseCaseSplit'
 import ComplianceBadge from '@/components/ComplianceBadge'
 import Icon from '@/components/Icon'
-import { CATEGORIES, PRODUCTS, FAQS, REVIEWS, POSTS, SITE, HERO, COMPLIANCE } from '@/config/site'
+import ReviewSlider from '@/components/ReviewSlider'
+import HeroSlider from '@/components/HeroSlider'
+import FaqBlock from '@/components/FaqBlock'
+import AnimatedStatStrip from '@/components/AnimatedStatStrip'
+import AnimatedText from '@/components/AnimatedText'
+import { CATEGORIES, PRODUCTS, FAQS, REVIEWS, POSTS, SITE, HERO, COMPLIANCE, GLOBAL_KEYWORDS } from '@/config/site'
 import { absoluteUrl, ogMeta } from '@/lib/utils'
 
 export const metadata = {
@@ -17,17 +22,7 @@ export const metadata = {
   alternates: { canonical: absoluteUrl('/') },
 }
 
-const HOME_FAQS = FAQS.slice(0, 5)
-
-const faqSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: HOME_FAQS.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-}
+const HOME_FAQS = FAQS.slice(0, 8)
 
 // Featured: the three flagship stacks + the production/reveal sets + two use-case items.
 const FEATURED_SLUGS = [
@@ -40,47 +35,13 @@ const FEATURED_SLUGS = [
   'content-creator-flex-pack',
   'money-gun-refill-pack',
 ]
-const avgRating = (REVIEWS.reduce((s, r) => s + r.rating, 0) / REVIEWS.length).toFixed(1)
 const featured = FEATURED_SLUGS.map((s) => PRODUCTS.find((p) => p.slug === s)).filter(Boolean)
-const productionReviews = REVIEWS.filter((r) => /film|theatre|production|stage|set|shoot|crew/i.test(r.text)).slice(0, 3)
 const latestPosts = [...POSTS].sort((a, b) => (a.date < b.date ? 1 : -1)).slice(0, 3)
 
 export default function HomePage() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
-
-      {/* 1 — Hero */}
-      <section className="hero-cine gridlines" aria-labelledby="hero-h1">
-        <div className="hero-media" aria-hidden="true">
-          <Image src={`/images/products/${HERO.image}`} alt="Briefcase prop money set — studio-grade Australian prop currency by Australian Reserve Props" fill priority sizes="100vw" />
-        </div>
-        <div className="hero-scrim" aria-hidden="true" />
-        <div className="container">
-          <div className="hero-inner">
-            <span className="eyebrow rise">Prop currency for production</span>
-            <h1 id="hero-h1" className="rise rise-2">
-              <span className="line">{HERO.h1Lines[0]}</span>
-              <span className="line">{HERO.h1Lines[1]}</span>
-              <span className="line accent">{HERO.h1Lines[2]}</span>
-            </h1>
-            <p className="hero-sub rise rise-3">{HERO.sub}</p>
-            <div className="hero-cta rise rise-3">
-              <Link href={HERO.ctaPrimary.href} className="btn btn-accent">
-                {HERO.ctaPrimary.label} <span className="arrow"><Icon name="arrow" size={16} /></span>
-              </Link>
-              <Link href={HERO.ctaSecondary.href} className="btn btn-outline">{HERO.ctaSecondary.label}</Link>
-            </div>
-            <div className="rise rise-4"><ComplianceBadge size="lg" /></div>
-            <div className="hero-meta rise rise-4" style={{ marginTop: '1.4rem' }}>
-              {HERO.meta.map(([k, v]) => (
-                <span key={k}>{k}: <b>{v}</b></span>
-              ))}
-            </div>
-          </div>
-        </div>
-        <span className="hero-corner" aria-hidden="true">{HERO.cornerTag}</span>
-      </section>
+      <HeroSlider />
 
       {/* 2 — Trust badges */}
       <section className="section-tight surface-1" aria-label="Trust and compliance signals">
@@ -106,21 +67,23 @@ export default function HomePage() {
         <div className="container compliance-grid">
           <div>
             <SectionHead eyebrow={COMPLIANCE.eyebrow} title={COMPLIANCE.title} sub={COMPLIANCE.lede} />
-            <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
-              {COMPLIANCE.links.map((l, i) => (
-                <Link key={l.href} href={l.href} className={`btn ${i === 0 ? 'btn-outline' : 'btn-ghost'}`}>{l.label}</Link>
-              ))}
-            </div>
+            <AnimatedText delay={0.2} style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
+              <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
+                {COMPLIANCE.links.map((l, i) => (
+                  <Link key={l.href} href={l.href} className={`btn ${i === 0 ? 'btn-outline' : 'btn-ghost'}`}>{l.label}</Link>
+                ))}
+              </div>
+            </AnimatedText>
           </div>
           <div className="isnt-grid">
-            <div className="isnt-col">
+            <AnimatedText delay={0.3} className="isnt-col">
               <h3 className="is">What it is</h3>
               <ul>{COMPLIANCE.is.map((t) => <li key={t}>{t}</li>)}</ul>
-            </div>
-            <div className="isnt-col">
+            </AnimatedText>
+            <AnimatedText delay={0.4} className="isnt-col">
               <h3>What it isn&rsquo;t</h3>
               <ul>{COMPLIANCE.isnt.map((t) => <li key={t}>{t}</li>)}</ul>
-            </div>
+            </AnimatedText>
           </div>
         </div>
       </section>
@@ -146,32 +109,17 @@ export default function HomePage() {
       </section>
 
       {/* Stat strip — real numbers only */}
-      <section aria-label="At a glance">
-        <div className="stat-strip">
-          <div className="stat"><b>{SITE.foundingYear}</b><span>Established</span></div>
-          <div className="stat"><b>{PRODUCTS.length}</b><span>Products</span></div>
-          <div className="stat"><b>{CATEGORIES.length}</b><span>Categories</span></div>
-          <div className="stat"><b>AU</b><span>Ships nationwide</span></div>
-        </div>
-      </section>
+      <AnimatedStatStrip />
 
       {/* From set — real reviews from production use */}
       <section className="section surface-1">
         <div className="container">
           <SectionHead
             eyebrow="Set reports"
-            title={`${avgRating}★ across ${REVIEWS.length} reports`}
-            sub="Recovered from our predecessor site and confirmed genuine. These are the ones from stage and set."
+            title={`${SITE.trustpilotRating}★ across ${SITE.reviewCount} reports`}
+            sub="Compliance-first prop money, trusted by Australian filmmakers, photographers, and theatre crews."
           />
-          <div className="grid grid-3">
-            {productionReviews.map((r) => (
-              <div key={r.name + r.date} className="card review-card">
-                <div className="review-stars" aria-label={`${r.rating} out of 5`}>{'★'.repeat(r.rating)}{'☆'.repeat(5 - r.rating)}</div>
-                <blockquote>{r.text.length > 240 ? `${r.text.slice(0, 240)}…` : r.text}</blockquote>
-                <span className="who">{r.name} · {new Date(r.date).toLocaleDateString('en-AU', { year: 'numeric', month: 'short' })}</span>
-              </div>
-            ))}
-          </div>
+          <ReviewSlider />
         </div>
       </section>
 
@@ -179,14 +127,20 @@ export default function HomePage() {
       <section className="section surface-2 gridlines">
         <div className="container" style={{ maxWidth: '76ch' }}>
           <SectionHead eyebrow={`About ${SITE.name}`} title="Compliance-first from day one" />
-          <p className="lede">{SITE.brandStatement}</p>
-          <p style={{ color: 'var(--ink-2)' }}>
-            Most prop money sold to Australian buyers is printed to US-dollar specs or without much thought to the Crimes (Currency) Act 1981. We built this range specifically for Australian productions: every note is reduced-scale, carries no replicated security features, and is marked NOT LEGAL TENDER. Every product is priced the same regardless of how you pay, and we never offer custom serial numbers.
-          </p>
-          <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', marginTop: '0.5rem' }}>
-            <Link href="/about/" className="btn btn-outline">Our story</Link>
-            <Link href="/wholesale/" className="btn btn-ghost">Production &amp; wholesale →</Link>
-          </div>
+          <AnimatedText delay={0.2}>
+            <p className="lede">{SITE.brandStatement}</p>
+          </AnimatedText>
+          <AnimatedText delay={0.3}>
+            <p style={{ color: 'var(--ink-2)' }}>
+              Most prop money sold to Australian buyers is printed to US-dollar specs or without much thought to the Crimes (Currency) Act 1981. We built this range specifically for Australian productions: every note is reduced-scale, carries no replicated security features, and is marked NOT LEGAL TENDER. Every product is priced the same regardless of how you pay, and we never offer custom serial numbers.
+            </p>
+          </AnimatedText>
+          <AnimatedText delay={0.4}>
+            <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', marginTop: '0.5rem' }}>
+              <Link href="/about/" className="btn btn-outline">Our story</Link>
+              <Link href="/wholesale/" className="btn btn-ghost">Production &amp; wholesale →</Link>
+            </div>
+          </AnimatedText>
         </div>
       </section>
 
@@ -194,17 +148,12 @@ export default function HomePage() {
       <section className="section surface-1">
         <div className="container" style={{ maxWidth: '76ch' }}>
           <SectionHead eyebrow="Straight answers" title="Legality, realism, delivery" />
-          <div className="faq-list">
-            {HOME_FAQS.map((f) => (
-              <details key={f.q}>
-                <summary>{f.q}</summary>
-                <p>{f.a}</p>
-              </details>
-            ))}
-          </div>
-          <div style={{ marginTop: '1.25rem' }}>
-            <Link href="/faq/" className="btn btn-ghost">All questions →</Link>
-          </div>
+          <FaqBlock faqs={HOME_FAQS} title="" />
+          <AnimatedText delay={0.3}>
+            <div style={{ marginTop: '1.25rem' }}>
+              <Link href="/faq/" className="btn btn-ghost">All questions →</Link>
+            </div>
+          </AnimatedText>
         </div>
       </section>
 
@@ -213,14 +162,32 @@ export default function HomePage() {
         <div className="container">
           <SectionHead eyebrow="Guides" title="Read before you shoot" />
           <div className="grid grid-3">
-            {latestPosts.map((p) => (
-              <Link key={p.slug} href={`/blog/${p.slug}/`} className="card card-pad blog-card">
-                <span className="date">{new Date(p.date).toLocaleDateString('en-AU', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
-                <h3>{p.title}</h3>
-                <p>{p.excerpt}</p>
-                <span className="go">Read →</span>
-              </Link>
+            {latestPosts.map((p, i) => (
+              <AnimatedText key={p.slug} delay={i * 0.1}>
+                <Link href={`/blog/${p.slug}/`} className="card card-pad blog-card">
+                  <span className="date">{new Date(p.date).toLocaleDateString('en-AU', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+                  <h3>{p.title}</h3>
+                  <p>{p.excerpt}</p>
+                  <span className="go">Read →</span>
+                </Link>
+              </AnimatedText>
             ))}
+          </div>
+        </div>
+      </section>
+      {/* Keyword Influx Index */}
+      <section className="section surface-1" style={{ paddingTop: 0 }}>
+        <div className="container">
+          <div style={{ borderTop: '1px solid var(--line)', paddingTop: '3.5rem' }}>
+            <SectionHead eyebrow="Topic Index" title="Prop & Novelty Currency Search Index" />
+            <div className="chip-row" style={{ opacity: 0.7 }}>
+              {GLOBAL_KEYWORDS.map((k) => (
+                <span key={k} className="chip" style={{ fontSize: '0.65rem', minHeight: '32px' }}>{k}</span>
+              ))}
+            </div>
+            <p style={{ marginTop: '1.5rem', fontSize: '0.8rem', color: 'var(--ink-3)' }}>
+              Australian Reserve Props is the primary destination for prop money australia, serving film crews, theatre productions, and creators nationwide. From realistic fake money australia to educational play money, our RBA-compliant notes are the industry standard.
+            </p>
           </div>
         </div>
       </section>

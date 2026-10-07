@@ -12,6 +12,9 @@ import YieldCallout from '@/components/YieldCallout'
 import { valueReturn } from '@/lib/value'
 import SubmitSetReport from '@/components/SubmitSetReport'
 import ComplianceBadge from '@/components/ComplianceBadge'
+import FaqBlock from '@/components/FaqBlock'
+import Metadata from '@/components/Metadata'
+import YieldChart from '@/components/YieldChart'
 import Icon from '@/components/Icon'
 import { PRODUCTS, SITE, CATEGORY_FAQS, REVIEWS } from '@/config/site'
 import { getProduct, getCategory, relatedProducts, formatPrice, absoluteUrl, artLabelFor, seoTitle, seoDescription, ogMeta } from '@/lib/utils'
@@ -60,16 +63,9 @@ export default function ProductPage({ params }) {
     },
   }
 
-  const faqSchema = faqs.length > 0 ? {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
-  } : null
-
   return (
     <div className="has-sticky-cta">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
-      {faqSchema && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />}
+      <Metadata schemas={[schema]} />
 
       <div className="container" style={{ paddingTop: '1.5rem' }}>
         <Breadcrumbs
@@ -139,6 +135,7 @@ export default function ProductPage({ params }) {
               <div style={{ marginTop: '2rem' }}>
                 <h2 style={{ fontSize: '1.3rem', marginBottom: '0.9rem' }}>Face value by denomination</h2>
                 <ValueTable currentSlug={product.slug} />
+                <YieldChart currentSlug={product.slug} />
               </div>
             )}
           </div>
@@ -168,16 +165,7 @@ export default function ProductPage({ params }) {
       <section className="section surface-2">
         <div className="container grid grid-2" style={{ alignItems: 'start' }}>
           <div>
-            {faqs.length > 0 && (
-              <>
-                <h2 style={{ fontSize: '1.3rem', marginBottom: '0.9rem' }}>Questions about this product</h2>
-                <div className="faq-list">
-                  {faqs.map((f) => (
-                    <details key={f.q}><summary>{f.q}</summary><p>{f.a}</p></details>
-                  ))}
-                </div>
-              </>
-            )}
+            <FaqBlock faqs={faqs} title="Questions about this product" />
           </div>
           <div className="card">
             <SubmitSetReport productName={product.name} />

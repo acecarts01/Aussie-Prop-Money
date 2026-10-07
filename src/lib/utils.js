@@ -1,7 +1,11 @@
-import { CATEGORIES, PRODUCTS, SITE } from '@/config/site'
+import { CATEGORIES, PRODUCTS, SITE, BRANDS } from '@/config/site'
 
 export function getCategory(slug) {
-  return CATEGORIES.find((c) => c.slug === slug) || null
+  return (
+    CATEGORIES.find((c) => c.slug === slug) ||
+    BRANDS.find((b) => b.slug === slug) ||
+    null
+  )
 }
 
 export function getProduct(slug) {
@@ -9,7 +13,7 @@ export function getProduct(slug) {
 }
 
 export function productsIn(categorySlug) {
-  return PRODUCTS.filter((p) => p.category === categorySlug)
+  return PRODUCTS.filter((p) => p.category === categorySlug || p.brand === categorySlug)
 }
 
 export function formatPrice(amount) {

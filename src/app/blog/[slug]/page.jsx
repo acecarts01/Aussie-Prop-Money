@@ -1,8 +1,11 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
+import ReactMarkdown from 'react-markdown'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import PageHeader from '@/components/PageHeader'
 import ComplianceBadge from '@/components/ComplianceBadge'
+import FaqBlock from '@/components/FaqBlock'
+import Metadata from '@/components/Metadata'
 import { POSTS, SITE, CATEGORIES } from '@/config/site'
 import { absoluteUrl, seoTitle, seoDescription, ogMeta } from '@/lib/utils'
 
@@ -89,16 +92,14 @@ export default function BlogPost({ params }) {
     mainEntityOfPage: absoluteUrl(`/blog/${post.slug}/`),
   }
 
-  const faqSchema = faqs.length > 0 ? {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
-  } : null
-
   return (
     <div>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
-      {faqSchema && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />}
+      <Metadata 
+        title={post.seoTitle || post.title}
+        description={post.excerpt}
+        canonical={`/blog/${post.slug}/`}
+        schemas={[schema]}
+      />
       <PageHeader
         eyebrow={new Date(post.date).toLocaleDateString('en-AU', { year: 'numeric', month: 'long', day: 'numeric' })}
         title={post.title}
@@ -107,20 +108,15 @@ export default function BlogPost({ params }) {
       />
 
       <article className="container section" style={{ maxWidth: '72ch' }}>
-        <div style={{ fontSize: '1.05rem', color: 'var(--ink-2)' }}>
-          {post.body.map((para, i) => <p key={i}>{para}</p>)}
+        <div style={{ fontSize: '1.05rem', color: 'var(--ink-2)' }} className="markdown-body">
+          {post.body.map((para, i) => (
+            <div key={i} style={{ marginBottom: '1.5rem' }}>
+              <ReactMarkdown>{para}</ReactMarkdown>
+            </div>
+          ))}
         </div>
 
-        {faqs.length > 0 && (
-          <div style={{ marginTop: '2.5rem' }}>
-            <h2 style={{ fontSize: '1.4rem', marginBottom: '0.9rem' }}>Frequently asked</h2>
-            <div className="faq-list">
-              {faqs.map((f) => (
-                <details key={f.q}><summary>{f.q}</summary><p>{f.a}</p></details>
-              ))}
-            </div>
-          </div>
-        )}
+        <FaqBlock faqs={faqs} title="Frequently asked" />
 
         {related.length > 0 && (
           <div style={{ marginTop: '2.5rem' }}>
