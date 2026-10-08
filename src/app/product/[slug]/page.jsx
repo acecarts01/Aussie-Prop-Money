@@ -17,7 +17,7 @@ import Metadata from '@/components/Metadata'
 import YieldChart from '@/components/YieldChart'
 import Icon from '@/components/Icon'
 import { PRODUCTS, SITE, CATEGORY_FAQS, REVIEWS } from '@/config/site'
-import { getProduct, getCategory, relatedProducts, formatPrice, absoluteUrl, artLabelFor, seoTitle, seoDescription, ogMeta } from '@/lib/utils'
+import { getProduct, getCategory, relatedProducts, formatPrice, formatPriceShort, absoluteUrl, artLabelFor, seoTitle, seoDescription, ogMeta } from '@/lib/utils'
 
 export function generateStaticParams() {
   return PRODUCTS.map((p) => ({ slug: p.slug }))
@@ -27,11 +27,14 @@ export function generateMetadata({ params }) {
   const product = getProduct(params.slug)
   if (!product) return {}
   const photo = product.images?.[0]
+  const n = product.name
+  const title = [`Buy ${n} Australia | Free Shipping`, `Buy ${n} | Free Shipping`, `Buy ${n} | ARP`, `Buy ${n}`].find((t) => t.length <= 60) || `Buy ${n}`.slice(0, 57).replace(/\s+\S*$/, '…')
+  const firstSentence = (String(product.description).match(/^.*?[.!?](\s|$)/) || [product.description])[0].trim()
   return {
-    title: seoTitle(product.name),
-    description: seoDescription(product.description),
+    title,
+    description: seoDescription(`Buy ${n} for ${formatPriceShort(product.price)}. Free tracked Australia-wide shipping. ${firstSentence}`),
     alternates: { canonical: absoluteUrl(`/product/${product.slug}/`) },
-    ...ogMeta(seoTitle(product.name), `/product/${product.slug}/`, photo ? { url: absoluteUrl(`/images/products/${photo}`), width: 1600, height: 1200, alt: product.name } : undefined),
+    ...ogMeta(title, `/product/${product.slug}/`, photo ? { url: absoluteUrl(`/images/products/${photo}`), width: 1600, height: 1200, alt: product.name } : undefined),
   }
 }
 

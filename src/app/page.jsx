@@ -12,13 +12,13 @@ import HeroSlider from '@/components/HeroSlider'
 import FaqBlock from '@/components/FaqBlock'
 import AnimatedStatStrip from '@/components/AnimatedStatStrip'
 import AnimatedText from '@/components/AnimatedText'
-import { CATEGORIES, PRODUCTS, FAQS, REVIEWS, POSTS, SITE, HERO, COMPLIANCE, GLOBAL_KEYWORDS } from '@/config/site'
+import { CATEGORIES, PRODUCTS, FAQS, REVIEWS, POSTS, SITE, HERO, COMPLIANCE } from '@/config/site'
 import { absoluteUrl, ogMeta } from '@/lib/utils'
 
 export const metadata = {
-  title: 'Prop Money Australia | Australian Reserve Props',
-  description: 'Studio-grade prop money for film, theatre and content. Reduced-scale, RBA-compliant, marked NOT LEGAL TENDER. $20, $50 and $100 stacks, packs and briefcases.',
-  ...ogMeta('Prop Money Australia | Australian Reserve Props', '/'),
+  title: 'Buy Prop Money Australia | Australian Reserve Props',
+  description: 'Buy prop money in Australia: $20, $50 and $100 prop note stacks, packs and briefcase sets. Free tracked shipping Australia-wide. Marked NOT LEGAL TENDER.',
+  ...ogMeta('Buy Prop Money Australia | Australian Reserve Props', '/'),
   alternates: { canonical: absoluteUrl('/') },
 }
 
@@ -172,22 +172,6 @@ export default function HomePage() {
                 </Link>
               </AnimatedText>
             ))}
-          </div>
-        </div>
-      </section>
-      {/* Keyword Influx Index */}
-      <section className="section surface-1" style={{ paddingTop: 0 }}>
-        <div className="container">
-          <div style={{ borderTop: '1px solid var(--line)', paddingTop: '3.5rem' }}>
-            <SectionHead eyebrow="Topic Index" title="Prop & Novelty Currency Search Index" />
-            <div className="chip-row" style={{ opacity: 0.7 }}>
-              {GLOBAL_KEYWORDS.map((k) => (
-                <span key={k} className="chip" style={{ fontSize: '0.65rem', minHeight: '32px' }}>{k}</span>
-              ))}
-            </div>
-            <p style={{ marginTop: '1.5rem', fontSize: '0.8rem', color: 'var(--ink-3)' }}>
-              Australian Reserve Props is the primary destination for prop money australia, serving film crews, theatre productions, and creators nationwide. From realistic fake money australia to educational play money, our RBA-compliant notes are the industry standard.
-            </p>
           </div>
         </div>
       </section>

@@ -11,9 +11,9 @@ import { PAGE_FAQS, PRODUCTS, SITE } from '@/config/site'
 import { absoluteUrl, formatPrice, seoTitle, seoDescription, ogMeta } from '@/lib/utils'
 
 export const metadata = {
-  title: seoTitle('Production & Wholesale Prop Money — Film, TV & Theatre Volume Orders'),
-  description: seoDescription('Bulk and wholesale prop money for film, TV and theatre productions across Australia. Consistent stacks across scenes, custom denomination mixes, pre-banded reveal sets.'),
-  ...ogMeta(seoTitle('Production & Wholesale Prop Money — Film, TV & Theatre Volume Orders'), '/wholesale/'),
+  title: 'Wholesale Prop Money Australia | Bulk Orders for Film & TV',
+  description: seoDescription('Buy wholesale prop money in Australia: bulk stacks, custom denomination mixes and pre-banded reveal sets for film, TV and theatre. Free tracked shipping. Request a quote.'),
+  ...ogMeta('Wholesale Prop Money Australia | Bulk Orders for Film & TV', '/wholesale/'),
   alternates: { canonical: absoluteUrl('/wholesale/') },
 }
 

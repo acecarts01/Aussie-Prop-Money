@@ -7,7 +7,7 @@ import ComplianceBadge from '@/components/ComplianceBadge'
 import FaqBlock from '@/components/FaqBlock'
 import Metadata from '@/components/Metadata'
 import { CATEGORIES, BRANDS, CATEGORY_KEYWORDS, CATEGORY_FAQS } from '@/config/site'
-import { getCategory, productsIn, absoluteUrl, seoTitle, seoDescription, ogMeta, itemListSchema } from '@/lib/utils'
+import { getCategory, productsIn, absoluteUrl, seoTitle, seoDescription, ogMeta, itemListSchema, formatPriceShort } from '@/lib/utils'
 
 export function generateStaticParams() {
   const cats = CATEGORIES.map((c) => ({ cat: c.slug }))
@@ -19,10 +19,13 @@ export function generateMetadata({ params }) {
   const category = getCategory(params.cat)
   if (!category) return {}
   const kw = CATEGORY_KEYWORDS[category.slug]
+  const prices = productsIn(category.slug).map((p) => p.price)
+  const from = prices.length ? formatPriceShort(Math.min(...prices)) : ''
+  const title = kw?.title || seoTitle(`Buy ${category.name} | Prop Money Australia`)
   return {
-    title: seoTitle(`${category.name} — Prop Money Australia`),
-    description: seoDescription(kw ? `${category.description} Covers ${kw.primary} and related styles.` : category.description),
-    ...ogMeta(seoTitle(`${category.name} — Prop Money Australia`), `/shop/${category.slug}/`),
+    title,
+    description: seoDescription(kw ? kw.desc.replace('{from}', from) : category.description),
+    ...ogMeta(title, `/shop/${category.slug}/`),
     alternates: { canonical: absoluteUrl(`/shop/${category.slug}/`) },
   }
 }
@@ -38,7 +41,7 @@ export default function CategoryPage({ params }) {
       <Metadata schemas={products.length > 0 ? [itemListSchema(products, `${category.name} — prop money`)] : []} />
       <PageHeader
         eyebrow="Shop"
-        title={category.name}
+        title={CATEGORY_KEYWORDS[category.slug]?.title.split(' | ')[0] || category.name}
         subtitle={category.description}
         breadcrumbs={<Breadcrumbs trail={[{ label: 'Shop', href: '/shop/' }, { label: category.name, href: `/shop/${category.slug}/` }]} />}
       />

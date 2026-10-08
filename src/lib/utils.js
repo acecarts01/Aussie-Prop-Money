@@ -16,6 +16,11 @@ export function productsIn(categorySlug) {
   return PRODUCTS.filter((p) => p.category === categorySlug || p.brand === categorySlug)
 }
 
+// Whole-dollar amounts without cents ("$10,000"), otherwise normal currency formatting. For meta copy.
+export function formatPriceShort(amount) {
+  return Number.isInteger(amount) ? `$${amount.toLocaleString('en-AU')}` : formatPrice(amount)
+}
+
 export function formatPrice(amount) {
   return new Intl.NumberFormat('en-AU', {
     style: 'currency',

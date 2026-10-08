@@ -6,8 +6,38 @@ import PageHeader from '@/components/PageHeader'
 import ComplianceBadge from '@/components/ComplianceBadge'
 import FaqBlock from '@/components/FaqBlock'
 import Metadata from '@/components/Metadata'
-import { POSTS, SITE, CATEGORIES } from '@/config/site'
-import { absoluteUrl, seoTitle, seoDescription, ogMeta } from '@/lib/utils'
+import ProductCard from '@/components/ProductCard'
+import { POSTS, SITE, CATEGORIES, PRODUCTS, CATEGORY_KEYWORDS } from '@/config/site'
+import { absoluteUrl, seoTitle, seoDescription, ogMeta, formatPriceShort } from '@/lib/utils'
+
+// Blog bodies are informational. Keep only the first link to each internal URL in a post,
+// and drop links to other sites, so the article reads naturally and passes its link value to the shop.
+function tidyBody(paras) {
+  const seen = new Set()
+  return paras.map((para) =>
+    para.replace(/\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)/g, (m, text, url) => {
+      if (!/^https?:\/\/(www\.)?australianreserveprops\.com/i.test(url)) return text
+      const key = url.replace(/\/$/, '')
+      if (seen.has(key)) return text
+      seen.add(key)
+      return m
+    })
+  )
+}
+
+const FLAGSHIP = ['hundred-dollar-prop-note-stack', 'fifty-dollar-prop-note-stack', 'twenty-dollar-prop-note-stack', 'mixed-denomination-starter-pack']
+
+function productsForPost(categories) {
+  const picked = []
+  for (const c of categories) {
+    for (const p of PRODUCTS.filter((x) => x.category === c.slug).slice(0, 2)) if (!picked.includes(p)) picked.push(p)
+  }
+  for (const s of FLAGSHIP) {
+    const p = PRODUCTS.find((x) => x.slug === s)
+    if (p && !picked.includes(p)) picked.push(p)
+  }
+  return picked.slice(0, 4)
+}
 
 // Maps a post's free-text tags to real shop category slugs, so every post
 // links out to 2-3 relevant categories instead of only the generic /shop/
@@ -80,6 +110,11 @@ export default function BlogPost({ params }) {
   const faqs = post.faqs || []
   const related = relatedCategoriesFor(post.tags)
   const relatedPosts = relatedPostsFor(post)
+  const body = tidyBody(post.body)
+  const shopProducts = productsForPost(related)
+  const lead = related[0]
+  const leadFrom = lead ? formatPriceShort(Math.min(...PRODUCTS.filter((p) => p.category === lead.slug).map((p) => p.price))) : null
+  const leadLabel = lead ? (CATEGORY_KEYWORDS[lead.slug]?.title.split(' | ')[0] || lead.name) : 'Shop prop money Australia'
 
   const schema = {
     '@context': 'https://schema.org',
@@ -109,12 +144,31 @@ export default function BlogPost({ params }) {
 
       <article className="container section" style={{ maxWidth: '72ch' }}>
         <div style={{ fontSize: '1.05rem', color: 'var(--ink-2)' }} className="markdown-body">
-          {post.body.map((para, i) => (
-            <div key={i} style={{ marginBottom: '1.5rem' }}>
-              <ReactMarkdown>{para}</ReactMarkdown>
+          {body.map((para, i) => (
+            <div key={i}>
+              <div style={{ marginBottom: '1.5rem' }}>
+                <ReactMarkdown>{para}</ReactMarkdown>
+              </div>
+              {i === 0 && (
+                <div className="card card-pad" style={{ margin: '0 0 1.75rem', display: 'flex', flexWrap: 'wrap', gap: '0.75rem 1.25rem', alignItems: 'center', justifyContent: 'space-between' }}>
+                  <span style={{ color: 'var(--ink)', fontWeight: 600 }}>
+                    {lead ? `${leadLabel}${leadFrom ? ` from ${leadFrom}` : ''} · free tracked shipping Australia-wide` : 'Free tracked shipping Australia-wide on every order'}
+                  </span>
+                  <Link href={lead ? `/shop/${lead.slug}/` : '/shop/'} className="btn btn-accent">{lead ? 'Shop now →' : 'Shop prop money →'}</Link>
+                </div>
+              )}
             </div>
           ))}
         </div>
+
+        {shopProducts.length > 0 && (
+          <div style={{ marginTop: '2.5rem' }}>
+            <h2 style={{ fontSize: '1.4rem', marginBottom: '0.9rem' }}>Buy prop money online</h2>
+            <div className="grid grid-2">
+              {shopProducts.map((p) => <ProductCard key={p.slug} product={p} />)}
+            </div>
+          </div>
+        )}
 
         <FaqBlock faqs={faqs} title="Frequently asked" />
 

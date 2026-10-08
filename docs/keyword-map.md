@@ -22,6 +22,14 @@ Client pasted a ~100-term list sourced externally (not a verified Semrush/Ahrefs
 
 ---
 
+## Intent rule (set 2026-10-09 — client priority is sales and search clicks)
+
+- **Shop pages (home, `/shop/`, 12 categories, 38 products, `/wholesale/`)**: primary keywords are transactional or commercial only (a buyer phrase or a product phrase), and every title tag opens with "Buy" (or is a product-type phrase for packs and wholesale), with price-from, free tracked shipping and NOT LEGAL TENDER in the meta description. Primaries live in `CATEGORY_KEYWORDS` (`intent: 'transactional'`) in `src/config/site.js`.
+- **Blog posts (`POSTS`)**: primary and supporting keywords are informational or navigational only (how, what, why, guide, ideas, vs, laws). Every post carries a "Shop now" bar after the first paragraph, a "Buy prop money online" product strip, and related-category buttons, so the information routes readers to a product page. Head terms (`australian prop money`, `prop money australia`, `au prop money`, `buy`, `for sale`, `wholesale`, `where to buy`) are owned by shop pages, never by posts, to avoid cannibalisation.
+- **Category primaries (current)**: `prop money $20/$50/$100 australia`, `vintage prop money australia`, `prop money packs australia`, `prop money briefcase australia`, `money lei australia`, `prop money display frame australia`, `personalised prop money australia`, `australian play money set`, `novelty money gift box australia`, `money gun australia`. The earlier primaries `australian 20 dollar bill`, `50 dollar note australia`, `100 dollar note australia` and `australian old notes` were replaced: they are informational searches about genuine banknotes, not purchases.
+- **Retired 2026-10-09 (301 redirects in `next.config.mjs`)**: eight posts from the 2026-10-06 batch. Four targeted refused or off-topic intent (`make/create fake money`, `fake money print/printable`, tea-staining tips to make fake money "feel more real", `fake us dollars`/British props which we do not sell, `pokies/baccarat fake money`); two were transactional-intent posts folded into `/shop/`; two duplicated a stronger post. The homepage "Topic Index" keyword chip list (`GLOBAL_KEYWORDS`) was removed as keyword stuffing.
+- **Duplicate head tags fixed 2026-10-09**: `Metadata.jsx` no longer renders title, description, canonical, robots or Open Graph tags (Next metadata owns them); it only injects JSON-LD.
+
 ## Primary keyword
 **prop money australia** — pillar term, assigned to the homepage + `/shop/` hub.
 
