@@ -21,6 +21,7 @@ export const orgSchema = {
   },
   address: {
     '@type': 'PostalAddress',
+    streetAddress: SITE.address.street,
     addressLocality: SITE.address.locality,
     addressRegion: SITE.address.region,
     postalCode: SITE.address.postcode,

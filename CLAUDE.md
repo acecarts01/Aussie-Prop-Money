@@ -46,7 +46,7 @@ PayID/Osko, Bank Transfer (also via Osko), and crypto (BTC/USDT/ETH/BNB) with a 
 
 ## Brand facts (only these are true — never invent more)
 - Site name: Australian Reserve Props. Domain: australianreserveprops.com.
-- Legal entity: Money 365 Pty Ltd (Australian Private Company), ABN 84 676 764 971, active and GST-registered from 22 Apr 2024. Main business location: The Ponds, NSW 2769. (Supplied 2026-09-12 from the ABR record.)
+- Legal entity: Money 365 Pty Ltd (Australian Private Company), ABN 84 676 764 971, active and GST-registered from 22 Apr 2024. Business address: 35 Blackmore St, Windsor QLD 4030 — matches the Google Business Profile (client decision 2026-10-08, replacing the ABR-record location The Ponds NSW 2769 supplied 2026-09-12). Keep the website, schema and GBP identical.
 - Official email: info@australianreserveprops.com (Zoho Mail). WhatsApp: +61 480 804 189 — the same number is also used for direct calls and SMS/text (client decision 2026-09-26); no separate landline supplied.
 - Founded 2024. Predecessor site went offline; select reviews recovered from that period (client-confirmed genuine, published with dates as given).
 - Market: Australia only (no cross-border shipping/marketing).

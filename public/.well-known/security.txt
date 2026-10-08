@@ -1,4 +1,4 @@
 Contact: mailto:info@australianreserveprops.com
-Expires: 2027-10-07T08:19:35Z
+Expires: 2027-10-08T21:38:26Z
 Preferred-Languages: en
 Canonical: https://australianreserveprops.com/.well-known/security.txt
