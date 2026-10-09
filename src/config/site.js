@@ -3009,7 +3009,7 @@ seoTitle: "The Novelty Big Cheque, Explained",
   },
   {
     slug: "ultimate-guide-to-fake-money-print-templates",
-    seoTitle: "Fake Money Print & Template Guide | Legal Rules AU",
+    seoTitle: "Fake Money Print & Template Guide: Legal Rules AU",
     title: "Fake Money Print and Template Guide: The Legal Rules in Australia",
     date: "2026-10-09",
     excerpt: "Searching for a fake money print file or fake money template? Here are the Australian rules on printing money lookalikes, and the compliant alternative.",
