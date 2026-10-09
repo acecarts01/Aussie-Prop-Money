@@ -37,7 +37,7 @@ export default function ShopPage() {
       <PageHeader
         eyebrow="The full range"
         title="Buy prop money Australia — full range"
-        subtitle="Every stack, set and pack we make, grouped by denomination and brand. Use the filters to find exactly what your production needs."
+        subtitle="Australian prop money for sale online: realistic fake money for film, parties and classrooms, shipped free and tracked across Australia. Use the filters to pick the best prop money for your scene."
         breadcrumbs={<Breadcrumbs trail={[{ label: 'Shop', href: '/shop/' }]} />}
       />
 

@@ -175,6 +175,22 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+      <section className="section surface-1" style={{ paddingTop: 0 }}>
+        <div className="container" style={{ maxWidth: '72ch' }}>
+          <div style={{ borderTop: '1px solid var(--line)', paddingTop: '3rem' }}>
+            <SectionHead eyebrow="Find your fit" title="Prop money for every kind of scene" />
+            <p>
+              Looking for realistic fake money in Australia? Our Australian prop money is reduced-scale, marked NOT LEGAL TENDER and built for film, TV, theatre and content. Choose <Link href="/shop/hundred-dollar-notes/">fake $100 Australia notes</Link> for briefcase scenes, <Link href="/shop/fifty-dollar-notes/">$50 and $20 prop notes</Link> for wallets and registers, or an <Link href="/shop/packs-bundles/">AU prop money pack</Link> when a scene needs volume.
+            </p>
+            <p>
+              Australian prop money for sale also covers parties and gifts: a <Link href="/shop/briefcases-bags/">bag of fake money</Link> for a prank, <Link href="/shop/confetti-party-favors/">money confetti and leis</Link>, a <Link href="/shop/accessories/">money gun</Link>, or <Link href="/shop/kids-play-money/">Australian play money</Link> for the classroom. Every order ships free and tracked, so prop money Australia-wide is a few clicks away.
+            </p>
+            <p>
+              Whatever you call it, prop cash, fake notes, prop Australian money, AUD prop money or fake Australian dollar props, it is the same compliant product, and you can see how much to order in our <Link href="/blog/how-much-prop-money-does-a-short-film-need/">short film prop money guide</Link>.
+            </p>
+          </div>
+        </div>
+      </section>
     </>
   )
 }
