@@ -9,6 +9,7 @@ import YieldChart from '@/components/YieldChart'
 import Icon from '@/components/Icon'
 import { PAGE_FAQS, PRODUCTS, SITE } from '@/config/site'
 import { absoluteUrl, formatPrice, seoTitle, seoDescription, ogMeta } from '@/lib/utils'
+import { graphOf, webPageNode, idRef, ids } from '@/lib/schema'
 
 export const metadata = {
   title: 'Wholesale Prop Money Australia | Bulk Orders for Film & TV',
@@ -27,14 +28,20 @@ const HOW = [
   ['Pre-banded, pre-packed', 'Sets arrive ready for the reveal. Circulation level and band style to spec.'],
 ]
 
-const schema = {
-  '@context': 'https://schema.org',
-  '@type': 'Service',
-  name: 'Prop Money Production & Wholesale',
-  provider: { '@type': 'Organization', name: SITE.name },
-  areaServed: 'AU',
-  description: metadata.description
-}
+const schema = graphOf(
+  webPageNode({ path: '/wholesale/', name: 'Wholesale prop money Australia', description: metadata.description, about: absoluteUrl('/wholesale/#service') }),
+  {
+    '@type': 'Service',
+    '@id': absoluteUrl('/wholesale/#service'),
+    name: 'Prop Money Production & Wholesale',
+    serviceType: 'Wholesale and bulk prop money supply',
+    url: absoluteUrl('/wholesale/'),
+    provider: idRef(ids.org),
+    areaServed: { '@type': 'Country', name: 'Australia' },
+    description: metadata.description,
+    mainEntityOfPage: idRef(absoluteUrl('/wholesale/#webpage')),
+  }
+)
 
 export default function WholesalePage() {
   return (

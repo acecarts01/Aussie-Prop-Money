@@ -9,6 +9,7 @@ import Metadata from '@/components/Metadata'
 import ProductCard from '@/components/ProductCard'
 import { splitAnswer, ANSWER_OVERRIDES } from '@/lib/answers'
 import PriceLadder from '@/components/PriceLadder'
+import { graphOf, webPageNode, idRef, ids, personNode } from '@/lib/schema'
 
 const PRICE_TABLE_POSTS = new Set([
   'how-much-does-prop-money-cost-in-australia',
@@ -141,16 +142,31 @@ export default function BlogPost({ params }) {
   const leadFrom = lead ? formatPriceShort(Math.min(...PRODUCTS.filter((p) => p.category === lead.slug).map((p) => p.price))) : null
   const leadLabel = lead ? (CATEGORY_KEYWORDS[lead.slug]?.title.split(' | ')[0] || lead.name) : 'Shop prop money Australia'
 
-  const schema = {
-    '@context': 'https://schema.org',
-    '@type': 'BlogPosting',
-    headline: post.title,
-    datePublished: post.date,
-    dateModified: post.date,
-    author: { '@type': 'Organization', name: SITE.name },
-    publisher: { '@type': 'Organization', name: SITE.name },
-    mainEntityOfPage: absoluteUrl(`/blog/${post.slug}/`),
-  }
+  const pageUrl = absoluteUrl(`/blog/${post.slug}/`)
+  const articleId = `${pageUrl}#article`
+  const editor = personNode()
+  const words = post.body.join(' ').replace(/\[([^\]]+)\]\([^)]*\)/g, '$1').split(/\s+/).filter(Boolean).length
+  const schema = graphOf(
+    webPageNode({ path: `/blog/${post.slug}/`, name: post.title, description: post.excerpt, type: 'WebPage', about: articleId }),
+    {
+      '@type': 'BlogPosting',
+      '@id': articleId,
+      headline: post.title.length > 110 ? post.title.slice(0, 107).replace(/\s+\S*$/, '…') : post.title,
+      description: post.excerpt,
+      url: pageUrl,
+      image: [absoluteUrl('/og-default.jpg')],
+      datePublished: post.date,
+      dateModified: post.date,
+      inLanguage: 'en-AU',
+      articleSection: 'Prop money guides',
+      wordCount: words,
+      author: idRef(editor ? absoluteUrl('/#editor') : ids.org),
+      publisher: idRef(ids.org),
+      isPartOf: idRef(ids.website),
+      mainEntityOfPage: idRef(`${pageUrl}#webpage`),
+      ...(SOURCES_POSTS.has(post.slug) ? { citation: SOURCES.map((s) => ({ '@type': 'CreativeWork', name: s.label, url: s.href })) } : {}),
+    }
+  )
 
   return (
     <div>

@@ -18,6 +18,7 @@ import YieldChart from '@/components/YieldChart'
 import Icon from '@/components/Icon'
 import { PRODUCTS, SITE, CATEGORY_FAQS, REVIEWS } from '@/config/site'
 import { productAnswer, productFacts } from '@/lib/answers'
+import { graphOf, webPageNode, idRef, ids } from '@/lib/schema'
 import { getProduct, getCategory, relatedProducts, formatPrice, formatPriceShort, absoluteUrl, artLabelFor, seoTitle, seoDescription, ogMeta } from '@/lib/utils'
 
 export function generateStaticParams() {
@@ -50,22 +51,39 @@ export default function ProductPage({ params }) {
   const faqs = CATEGORY_FAQS[product.category] || []
   const isNoteStack = ['twenty-dollar-notes', 'fifty-dollar-notes', 'hundred-dollar-notes'].includes(product.category)
 
-  const schema = {
-    '@context': 'https://schema.org',
-    '@type': 'Product',
-    name: product.name,
-    description: product.description,
-    category: category?.name,
-    brand: { '@type': 'Brand', name: SITE.name },
-    image: photo ? absoluteUrl(`/images/products/${photo}`) : absoluteUrl('/'),
-    offers: {
-      '@type': 'Offer',
-      priceCurrency: SITE.currency,
-      price: product.price,
-      availability: 'https://schema.org/InStock',
-      url: absoluteUrl(`/product/${product.slug}/`),
-    },
-  }
+  const pageUrl = absoluteUrl(`/product/${product.slug}/`)
+  const productId = `${pageUrl}#product`
+  const imageUrl = photo ? absoluteUrl(`/images/products/${photo}`) : absoluteUrl('/og-default.jpg')
+  const schema = graphOf(
+    webPageNode({ path: `/product/${product.slug}/`, name: product.name, description: product.description, about: productId, image: imageUrl }),
+    {
+      '@type': 'Product',
+      '@id': productId,
+      name: product.name,
+      description: product.description,
+      sku: product.slug,
+      url: pageUrl,
+      category: category?.name,
+      brand: { '@type': 'Brand', name: SITE.name },
+      manufacturer: idRef(ids.org),
+      image: [imageUrl],
+      mainEntityOfPage: idRef(`${pageUrl}#webpage`),
+      offers: {
+        '@type': 'Offer',
+        url: pageUrl,
+        priceCurrency: SITE.currency,
+        price: product.price,
+        availability: 'https://schema.org/InStock',
+        itemCondition: 'https://schema.org/NewCondition',
+        seller: idRef(ids.org),
+        shippingDetails: {
+          '@type': 'OfferShippingDetails',
+          shippingRate: { '@type': 'MonetaryAmount', value: 0, currency: SITE.currency },
+          shippingDestination: { '@type': 'DefinedRegion', addressCountry: 'AU' },
+        },
+      },
+    }
+  )
 
   return (
     <div className="has-sticky-cta">

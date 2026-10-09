@@ -1,96 +1,118 @@
-import { SITE } from '@/config/site'
+import { SITE, CATEGORIES } from '@/config/site'
 import { absoluteUrl } from './utils'
 
-export const orgSchema = {
-  '@context': 'https://schema.org',
-  '@type': ['Store', 'Organization', 'LocalBusiness'],
-  name: SITE.name,
-  description: SITE.brandStatement,
-  url: absoluteUrl('/'),
-  legalName: SITE.legalName,
-  foundingDate: String(SITE.foundingYear),
-  foundingLocation: {
-    '@type': 'Place',
+// Stable entity ids. Every page-level node points at these instead of repeating the business details,
+// so crawlers and answer engines resolve one organisation, one website and one logo.
+export const ids = {
+  org: absoluteUrl('/#organization'),
+  website: absoluteUrl('/#website'),
+  logo: absoluteUrl('/#logo'),
+}
+
+const ref = (id) => ({ '@id': id })
+const cleanNumber = (s) => parseInt(String(s).replace(/\D/g, ''), 10)
+
+// Person node, emitted only when real editor details are filled in SITE.editor.
+// Shape: { name, jobTitle, url, sameAs: [real profile URLs], knowsAbout: [...] }
+export function personNode(editor = SITE.editor) {
+  if (!editor?.name) return null
+  return {
+    '@type': 'Person',
+    '@id': absoluteUrl('/#editor'),
+    name: editor.name,
+    ...(editor.jobTitle ? { jobTitle: editor.jobTitle } : {}),
+    ...(editor.url ? { url: editor.url } : {}),
+    ...(editor.sameAs?.length ? { sameAs: editor.sameAs } : {}),
+    ...(editor.knowsAbout?.length ? { knowsAbout: editor.knowsAbout } : {}),
+    worksFor: ref(ids.org),
+  }
+}
+
+export function orgNode() {
+  const geo = SITE.geo ? { geo: { '@type': 'GeoCoordinates', latitude: SITE.geo.lat, longitude: SITE.geo.lng } } : {}
+  const maps = SITE.mapsCid ? { hasMap: `https://www.google.com/maps?cid=${SITE.mapsCid}` } : {}
+  return {
+    '@type': ['Organization', 'LocalBusiness', 'Store'],
+    '@id': ids.org,
+    name: SITE.name,
+    legalName: SITE.legalName,
+    url: absoluteUrl('/'),
+    description: 'Australian Reserve Props sells reduced-scale, Australian-styled prop money for film, theatre, content, education and gifting, shipped Australia-wide. Every product is marked NOT LEGAL TENDER.',
+    logo: { '@type': 'ImageObject', '@id': ids.logo, url: absoluteUrl('/icon.png'), contentUrl: absoluteUrl('/icon.png'), width: 512, height: 512 },
+    image: absoluteUrl('/og-default.jpg'),
+    foundingDate: String(SITE.foundingYear),
     address: {
       '@type': 'PostalAddress',
+      streetAddress: SITE.address.street,
       addressLocality: SITE.address.locality,
       addressRegion: SITE.address.region,
       postalCode: SITE.address.postcode,
       addressCountry: SITE.address.country,
     },
-  },
-  address: {
-    '@type': 'PostalAddress',
-    streetAddress: SITE.address.street,
-    addressLocality: SITE.address.locality,
-    addressRegion: SITE.address.region,
-    postalCode: SITE.address.postcode,
-    addressCountry: SITE.address.country,
-  },
-  email: SITE.email.replace('@', '&#64;'),
-  telephone: SITE.phone,
-  taxID: `ABN ${SITE.abn}`,
-  areaServed: 'AU',
-  priceRange: '$$',
-  sameAs: SITE.sameAs,
-  knowsAbout: [
-    'Australian prop money',
-    'Prop money Australia',
-    'Prop Australian money',
-    'Fake Australian money prop',
-    'Realistic fake money Australia',
-    'AU prop money',
-    'Prop Australian currency',
-    'Prop money detector Australia',
-    'Prop money in Australia',
-    'Fake note Australia',
-    'Fake coins',
-    'Fake money detector',
-    'Fake print money',
-    'AUS prop money',
-    'Proping of money',
-    'Fake note',
-    'Prop money AU',
-    'Australian fake money',
-    'Prop cash',
-    'Fake $100 Australia',
-    'Pokies fake money',
-    'Props money',
-    'Australian prop money detector',
-    'Fake Australian dollar',
-    'Fake prop Australian money',
-    'Fake money print',
-    'Fake money printable',
-    'Fake money tester pen',
-    'How to tell prop money Australia',
-    'Prop money AUD',
-    'Australia prop money',
-    'Australian prop money',
-    'Prop money Australia penalty',
-    'Prop money tester',
-    'Fake cash detector',
-    'Fake money big W',
-    'Fake money flex',
-    'Fake notes Australia',
-    'How to tell if money is fake Australia',
-    'Make fake money',
-    'Prop AUS money',
-    'Ready prop money',
-    'Realistic fake money Australia online',
-    'What is prop money',
-    'Best prop money',
-    'Best fake money',
-  ],
+    ...geo,
+    ...maps,
+    telephone: SITE.phone,
+    contactPoint: [{ '@type': 'ContactPoint', contactType: 'customer service', telephone: SITE.phone, areaServed: 'AU', availableLanguage: 'en-AU' }],
+    taxID: `ABN ${SITE.abn}`,
+    identifier: { '@type': 'PropertyValue', propertyID: 'ABN', value: SITE.abn.replace(/\s/g, '') },
+    areaServed: { '@type': 'Country', name: 'Australia' },
+    priceRange: '$$',
+    currenciesAccepted: SITE.currency,
+    paymentAccepted: 'PayID, Osko bank transfer, cryptocurrency',
+    knowsAbout: ['Prop money', 'Australian banknote reproduction rules', 'Film and theatre props', 'Novelty currency', 'Educational play money'],
+    sameAs: SITE.sameAs,
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: SITE.trustpilotRating,
+      bestRating: 5,
+      worstRating: 1,
+      ratingCount: cleanNumber(SITE.reviewCount),
+    },
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: `${SITE.name} product range`,
+      itemListElement: CATEGORIES.map((c) => ({ '@type': 'OfferCatalog', name: c.name, url: absoluteUrl(`/shop/${c.slug}/`) })),
+    },
+  }
 }
 
-export const websiteSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'WebSite',
-  name: SITE.name,
-  url: absoluteUrl('/'),
-  potentialAction: {
-    '@type': 'SearchAction',
-    target: `${absoluteUrl('/search/')}?q={search_term_string}`,
-    'query-input': 'required name=search_term_string',
-  },
+export function websiteNode() {
+  return {
+    '@type': 'WebSite',
+    '@id': ids.website,
+    url: absoluteUrl('/'),
+    name: SITE.name,
+    inLanguage: 'en-AU',
+    publisher: ref(ids.org),
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: { '@type': 'EntryPoint', urlTemplate: `${absoluteUrl('/search/')}?q={search_term_string}` },
+      'query-input': 'required name=search_term_string',
+    },
+  }
 }
+
+// One @graph carried on every page: organisation, website and (when real details exist) the editor.
+export const siteGraph = {
+  '@context': 'https://schema.org',
+  '@graph': [orgNode(), websiteNode(), personNode()].filter(Boolean),
+}
+
+export function webPageNode({ path, name, description, type = 'WebPage', about, image }) {
+  const url = absoluteUrl(path)
+  return {
+    '@type': type,
+    '@id': `${url}#webpage`,
+    url,
+    name,
+    ...(description ? { description } : {}),
+    inLanguage: 'en-AU',
+    isPartOf: ref(ids.website),
+    publisher: ref(ids.org),
+    ...(about ? { about: ref(about) } : {}),
+    ...(image ? { primaryImageOfPage: { '@type': 'ImageObject', url: image } } : {}),
+  }
+}
+
+export const graphOf = (...nodes) => ({ '@context': 'https://schema.org', '@graph': nodes.filter(Boolean) })
+export { ref as idRef }

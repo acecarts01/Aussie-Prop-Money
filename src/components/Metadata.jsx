@@ -1,18 +1,20 @@
-import { orgSchema, websiteSchema } from '@/lib/schema'
+import { siteGraph } from '@/lib/schema'
 
 // JSON-LD injection only. Title, description, canonical, robots and Open Graph come
 // from each route's Next metadata export; emitting them here as well produced two
 // conflicting <title>, description and canonical tags on shop, blog, about and wholesale pages.
 export default function Metadata({ schemas = [], includeSiteSchemas = false }) {
-  const allSchemas = [...(includeSiteSchemas ? [orgSchema, websiteSchema] : []), ...schemas]
+  const all = [...(includeSiteSchemas ? [siteGraph] : []), ...schemas]
 
-  const safeSerialize = (data) =>
-    JSON.stringify(data).replace(/</g, '\\u003c').replace(/>/g, '\\u003e').replace(/&/g, '&#64;')
+  // JSON inside a <script> only needs "<", ">" and the two line separators neutralised.
+  // An earlier version also rewrote "&", which corrupted names such as "Packs & Bundles".
+  const serialize = (data) =>
+    JSON.stringify(data).replace(/</g, '\\u003c').replace(/>/g, '\\u003e').replace(/\u2028/g, '\\u2028').replace(/\u2029/g, '\\u2029')
 
   return (
     <>
-      {allSchemas.map((schema, i) => (
-        <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeSerialize(schema) }} />
+      {all.map((schema, i) => (
+        <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: serialize(schema) }} />
       ))}
     </>
   )

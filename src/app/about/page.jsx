@@ -8,6 +8,7 @@ import Metadata from '@/components/Metadata'
 import Icon from '@/components/Icon'
 import { SITE, PAGE_FAQS, PRODUCTS, CATEGORIES, DIRECTORIES } from '@/config/site'
 import { absoluteUrl, seoTitle, seoDescription, ogMeta } from '@/lib/utils'
+import { graphOf, webPageNode, idRef, ids } from '@/lib/schema'
 
 export const metadata = {
   title: seoTitle('About Australian Reserve Props — Compliance-First Prop Money'),
@@ -16,11 +17,10 @@ export const metadata = {
   alternates: { canonical: absoluteUrl('/about/') },
 }
 
-const schema = {
-  '@context': 'https://schema.org',
-  '@type': 'AboutPage',
-  mainEntity: { '@type': 'Organization', name: SITE.name, foundingDate: String(SITE.foundingYear), url: absoluteUrl('/'), areaServed: 'AU' },
-}
+const schema = graphOf({
+  ...webPageNode({ path: '/about/', name: `About ${SITE.name}`, type: 'AboutPage' }),
+  mainEntity: idRef(ids.org),
+})
 
 const DIFF = [
   ['Australian spec, not US', 'Built around the Crimes (Currency) Act 1981 and RBA reproduction guidance — not repackaged US-dollar props.'],

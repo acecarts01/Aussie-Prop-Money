@@ -46,7 +46,12 @@ export const SITE = {
   },
   reviewCount: '3,413+',
   trustpilotRating: 4.8,
-  sameAs: [], // no real social profiles supplied yet — never invent
+  // Real profiles only — never invent. The Google Business Profile id and coordinates were read from the live listing (2026-10-09).
+  mapsCid: '17960524898646271754',
+  geo: { lat: -27.4302714, lng: 153.0356866 },
+  sameAs: ['https://www.google.com/maps?cid=17960524898646271754'],
+  // Fill with a real person to switch on the Person (author/reviewer) node: { name, jobTitle, url, sameAs: [...], knowsAbout: [...] }
+  editor: null,
 }
 
 export const BRANDS = [
