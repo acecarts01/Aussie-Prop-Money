@@ -19,6 +19,7 @@ import Icon from '@/components/Icon'
 import { PRODUCTS, SITE, CATEGORY_FAQS, REVIEWS } from '@/config/site'
 import { productAnswer, productFacts } from '@/lib/answers'
 import { graphOf, webPageNode, idRef, ids } from '@/lib/schema'
+import { guidesForCategory } from '@/lib/links'
 import { getProduct, getCategory, relatedProducts, formatPrice, formatPriceShort, absoluteUrl, artLabelFor, seoTitle, seoDescription, ogMeta } from '@/lib/utils'
 
 export function generateStaticParams() {
@@ -49,6 +50,7 @@ export default function ProductPage({ params }) {
   const related = relatedProducts(product)
   const photo = product.images?.[0]
   const faqs = CATEGORY_FAQS[product.category] || []
+  const guides = guidesForCategory(product.category, 3)
   const isNoteStack = ['twenty-dollar-notes', 'fifty-dollar-notes', 'hundred-dollar-notes'].includes(product.category)
 
   const pageUrl = absoluteUrl(`/product/${product.slug}/`)
@@ -195,6 +197,19 @@ export default function ProductPage({ params }) {
           </dl>
         </div>
       </section>
+
+      {guides.length > 0 && (
+        <section className="section surface-2">
+          <div className="container" style={{ maxWidth: '72ch' }}>
+            <h2 style={{ fontSize: '1.5rem', marginBottom: '0.75rem' }}>Read before you order</h2>
+            <ul className="guide-list">
+              {guides.map((g) => (
+                <li key={g.slug}><Link href={`/blog/${g.slug}/`}>{g.title}</Link></li>
+              ))}
+            </ul>
+          </div>
+        </section>
+      )}
 
       {/* FAQ + related + report */}
       <section className="section surface-2">

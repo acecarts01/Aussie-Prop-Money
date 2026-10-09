@@ -45,7 +45,7 @@ export default function ProductCard({ product, priority = false }) {
         <h3><Link href={href}>{product.name}</Link></h3>
         {valueReturn(product) ? <ValueReturn product={product} size="card" /> : <p className="meta">{product.faceValueLabel}</p>}
         <CardAdd product={product} />
-        <Link href={href} className="go">Details, options &amp; sizes →</Link>
+        <Link href={href} className="go">Details, options &amp; sizes →<span className="visually-hidden"> for {product.name}</span></Link>
       </div>
     </motion.div>
   )

@@ -49,6 +49,11 @@ export const SITE = {
   // Real profiles only — never invent. The Google Business Profile id and coordinates were read from the live listing (2026-10-09).
   mapsCid: '17960524898646271754',
   geo: { lat: -27.4302714, lng: 153.0356866 },
+  // Opening hours as supplied by the client 2026-10-09 (same as the Google Business Profile).
+  hours: [
+    { days: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'], opens: '07:00', closes: '23:00' },
+    { days: ['Sunday'], opens: '07:30', closes: '22:30' },
+  ],
   sameAs: ['https://www.google.com/maps?cid=17960524898646271754'],
   // Fill with a real person to switch on the Person (author/reviewer) node: { name, jobTitle, url, sameAs: [...], knowsAbout: [...] }
   editor: null,

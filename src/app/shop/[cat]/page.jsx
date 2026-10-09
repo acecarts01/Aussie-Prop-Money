@@ -8,6 +8,7 @@ import FaqBlock from '@/components/FaqBlock'
 import Metadata from '@/components/Metadata'
 import { CATEGORIES, BRANDS, CATEGORY_KEYWORDS, CATEGORY_FAQS, SITE } from '@/config/site'
 import { CATEGORY_ANSWERS, categoryFacts } from '@/lib/answers'
+import { guidesForCategory } from '@/lib/links'
 import { getCategory, productsIn, absoluteUrl, seoTitle, seoDescription, ogMeta, itemListSchema, formatPriceShort } from '@/lib/utils'
 
 export function generateStaticParams() {
@@ -36,6 +37,7 @@ export default function CategoryPage({ params }) {
   if (!category) notFound()
   const products = productsIn(category.slug)
   const faqs = CATEGORY_FAQS[category.slug] || []
+  const guides = guidesForCategory(category.slug, 4)
 
   return (
     <div>
@@ -77,6 +79,19 @@ export default function CategoryPage({ params }) {
                 <div key={k}><dt>{k}</dt><dd>{v}</dd></div>
               ))}
             </dl>
+          </div>
+        </section>
+      )}
+
+      {guides.length > 0 && (
+        <section className="section surface-1">
+          <div className="container" style={{ maxWidth: '72ch' }}>
+            <h2 style={{ fontSize: '1.5rem', marginBottom: '0.75rem' }}>Guides for {category.name}</h2>
+            <ul className="guide-list">
+              {guides.map((g) => (
+                <li key={g.slug}><Link href={`/blog/${g.slug}/`}>{g.title}</Link></li>
+              ))}
+            </ul>
           </div>
         </section>
       )}

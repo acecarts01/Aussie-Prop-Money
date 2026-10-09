@@ -52,6 +52,12 @@ export function orgNode() {
     ...geo,
     ...maps,
     telephone: SITE.phone,
+    openingHoursSpecification: SITE.hours.map((h) => ({
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: h.days.map((d) => `https://schema.org/${d}`),
+      opens: h.opens,
+      closes: h.closes,
+    })),
     contactPoint: [{ '@type': 'ContactPoint', contactType: 'customer service', telephone: SITE.phone, areaServed: 'AU', availableLanguage: 'en-AU' }],
     taxID: `ABN ${SITE.abn}`,
     identifier: { '@type': 'PropertyValue', propertyID: 'ABN', value: SITE.abn.replace(/\s/g, '') },

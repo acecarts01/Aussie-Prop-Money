@@ -7,6 +7,7 @@ import ComplianceBadge from '@/components/ComplianceBadge'
 import FaqBlock from '@/components/FaqBlock'
 import Metadata from '@/components/Metadata'
 import ProductCard from '@/components/ProductCard'
+import { TAG_TO_CATEGORY } from '@/lib/links'
 import { splitAnswer, ANSWER_OVERRIDES } from '@/lib/answers'
 import PriceLadder from '@/components/PriceLadder'
 import { graphOf, webPageNode, idRef, ids, personNode } from '@/lib/schema'
@@ -63,40 +64,6 @@ function productsForPost(categories) {
   return picked.slice(0, 4)
 }
 
-// Maps a post's free-text tags to real shop category slugs, so every post
-// links out to 2-3 relevant categories instead of only the generic /shop/
-// CTA — the internal-linking standard WebForge audits for.
-const TAG_TO_CATEGORY = {
-  'twenty-dollar-prop-note': 'twenty-dollar-notes',
-  'fifty-dollar-prop-note': 'fifty-dollar-notes',
-  'hundred-dollar-prop-note': 'hundred-dollar-notes',
-  'vintage-prop-note': 'vintage-series-notes',
-  'mixed-denomination-pack': 'packs-bundles',
-  'bulk-production-pack': 'packs-bundles',
-  'production-pack': 'packs-bundles',
-  'wedding-event-pack': 'packs-bundles',
-  'briefcase-prop-set': 'briefcases-bags',
-  'duffel-bag-prop': 'briefcases-bags',
-  'money-confetti': 'confetti-party-favors',
-  'shredded-cash': 'confetti-party-favors',
-  'money-lei': 'confetti-party-favors',
-  'party-prank-money': 'confetti-party-favors',
-  'display-collectible': 'display-collectibles',
-  'limited-edition-prop': 'display-collectibles',
-  'display-case-accessory': 'display-collectibles',
-  'personalised-prop-note': 'personalised-novelty',
-  'novelty-cheque': 'personalised-novelty',
-  'kids-play-money': 'kids-play-money',
-  'classroom-play-money': 'kids-play-money',
-  'educational-play-money': 'kids-play-money',
-  'gift-money-set': 'gift-sets',
-  'birthday-money-gift-box': 'gift-sets',
-  'money-gun-device': 'accessories',
-  'money-gun-refill': 'accessories',
-  'currency-band-accessory': 'accessories',
-  'content-creator-props': 'packs-bundles',
-  'magic-trick-money': 'twenty-dollar-notes',
-}
 
 function relatedCategoriesFor(tags = []) {
   const slugs = [...new Set(tags.map((t) => TAG_TO_CATEGORY[t]).filter(Boolean))]
@@ -197,7 +164,7 @@ export default function BlogPost({ params }) {
             <span style={{ color: 'var(--ink)', fontWeight: 600 }}>
               {lead ? `${leadLabel}${leadFrom ? ` from ${leadFrom}` : ''} · free tracked shipping Australia-wide` : 'Free tracked shipping Australia-wide on every order'}
             </span>
-            <Link href={lead ? `/shop/${lead.slug}/` : '/shop/'} className="btn btn-accent">{lead ? 'Shop now →' : 'Shop prop money →'}</Link>
+            <Link href={lead ? `/shop/${lead.slug}/` : '/shop/'} className="btn btn-accent">{lead ? `${leadLabel} →` : 'Buy prop money in Australia →'}</Link>
           </div>
           {PRICE_TABLE_POSTS.has(post.slug) && <PriceLadder />}
           {rest.map((para, i) => (
@@ -253,7 +220,7 @@ export default function BlogPost({ params }) {
 
         <div className="card card-pad" style={{ marginTop: '2.5rem', display: 'flex', flexWrap: 'wrap', gap: '1rem', alignItems: 'center', justifyContent: 'space-between' }}>
           <ComplianceBadge />
-          <Link href="/shop/" className="btn btn-accent">Shop film-ready packs →</Link>
+          <Link href="/shop/" className="btn btn-accent">Buy prop money in Australia →</Link>
         </div>
       </article>
     </div>

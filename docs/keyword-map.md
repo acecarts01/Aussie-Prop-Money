@@ -31,6 +31,15 @@ Client pasted a ~100-term list sourced externally (not a verified Semrush/Ahrefs
 - **Still excluded (compliance, not stuffing)**: `make fake money`, `create fake money`, `how to make fake money feel more real at home` (instruction content, and the original tea-staining advice), `1 1 prop money` (the 1:1 scale claim on the CLAUDE.md banned list). The two victim-help queries `atm gave me fake money` and `will the bank replace fake money` were re-admitted: they sit on a consumer-safety article, not an instruction page.
 - **Duplicate head tags fixed 2026-10-09**: `Metadata.jsx` no longer renders title, description, canonical, robots or Open Graph tags (Next metadata owns them); it only injects JSON-LD.
 
+## Internal linking and anchor rules (set 2026-10-09, Phase 5)
+
+Flow: guides (informational) → category pillars → products (transactional); and back down: category and product pages link to the guides that answer pre-purchase questions. Pillars are the homepage, `/shop/`, the 12 category pages and `/wholesale/`.
+- **Anchor text names the destination.** Category links use the page's own buyer phrase (for example "Buy $100 Prop Money Australia"); product links use the product name; guide links use the guide's title. Never "click here", "read more", "shop now" or a bare arrow as the only text. Visual short labels are allowed when a visually-hidden suffix completes the phrase (product cards: "Details, options & sizes → for {product name}").
+- **One pillar target per post CTA.** Each post's "Shop now" bar and strip point at the post's lead category (from `TAG_TO_CATEGORY` in `src/lib/links.js`), plus the general "Buy prop money in Australia" link to `/shop/` at the end.
+- **Guides per page.** Category pages show 4 guides, product pages 3, chosen by `guidesForCategory()` (tag match, then newest). Posts link to 3 related posts by tag overlap.
+- **Measured 2026-10-09 (built site):** zero shop or blog pages without contextual inlinks; product pages link to 2.9 guides on average (was 0), categories 3.7 (was 1.0); generic anchors to shop and product pages 0% (was 42%).
+- **Merchant Center:** no product feed exists and none should be created until Google Merchant Center support confirms prop money is eligible (the policy search found no rule naming prop money, but the "dishonest behavior" and currency categories could be applied). Free listings via on-page Product markup stay in place.
+
 ## Primary keyword
 **prop money australia** — pillar term, assigned to the homepage + `/shop/` hub.
 
