@@ -232,3 +232,14 @@ content update.
 
 **Don't submit until the domain is actually live** — verifying and submitting a sitemap for a domain that isn't
 deployed yet just wastes the crawl budget and can return errors that are annoying to clear later.
+
+## 2026 SEO / GEO audit programme — completed 2026-10-09 (six phases)
+
+1. **Architecture and INP:** all routes static (SSG), edge-cached in Sydney; one title/description/canonical/robots tag per page (Metadata.jsx now emits JSON-LD only). Performance fixes: CSS reveal instead of motion on cards and footer, chat and review pop-up load when idle (`LateWidgets`), d3 chart renders only near the viewport (`LazyYieldChart`), image widths capped at 1600, sitemap lastmod is a real content date (`src/app/sitemap.js`, update the constant when content changes).
+2. **GEO:** every post opens with a 40-60 word "short answer"; category and product pages carry a question heading, a 40-60 word answer and a key-facts list (`src/lib/answers.js`); FAQ questions are h3; zero skipped heading levels.
+3. **E-E-A-T / information gain:** byline with ABN and ABR link on every post; legal posts cite the RBA reproducing-banknotes page and the in-force Crimes (Currency) Act; catalogue price-per-note table on five pricing posts. RBA rule is "under three-quarters or over one and a half times the length and width, and one-sided".
+4. **Schema:** one shared `@graph` (Organization/LocalBusiness/Store, WebSite, optional Person) plus page nodes linked by @id (`src/lib/schema.js`). AggregateRating uses the displayed figures (4.8 / 3,413). Opening hours in `SITE.hours`. Serializer no longer rewrites ampersands; email is omitted from JSON-LD.
+5. **Linking:** guides on category (4) and product (3) pages via `guidesForCategory()` in `src/lib/links.js`; no generic anchors (rules in docs/keyword-map.md).
+6. **Regression (live):** 147/147 sitemap URLs return 200 with one title, description, canonical (self-referencing), robots and h1; no noindex on sitemap URLs; 153 internal link targets all 200; JSON-LD parses everywhere; four retired-post redirects map to live pages.
+
+**Open items (need the client):** confirm printed notes are single-sided (RBA rule) before keeping "RBA-compliant" wording; source of the 4.8 / 3,413 rating figures (39 dated reviews on file average 4.64); real editor name, role and profiles to switch on the Person node (`SITE.editor`); return policy for Merchant markup; Merchant Center ruling before any product feed; approval for the post consolidation plan (86 -> about 58 URLs, 301 mappings) and for expanding thin posts (median 240 words).
