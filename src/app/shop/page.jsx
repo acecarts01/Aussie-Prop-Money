@@ -46,7 +46,7 @@ export default function ShopPage() {
           {/* Sidebar Filter */}
           <aside className="shop-sidebar card card-pad" style={{ position: 'sticky', top: '100px' }}>
             <div style={{ marginBottom: '1.5rem' }}>
-              <h4 style={{ fontSize: '0.9rem', marginBottom: '1rem', color: 'var(--accent)' }}>Categories</h4>
+              <p className="h-label" style={{ fontSize: '0.9rem', marginBottom: '1rem', color: 'var(--accent)' }}>Categories</p>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                 <button 
                   onClick={() => setSelectedCategory('all')} 
@@ -69,7 +69,7 @@ export default function ShopPage() {
             </div>
 
             <div style={{ marginBottom: '1.5rem' }}>
-              <h4 style={{ fontSize: '0.9rem', marginBottom: '1rem', color: 'var(--accent)' }}>Brands</h4>
+              <p className="h-label" style={{ fontSize: '0.9rem', marginBottom: '1rem', color: 'var(--accent)' }}>Brands</p>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                 <button 
                   onClick={() => setSelectedBrand('all')} 
@@ -92,7 +92,7 @@ export default function ShopPage() {
             </div>
 
             <div>
-              <h4 style={{ fontSize: '0.9rem', marginBottom: '1rem', color: 'var(--accent)' }}>Max Price</h4>
+              <p className="h-label" style={{ fontSize: '0.9rem', marginBottom: '1rem', color: 'var(--accent)' }}>Max Price</p>
               <input 
                 type="range" 
                 min="0" 
@@ -122,7 +122,8 @@ export default function ShopPage() {
           </aside>
 
           {/* Product Grid */}
-          <main>
+          <div>
+            <h2 className="visually-hidden">All prop money products</h2>
             <div style={{ marginBottom: '1.5rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <span style={{ color: 'var(--ink-3)', fontSize: '0.9rem' }}>
                 Showing <strong>{filteredProducts.length}</strong> products
@@ -139,7 +140,7 @@ export default function ShopPage() {
                 {filteredProducts.map((p) => <ProductCard key={p.slug} product={p} />)}
               </div>
             )}
-          </main>
+          </div>
         </div>
       </div>
 

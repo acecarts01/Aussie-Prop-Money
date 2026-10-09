@@ -122,7 +122,7 @@ export default function YieldChart({ currentSlug, customData, title = 'Value Sca
 
   return (
     <div className="yield-chart-wrap" style={{ marginTop: '1.5rem' }}>
-      <h4 style={{ fontSize: '0.8rem', marginBottom: '1rem', color: 'var(--ink-2)' }}>{title}</h4>
+      <p className="h-label" style={{ fontSize: '0.8rem', marginBottom: '1rem', color: 'var(--ink-2)' }}>{title}</p>
       <div style={{ background: 'rgba(0,0,0,0.2)', borderRadius: 'var(--radius)', padding: '1rem', border: '1px solid var(--line)' }}>
         <svg ref={svgRef} />
       </div>

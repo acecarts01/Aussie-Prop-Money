@@ -7,6 +7,7 @@ import ComplianceBadge from '@/components/ComplianceBadge'
 import FaqBlock from '@/components/FaqBlock'
 import Metadata from '@/components/Metadata'
 import ProductCard from '@/components/ProductCard'
+import { splitAnswer, ANSWER_OVERRIDES } from '@/lib/answers'
 import { POSTS, SITE, CATEGORIES, PRODUCTS, CATEGORY_KEYWORDS } from '@/config/site'
 import { absoluteUrl, seoTitle, seoDescription, ogMeta, formatPriceShort } from '@/lib/utils'
 
@@ -111,6 +112,8 @@ export default function BlogPost({ params }) {
   const related = relatedCategoriesFor(post.tags)
   const relatedPosts = relatedPostsFor(post)
   const body = tidyBody(post.body)
+  const override = ANSWER_OVERRIDES[post.slug]
+  const { answer, rest } = override ? { answer: override, rest: body } : splitAnswer(body)
   const shopProducts = productsForPost(related)
   const lead = related[0]
   const leadFrom = lead ? formatPriceShort(Math.min(...PRODUCTS.filter((p) => p.category === lead.slug).map((p) => p.price))) : null
@@ -144,19 +147,19 @@ export default function BlogPost({ params }) {
 
       <article className="container section" style={{ maxWidth: '72ch' }}>
         <div style={{ fontSize: '1.05rem', color: 'var(--ink-2)' }} className="markdown-body">
-          {body.map((para, i) => (
-            <div key={i}>
-              <div style={{ marginBottom: '1.5rem' }}>
-                <ReactMarkdown>{para}</ReactMarkdown>
-              </div>
-              {i === 0 && (
-                <div className="card card-pad" style={{ margin: '0 0 1.75rem', display: 'flex', flexWrap: 'wrap', gap: '0.75rem 1.25rem', alignItems: 'center', justifyContent: 'space-between' }}>
-                  <span style={{ color: 'var(--ink)', fontWeight: 600 }}>
-                    {lead ? `${leadLabel}${leadFrom ? ` from ${leadFrom}` : ''} · free tracked shipping Australia-wide` : 'Free tracked shipping Australia-wide on every order'}
-                  </span>
-                  <Link href={lead ? `/shop/${lead.slug}/` : '/shop/'} className="btn btn-accent">{lead ? 'Shop now →' : 'Shop prop money →'}</Link>
-                </div>
-              )}
+          <section className="answer-capsule" aria-labelledby="short-answer">
+            <h2 id="short-answer">The short answer</h2>
+            <ReactMarkdown>{answer}</ReactMarkdown>
+          </section>
+          <div className="card card-pad" style={{ margin: '0 0 1.75rem', display: 'flex', flexWrap: 'wrap', gap: '0.75rem 1.25rem', alignItems: 'center', justifyContent: 'space-between' }}>
+            <span style={{ color: 'var(--ink)', fontWeight: 600 }}>
+              {lead ? `${leadLabel}${leadFrom ? ` from ${leadFrom}` : ''} · free tracked shipping Australia-wide` : 'Free tracked shipping Australia-wide on every order'}
+            </span>
+            <Link href={lead ? `/shop/${lead.slug}/` : '/shop/'} className="btn btn-accent">{lead ? 'Shop now →' : 'Shop prop money →'}</Link>
+          </div>
+          {rest.map((para, i) => (
+            <div key={i} style={{ marginBottom: '1.5rem' }}>
+              <ReactMarkdown>{para}</ReactMarkdown>
             </div>
           ))}
         </div>

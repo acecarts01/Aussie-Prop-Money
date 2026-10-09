@@ -22,6 +22,7 @@ export default function BlogIndex() {
         breadcrumbs={<Breadcrumbs trail={[{ label: 'Guides', href: '/blog/' }]} />}
       />
       <div className="container section">
+        <h2 className="visually-hidden">All prop money guides</h2>
         <div className="grid grid-3">
           {posts.map((p) => (
             <Link key={p.slug} href={`/blog/${p.slug}/`} className="card card-pad blog-card">

@@ -29,7 +29,7 @@ export default function FaqPage() {
       />
 
       <div className="container section grid grid-2" style={{ alignItems: 'start' }}>
-        <FaqBlock faqs={ALL} title="" />
+        <FaqBlock faqs={ALL} title="Frequently asked questions" hideTitle />
         <aside className="card card-pad" style={{ position: 'sticky', top: '6rem' }}>
           <span className="eyebrow">The short version</span>
           <h2 style={{ fontSize: '1.4rem' }}>Legal to make. Never money.</h2>

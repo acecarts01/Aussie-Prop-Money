@@ -8,7 +8,7 @@ import { useMemo } from 'react'
  * 
  * Safely serializes data to prevent XSS (escapes </script> tags).
  */
-export default function FaqBlock({ faqs, title = 'Frequently asked questions' }) {
+export default function FaqBlock({ faqs, title = 'Frequently asked questions', hideTitle = false }) {
   if (!faqs || faqs.length === 0) return null
 
   // Generate the schema reactively when faqs change.
@@ -38,12 +38,14 @@ export default function FaqBlock({ faqs, title = 'Frequently asked questions' })
         dangerouslySetInnerHTML={{ __html: safeSchema }}
       />
       
-      {title && <h2 style={{ fontSize: '1.4rem', marginBottom: '1.2rem' }}>{title}</h2>}
+      {title && (hideTitle
+        ? <h2 className="visually-hidden">{title}</h2>
+        : <h2 style={{ fontSize: '1.4rem', marginBottom: '1.2rem' }}>{title}</h2>)}
       
       <div className="faq-list">
         {faqs.map((f, i) => (
           <details key={f.q || i}>
-            <summary>{f.q}</summary>
+            <summary><h3 className="faq-q">{f.q}</h3></summary>
             <p>{f.a}</p>
           </details>
         ))}

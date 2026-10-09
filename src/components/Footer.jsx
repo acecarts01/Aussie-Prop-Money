@@ -51,7 +51,7 @@ export default function Footer() {
             transition={{ delay: 0.1 }}
             className="footer-col"
           >
-            <h4>Shop</h4>
+            <p className="h-label">Shop</p>
             <ul>
               {CATEGORIES.map((c) => (
                 <li key={c.slug}><Link href={`/shop/${c.slug}/`}>{c.name}</Link></li>
@@ -66,7 +66,7 @@ export default function Footer() {
             transition={{ delay: 0.2 }}
             className="footer-col"
           >
-            <h4>Company</h4>
+            <p className="h-label">Company</p>
             <ul>
               <li><Link href="/about/">About</Link></li>
               <li><Link href="/wholesale/">Production &amp; wholesale</Link></li>
@@ -84,7 +84,7 @@ export default function Footer() {
             transition={{ delay: 0.3 }}
             className="footer-col"
           >
-            <h4>Legal &amp; support</h4>
+            <p className="h-label">Legal &amp; support</p>
             <ul>
               <li><Link href="/shipping/">Shipping</Link></li>
               <li><Link href="/refund/">Refunds</Link></li>
@@ -100,7 +100,7 @@ export default function Footer() {
             transition={{ delay: 0.4 }}
             className="footer-col"
           >
-            <h4>Contact</h4>
+            <p className="h-label">Contact</p>
             <ul className="contact-list">
               {hasEmail && <li><span>Email</span><a href={`mailto:${encodedEmail(SITE.email)}`} dangerouslySetInnerHTML={{ __html: encodedEmail(SITE.email) }} /></li>}
               {hasWhatsapp && <li><span>WhatsApp</span><a href={waHref} target="_blank" rel="noopener noreferrer">{SITE.whatsapp}</a></li>}
@@ -115,7 +115,7 @@ export default function Footer() {
             transition={{ delay: 0.5 }}
             className="footer-col"
           >
-            <h4>Industry Resources</h4>
+            <p className="h-label">Industry Resources</p>
             <ul>
               {DIRECTORIES.slice(0, 6).map((d) => (
                 <li key={d.name}><a href={d.href} target="_blank" rel="noopener noreferrer">{d.name}</a></li>

@@ -14,6 +14,7 @@ import AnimatedStatStrip from '@/components/AnimatedStatStrip'
 import AnimatedText from '@/components/AnimatedText'
 import { CATEGORIES, PRODUCTS, FAQS, REVIEWS, POSTS, SITE, HERO, COMPLIANCE } from '@/config/site'
 import { absoluteUrl, ogMeta } from '@/lib/utils'
+import { HOME_DEFINITION } from '@/lib/answers'
 
 export const metadata = {
   title: 'Buy Prop Money Australia | Australian Reserve Props',
@@ -178,7 +179,8 @@ export default function HomePage() {
       <section className="section surface-1" style={{ paddingTop: 0 }}>
         <div className="container" style={{ maxWidth: '72ch' }}>
           <div style={{ borderTop: '1px solid var(--line)', paddingTop: '3rem' }}>
-            <SectionHead eyebrow="Find your fit" title="Prop money for every kind of scene" />
+            <SectionHead eyebrow="Find your fit" title="What is prop money?" />
+            <p>{HOME_DEFINITION}</p>
             <p>
               Looking for realistic fake money in Australia? Our Australian prop money is reduced-scale, marked NOT LEGAL TENDER and built for film, TV, theatre and content. Choose <Link href="/shop/hundred-dollar-notes/">fake $100 Australia notes</Link> for briefcase scenes, <Link href="/shop/fifty-dollar-notes/">$50 and $20 prop notes</Link> for wallets and registers, or an <Link href="/shop/packs-bundles/">AU prop money pack</Link> when a scene needs volume.
             </p>

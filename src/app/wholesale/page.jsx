@@ -57,7 +57,7 @@ export default function WholesalePage() {
           {HOW.map(([t, d], i) => (
             <div key={t} className="card card-pad">
               <span className="eyebrow">Step 0{i + 1}</span>
-              <h3 style={{ marginBottom: '0.4rem' }}>{t}</h3>
+              <h2 style={{ marginBottom: '0.4rem', fontSize: 'clamp(1.15rem, 2vw, 1.5rem)', letterSpacing: '0.01em' }}>{t}</h2>
               <p style={{ color: 'var(--ink-2)', margin: 0, fontSize: '0.95rem' }}>{d}</p>
             </div>
           ))}

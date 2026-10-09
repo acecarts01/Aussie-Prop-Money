@@ -6,7 +6,8 @@ import PageHeader from '@/components/PageHeader'
 import ComplianceBadge from '@/components/ComplianceBadge'
 import FaqBlock from '@/components/FaqBlock'
 import Metadata from '@/components/Metadata'
-import { CATEGORIES, BRANDS, CATEGORY_KEYWORDS, CATEGORY_FAQS } from '@/config/site'
+import { CATEGORIES, BRANDS, CATEGORY_KEYWORDS, CATEGORY_FAQS, SITE } from '@/config/site'
+import { CATEGORY_ANSWERS, categoryFacts } from '@/lib/answers'
 import { getCategory, productsIn, absoluteUrl, seoTitle, seoDescription, ogMeta, itemListSchema, formatPriceShort } from '@/lib/utils'
 
 export function generateStaticParams() {
@@ -55,6 +56,7 @@ export default function CategoryPage({ params }) {
       </div>
 
       <div className="container section-tight">
+        <h2 className="visually-hidden">{category.name} products</h2>
         {products.length > 0 ? (
           <div className="grid grid-4">
             {products.map((p, i) => <ProductCard key={p.slug} product={p} priority={i < 2} />)}
@@ -63,6 +65,21 @@ export default function CategoryPage({ params }) {
           <p>No products in this category yet — check back soon.</p>
         )}
       </div>
+
+      {CATEGORY_ANSWERS[category.slug] && products.length > 0 && (
+        <section className="section surface-1">
+          <div className="container" style={{ maxWidth: '72ch' }}>
+            <h2 style={{ fontSize: '1.5rem', marginBottom: '0.75rem' }}>{CATEGORY_ANSWERS[category.slug].q}</h2>
+            <p>{CATEGORY_ANSWERS[category.slug].a}</p>
+            <h3 style={{ fontSize: '1.1rem', margin: '1.5rem 0 0.75rem' }}>Key facts</h3>
+            <dl className="key-facts">
+              {categoryFacts(products, SITE.orderRules.minOrder).map(([k, v]) => (
+                <div key={k}><dt>{k}</dt><dd>{v}</dd></div>
+              ))}
+            </dl>
+          </div>
+        </section>
+      )}
 
       <section className="section surface-2">
         <div className="container grid grid-2" style={{ alignItems: 'start' }}>

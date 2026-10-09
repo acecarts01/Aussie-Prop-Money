@@ -17,6 +17,7 @@ import Metadata from '@/components/Metadata'
 import YieldChart from '@/components/YieldChart'
 import Icon from '@/components/Icon'
 import { PRODUCTS, SITE, CATEGORY_FAQS, REVIEWS } from '@/config/site'
+import { productAnswer, productFacts } from '@/lib/answers'
 import { getProduct, getCategory, relatedProducts, formatPrice, formatPriceShort, absoluteUrl, artLabelFor, seoTitle, seoDescription, ogMeta } from '@/lib/utils'
 
 export function generateStaticParams() {
@@ -163,6 +164,19 @@ export default function ProductPage({ params }) {
           </div>
         </section>
       )}
+
+      <section className="section surface-1">
+        <div className="container" style={{ maxWidth: '72ch' }}>
+          <h2 style={{ fontSize: '1.5rem', marginBottom: '0.75rem' }}>What is the {product.name}?</h2>
+          <p>{productAnswer(product)}</p>
+          <h3 style={{ fontSize: '1.1rem', margin: '1.5rem 0 0.75rem' }}>Key facts</h3>
+          <dl className="key-facts">
+            {productFacts(product, SITE.orderRules.minOrder).map(([k, v]) => (
+              <div key={k}><dt>{k}</dt><dd>{v}</dd></div>
+            ))}
+          </dl>
+        </div>
+      </section>
 
       {/* FAQ + related + report */}
       <section className="section surface-2">
