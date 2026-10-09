@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { formatPrice } from '@/lib/utils'
 import { yieldLadder, fmtFace } from '@/lib/value'
-import YieldChart from './YieldChart'
+import YieldChart from './LazyYieldChart'
 
 const SIZE_NAME = { 50: 'Half pack · single strap', 100: 'Full stack', 250: 'Jumbo pack' }
 

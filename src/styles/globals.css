@@ -893,3 +893,8 @@ input[type="radio"] { accent-color: var(--accent); width: 20px; height: 20px; ma
 .guide-list { margin: 0; padding-left: 1.2rem; display: grid; gap: 0.6rem; }
 .guide-list a { color: var(--ink); text-underline-offset: 3px; }
 .guide-list a:hover { color: var(--accent); }
+
+/* Phase 6: CSS-only reveal replaces the animation library on cards and footer. "backwards" fill keeps hover transforms working. */
+@keyframes revealIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: none; } }
+.reveal { animation: revealIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) backwards; }
+@media (prefers-reduced-motion: reduce) { .reveal { animation: none; } }

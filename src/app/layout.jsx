@@ -2,8 +2,7 @@ import { Archivo, Manrope } from 'next/font/google'
 import '../styles/globals.css'
 import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
-import ChatHub from '@/components/ChatHub'
-import ActivityPop from '@/components/ActivityPop'
+import LateWidgets from '@/components/LateWidgets'
 import Metadata from '@/components/Metadata'
 import { SITE } from '@/config/site'
 import { absoluteUrl, seoDescription } from '@/lib/utils'
@@ -82,8 +81,7 @@ export default function RootLayout({ children }) {
         <Nav />
         <main id="main">{children}</main>
         <Footer />
-        <ChatHub />
-        <ActivityPop />
+        <LateWidgets />
       </body>
     </html>
   )

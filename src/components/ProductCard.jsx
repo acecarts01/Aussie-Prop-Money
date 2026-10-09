@@ -1,8 +1,5 @@
-'use client'
-
 import Link from 'next/link'
 import Image from 'next/image'
-import { motion } from 'motion/react'
 import ProductArt from './ProductArt'
 import ValueReturn from './ValueReturn'
 import CardAdd from './CardAdd'
@@ -17,13 +14,7 @@ export default function ProductCard({ product, priority = false }) {
   const href = `/product/${product.slug}/`
 
   return (
-    <motion.div 
-      initial={{ opacity: 0, y: 15, translateZ: 0 }}
-      whileInView={{ opacity: 1, y: 0, translateZ: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-      className="product-card"
-    >
+    <div className={priority ? 'product-card' : 'product-card reveal'}>
       <Link href={href} className="plate" tabIndex={-1} aria-hidden="true">
         {product.badge && <span className="specimen-tag">{product.badge}</span>}
         {photo ? (
@@ -47,6 +38,6 @@ export default function ProductCard({ product, priority = false }) {
         <CardAdd product={product} />
         <Link href={href} className="go">Details, options &amp; sizes →<span className="visually-hidden"> for {product.name}</span></Link>
       </div>
-    </motion.div>
+    </div>
   )
 }

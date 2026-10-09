@@ -2,7 +2,9 @@ import { SITE, CATEGORIES, PRODUCTS, POSTS } from '@/config/site'
 
 export default function sitemap() {
   const base = `https://${SITE.domain}`
-  const now = new Date().toISOString()
+  // Date the shop, category and page content last changed. Update it when that content changes; a build-time
+  // value would tell crawlers every page changed on every deploy.
+  const now = '2026-10-09'
 
   // /cart/ and /search/ are excluded — dynamic, personalised pages with no
   // fixed content of their own, not worth submitting to GSC/BWT as indexable URLs.
