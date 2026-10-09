@@ -8,6 +8,28 @@ import FaqBlock from '@/components/FaqBlock'
 import Metadata from '@/components/Metadata'
 import ProductCard from '@/components/ProductCard'
 import { splitAnswer, ANSWER_OVERRIDES } from '@/lib/answers'
+import PriceLadder from '@/components/PriceLadder'
+
+const PRICE_TABLE_POSTS = new Set([
+  'how-much-does-prop-money-cost-in-australia',
+  'why-prop-money-is-priced-at-face-value',
+  'why-quality-prop-money-costs-more-than-you-think',
+  'prop-money-on-a-student-film-budget',
+  'how-much-prop-money-does-a-short-film-need',
+])
+
+// Posts that explain the law cite the primary sources, each URL checked against the live page.
+const SOURCES_POSTS = new Set([
+  'is-prop-money-legal-in-australia',
+  'rba-banknote-reproduction-rules-explained',
+  'prop-money-laws-penalties-australia',
+  'ultimate-guide-to-fake-money-print-templates',
+  'fake-money-print-guide-australia-printable-novelty',
+])
+const SOURCES = [
+  { href: 'https://www.banknotes.rba.gov.au/legal/reproducing-banknotes/', label: 'Reserve Bank of Australia: Reproducing Banknotes' },
+  { href: 'https://www.legislation.gov.au/C2004A02499/latest/text', label: 'Crimes (Currency) Act 1981 (Cth), Federal Register of Legislation' },
+]
 import { POSTS, SITE, CATEGORIES, PRODUCTS, CATEGORY_KEYWORDS } from '@/config/site'
 import { absoluteUrl, seoTitle, seoDescription, ogMeta, formatPriceShort } from '@/lib/utils'
 
@@ -146,6 +168,10 @@ export default function BlogPost({ params }) {
       />
 
       <article className="container section" style={{ maxWidth: '72ch' }}>
+        <p className="byline">
+          Published by {SITE.name}, operated by {SITE.legalName} (ABN {SITE.abn}) · {new Date(post.date).toLocaleDateString('en-AU', { year: 'numeric', month: 'long', day: 'numeric' })} ·{' '}
+          <a href={`https://abr.business.gov.au/ABN/View?abn=${SITE.abn.replace(/\s/g, '')}`} target="_blank" rel="noopener">Check the ABN</a>
+        </p>
         <div style={{ fontSize: '1.05rem', color: 'var(--ink-2)' }} className="markdown-body">
           <section className="answer-capsule" aria-labelledby="short-answer">
             <h2 id="short-answer">The short answer</h2>
@@ -157,11 +183,23 @@ export default function BlogPost({ params }) {
             </span>
             <Link href={lead ? `/shop/${lead.slug}/` : '/shop/'} className="btn btn-accent">{lead ? 'Shop now →' : 'Shop prop money →'}</Link>
           </div>
+          {PRICE_TABLE_POSTS.has(post.slug) && <PriceLadder />}
           {rest.map((para, i) => (
             <div key={i} style={{ marginBottom: '1.5rem' }}>
               <ReactMarkdown>{para}</ReactMarkdown>
             </div>
           ))}
+          {SOURCES_POSTS.has(post.slug) && (
+            <section aria-labelledby="sources" style={{ marginTop: '2rem' }}>
+              <h2 id="sources" style={{ fontSize: '1.25rem', marginBottom: '0.5rem' }}>Sources and further reading</h2>
+              <ul>
+                {SOURCES.map((s) => (
+                  <li key={s.href}><a href={s.href} target="_blank" rel="noopener">{s.label}</a></li>
+                ))}
+              </ul>
+              <p style={{ fontSize: '0.9rem' }}>General information only, not legal advice. Check the current RBA guidance before reproducing any banknote image.</p>
+            </section>
+          )}
         </div>
 
         {shopProducts.length > 0 && (

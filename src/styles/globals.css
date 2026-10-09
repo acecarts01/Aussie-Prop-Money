@@ -878,3 +878,13 @@ input[type="radio"] { accent-color: var(--accent); width: 20px; height: 20px; ma
 .key-facts dd { margin: 0; color: var(--ink); text-align: right; font-variant-numeric: tabular-nums; }
 
 .footer-col .h-label { margin: 0 0 0.9rem; }
+
+/* Phase 3: byline and data table */
+.byline { font-size: 0.85rem; color: var(--ink-3); margin: 0 0 1.5rem; }
+.byline a { color: inherit; text-decoration: underline; }
+.data-table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--radius-lg); background: var(--bg-2); }
+.data-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; font-variant-numeric: tabular-nums; }
+.data-table th, .data-table td { padding: 0.6rem 0.9rem; text-align: left; border-bottom: 1px solid var(--line); white-space: nowrap; }
+.data-table thead th { color: var(--ink-2); font-weight: 600; }
+.data-table tbody th { font-weight: 600; color: var(--ink); }
+.data-table tr:last-child th, .data-table tr:last-child td { border-bottom: 0; }
