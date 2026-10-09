@@ -18,6 +18,7 @@ const PRICE_TABLE_POSTS = new Set([
   'why-quality-prop-money-costs-more-than-you-think',
   'prop-money-on-a-student-film-budget',
   'how-much-prop-money-does-a-short-film-need',
+  'ultimate-guide-to-australian-prop-money-for-film-and-tv',
 ])
 
 // Posts that explain the law cite the primary sources, each URL checked against the live page.
@@ -27,6 +28,7 @@ const SOURCES_POSTS = new Set([
   'prop-money-laws-penalties-australia',
   'ultimate-guide-to-fake-money-print-templates',
   'fake-money-print-guide-australia-printable-novelty',
+  'ultimate-guide-to-australian-prop-money-for-film-and-tv',
 ])
 const SOURCES = [
   { href: 'https://www.banknotes.rba.gov.au/legal/reproducing-banknotes/', label: 'Reserve Bank of Australia: Reproducing Banknotes' },
@@ -123,7 +125,7 @@ export default function BlogPost({ params }) {
       url: pageUrl,
       image: [absoluteUrl('/og-default.jpg')],
       datePublished: post.date,
-      dateModified: post.date,
+      dateModified: post.updated || post.date,
       inLanguage: 'en-AU',
       articleSection: 'Prop money guides',
       wordCount: words,
@@ -152,7 +154,7 @@ export default function BlogPost({ params }) {
 
       <article className="container section" style={{ maxWidth: '72ch' }}>
         <p className="byline">
-          Published by {SITE.name}, operated by {SITE.legalName} (ABN {SITE.abn}) · {new Date(post.date).toLocaleDateString('en-AU', { year: 'numeric', month: 'long', day: 'numeric' })} ·{' '}
+          Published by {SITE.name}, operated by {SITE.legalName} (ABN {SITE.abn}) · {new Date(post.date).toLocaleDateString('en-AU', { year: 'numeric', month: 'long', day: 'numeric' })}{post.updated && post.updated !== post.date ? ` · Updated ${new Date(post.updated).toLocaleDateString('en-AU', { year: 'numeric', month: 'long', day: 'numeric' })}` : ''} ·{' '}
           <a href={`https://abr.business.gov.au/ABN/View?abn=${SITE.abn.replace(/\s/g, '')}`} target="_blank" rel="noopener">Check the ABN</a>
         </p>
         <div style={{ fontSize: '1.05rem', color: 'var(--ink-2)' }} className="markdown-body">

@@ -78,6 +78,13 @@ export default function ProductPage({ params }) {
         availability: 'https://schema.org/InStock',
         itemCondition: 'https://schema.org/NewCondition',
         seller: idRef(ids.org),
+        hasMerchantReturnPolicy: {
+          '@type': 'MerchantReturnPolicy',
+          applicableCountry: 'AU',
+          returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnWindow',
+          merchantReturnDays: SITE.returnWindowDays,
+          merchantReturnLink: absoluteUrl('/refund/'),
+        },
         shippingDetails: {
           '@type': 'OfferShippingDetails',
           shippingRate: { '@type': 'MonetaryAmount', value: 0, currency: SITE.currency },
