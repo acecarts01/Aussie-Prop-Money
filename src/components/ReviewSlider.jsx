@@ -2,16 +2,14 @@
 
 import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
-import { REVIEWS, SITE } from '@/config/site'
+import { REVIEWS, REVIEW_STATS } from '@/config/site'
 import Icon from './Icon'
 
 export default function ReviewSlider() {
   const [active, setActive] = useState(0)
   const timer = useRef(null)
 
-  // Only show reviews from the ABN registration date (2024-04-22)
-  const abnDate = new Date('2024-04-22')
-  const validReviews = REVIEWS.filter(r => new Date(r.date) >= abnDate)
+  const validReviews = REVIEWS
 
   const next = () => setActive((v) => (v + 1) % validReviews.length)
   const prev = () => setActive((v) => (v - 1 + validReviews.length) % validReviews.length)
@@ -33,17 +31,17 @@ export default function ReviewSlider() {
       >
         <div className="tp-logo">
           <Icon name="trustpilot" size={24} style={{ color: '#00b67a' }} />
-          <span>Trustpilot</span>
+          <span>Client reviews</span>
         </div>
         <div className="tp-rating">
           <div className="stars">
             {[1, 2, 3, 4, 5].map((s) => (
-              <div key={s} className={`tp-star-box ${s <= Math.floor(SITE.trustpilotRating) ? 'filled' : ''}`}>
+              <div key={s} className={`tp-star-box ${s <= Math.floor(REVIEW_STATS.rating) ? 'filled' : ''}`}>
                 <Icon name="trustpilot" size={14} />
               </div>
             ))}
           </div>
-          <span className="rating-text">TrustScore <b>{SITE.trustpilotRating}</b> | <b>{SITE.reviewCount}</b> reviews</span>
+          <span className="rating-text"><b>{REVIEW_STATS.rating}</b> average | <b>{REVIEW_STATS.count}</b> client reviews</span>
         </div>
       </motion.div>
 
@@ -97,7 +95,7 @@ export default function ReviewSlider() {
 
       <div style={{ textAlign: 'center', marginTop: '2.5rem' }}>
         <a href="/reviews/" className="btn btn-ghost" style={{ fontSize: '0.9rem' }}>
-          View more reports ({SITE.reviewCount}) →
+          Read all {REVIEW_STATS.count} client reviews →
         </a>
       </div>
     </div>

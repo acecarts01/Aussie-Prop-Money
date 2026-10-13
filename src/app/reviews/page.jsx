@@ -1,24 +1,22 @@
 import PageHeader from '@/components/PageHeader'
 import Breadcrumbs from '@/components/Breadcrumbs'
-import { REVIEWS, SITE } from '@/config/site'
+import { REVIEWS, REVIEW_STATS, SITE } from '@/config/site'
 import Icon from '@/components/Icon'
 
 export const metadata = {
   title: `Customer Reviews | ${SITE.name}`,
-  description: `Read what our clients say about our studio-grade prop money. Over ${SITE.reviewCount} verified reports from film, theatre, and production crews.`,
+  description: `Read what our clients say about our studio-grade prop money. ${REVIEW_STATS.count} client reviews from film, theatre, and production crews.`,
 }
 
 export default function ReviewsPage() {
-  // Only show reviews from the ABN registration date (2024-04-22)
-  const abnDate = new Date('2024-04-22')
-  const validReviews = REVIEWS.filter(r => new Date(r.date) >= abnDate)
+  const validReviews = REVIEWS
 
   return (
     <div>
       <PageHeader
         eyebrow="Set reports"
         title={`Customer Reviews & Set Reports`}
-        subtitle={`Verified feedback from production crews, photographers, and filmmakers across Australia. ${SITE.trustpilotRating}★ across ${SITE.reviewCount} reports.`}
+        subtitle={`Feedback from production crews, photographers, and filmmakers across Australia. ${REVIEW_STATS.rating}★ average from ${REVIEW_STATS.count} client reviews.`}
         breadcrumbs={<Breadcrumbs trail={[{ label: 'Reviews', href: '/reviews/' }]} />}
       />
 
@@ -27,7 +25,7 @@ export default function ReviewsPage() {
           <div className="trustpilot-summary" style={{ marginBottom: '3rem' }}>
             <div className="tp-logo">
               <Icon name="trustpilot" size={32} style={{ color: '#00b67a' }} />
-              <span style={{ fontSize: '1.8rem' }}>Trustpilot</span>
+              <span style={{ fontSize: '1.8rem' }}>Client reviews</span>
             </div>
             <div className="tp-rating">
               <div className="stars">
@@ -37,7 +35,7 @@ export default function ReviewsPage() {
                   </div>
                 ))}
               </div>
-              <span className="rating-text" style={{ fontSize: '1.1rem' }}>TrustScore <b>{SITE.trustpilotRating}</b> | <b>{SITE.reviewCount}</b> reviews</span>
+              <span className="rating-text" style={{ fontSize: '1.1rem' }}><b>{REVIEW_STATS.rating}</b> average | <b>{REVIEW_STATS.count}</b> client reviews</span>
             </div>
           </div>
 

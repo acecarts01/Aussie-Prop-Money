@@ -1,4 +1,4 @@
-import { SITE, CATEGORIES } from '@/config/site'
+import { SITE, CATEGORIES, REVIEW_STATS } from '@/config/site'
 import { absoluteUrl } from './utils'
 
 // Stable entity ids. Every page-level node points at these instead of repeating the business details,
@@ -10,7 +10,6 @@ export const ids = {
 }
 
 const ref = (id) => ({ '@id': id })
-const cleanNumber = (s) => parseInt(String(s).replace(/\D/g, ''), 10)
 
 // Person node, emitted only when real editor details are filled in SITE.editor.
 // Shape: { name, jobTitle, url, sameAs: [real profile URLs], knowsAbout: [...] }
@@ -69,10 +68,10 @@ export function orgNode() {
     sameAs: SITE.sameAs,
     aggregateRating: {
       '@type': 'AggregateRating',
-      ratingValue: SITE.trustpilotRating,
+      ratingValue: REVIEW_STATS.rating,
       bestRating: 5,
       worstRating: 1,
-      ratingCount: cleanNumber(SITE.reviewCount),
+      ratingCount: REVIEW_STATS.count,
     },
     hasOfferCatalog: {
       '@type': 'OfferCatalog',

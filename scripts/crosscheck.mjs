@@ -40,7 +40,11 @@ for (const dir of SCAN_DIRS) {
   try {
     walk(join(root, dir), (file) => {
       if (file.endsWith('crosscheck.mjs') || file.endsWith('CLAUDE.md') || file.endsWith('keyword-map.md') || file.endsWith('PROJECT.md') || file.endsWith('keyword-assignments.md') || file.endsWith('_semrush-clean.json') || file.endsWith('product-photo-shotlist.csv') || file.startsWith('.\docs\keywords-') || file.includes('semrush-research-brief')) return // these files legitimately document the banned/excluded words or are raw research data
-      const text = readFileSync(file, 'utf8').toLowerCase()
+      let raw = readFileSync(file, 'utf8')
+      // Client reviews are quoted exactly as sent (CLAUDE.md exception), so only the REVIEWS array is exempt.
+      raw = raw.replace(/\r\n/g, '\n')
+      if (file.endsWith('site.js')) { const a = raw.indexOf('export const REVIEWS = ['); if (a >= 0) { const b = raw.indexOf('\n]\n', a); raw = raw.slice(0, a) + raw.slice(b + 3) } }
+      const text = raw.toLowerCase()
       for (const term of BANNED_TERMS) {
         if (text.includes(term)) {
           console.log(`FAIL  Banned term "${term}" found in ${file.replace(root, '.')}`)

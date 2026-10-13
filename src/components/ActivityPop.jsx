@@ -45,17 +45,17 @@ export default function ActivityPop() {
         <Icon name="check" size={14} />
       </div>
       <div className="ap-content">
-        <p className="ap-title">Verified Set Report</p>
+        <p className="ap-title">Client review</p>
         <p className="ap-text">
-          <b>{review.name}</b> from {review.location || 'Australia'} rated 5★
+          <b>{review.name}</b> from {review.location || 'Australia'} rated {review.rating}★
           <span className="quote">&ldquo;{review.text.length > 80 ? review.text.slice(0, 80) + '...' : review.text}&rdquo;</span>
         </p>
         <div className="ap-meta">
           <span className="tp-link">
             <Icon name="trustpilot" size={12} style={{ color: '#00b67a' }} />
-            Verified Purchase
+            Client review
           </span>
-          <span className="time">Just now</span>
+          <span className="time">{new Date(review.date).toLocaleDateString('en-AU', { year: 'numeric', month: 'short' })}</span>
         </div>
       </div>
     </div>

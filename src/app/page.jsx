@@ -12,7 +12,7 @@ import HeroSlider from '@/components/HeroSlider'
 import FaqBlock from '@/components/FaqBlock'
 import AnimatedStatStrip from '@/components/AnimatedStatStrip'
 import AnimatedText from '@/components/AnimatedText'
-import { CATEGORIES, PRODUCTS, FAQS, REVIEWS, POSTS, SITE, HERO, COMPLIANCE } from '@/config/site'
+import { CATEGORIES, PRODUCTS, FAQS, REVIEWS, POSTS, SITE, HERO, COMPLIANCE, REVIEW_STATS } from '@/config/site'
 import { absoluteUrl, ogMeta } from '@/lib/utils'
 import { HOME_DEFINITION } from '@/lib/answers'
 
@@ -117,7 +117,7 @@ export default function HomePage() {
         <div className="container">
           <SectionHead
             eyebrow="Set reports"
-            title={`${SITE.trustpilotRating}★ across ${SITE.reviewCount} reports`}
+            title={`${REVIEW_STATS.rating}★ from ${REVIEW_STATS.count} client reviews`}
             sub="Compliance-first prop money, trusted by Australian filmmakers, photographers, and theatre crews."
           />
           <ReviewSlider />
