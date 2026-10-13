@@ -901,3 +901,28 @@ input[type="radio"] { accent-color: var(--accent); width: 20px; height: 20px; ma
 
 /* Phase 6 follow-up: section headings inside merged guides */
 .markdown-body h2 { font-size: 1.4rem; margin: 2rem 0 0.6rem; }
+
+/* Reviews page: summary, breakdown bars, flowing cards that size to their own text */
+.rv-summary { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 2rem 3rem; align-items: center; margin-bottom: 3rem; padding: 1.75rem; border: 1px solid var(--line); border-radius: var(--radius-lg); background: var(--bg-2); }
+.rv-score { display: grid; justify-items: start; gap: 0.6rem; }
+.rv-score-num { font-family: var(--font-display); font-weight: 800; font-size: clamp(3.4rem, 8vw, 5rem); line-height: 0.9; color: var(--ink); }
+.rv-score-sub { color: var(--ink-2); font-size: 0.95rem; }
+.rv-stars { display: inline-flex; gap: 3px; }
+.rv-star { display: inline-grid; place-items: center; background: var(--line-strong, #3a3a3a); color: #fff; border-radius: 2px; }
+.rv-star.on { background: #00b67a; }
+.rv-bars { display: grid; gap: 0.55rem; }
+.rv-bar-row { display: grid; grid-template-columns: 3.2rem 1fr 2rem; align-items: center; gap: 0.75rem; font-size: 0.85rem; color: var(--ink-2); }
+.rv-bar { height: 10px; background: var(--line); border-radius: 999px; overflow: hidden; }
+.rv-bar-fill { display: block; height: 100%; background: #00b67a; border-radius: 999px; }
+.rv-bar-count { text-align: right; font-variant-numeric: tabular-nums; }
+.rv-masonry { columns: 3 280px; column-gap: 1.25rem; }
+.rv-card { break-inside: avoid; margin: 0 0 1.25rem; padding: 1.25rem; display: grid; gap: 0.85rem; }
+.rv-head { display: flex; align-items: center; gap: 0.75rem; }
+.rv-avatar { flex: none; width: 2.6rem; height: 2.6rem; border-radius: 50%; display: grid; place-items: center; font-weight: 700; font-size: 0.95rem; letter-spacing: 0.02em; background: color-mix(in srgb, var(--accent) 22%, var(--bg-2)); color: var(--ink); border: 1px solid var(--line); }
+.rv-name { display: block; font-weight: 700; color: var(--ink); line-height: 1.2; }
+.rv-loc { display: block; font-size: 0.8rem; color: var(--ink-3); }
+.rv-line { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; flex-wrap: wrap; }
+.rv-date { font-size: 0.8rem; color: var(--ink-3); }
+.rv-text { margin: 0; color: var(--ink); line-height: 1.6; }
+.rv-source { margin: 0; font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-3); }
+@media (max-width: 760px) { .rv-summary { grid-template-columns: 1fr; padding: 1.25rem; } }
