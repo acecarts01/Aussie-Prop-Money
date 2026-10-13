@@ -53,7 +53,7 @@ export default function ActivityPop() {
         <div className="ap-meta">
           <span className="tp-link">
             <Icon name="trustpilot" size={12} style={{ color: '#00b67a' }} />
-            Client review
+            Customer feedback
           </span>
           <span className="time">{new Date(review.date).toLocaleDateString('en-AU', { year: 'numeric', month: 'short' })}</span>
         </div>
