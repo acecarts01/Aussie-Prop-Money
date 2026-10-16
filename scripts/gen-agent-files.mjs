@@ -191,7 +191,7 @@ write('.well-known/mcp/server-card.json', JSON.stringify({
   serverInfo: { name: SITE.name, version: '1.0.0', description: SITE.tagline, homepage: base, contact: { email } },
   transport: isStatic
     ? { type: 'none', human_ordering_only: true }
-    : { type: 'streamable-http', endpoint: `${base}/api/mcp` },
+    : { type: 'streamable-http', endpoint: `${base}/api/mcp/` },
   capabilities: {
     resources: [
       { name: 'product-catalog', description: 'Full product catalog', uri: `${base}/shop/` },
