@@ -23,7 +23,7 @@ export default function YieldCallout({ product }) {
       </div>
       <table className="yield-table">
         <thead>
-          <tr><th>Size</th><th>Notes</th><th>Face value</th><th>You pay</th><th>Per note</th></tr>
+          <tr><th>Size</th><th>Notes</th><th>Face value printed</th><th>You pay</th><th>Per note</th></tr>
         </thead>
         <tbody>
           {ladder.map((p) => {
@@ -43,7 +43,6 @@ export default function YieldCallout({ product }) {
           })}
         </tbody>
       </table>
-      <YieldChart currentSlug={product.slug} customData={ladder} title="Strap vs Stack vs Jumbo — Scaling Curve" />
       <p className="yield-foot">Face value is the value printed on the prop notes. Every note is reduced-scale, marked NOT LEGAL TENDER, and carries no replicated security features.</p>
     </div>
   )

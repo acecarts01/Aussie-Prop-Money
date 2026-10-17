@@ -166,7 +166,6 @@ export default function ProductPage({ params }) {
               <div style={{ marginTop: '2rem' }}>
                 <h2 style={{ fontSize: '1.3rem', marginBottom: '0.9rem' }}>Face value by denomination</h2>
                 <ValueTable currentSlug={product.slug} />
-                <YieldChart currentSlug={product.slug} />
               </div>
             )}
           </div>

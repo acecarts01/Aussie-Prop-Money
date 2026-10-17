@@ -1,4 +1,4 @@
-// Face-value return maths — one place so cards, buy panel, cart and emails agree.
+// Price and note-count maths — one place so cards, buy panel, cart and emails agree.
 // "Face value" is the printed value of the prop notes. It is never a real-currency
 // value: every note is reduced-scale and marked NOT LEGAL TENDER.
 import { PRODUCTS } from '@/config/site'
@@ -7,14 +7,11 @@ export const fmtFace = (n) => '$' + Math.round(n).toLocaleString('en-AU')
 
 export function valueReturn(product) {
   if (!product?.faceValue || !product.price) return null
-  const multiplier = Math.round(product.faceValue / product.price)
   return {
-    multiplier,
     faceValue: product.faceValue,
     noteCount: product.noteCount,
     costPerNote: product.noteCount ? product.price / product.noteCount : null,
-    // Badge copy by tier — the number does the selling; the label frames the use.
-    badge: product.tier === 'director' ? `${multiplier}× · Director's Bundle` : product.tier === 'production' ? `${multiplier}× · Production Stack` : `${multiplier}× face value`,
+    badge: product.tier === 'director' ? "Director's Bundle" : product.tier === 'production' ? 'Production Stack' : null,
   }
 }
 

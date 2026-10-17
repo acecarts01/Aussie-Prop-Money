@@ -11,7 +11,7 @@
   },
   "transport": {
     "type": "streamable-http",
-    "endpoint": "https://australianreserveprops.com/api/mcp"
+    "endpoint": "https://australianreserveprops.com/api/mcp/"
   },
   "capabilities": {
     "resources": [

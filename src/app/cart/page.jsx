@@ -102,7 +102,7 @@ export default function CartPage() {
                 <span>Shipping: Free · Australia Post tracked</span>
                 <strong>Total: {formatPrice(total)}</strong>
                 {cartFaceValue(items) > 0 && (
-                  <span className="cart-face">Prop face value in this order: <strong>{fmtFace(cartFaceValue(items))}</strong> · {Math.round(cartFaceValue(items) / Math.max(sub, 1))}× what you pay</span>
+                  <span className="cart-face">Prop face value in this order: <strong>{fmtFace(cartFaceValue(items))}</strong></span>
                 )}
               </div>
 

@@ -92,9 +92,6 @@ export default function WholesalePage() {
           <p style={{ color: 'var(--ink-2)', marginTop: '1rem', maxWidth: '70ch' }}>
             Beyond these, quotes are custom: mixed denominations, multiple sets, reshoot buffers. As with every product, serials are system-assigned — no custom or buyer-specified serial numbers at any order size.
           </p>
-          <div style={{ marginTop: '3rem', maxWidth: '800px' }}>
-            <YieldChart title="Production Value Scaling — Cost vs On-Camera Assets" />
-          </div>
         </div>
       </section>
 

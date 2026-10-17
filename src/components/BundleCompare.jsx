@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { PRODUCTS } from '@/config/site'
 import { formatPrice } from '@/lib/utils'
-import { valueReturn, fmtFace } from '@/lib/value'
+import { valueReturn } from '@/lib/value'
 
 // Sibling products in the same category, side by side: note count / face value /
 // price. Gives the "which size do I need" answer without leaving the page.
@@ -21,8 +21,8 @@ export default function BundleCompare({ product }) {
               <span className="n">{label}</span>
               {valueReturn(p) ? (
                 <>
-                  <span className="v">{fmtFace(p.faceValue)} face value · {p.noteCount.toLocaleString('en-AU')} notes</span>
-                  <span className="p">{formatPrice(p.price)} <em className="x">{valueReturn(p).multiplier}×</em></span>
+                  <span className="v">{p.noteCount.toLocaleString('en-AU')} notes · {p.mix}</span>
+                  <span className="p">{formatPrice(p.price)} <em className="x">{formatPrice(valueReturn(p).costPerNote)}/note</em></span>
                 </>
               ) : (
                 <>

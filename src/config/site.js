@@ -432,7 +432,7 @@ export const CATEGORY_FAQS = {
   ],
   'packs-bundles': [
     { q: "What's the difference between the Starter Pack and Bulk Production Pack?", a: 'The Starter Pack mixes all three denominations for a first order; the Bulk Production Pack is a much larger mixed-denomination volume built for productions needing multiple scenes.' },
-    { q: 'Do pack prices reflect the printed face value?', a: 'No — pricing reflects production cost, not face value, the same convention used across the industry.' },
+    { q: 'Do pack prices reflect the printed face value?', a: 'No. Pricing is per note and reflects production cost, not the printed face value.' },
     { q: 'Can I request a custom mix of denominations?', a: 'For volumes beyond our standard packs, use the Wholesale enquiry form.' },
   ],
   'briefcases-bags': [
@@ -520,7 +520,7 @@ export const PRODUCTS = [
     slug: 'twenty-dollar-prop-note-stack',
     name: '$20 AUD Prop Note Stack',
     category: 'twenty-dollar-notes',
-    price: 400,
+    price: 79,
     noteCount: 100, faceValue: 2000, tier: 'starter', mix: '100 × $20',
     faceValueLabel: '$2,000 face value per stack',
     brand: 'theatre-ready',
@@ -535,7 +535,7 @@ export const PRODUCTS = [
     slug: 'fifty-dollar-prop-note-stack',
     name: '$50 AUD Prop Note Stack',
     category: 'fifty-dollar-notes',
-    price: 1000,
+    price: 89,
     noteCount: 100, faceValue: 5000, tier: 'starter', mix: '100 × $50',
     faceValueLabel: '$5,000 face value per stack',
     brand: 'studio-pro',
@@ -550,7 +550,7 @@ export const PRODUCTS = [
     slug: 'hundred-dollar-prop-note-stack',
     name: '$100 AUD Prop Note Stack',
     category: 'hundred-dollar-notes',
-    price: 2000,
+    price: 109,
     noteCount: 100, faceValue: 10000, tier: 'starter', mix: '100 × $100',
     faceValueLabel: '$10,000 face value per stack',
     brand: 'cinema-cash',
@@ -565,7 +565,7 @@ export const PRODUCTS = [
     slug: 'mixed-denomination-starter-pack',
     name: 'Mixed Denomination Starter Pack',
     category: 'packs-bundles',
-    price: 600,
+    price: 49,
     noteCount: 56, faceValue: 3000, tier: 'starter', mix: '20 × $20 · 20 × $50 · 16 × $100',
     faceValueLabel: 'Approx. $3,000 mixed face value',
     badge: null,
@@ -579,7 +579,7 @@ export const PRODUCTS = [
     slug: 'bulk-production-pack',
     name: 'Bulk Production Pack',
     category: 'packs-bundles',
-    price: 10000,
+    price: 579,
     noteCount: 660, faceValue: 50000, tier: 'production', mix: '100 × $20 · 160 × $50 · 400 × $100',
     faceValueLabel: 'Approx. $50,000 mixed face value',
     badge: 'For Productions',
@@ -608,7 +608,7 @@ export const PRODUCTS = [
     slug: 'prop-money-gift-box-set',
     name: 'Prop Money Gift Box Set',
     category: 'gift-sets',
-    price: 1000,
+    price: 89,
     noteCount: 85, faceValue: 5000, tier: 'starter', mix: '25 × $20 · 30 × $50 · 30 × $100',
     faceValueLabel: 'Approx. $5,000 mixed face value, gift-boxed',
     badge: 'Gift Ready',
@@ -622,7 +622,7 @@ export const PRODUCTS = [
     slug: 'money-gun-refill-pack',
     name: 'Money Gun Refill Pack ($50 Notes)',
     category: 'accessories',
-    price: 500,
+    price: 48.95,
     noteCount: 50, faceValue: 2500, tier: 'starter', mix: '50 × $50',
     faceValueLabel: '$2,500 face value per refill',
     badge: null,
@@ -635,7 +635,7 @@ export const PRODUCTS = [
 
   // --- Denomination half packs & jumbo packs ---
   {
-    slug: 'twenty-dollar-half-pack', name: '$20 AUD Prop Note Half Pack', category: 'twenty-dollar-notes', price: 200,
+    slug: 'twenty-dollar-half-pack', name: '$20 AUD Prop Note Half Pack', category: 'twenty-dollar-notes', price: 42.95,
     noteCount: 50, faceValue: 1000, tier: 'starter', mix: '50 × $20',
     faceValueLabel: '$1,000 face value per pack (50 notes)', badge: null,
     tags: ['twenty-dollar-prop-note', 'novelty-currency', 'not-legal-tender', 'magic-trick-money'],
@@ -644,7 +644,7 @@ export const PRODUCTS = [
     images: ['twenty-dollar-half-pack.webp'],
   },
   {
-    slug: 'twenty-dollar-jumbo-pack', name: '$20 AUD Prop Note Jumbo Pack', category: 'twenty-dollar-notes', price: 1000,
+    slug: 'twenty-dollar-jumbo-pack', name: '$20 AUD Prop Note Jumbo Pack', category: 'twenty-dollar-notes', price: 179,
     noteCount: 250, faceValue: 5000, tier: 'starter', mix: '250 × $20',
     faceValueLabel: '$5,000 face value per pack (250 notes)', badge: null,
     tags: ['twenty-dollar-prop-note', 'bulk-production-pack', 'not-legal-tender', 'magic-trick-money'],
@@ -653,7 +653,7 @@ export const PRODUCTS = [
     images: ['twenty-dollar-jumbo-pack.webp'],
   },
   {
-    slug: 'fifty-dollar-half-pack', name: '$50 AUD Prop Note Half Pack', category: 'fifty-dollar-notes', price: 500,
+    slug: 'fifty-dollar-half-pack', name: '$50 AUD Prop Note Half Pack', category: 'fifty-dollar-notes', price: 48.95,
     noteCount: 50, faceValue: 2500, tier: 'starter', mix: '50 × $50',
     faceValueLabel: '$2,500 face value per pack (50 notes)', badge: null,
     tags: ['fifty-dollar-prop-note', 'novelty-currency', 'not-legal-tender', 'film-prop-money'],
@@ -662,7 +662,7 @@ export const PRODUCTS = [
     images: ['fifty-dollar-half-pack.webp'],
   },
   {
-    slug: 'fifty-dollar-jumbo-pack', name: '$50 AUD Prop Note Jumbo Pack', category: 'fifty-dollar-notes', price: 2500,
+    slug: 'fifty-dollar-jumbo-pack', name: '$50 AUD Prop Note Jumbo Pack', category: 'fifty-dollar-notes', price: 209,
     noteCount: 250, faceValue: 12500, tier: 'starter', mix: '250 × $50',
     faceValueLabel: '$12,500 face value per pack (250 notes)', badge: null,
     tags: ['fifty-dollar-prop-note', 'bulk-production-pack', 'not-legal-tender', 'film-prop-money'],
@@ -671,7 +671,7 @@ export const PRODUCTS = [
     images: ['fifty-dollar-jumbo-pack.webp'],
   },
   {
-    slug: 'hundred-dollar-half-pack', name: '$100 AUD Prop Note Half Pack', category: 'hundred-dollar-notes', price: 1000,
+    slug: 'hundred-dollar-half-pack', name: '$100 AUD Prop Note Half Pack', category: 'hundred-dollar-notes', price: 59,
     noteCount: 50, faceValue: 5000, tier: 'starter', mix: '50 × $100',
     faceValueLabel: '$5,000 face value per pack (50 notes)', badge: null,
     tags: ['hundred-dollar-prop-note', 'novelty-currency', 'not-legal-tender', 'film-prop-money'],
@@ -680,7 +680,7 @@ export const PRODUCTS = [
     images: ['hundred-dollar-half-pack.webp'],
   },
   {
-    slug: 'hundred-dollar-jumbo-pack', name: '$100 AUD Prop Note Jumbo Pack', category: 'hundred-dollar-notes', price: 5000,
+    slug: 'hundred-dollar-jumbo-pack', name: '$100 AUD Prop Note Jumbo Pack', category: 'hundred-dollar-notes', price: 249,
     noteCount: 250, faceValue: 25000, tier: 'production', mix: '250 × $100',
     faceValueLabel: '$25,000 face value per pack (250 notes)', badge: null,
     tags: ['hundred-dollar-prop-note', 'bulk-production-pack', 'not-legal-tender', 'film-prop-money'],
@@ -691,7 +691,7 @@ export const PRODUCTS = [
 
   // --- Vintage & Legacy Series ---
   {
-    slug: 'vintage-twenty-note-stack', name: 'Vintage $20 Note Stack', category: 'vintage-series-notes', price: 400,
+    slug: 'vintage-twenty-note-stack', name: 'Vintage $20 Note Stack', category: 'vintage-series-notes', price: 79,
     noteCount: 100, faceValue: 2000, tier: 'starter', mix: '100 × $20 (older design)',
     faceValueLabel: '$2,000 face value per stack (older design)', badge: null,
     tags: ['vintage-prop-note', 'twenty-dollar-prop-note', 'not-legal-tender', 'theatre-stage-money'],
@@ -700,7 +700,7 @@ export const PRODUCTS = [
     images: ['vintage-twenty-note-stack.webp'],
   },
   {
-    slug: 'vintage-fifty-note-stack', name: 'Vintage $50 Note Stack', category: 'vintage-series-notes', price: 1000,
+    slug: 'vintage-fifty-note-stack', name: 'Vintage $50 Note Stack', category: 'vintage-series-notes', price: 89,
     noteCount: 100, faceValue: 5000, tier: 'starter', mix: '100 × $50 (older design)',
     faceValueLabel: '$5,000 face value per stack (older design)', badge: null,
     tags: ['vintage-prop-note', 'fifty-dollar-prop-note', 'not-legal-tender', 'theatre-stage-money'],
@@ -709,7 +709,7 @@ export const PRODUCTS = [
     images: ['vintage-fifty-note-stack.webp'],
   },
   {
-    slug: 'vintage-hundred-note-stack', name: 'Vintage $100 Note Stack', category: 'vintage-series-notes', price: 2000,
+    slug: 'vintage-hundred-note-stack', name: 'Vintage $100 Note Stack', category: 'vintage-series-notes', price: 109,
     noteCount: 100, faceValue: 10000, tier: 'starter', mix: '100 × $100 (older design)',
     faceValueLabel: '$10,000 face value per stack (older design)', badge: null,
     tags: ['vintage-prop-note', 'hundred-dollar-prop-note', 'not-legal-tender', 'theatre-stage-money'],
@@ -720,7 +720,7 @@ export const PRODUCTS = [
 
   // --- Packs & Bundles additions ---
   {
-    slug: 'wedding-event-pack', name: 'Wedding & Event Pack', category: 'packs-bundles', price: 700,
+    slug: 'wedding-event-pack', name: 'Wedding & Event Pack', category: 'packs-bundles', price: 59,
     noteCount: 65, faceValue: 3500, tier: 'starter', mix: '25 × $20 · 20 × $50 · 20 × $100',
     faceValueLabel: 'Approx. $3,500 mixed face value', badge: null,
     tags: ['mixed-denomination-pack', 'gift-money-set', 'not-legal-tender', 'novelty-currency'],
@@ -729,7 +729,7 @@ export const PRODUCTS = [
     images: ['wedding-event-pack.webp'],
   },
   {
-    slug: 'content-creator-flex-pack', name: 'Content Creator Flex Pack', category: 'packs-bundles', price: 800,
+    slug: 'content-creator-flex-pack', name: 'Content Creator Flex Pack', category: 'packs-bundles', price: 59,
     noteCount: 66, faceValue: 4000, tier: 'starter', mix: '20 × $20 · 20 × $50 · 26 × $100',
     faceValueLabel: 'Approx. $4,000 mixed face value',
     brand: 'flex-stacks',
@@ -742,7 +742,7 @@ export const PRODUCTS = [
 
   // --- Briefcases & Bags ---
   {
-    slug: 'briefcase-prop-set-50k', name: 'Briefcase Prop Set — $50,000', category: 'briefcases-bags', price: 10000,
+    slug: 'briefcase-prop-set-50k', name: 'Briefcase Prop Set — $50,000', category: 'briefcases-bags', price: 479,
     noteCount: 500, faceValue: 50000, tier: 'production', mix: '5 stacks × 100 × $100',
     faceValueLabel: '$50,000 face value, packed in a prop briefcase', badge: null,
     tags: ['briefcase-prop-set', 'film-prop-money', 'hundred-dollar-prop-note', 'not-legal-tender'],
@@ -751,7 +751,7 @@ export const PRODUCTS = [
     images: ['briefcase-prop-set-50k.webp'],
   },
   {
-    slug: 'briefcase-prop-set-250k', name: 'Briefcase Prop Set — $250,000', category: 'briefcases-bags', price: 50000,
+    slug: 'briefcase-prop-set-250k', name: 'Briefcase Prop Set — $250,000', category: 'briefcases-bags', price: 2319,
     noteCount: 2500, faceValue: 250000, tier: 'director', mix: '25 stacks × 100 × $100',
     faceValueLabel: '$250,000 face value, packed in a prop briefcase', badge: 'For Productions',
     tags: ['briefcase-prop-set', 'bulk-production-pack', 'hundred-dollar-prop-note', 'not-legal-tender'],
@@ -760,7 +760,7 @@ export const PRODUCTS = [
     images: ['briefcase-prop-set-250k.webp'],
   },
   {
-    slug: 'duffel-bag-prop-set-500k', name: 'Duffel Bag Prop Set — $500,000', category: 'briefcases-bags', price: 100000,
+    slug: 'duffel-bag-prop-set-500k', name: 'Duffel Bag Prop Set — $500,000', category: 'briefcases-bags', price: 4629,
     noteCount: 5000, faceValue: 500000, tier: 'director', mix: '50 stacks × 100 × $100',
     faceValueLabel: '$500,000 face value, packed in a prop duffel bag', badge: 'For Productions',
     tags: ['duffel-bag-prop', 'bulk-production-pack', 'hundred-dollar-prop-note', 'not-legal-tender'],
@@ -878,7 +878,7 @@ export const PRODUCTS = [
 
   // --- Gift Sets additions ---
   {
-    slug: 'birthday-money-gift-box', name: 'Birthday Money Gift Box', category: 'gift-sets', price: 500,
+    slug: 'birthday-money-gift-box', name: 'Birthday Money Gift Box', category: 'gift-sets', price: 59,
     noteCount: 55, faceValue: 2500, tier: 'starter', mix: '25 × $20 · 20 × $50 · 10 × $100',
     faceValueLabel: 'Approx. $2,500 mixed face value, gift-boxed', badge: null,
     tags: ['gift-money-set', 'party-prank-money', 'not-legal-tender', 'novelty-currency'],
@@ -887,7 +887,7 @@ export const PRODUCTS = [
     images: ['birthday-money-gift-box.webp'],
   },
   {
-    slug: 'graduation-money-gift-set', name: 'Graduation Money Gift Set', category: 'gift-sets', price: 600,
+    slug: 'graduation-money-gift-set', name: 'Graduation Money Gift Set', category: 'gift-sets', price: 59,
     noteCount: 56, faceValue: 3000, tier: 'starter', mix: '20 × $20 · 20 × $50 · 16 × $100',
     faceValueLabel: 'Approx. $3,000 mixed face value, gift-boxed', badge: null,
     tags: ['gift-money-set', 'money-lei', 'not-legal-tender', 'novelty-currency'],
@@ -1494,7 +1494,7 @@ seoTitle: "Prop Money vs Play Money vs Real Money",
       "Every novelty cheque and note we produce is clearly a presentation piece rather than a financial instrument — it cannot be deposited or cashed, and is never framed as anything other than a novelty prop for the occasion.",
       "## Gifts under $25",
       "A capped-budget gift exchange (Kris Kringle, a workplace Secret Santa, a kids' party bag) needs something that reads as a proper gift. In our range, a money confetti pack from $10.95, a single money lei at $13.95 and the kids play money educational set at $20.95 all come in under $25.",
-      "Prop note stacks start at several hundred dollars, so they suit a bigger gift rather than a capped exchange. Our minimum order of $350 in goods applies to every order, so for a small gift, add it to a larger order.",
+      "Prop note stacks start at $79, so they suit a bigger gift rather than a capped exchange. Our minimum order of $350 in goods applies to every order, so for a small gift, add it to a larger order.",
       "Every option carries the same NOT LEGAL TENDER marking and reduced-scale standard as our briefcase sets, whatever the price.",
     ],
     faqs: [
@@ -1514,7 +1514,7 @@ seoTitle: "Prop Money vs Play Money vs Real Money",
       { q: "Is prop money suitable for a Galentine's exchange?", a: "Yes — a single small stack or themed pairing works well as a lighthearted, low-cost gift for that kind of exchange." },
       { q: "Can a novelty retirement cheque be deposited at a bank?", a: "No — it's a presentation piece only. The real gift or contribution is handled separately from the cheque itself." },
       { q: "What suits a smaller team farewell instead of a full cheque presentation?", a: "A single prop note stack with a card covers the same joke with less production for a smaller gathering." },
-      { q: "What's the best novelty cash gift under $25?", a: "A money confetti pack from $10.95, a single money lei at $13.95 or the kids play money educational set at $20.95 all come in under $25. Prop note stacks start at several hundred dollars." },
+      { q: "What's the best novelty cash gift under $25?", a: "A money confetti pack from $10.95, a single money lei at $13.95 or the kids play money educational set at $20.95 all come in under $25. Prop note stacks start at $79, so they sit just above that budget." },
       { q: "Are cheaper novelty gifts lower quality?", a: "No — every product carries the same compliance standard and print quality regardless of price point or pack size." },
     ],
     tags: ["gift-money-set","birthday-money-gift-box","briefcase-prop-set","personalised-prop-note","money-lei","twenty-dollar-prop-note","kids-play-money","novelty-cheque","money-confetti"],
@@ -2188,15 +2188,15 @@ seoTitle: "The Novelty Big Cheque, Explained",
     keywordSupporting: ['how much does prop money cost', 'prop money cost per stack'],
     verified: false,
     body: [
-      'Pricing on every currency-styled product is set on one consistent rule: the price is 20% of the prop face value you receive. A stack carrying $2,000 in prop face value costs $400; a set carrying $10,000 in face value costs $2,000. It scales predictably, with no separate quote tier and no hidden markup.',
-      'That means price scales directly with face value rather than with note count or denomination alone — a $20-style half pack carrying $1,000 face value ($200) costs less than a $100-style stack carrying $10,000 face value ($2,000), even though both might contain a similar note count, because the printed face value is what the price tracks.',
-      'Specialty formats follow the exact same rule at a larger scale: a briefcase set carrying $50,000 in face value is $10,000, and the $500,000 duffel bag set is $100,000 — the format changes the presentation (case, bag, banding), not the pricing logic.',
+      'Currency-styled products are priced per note, by denomination. A stack of 100 notes is $79 for $20 notes, $89 for $50 notes and $109 for $100 notes, which works out to $0.79, $0.89 and $1.09 a note. It scales predictably, with no separate quote tier and no hidden markup.',
+      'Pack size changes the per-note rate. A 50-note half pack costs a little more per note, a 250-note jumbo pack costs less per note, and 500-note and larger sets are lower again. A $100-style jumbo pack of 250 notes is $249, which is about $1.00 a note, against $1.09 a note in a 100-note stack.',
+      'Specialty formats use the same per-note logic at a larger scale: the 500-note briefcase set is $479, the 2,500-note briefcase set is $2,319 and the 5,000-note duffel bag set is $4,629. The format changes the presentation (case, bag, banding), not the pricing logic.',
       'Accessories and non-currency items — confetti packs, leis, display cases, currency bands, personalised novelty pieces — aren\'t priced against a face value at all, since they aren\'t denominated currency props; they\'re priced individually and generally sit well under $50.',
-      'Every price on the site includes GST and reflects the exact note count and face value stated on the product page — no hidden tiers or quote-on-request pricing anywhere in the catalog.',
+      'Every price on the site includes GST and reflects the exact note count stated on the product page — no hidden tiers or quote-on-request pricing anywhere in the catalog. The minimum order is $350 in goods and shipping is free.',
     ],
     faqs: [
-      { q: 'How is prop money priced on this site?', a: 'Price is set at 20% of the prop face value the product carries — a stack with $2,000 in face value costs $400, a set with $10,000 in face value costs $2,000, and so on consistently across the catalog.' },
-      { q: 'Why do briefcase and duffel sets cost more than a single stack?', a: 'They carry a much larger face value than a single stack, and price scales directly with face value — the format (case or bag) reflects that scale, it doesn\'t add a separate premium on top.' },
+      { q: 'How is prop money priced on this site?', a: 'Currency products are priced per note by denomination: a 100-note stack is $79 in $20 notes, $89 in $50 notes and $109 in $100 notes. Larger packs lower the per-note price and smaller packs raise it slightly.' },
+      { q: 'Why do briefcase and duffel sets cost more than a single stack?', a: 'They hold far more notes than a single stack (500 to 5,000), and price scales with the note count. The case or bag is included in that price.' },
     ],
     tags: ['mixed-denomination-pack', 'not-legal-tender'],
   },
@@ -2290,23 +2290,23 @@ seoTitle: "The Novelty Big Cheque, Explained",
   },
   {
     slug: 'why-prop-money-is-priced-at-face-value',
-    seoTitle: 'Why Our Prop Money Is Priced at Face Value',
-    title: 'Why Our Prop Money Is Priced at 20% of Face Value',
+    seoTitle: 'How Our Prop Money Is Priced Per Note',
+    title: 'How Our Prop Money Is Priced Per Note',
     date: '2026-09-26',
-    excerpt: 'The pricing model behind every stack, briefcase, and pack — explained plainly.',
+    excerpt: 'The per-note pricing behind every stack, briefcase and pack, explained plainly.',
     keywordPrimary: 'prop money pricing explained',
     keywordSupporting: ['prop money face value pricing', 'why does prop money cost so much'],
     verified: false,
     body: [
-      'Every currency product on this site is priced the same way: the price is 20% of the prop face value the piece carries. A stack printed with $2,000 in face value costs $400. A briefcase set carrying $250,000 in face value costs $50,000. The ratio never changes — it\'s a flat 5× face value across the entire catalog, not a discount tier or a negotiated rate.',
-      'That\'s a deliberate move away from pricing prop currency like a cheap novelty item. Reduced-scale, clearly marked NOT LEGAL TENDER, film-and-theatre-grade prop notes take real production cost to get right — accurate colour matching, consistent print runs, correct banding — and pricing at a fixed percentage of face value reflects that instead of racing to the bottom on a per-note basis.',
-      'It also makes budgeting mechanical rather than guesswork: know the face value your scene, shoot, or display needs, and the price is one calculation away — no tiered discounts to chase, no "call for pricing" on anything in the standard catalog.',
-      'The face-value figure shown on every product page (and the "5× face value" badge) is exactly this ratio in reverse — it tells you what you\'re receiving in prop face value for what you\'re paying, at the same 20% rate everywhere in the shop.',
-      'This pricing model applies to every currency-denominated product — note stacks, packs, briefcases, and gift sets built around a stated face value. Non-currency items (confetti, leis, display cases, accessories) are priced individually, since there\'s no face value for the ratio to apply to.',
+      'Every currency product on this site is priced per note. A 100-note stack is $79 in $20 notes, $89 in $50 notes and $109 in $100 notes. Packs of 250 notes or more are cheaper per note, and half packs of 50 are slightly dearer. The price you see is the price you pay, with GST included and free tracked shipping.',
+      'We price to be competitive with other Australian suppliers while keeping the quality up. Reduced-scale, clearly marked NOT LEGAL TENDER, film-and-theatre-grade prop notes still take real production work to get right — accurate colour matching, consistent print runs, correct banding.',
+      'It also makes budgeting simple: count the notes your scene, shoot or display needs, multiply by the per-note rate for that denomination, and you have the price. There is no "call for pricing" on anything in the standard catalog.',
+      'Each product page shows the note count, the pack price and the price per note. The "face value" figure is only the amount printed on the prop notes — it is not a value in real money, and every note is marked NOT LEGAL TENDER.',
+      'This applies to every currency-styled product — note stacks, packs, briefcases and gift sets. Non-currency items (confetti, leis, display cases, accessories) are priced individually.',
     ],
     faqs: [
-      { q: 'How is the price of a prop money product calculated?', a: 'Price is set at exactly 20% of the prop face value the product carries — a flat 5× face value ratio across every currency product in the catalog.' },
-      { q: 'Does the pricing ratio change for bulk or briefcase orders?', a: 'No — the same 20%-of-face-value rule applies at every scale, from a single half pack up to the $500,000 duffel bag set.' },
+      { q: 'How is the price of a prop money product calculated?', a: 'Price is set per note by denomination ($0.79 for $20, $0.89 for $50, $1.09 for $100 in a 100-note stack), with lower per-note rates on larger packs.' },
+      { q: 'Does the pricing ratio change for bulk or briefcase orders?', a: 'Yes, in your favour: the per-note price falls as the pack gets larger, from a 50-note half pack through 250-note jumbo packs up to the 5,000-note duffel bag set.' },
     ],
     tags: ['not-legal-tender', 'novelty-currency'],
   },
@@ -2478,7 +2478,7 @@ seoTitle: "The Novelty Big Cheque, Explained",
       'Getting the colour right across an entire print run takes calibration most budget suppliers skip entirely — matching the specific hues of each Australian denomination consistently, run after run, so a customer reordering months later gets notes that still match their existing stock rather than a visibly different batch.',
       'Compliance isn\'t free either: correctly sizing every denomination to differ from genuine currency by the required margin, omitting every security feature a genuine note carries, and printing a clear NOT LEGAL TENDER mark on every single note is a design and production standard, not a sticker applied after the fact.',
       'Consistency at scale is the real cost driver for a bulk or production order — a single pack looking good is one thing; six hundred notes across a Bulk Production Pack all looking and banding identically, ready for a demanding production client, is a print-run quality-control problem that costs more to solve properly than to fake.',
-      'The pricing model on this site — a flat 20% of face value — reflects that real cost rather than racing to the lowest possible per-note price, which is exactly why the numbers here look different from the cheapest listing you might find elsewhere.',
+      'Our per-note prices are set to be competitive while keeping that quality standard, so compare what is in the pack, not only the headline number.',
     ],
     faqs: [
       { q: 'What makes cheap prop money look cheap on camera?', a: 'Usually inconsistent colour between notes, flat print quality under real lighting, and sizing that was never actually checked against RBA guidance.' },
