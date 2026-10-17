@@ -927,7 +927,7 @@ export const PRODUCTS = [
 ]
 
 export const FAQS = [
-  { q: 'What is prop money vs prop money?', a: 'Prop money is illegal currency created to deceive and pass as genuine. Prop money is a legitimate production tool for film and theatre, produced under strict RBA guidelines: it must differ by at least 25% in size and be clearly marked NOT LEGAL TENDER.' },
+  { q: 'What is the difference between prop money and fake money?', a: 'Fake money is currency made to deceive and pass as genuine, which is a serious offence in Australia. Prop money is a production and display item for film, theatre, photography and gifts. Under the RBA reproduction guidance, physical reproductions must be smaller than three-quarters or larger than 1.5 times the length and width of the real note, and printed on one side only. Our notes are marked NOT LEGAL TENDER.' },
   { q: 'What should I do if an ATM gave me fake money?', a: 'If you believe an ATM or bank has issued a fake note, report it immediately to the bank staff or the police. Do not attempt to use it, as circulating prop currency is a serious offence in Australia.' },
   { q: 'What is the best place to use prop money?', a: 'There is no legal or safe place to use prop money. Circulation of props carries heavy federal penalties, including imprisonment. If you need realistic currency for a project, always use RBA-compliant prop notes from a professional supplier.' },
   { q: 'Will the bank replace fake money?', a: 'No, Australian banks will not replace prop notes with genuine currency. This is why using a prop money detector or checking security features before accepting cash is essential.' },
