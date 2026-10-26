@@ -39,7 +39,6 @@ export default function AboutPage() {
         description={metadata.description}
         canonical="/about/"
         schemas={[schema]}
-        includeSiteSchemas={true}
       />
       <PageHeader
         eyebrow={`Est. ${SITE.foundingYear} · Australia`}
