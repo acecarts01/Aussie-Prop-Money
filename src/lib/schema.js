@@ -89,11 +89,6 @@ export function websiteNode() {
     name: SITE.name,
     inLanguage: 'en-AU',
     publisher: ref(ids.org),
-    potentialAction: {
-      '@type': 'SearchAction',
-      target: { '@type': 'EntryPoint', urlTemplate: `${absoluteUrl('/search/')}?q={search_term_string}` },
-      'query-input': 'required name=search_term_string',
-    },
   }
 }
 

@@ -57,6 +57,12 @@ export const SITE = {
   // replacement or refund; no change-of-mind refunds once shipped. The markup cannot express "faults only", so the
   // policy page (linked from the markup) carries that detail.
   returnWindowDays: 14,
+  // Optional Merchant-listing fields. Left null until the owner confirms the real policy; never guess them.
+  // returnFees: 'FreeReturn' | 'ReturnShippingFees' | 'OriginalShippingFees'; returnMethod: 'ReturnByMail' | 'ReturnInStore' | 'ReturnAtKiosk'
+  returnFees: null,
+  returnMethod: null,
+  // Business days: { handlingMin, handlingMax, transitMin, transitMax } for the shipping markup's deliveryTime.
+  deliveryTime: null,
   // Fill with a real person to switch on the Person (author/reviewer) node: { name, jobTitle, url, sameAs: [...], knowsAbout: [...] }
   editor: null,
 }
