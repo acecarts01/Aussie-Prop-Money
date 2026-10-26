@@ -10,6 +10,7 @@ import ComplianceBadge from '@/components/ComplianceBadge'
 import { getCart, updateQty, removeFromCart, subtotal } from '@/lib/cart'
 import { formatPrice } from '@/lib/utils'
 import { cartFaceValue, fmtFace } from '@/lib/value'
+import CryptoPay from '@/components/CryptoPay'
 import { SITE, PAYMENT_METHODS, PAGE_FAQS, ORDER } from '@/config/site'
 import VerifiedBusiness from '@/components/VerifiedBusiness'
 import Icon from '@/components/Icon'
@@ -149,6 +150,7 @@ export default function CartPage() {
                       </span>
                     </label>
                     ))}
+                    {paymentMethod === 'crypto' && <CryptoPay />}
                   </fieldset>
 
                   {belowMin ? (

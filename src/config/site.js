@@ -104,6 +104,23 @@ export const ORDER = {
   cryptoDiscount: 0.10, // 10% off the goods subtotal when paying in crypto (shipping excluded)
 }
 
+// Receiving wallet addresses (public by nature, not secrets). Shown on the cart ONLY when the
+// client picks crypto, each with a QR code. Client-supplied 2026-10-26: copy exactly, never retype.
+// Same address on several networks is intentional (EVM: ETH / USDT-ERC20 / BNB-BEP20; Tron: TRX / USDT-TRC20).
+export const CRYPTO_WALLETS = [
+  { id: 'btc', coin: 'Bitcoin', symbol: 'BTC', network: 'Bitcoin', address: 'bc1qdhgnlpctw37vg825eejkknurpm23a5lsthfdhg' },
+  { id: 'eth', coin: 'Ethereum', symbol: 'ETH', network: 'Ethereum (ERC-20)', address: '0x2629c24d3720E5A24adBe7Bde4677334B559C36D' },
+  { id: 'usdt-trc20', coin: 'Tether', symbol: 'USDT', network: 'Tron (TRC-20)', address: 'TVQGzSJKcHXTwX6Fn8CPb6A5PmAkoCFZRh' },
+  { id: 'usdt-erc20', coin: 'Tether', symbol: 'USDT', network: 'Ethereum (ERC-20)', address: '0x2629c24d3720E5A24adBe7Bde4677334B559C36D' },
+  { id: 'bnb', coin: 'BNB', symbol: 'BNB', network: 'BNB Smart Chain (BEP-20)', address: '0x2629c24d3720E5A24adBe7Bde4677334B559C36D' },
+  { id: 'sol', coin: 'Solana', symbol: 'SOL', network: 'Solana', address: 'GdNUybxyu8cBY7snHAZsdopH6WKdHBVXo5d79mR9PhJ' },
+  { id: 'xrp', coin: 'XRP', symbol: 'XRP', network: 'XRP Ledger', address: 'rBiWxdA3a27BXYC9ZwQRTyFdXNWaEjLfBr' },
+  { id: 'ltc', coin: 'Litecoin', symbol: 'LTC', network: 'Litecoin', address: 'ltc1q65vx7y70uxtemnmvu3grsfnuydngfzk7ngqx82' },
+  { id: 'doge', coin: 'Dogecoin', symbol: 'DOGE', network: 'Dogecoin', address: 'DQiMuCNgLSaVzeJuw8TL5CMkYKtdpst5Rc' },
+  { id: 'bch', coin: 'Bitcoin Cash', symbol: 'BCH', network: 'Bitcoin Cash', address: 'qq9l4ntg9nf9a7qz5h9he7mh4ktzf6prrgcg7htn9t' },
+  { id: 'trx', coin: 'Tron', symbol: 'TRX', network: 'Tron', address: 'TVQGzSJKcHXTwX6Fn8CPb6A5PmAkoCFZRh' },
+]
+
 export const PAYMENT_METHODS = [
   {
     id: 'payid',
@@ -119,8 +136,8 @@ export const PAYMENT_METHODS = [
   },
   {
     id: 'crypto',
-    label: 'Crypto (BTC, USDT, ETH, BNB) — 10% off',
-    note: '10% discount on the goods subtotal when paying in crypto. Wallet details are provided once your order is placed and this method is confirmed.',
+    label: 'Crypto (BTC, ETH, USDT, BNB, SOL, XRP and more) — 10% off',
+    note: '10% discount on the goods subtotal when paying in crypto. Choose a coin to see its wallet address and QR code. Need a different coin? Tell us and we will provide it.',
     discount: ORDER.cryptoDiscount,
     live: true,
   },
@@ -491,7 +508,7 @@ export const PAGE_FAQS = {
   ],
   cart: [
     { q: 'Is there a minimum order?', a: 'Yes — $350 AUD (goods subtotal, before any crypto discount). Below that the order request cannot be sent; add another stack or pack to reach it. Production and wholesale orders are quoted separately.' },
-    { q: "Why isn't there a card payment option yet?", a: "Card payment is not offered at the moment. We accept PayID/Osko, Bank Transfer (also via Osko), and crypto (BTC, USDT, ETH, BNB) with a 10% discount on the goods subtotal. Payment details are provided after your order is placed and you've chosen a payment method." },
+    { q: "Why isn't there a card payment option yet?", a: "Card payment is not offered at the moment. We accept PayID/Osko, Bank Transfer (also via Osko), and crypto (BTC, ETH, USDT, BNB, SOL, XRP, LTC, DOGE, BCH, TRX) with a 10% discount on the goods subtotal. Wallet addresses and QR codes appear when you choose crypto at checkout; PayID and bank details are provided once your order is placed and the method is confirmed." },
     { q: 'Is my cart saved if I close the browser?', a: "Yes — cart contents are stored in your browser's local storage and will still be there when you return, unless you clear site data." },
     { q: 'Can I request custom serial numbers on my order?', a: 'No — every note uses a system-assigned placeholder serial. Custom or buyer-specified serials are not offered on any product.' },
   ],

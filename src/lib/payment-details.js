@@ -1,6 +1,6 @@
 // Payment instructions from server-side Vercel env vars. Returns null when a
 // method has no details configured, so callers can fall back to "details to follow".
-import { SITE } from '@/config/site'
+import { SITE, CRYPTO_WALLETS } from '@/config/site'
 
 const env = (k, fallback = '') => (process.env[k] || fallback).trim()
 
@@ -28,8 +28,7 @@ export function paymentInstructions(method) {
     return { title: 'Bank Transfer (via Osko)', lines: [['Bank', env('BANK_NAME')], ['Account name', env('BANK_ACCOUNT_NAME', SITE.legalName)], ['BSB', bsb], ['Account number', acct], ['Transfer via', 'Osko (instant)']].filter(([, v]) => v) }
   }
   if (id === 'crypto') {
-    const wallets = [['BTC', env('CRYPTO_BTC')], ['USDT', env('CRYPTO_USDT')], ['ETH', env('CRYPTO_ETH')], ['BNB', env('CRYPTO_BNB')]].filter(([, v]) => v)
-    if (!wallets.length) return null
+    const wallets = CRYPTO_WALLETS.map((w) => [w.symbol + ' (' + w.network + ')', w.address])
     return { title: 'Crypto (10% discount applied)', lines: wallets }
   }
   return null

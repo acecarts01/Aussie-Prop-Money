@@ -26,7 +26,7 @@ Australian Reserve Props is an Australia-based novelty currency brand establishe
 
 ## Ordering
 - Minimum order: $350 AUD (goods subtotal). Shipping is free Australia-wide.
-- Payment methods: PayID/Osko, Bank Transfer (via Osko), Crypto (BTC, USDT, ETH, BNB) — 10% off. The crypto discount is 10% off the goods subtotal.
+- Payment methods: PayID/Osko, Bank Transfer (via Osko), Crypto (BTC, ETH, USDT, BNB, SOL, XRP and more) — 10% off. The crypto discount is 10% off the goods subtotal.
 - Flow: submit an order request on the site → we confirm the preferred payment method by email → tax invoice with payment details → printed to order and shipped.
 - Prices are in AUD and include GST. Every product page states the number of notes and the prop face value received.
 
