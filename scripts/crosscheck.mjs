@@ -108,6 +108,24 @@ if (/customSerials:\s*true/.test(siteConfigRaw)) {
   errors++
 }
 
+// 6. Built-HTML structured-data guards (only when a build exists), from the GSC issues of Oct 2026:
+//    - at most ONE aggregateRating per page ("Review has multiple aggregate ratings")
+//    - no SearchAction / {search_term_string} template (Google crawled the literal template URL as a page)
+try {
+  const appDir = join(root, '.next/server/app')
+  const htmls = []
+  ;(function w(d) { for (const e of readdirSync(d)) { const f = join(d, e); statSync(f).isDirectory() ? w(f) : f.endsWith('.html') && htmls.push(f) } })(appDir)
+  let bad = 0
+  for (const f of htmls) {
+    const h = readFileSync(f, 'utf8')
+    const ld = (h.match(/<script type="application\/ld\+json"[\s\S]*?<\/script>/g) || []).join('')
+    const n = (ld.match(/"aggregateRating"/g) || []).length
+    if (n > 1 || /SearchAction|search_term_string/.test(ld)) { console.log('FAIL  structured data: ' + f.replace(root, '') + ' (aggregateRating x' + n + ')'); bad++ }
+  }
+  errors += bad
+  console.log('Structured-data guard: ' + htmls.length + ' built pages checked, ' + bad + ' problem(s).')
+} catch { console.log('WARN  no build output found; structured-data guard skipped (run after npm run build).'); warnings++ }
+
 console.log(`\n${errors} error(s), ${warnings} warning(s).`)
 if (errors > 0) {
   console.log('Crosscheck FAILED — fix the errors above before shipping.')
