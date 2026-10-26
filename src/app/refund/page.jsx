@@ -12,6 +12,7 @@ export default function RefundPage() {
   return (
     <LegalPage crumb="Refunds" href="/refund/" title="Refund policy" subtitle="Printed to order. Made right if it arrives wrong.">
       <p>If your order arrives damaged, misprinted, or incorrect, contact us within 14 days of delivery for a replacement or refund. Because notes are printed to order, we don&rsquo;t offer change-of-mind refunds once an order has shipped.</p>
+      <p>Returns by mail are free: we cover the return postage for damaged, misprinted or incorrect orders.</p>
       <p>This policy operates alongside your rights under the Australian Consumer Law.</p>
     </LegalPage>
   )

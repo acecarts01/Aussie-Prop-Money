@@ -59,10 +59,10 @@ export const SITE = {
   returnWindowDays: 14,
   // Optional Merchant-listing fields. Left null until the owner confirms the real policy; never guess them.
   // returnFees: 'FreeReturn' | 'ReturnShippingFees' | 'OriginalShippingFees'; returnMethod: 'ReturnByMail' | 'ReturnInStore' | 'ReturnAtKiosk'
-  returnFees: null,
-  returnMethod: null,
+  returnFees: 'FreeReturn', // owner-confirmed 2026-10-26: free returns by mail
+  returnMethod: 'ReturnByMail',
   // Business days: { handlingMin, handlingMax, transitMin, transitMax } for the shipping markup's deliveryTime.
-  deliveryTime: null,
+  deliveryTime: { handlingMin: 1, handlingMax: 1, transitMin: 3, transitMax: 5 }, // owner-confirmed 2026-10-26: dispatch 1 business day, delivery 3-5 business days
   // Fill with a real person to switch on the Person (author/reviewer) node: { name, jobTitle, url, sameAs: [...], knowsAbout: [...] }
   editor: null,
 }

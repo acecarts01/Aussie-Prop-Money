@@ -84,11 +84,20 @@ export default function ProductPage({ params }) {
           returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnWindow',
           merchantReturnDays: SITE.returnWindowDays,
           merchantReturnLink: absoluteUrl('/refund/'),
+          ...(SITE.returnFees ? { returnFees: `https://schema.org/${SITE.returnFees}` } : {}),
+          ...(SITE.returnMethod ? { returnMethod: `https://schema.org/${SITE.returnMethod}` } : {}),
         },
         shippingDetails: {
           '@type': 'OfferShippingDetails',
           shippingRate: { '@type': 'MonetaryAmount', value: 0, currency: SITE.currency },
           shippingDestination: { '@type': 'DefinedRegion', addressCountry: 'AU' },
+          ...(SITE.deliveryTime ? {
+            deliveryTime: {
+              '@type': 'ShippingDeliveryTime',
+              handlingTime: { '@type': 'QuantitativeValue', minValue: SITE.deliveryTime.handlingMin, maxValue: SITE.deliveryTime.handlingMax, unitCode: 'DAY' },
+              transitTime: { '@type': 'QuantitativeValue', minValue: SITE.deliveryTime.transitMin, maxValue: SITE.deliveryTime.transitMax, unitCode: 'DAY' },
+            },
+          } : {}),
         },
       },
     }

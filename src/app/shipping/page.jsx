@@ -17,6 +17,7 @@ export default function ShippingPage() {
         <li>Minimum order {formatPrice(SITE.orderRules.minOrder)} (goods subtotal, before any discount).</li>
         <li>Shipping is free on every order.</li>
         <li>Shipped via Australia Post with tracking.</li>
+        <li>Dispatch within 1 business day of confirmed payment; delivery typically takes 3 to 5 business days.</li>
       </ul>
     </LegalPage>
   )
