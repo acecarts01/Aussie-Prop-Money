@@ -1,5 +1,5 @@
-// Retired blog posts: each topic is now covered by a rebuilt post (owner blog rule) or a policy page.
-// Permanent redirects, one hop each, so link value moves with the visitor. Used by next.config.mjs and src/config/site.js.
+// Retired blog posts: each topic is now covered by a rebuilt post (owner blog rule), a category page or a policy page.
+// Permanent redirects, one hop each, so link value moves with the visitor. Used by next.config.mjs.
 export const RETIRED_POSTS = {
   'novelty-cash-gift-ideas-australia': '/blog/gag-gifts-australia/',
   'bachelor-and-hens-party-prop-money-ideas': '/blog/gag-gifts-australia/',
@@ -39,16 +39,16 @@ export const RETIRED_POSTS = {
   'whats-on-the-australian-100-dollar-note': '/blog/100-dollar-note-prop-stack-australia/',
   'whats-on-the-australian-50-dollar-note': '/blog/50-dollar-note-prop-stack-australia/',
   'whats-on-the-australian-20-dollar-note': '/shop/twenty-dollar-notes/',
-  'prop-money-gift-ideas-for-him': '/blog/novelty-cash-gift-ideas-australia/',
-  'prop-money-gift-ideas-for-her': '/blog/novelty-cash-gift-ideas-australia/',
-  'prop-money-gift-ideas-for-teenagers': '/blog/novelty-cash-gift-ideas-australia/',
-  'personalised-prop-money-gift-ideas': '/blog/novelty-cash-gift-ideas-australia/',
-  'easter-prop-money-gift-ideas': '/blog/novelty-cash-gift-ideas-australia/',
-  'valentines-day-prop-money-gag-gifts': '/blog/novelty-cash-gift-ideas-australia/',
-  'retirement-and-farewell-money-gift-ideas': '/blog/novelty-cash-gift-ideas-australia/',
-  'best-novelty-gifts-under-25-in-australia': '/blog/novelty-cash-gift-ideas-australia/',
+  'prop-money-gift-ideas-for-him': '/blog/gag-gifts-australia/',
+  'prop-money-gift-ideas-for-her': '/blog/gag-gifts-australia/',
+  'prop-money-gift-ideas-for-teenagers': '/blog/gag-gifts-australia/',
+  'personalised-prop-money-gift-ideas': '/blog/gag-gifts-australia/',
+  'easter-prop-money-gift-ideas': '/blog/gag-gifts-australia/',
+  'valentines-day-prop-money-gag-gifts': '/blog/gag-gifts-australia/',
+  'retirement-and-farewell-money-gift-ideas': '/blog/gag-gifts-australia/',
+  'best-novelty-gifts-under-25-in-australia': '/blog/gag-gifts-australia/',
   'sourcing-vintage-australian-prop-notes-for-period-dramas': '/blog/old-australian-banknotes-vintage-prop-notes/',
-  'prop-money-for-content-creators-flex-guide': '/blog/prop-money-for-content-creators/',
+  'prop-money-for-content-creators-flex-guide': '/blog/money-guns-australia-buying-guide/',
   'educational-play-money-australian-classrooms': '/blog/play-money-australia-guide/',
   'educational-play-money-for-australian-schools-and-kids': '/blog/play-money-australia-guide/',
   'how-realistic-fake-money-is-made-for-australian-productions': '/blog/prop-money-australia-guide/',
