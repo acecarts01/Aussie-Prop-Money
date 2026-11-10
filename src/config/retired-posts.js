@@ -1,9 +1,10 @@
 // Retired blog posts: each topic is now covered by a rebuilt post (owner blog rule) or a policy page.
 // Permanent redirects, one hop each, so link value moves with the visitor. Used by next.config.mjs and src/config/site.js.
 export const RETIRED_POSTS = {
+  '20-dollar-note-prop-stack-australia': '/shop/twenty-dollar-notes/',
   'whats-on-the-australian-100-dollar-note': '/blog/100-dollar-note-prop-stack-australia/',
   'whats-on-the-australian-50-dollar-note': '/blog/50-dollar-note-prop-stack-australia/',
-  'whats-on-the-australian-20-dollar-note': '/blog/20-dollar-note-prop-stack-australia/',
+  'whats-on-the-australian-20-dollar-note': '/shop/twenty-dollar-notes/',
   'prop-money-gift-ideas-for-him': '/blog/novelty-cash-gift-ideas-australia/',
   'prop-money-gift-ideas-for-her': '/blog/novelty-cash-gift-ideas-australia/',
   'prop-money-gift-ideas-for-teenagers': '/blog/novelty-cash-gift-ideas-australia/',
