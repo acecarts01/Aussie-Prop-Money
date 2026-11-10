@@ -939,3 +939,10 @@ input[type="radio"] { accent-color: var(--accent); width: 20px; height: 20px; ma
 .crypto-addr { display: block; padding: 0.55rem 0.7rem; background: var(--bg); border: 1px solid var(--line); border-radius: 8px; font-size: 0.82rem; word-break: break-all; user-select: all; }
 .crypto-warn { margin: 0.9rem 0 0; font-size: 0.8rem; color: var(--ink-3); }
 @media (max-width: 600px) { .crypto-pay { margin-left: 0; } .crypto-qr { margin: 0 auto; } }
+
+/* ---------- Rebuilt blog posts: tables and contents ---------- */
+.markdown-body table { width: 100%; border-collapse: collapse; margin: 1rem 0 1.25rem; font-size: 0.95rem; }
+.markdown-body th, .markdown-body td { text-align: left; padding: 0.55rem 0.7rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+.markdown-body th { color: var(--ink); font-weight: 700; background: var(--bg-3); }
+.markdown-body h3 { font-size: 1.15rem; margin: 1.5rem 0 0.5rem; }
+.markdown-body :target { scroll-margin-top: 90px; }

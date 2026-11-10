@@ -2,6 +2,8 @@
 // Every domain-bearing file, page, and nav link is generated from this file.
 // Never hand-edit generated output (llms.txt, .well-known/*, vercel.json) — edit here and rebuild.
 
+import { POSTS_V2 } from './posts-v2.js'
+
 export const SITE = {
   target: 'vercel',
   domain: 'australianreserveprops.com', // confirmed registered + connected in Vercel 2026-09-05
@@ -1088,7 +1090,7 @@ export const REVIEW_STATS = {
   rating: Number((REVIEWS.reduce((n, r) => n + r.rating, 0) / REVIEWS.length).toFixed(1)),
 }
 
-export const POSTS = [
+const POSTS_LEGACY = [
   {
     slug: 'prop-money-laws-penalties-australia',
     seoTitle: 'Prop Money Laws & Penalties Australia | Prop Sentencing',
@@ -2712,3 +2714,6 @@ seoTitle: "The Novelty Big Cheque, Explained",
     tags: ["twenty-dollar-prop-note","magic-trick-money"],
   },
 ]
+
+// Rebuilt posts (owner blog rule, post.v2) are listed first; legacy posts follow until each is rebuilt, merged or retired.
+export const POSTS = [...POSTS_V2, ...POSTS_LEGACY]

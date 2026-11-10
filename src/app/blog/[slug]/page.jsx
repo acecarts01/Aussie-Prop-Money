@@ -1,6 +1,8 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
+import Image from 'next/image'
 import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import PageHeader from '@/components/PageHeader'
 import ComplianceBadge from '@/components/ComplianceBadge'
@@ -52,6 +54,15 @@ function tidyBody(paras) {
   )
 }
 
+// Rebuilt posts (post.v2) follow the owner's blog rule: table of contents, outbound links kept, hero image with alt text.
+const slugify = (t) => String(t).toLowerCase().replace(/&/g, ' and ').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
+const textOf = (n) => (typeof n === 'string' ? n : Array.isArray(n) ? n.map(textOf).join('') : n?.props?.children ? textOf(n.props.children) : '')
+const mdComponents = {
+  h2: ({ children }) => <h2 id={slugify(textOf(children))}>{children}</h2>,
+  h3: ({ children }) => <h3 id={slugify(textOf(children))}>{children}</h3>,
+  a: ({ href, children }) => (/^https?:\/\//.test(href || '') && !/australianreserveprops\.com/.test(href) ? <a href={href} target="_blank" rel="noopener">{children}</a> : <a href={href}>{children}</a>),
+}
+const tidyInternal = (paras) => paras
 const FLAGSHIP = ['hundred-dollar-prop-note-stack', 'fifty-dollar-prop-note-stack', 'twenty-dollar-prop-note-stack', 'mixed-denomination-starter-pack']
 
 function productsForPost(categories) {
@@ -103,10 +114,12 @@ export default function BlogPost({ params }) {
   const faqs = post.faqs || []
   const related = relatedCategoriesFor(post.tags)
   const relatedPosts = relatedPostsFor(post)
-  const body = tidyBody(post.body)
+  const v2 = Boolean(post.v2)
+  const body = v2 ? tidyInternal(post.body) : tidyBody(post.body)
   const override = ANSWER_OVERRIDES[post.slug]
   const { answer, rest } = override ? { answer: override, rest: body } : splitAnswer(body)
-  const shopProducts = productsForPost(related)
+  const shopProducts = post.products?.length ? post.products.map((s) => PRODUCTS.find((x) => x.slug === s)).filter(Boolean) : productsForPost(related)
+  const toc = v2 ? [{ id: 'short-answer', label: 'The short answer' }, ...rest.flatMap((para) => [...para.matchAll(/^##\s+(.+)$/gm)].map((m) => ({ id: slugify(m[1]), label: m[1] }))), ...(faqs.length ? [{ id: 'faq', label: 'Frequently asked questions' }] : []), ...(shopProducts.length ? [{ id: 'related-products', label: 'Related products' }] : [])] : []
   const lead = related[0]
   const leadFrom = lead ? formatPriceShort(Math.min(...PRODUCTS.filter((p) => p.category === lead.slug).map((p) => p.price))) : null
   const leadLabel = lead ? (CATEGORY_KEYWORDS[lead.slug]?.title.split(' | ')[0] || lead.name) : 'Shop prop money Australia'
@@ -123,7 +136,8 @@ export default function BlogPost({ params }) {
       headline: post.title.length > 110 ? post.title.slice(0, 107).replace(/\s+\S*$/, '…') : post.title,
       description: post.excerpt,
       url: pageUrl,
-      image: [absoluteUrl('/og-default.jpg')],
+      image: [post.hero ? absoluteUrl(post.hero.src) : absoluteUrl('/og-default.jpg')],
+      ...(v2 && post.keywordTags?.length ? { keywords: [post.keywordPrimary, ...(post.keywordSupporting || []), ...post.keywordTags].join(', ') } : {}),
       datePublished: post.date,
       dateModified: post.updated || post.date,
       inLanguage: 'en-AU',
@@ -153,14 +167,27 @@ export default function BlogPost({ params }) {
       />
 
       <article className="container section" style={{ maxWidth: '72ch' }}>
+        {v2 && post.hero && (
+          <figure style={{ margin: '0 0 1.5rem' }}>
+            <Image src={post.hero.src} alt={post.hero.alt} width={1200} height={900} priority sizes="(max-width: 800px) 100vw, 72ch" style={{ width: '100%', height: 'auto', borderRadius: '12px' }} />
+          </figure>
+        )}
         <p className="byline">
           Published by {SITE.name}, operated by {SITE.legalName} (ABN {SITE.abn}) · {new Date(post.date).toLocaleDateString('en-AU', { year: 'numeric', month: 'long', day: 'numeric' })}{post.updated && post.updated !== post.date ? ` · Updated ${new Date(post.updated).toLocaleDateString('en-AU', { year: 'numeric', month: 'long', day: 'numeric' })}` : ''} ·{' '}
           <a href={`https://abr.business.gov.au/ABN/View?abn=${SITE.abn.replace(/\s/g, '')}`} target="_blank" rel="noopener">Check the ABN</a>
         </p>
+        {toc.length > 2 && (
+          <nav aria-label="Table of contents" className="card card-pad" style={{ margin: '0 0 1.5rem' }}>
+            <strong style={{ display: 'block', marginBottom: '0.5rem' }}>In this guide</strong>
+            <ol style={{ margin: 0, paddingLeft: '1.2rem', display: 'grid', gap: '0.3rem' }}>
+              {toc.map((t) => <li key={t.id}><a href={`#${t.id}`}>{t.label}</a></li>)}
+            </ol>
+          </nav>
+        )}
         <div style={{ fontSize: '1.05rem', color: 'var(--ink-2)' }} className="markdown-body">
           <section className="answer-capsule" aria-labelledby="short-answer">
             <h2 id="short-answer">The short answer</h2>
-            <ReactMarkdown>{answer}</ReactMarkdown>
+            <ReactMarkdown components={v2 ? mdComponents : undefined} remarkPlugins={v2 ? [remarkGfm] : undefined}>{answer}</ReactMarkdown>
           </section>
           <div className="card card-pad" style={{ margin: '0 0 1.75rem', display: 'flex', flexWrap: 'wrap', gap: '0.75rem 1.25rem', alignItems: 'center', justifyContent: 'space-between' }}>
             <span style={{ color: 'var(--ink)', fontWeight: 600 }}>
@@ -171,7 +198,7 @@ export default function BlogPost({ params }) {
           {PRICE_TABLE_POSTS.has(post.slug) && <PriceLadder />}
           {rest.map((para, i) => (
             <div key={i} style={{ marginBottom: '1.5rem' }}>
-              <ReactMarkdown>{para}</ReactMarkdown>
+              <ReactMarkdown components={v2 ? mdComponents : undefined} remarkPlugins={v2 ? [remarkGfm] : undefined}>{para}</ReactMarkdown>
             </div>
           ))}
           {SOURCES_POSTS.has(post.slug) && (
@@ -189,14 +216,20 @@ export default function BlogPost({ params }) {
 
         {shopProducts.length > 0 && (
           <div style={{ marginTop: '2.5rem' }}>
-            <h2 style={{ fontSize: '1.4rem', marginBottom: '0.9rem' }}>Buy prop money online</h2>
+            <h2 id="related-products" style={{ fontSize: '1.4rem', marginBottom: '0.9rem' }}>{v2 ? 'Related products' : 'Buy prop money online'}</h2>
             <div className="grid grid-2">
               {shopProducts.map((p) => <ProductCard key={p.slug} product={p} />)}
             </div>
           </div>
         )}
 
-        <FaqBlock faqs={faqs} title="Frequently asked" />
+        <div id="faq"><FaqBlock faqs={faqs} title={v2 ? 'Frequently asked questions' : 'Frequently asked'} /></div>
+
+        {v2 && post.keywordTags?.length > 0 && (
+          <p style={{ marginTop: '2rem', color: 'var(--ink-3)', fontSize: '0.9rem' }}>
+            <strong>Topics:</strong> {post.keywordTags.join(' · ')}
+          </p>
+        )}
 
         {related.length > 0 && (
           <div style={{ marginTop: '2.5rem' }}>
