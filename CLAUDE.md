@@ -61,3 +61,8 @@ PayID/Osko, Bank Transfer (also via Osko), and crypto (BTC/USDT/ETH/BNB) with a 
 - ONE relaxation for this project: the MAIN keyword may have KD above 28, up to a hard maximum of KD 34, but ONLY when it is the only Transactional or Commercial term with real volume available for that post. State this in the post report. Secondary keywords, the navigational and informational keywords and all tags stay at KD 1 to 28.
 - Where a slot cannot be filled from verified keywords (the navigational slot especially), leave it empty and report it. Never fill with unverified or zero-volume keywords.
 - Rebuild plan (owner chose option 1): rebuild about 12 posts fully to the rule; merge or redirect the other posts into them (changing existing URLs needs the owner's approval first). Plan and register: `docs/blog-plan-2026-11-10.md`, `docs/used-keywords.csv`.
+
+## Shop keyword rule and owner decisions (11 Nov 2026)
+- Category and product keywords (products inherit their category's `CATEGORY_KEYWORDS` in `src/config/site.js`): primary Transactional; 5 supporting Transactional or Commercial; KD 1 to 28; volume 10 or more; sole goal is sales. Category pages get first pick of keywords; blog posts must not reuse them.
+- Owner-approved relaxation (11 Nov 2026): a buying-intent keyword with volume 10 or more and KD shown as n/a (Semrush gives no KD below roughly 20 searches a month) counts as passing. Where Semrush shows no Transactional keyword at all for a cluster, the best Commercial keyword is used as primary and the gap is reported.
+- Per-slot evidence: `docs/category-keywords-2026-11-11.csv`. Briefcases, display, personalised and gift sets rely on this relaxation; vintage notes and kids play money have a Commercial primary; display has 4 of 5 supporting keywords.

@@ -389,7 +389,7 @@ export const CATEGORY_KEYWORDS = {
     supporting: ['fake money briefcase', 'briefcase prop', 'duffel bag of money', 'prop money bag', 'briefcase of money'],
     title: 'Briefcase Full of Money Prop Sets | Buy Australia',
     desc: 'Buy a briefcase full of money prop set or duffel bag in Australia, pre-packed and film-ready, from {from}. Free tracked shipping. NOT LEGAL TENDER.',
-    // Keyword check 2026-11-11: FAIL on rule. Real searches (vol 10-20) but Semrush shows no KD or intent for any of them; no verified Transactional keyword exists. Best available.
+    // Keyword check 2026-11-11: PASS under the owner-approved rule (KD n/a accepted for volume >= 10). Real searches (10-20 a month); Semrush shows no KD or intent label for them.
   },
   'confetti-party-favors': {
     intent: 'transactional',
@@ -407,16 +407,16 @@ export const CATEGORY_KEYWORDS = {
     supporting: ['money display frame', 'framed money', 'money in a frame', 'money frame gift'],
     title: 'Money Display Case & Framed Money | Buy Australia',
     desc: 'Buy a money display case, framed money and collector pieces in Australia, from {from}. Free tracked shipping. Marked NOT LEGAL TENDER.',
-    // Keyword check 2026-11-11: FAIL on rule. Only 5 keywords with any volume (10-20); no KD or intent shown, so primary Transactional and KD 1-28 cannot be verified. 4 supporting only.
+    // Keyword check 2026-11-11: PARTIAL. Only 5 display keywords have any volume (10-20, KD n/a); 4 supporting instead of 5. More display research needed.
   },
   'personalised-novelty': {
     intent: 'transactional',
     verified: false,
     primary: 'novelty cheque',
-    supporting: ['big cheque', 'giant cheque', 'giant novelty cheque', 'personalised fake money', 'custom prop money'],
+    supporting: ['giant novelty cheque', 'oversized cheque', 'personalised fake money', 'custom prop money', 'personalised money notes'],
     title: 'Novelty Cheque & Personalised Prop Money | Buy',
     desc: 'Buy a novelty cheque or personalised prop money in Australia, from {from}. Free tracked shipping. A novelty piece, never a real cheque.',
-    // Keyword check 2026-11-11: PARTIAL. Primary novelty cheque 390/KD9 (no intent label). big cheque and giant cheque are Informational; the rest have no KD.
+    // Keyword check 2026-11-11: PASS under the owner-approved rule (KD n/a accepted for volume >= 10). Primary novelty cheque 390/KD9; supporting 20-40 searches, KD n/a. big cheque (140) and giant cheque (140) are Informational, so left for the blog.
   },
   'kids-play-money': {
     intent: 'transactional',
@@ -431,10 +431,10 @@ export const CATEGORY_KEYWORDS = {
     intent: 'transactional',
     verified: false,
     primary: 'novelty gifts australia',
-    supporting: ['funny gifts for men australia', 'money gift box', 'graduation money gift', 'funny money gift', 'fake money prank'],
+    supporting: ['funny gifts for men australia', 'prank money', 'graduation money gift', 'funny money gift', 'fake money prank'],
     title: 'Novelty Gifts Australia: Money Gift Boxes | Buy',
     desc: 'Buy novelty gifts in Australia: money gift boxes for birthdays, graduations and gags, from {from}. Free tracked shipping. NOT LEGAL TENDER.',
-    // Keyword check 2026-11-11: FAIL on rule. Primary Commercial (140/KD14); money gift box is Informational; the other three have vol 10-30 but no KD or intent.
+    // Keyword check 2026-11-11: PASS under the owner-approved rule (KD n/a accepted for volume >= 10). Primary novelty gifts australia is Commercial (140/KD14); supporting 10-50 searches, KD n/a except funny gifts for men australia (KD4).
   },
   'accessories': {
     intent: 'transactional',
