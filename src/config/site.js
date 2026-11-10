@@ -3,6 +3,7 @@
 // Never hand-edit generated output (llms.txt, .well-known/*, vercel.json) — edit here and rebuild.
 
 import { POSTS_V2 } from './posts-v2.js'
+import { RETIRED_POSTS } from './retired-posts.js'
 
 export const SITE = {
   target: 'vercel',
@@ -238,7 +239,7 @@ export const COMPLIANCE = {
     'Not something we\'ll market on "privacy" or "discretion" — we don\'t, and we won\'t',
   ],
   links: [
-    { label: 'Read the legal explainer', href: '/blog/is-prop-money-legal-in-australia/' },
+    { label: 'Read the legal explainer', href: '/blog/prop-money-australia-guide/' },
     { label: 'Full FAQ', href: '/faq/' },
   ],
 }
@@ -1920,8 +1921,8 @@ seoTitle: "The Novelty Big Cheque, Explained",
       "That gap — convincing on screen, clearly distinguishable in hand — is exactly the design brief RBA guidance is built around, and it's what every note we sell is produced to meet.",
       "## How realistic prop money is made",
       "The creation of [realistic fake money australia](https://australianreserveprops.com/shop/) is a specialized craft. Every [fake note australia](https://australianreserveprops.com/shop/) begins with a high-resolution design that captures the essence of an [fake australian dollar](https://australianreserveprops.com/shop/) while omitting security features.",
-      "While [proping of money](https://australianreserveprops.com/blog/is-prop-money-legal-in-australia-penalties-and-rba-rules/) is a crime, the production of [fake prop australian money](https://australianreserveprops.com/shop/) for film is a legal necessity. We use premium paper and non-reproducible ink to ensure our [australian fake money](https://australianreserveprops.com/shop/) looks the part without crossing legal lines.",
-      "Many production vendors are listed on [HotFrog Australia](https://www.hotfrog.com.au). For more on our process, check our [legal explainer](https://australianreserveprops.com/blog/is-prop-money-legal-in-australia-penalties-and-rba-rules/).",
+      "While [proping of money](https://australianreserveprops.com/blog/prop-money-australia-guide/) is a crime, the production of [fake prop australian money](https://australianreserveprops.com/shop/) for film is a legal necessity. We use premium paper and non-reproducible ink to ensure our [australian fake money](https://australianreserveprops.com/shop/) looks the part without crossing legal lines.",
+      "Many production vendors are listed on [HotFrog Australia](https://www.hotfrog.com.au). For more on our process, check our [legal explainer](https://australianreserveprops.com/blog/prop-money-australia-guide/).",
     ],
     faqs: [
       { q: "Can compliant prop money still look convincing on camera?", a: "Yes — on-screen, colour and denomination read far more than fine detail, so a compliant reproduction still works well for film and photography." },
@@ -2552,7 +2553,7 @@ seoTitle: "The Novelty Big Cheque, Explained",
       "## How much to order",
       "Order by what is visible in frame, not by total face value. A stack of 100 notes is the working unit, and a jumbo pack of 250 notes covers a wider shot. For reveal scenes, the pre-packed [briefcase and duffel sets](https://australianreserveprops.com/shop/briefcases-bags/) hold 500, 2,500 and 5,000 notes, with the face values shown in the price table on this page.",
       "## Compliance basics for productions",
-      "Every product is reduced-scale, marked NOT LEGAL TENDER and carries no replicated security features. The Reserve Bank of Australia's guidance for physical reproductions is under three-quarters, or over one and a half times, the length and width of a genuine note, and one-sided. Read the sources at the end of this page, and see [is prop money legal in Australia](https://australianreserveprops.com/blog/is-prop-money-legal-in-australia/).",
+      "Every product is reduced-scale, marked NOT LEGAL TENDER and carries no replicated security features. The Reserve Bank of Australia's guidance for physical reproductions is under three-quarters, or over one and a half times, the length and width of a genuine note, and one-sided. Read the sources at the end of this page, and see [is prop money legal in Australia](https://australianreserveprops.com/blog/prop-money-australia-guide/).",
       "## Ordering for a shoot",
       "Shipping is free and tracked across Australia by Australia Post, and the minimum order is $350 in goods. Productions that need matching stacks across many scenes can ask about wholesale pricing on the [production and wholesale page](https://australianreserveprops.com/wholesale/).",
     ],
@@ -2596,7 +2597,7 @@ seoTitle: "The Novelty Big Cheque, Explained",
       "We stay with Australian notes because every product is built to the Reserve Bank of Australia's reproduction guidance: reduced in size by at least 25%, clearly marked NOT LEGAL TENDER, with no replicated security features. That work is specific to Australian banknotes, and we only sell what we can stand behind.",
       "For a scene set overseas, the camera often never needs a readable foreign note. Wide shots, over-the-shoulder shots and a stack inside a bag read as cash before anyone reads a denomination, so Australian prop money works as background volume. Where a foreign note has to be legible on screen, use a props supplier in that country and check its local reproduction rules, because American and British rules differ from Australia's.",
       "The same applies to coins. Searches for fake coins, fake coin props or fake toonies are for coin specialists; our range is notes, leis, confetti and accessories only.",
-      "If your story is set in Australia, we can dress it fast: [$100 prop money](https://australianreserveprops.com/shop/hundred-dollar-notes/) for briefcase scenes, [packs and bundles](https://australianreserveprops.com/shop/packs-bundles/) for volume and [prop money briefcases](https://australianreserveprops.com/shop/briefcases-bags/) for reveals, all with free tracked shipping. Our [guide to prop money for film and TV](https://australianreserveprops.com/blog/ultimate-guide-to-australian-prop-money-for-film-and-tv/) covers how much to order.",
+      "If your story is set in Australia, we can dress it fast: [$100 prop money](https://australianreserveprops.com/shop/hundred-dollar-notes/) for briefcase scenes, [packs and bundles](https://australianreserveprops.com/shop/packs-bundles/) for volume and [prop money briefcases](https://australianreserveprops.com/shop/briefcases-bags/) for reveals, all with free tracked shipping. Our [guide to prop money for film and TV](https://australianreserveprops.com/blog/prop-money-australia-guide/) covers how much to order.",
     ],
     faqs: [
       { q: "Do you sell American or British prop money?", a: "No. Australian Reserve Props supplies Australian-styled prop notes only, each reduced-scale and marked NOT LEGAL TENDER." },
@@ -2641,7 +2642,7 @@ seoTitle: "The Novelty Big Cheque, Explained",
       "A fake money template is a few clicks away, and so is a fake money print file for a home game or a video. Whether printing one is allowed depends on how closely it copies a genuine banknote. In Australia the Crimes (Currency) Act 1981 (Cth) and the Reserve Bank of Australia's reproduction guidance set the limits.",
       "The Reserve Bank's guidance for physical reproductions is that they are less than three-quarters, or more than one and a half times, the length and width of a genuine note, and one-sided. They must also avoid copying any security feature, and clear marking as not currency is good practice. A print-at-home file that is note-sized, on note-like paper, with a convincing finish, is the situation those rules exist to prevent, even when the intent is harmless.",
       "We do not supply templates or printable files. Our notes are pre-printed, reduced-scale, marked NOT LEGAL TENDER and carry system-assigned placeholder serials only, so there is nothing to print, trim or second-guess.",
-      "If you want fake money to print off for a classroom, see our guide to [printable play money](https://australianreserveprops.com/blog/fake-money-print-guide-australia-printable-novelty/). For film and content, buy ready-made: [$20 prop notes](https://australianreserveprops.com/shop/twenty-dollar-notes/), [$50 prop notes](https://australianreserveprops.com/shop/fifty-dollar-notes/) and [$100 prop notes](https://australianreserveprops.com/shop/hundred-dollar-notes/) ship free and tracked across Australia. For the full legal picture, read [is prop money legal in Australia](https://australianreserveprops.com/blog/is-prop-money-legal-in-australia/).",
+      "If you want fake money to print off for a classroom, see our guide to [printable play money](https://australianreserveprops.com/blog/play-money-australia-guide/). For film and content, buy ready-made: [$20 prop notes](https://australianreserveprops.com/shop/twenty-dollar-notes/), [$50 prop notes](https://australianreserveprops.com/shop/fifty-dollar-notes/) and [$100 prop notes](https://australianreserveprops.com/shop/hundred-dollar-notes/) ship free and tracked across Australia. For the full legal picture, read [is prop money legal in Australia](https://australianreserveprops.com/blog/prop-money-australia-guide/).",
     ],
     faqs: [
       { q: "Is it legal to print a fake money template in Australia?", a: "Only if it follows the RBA guidance: less than three-quarters, or more than one and a half times, the length and width of a genuine note, one-sided, with no copied security features. When in doubt, buy a compliant ready-made set." },
@@ -2663,7 +2664,7 @@ seoTitle: "The Novelty Big Cheque, Explained",
       "Most searches for fake money to print out come from teachers, parents and game hosts: counting lessons, a shop corner in a classroom, a home poker night. That is a good use, and the rules for it are simple.",
       "Play money for learning should look like play money. Use a size and colour clearly different from Australian notes, put \"play money\" across it, and keep it free of anything copied from a genuine banknote. The same Reserve Bank of Australia guidance that applies to prop money applies to a printable file, so a note-sized print that copies a real design is not a safe classroom resource.",
       "Printouts also wear out quickly. Paper play money tears, curls and goes missing within a term, which is why many schools move to a durable set. Our Australian play money is pre-printed, reduced-scale and marked NOT LEGAL TENDER, so it can be handled all day.",
-      "See the full [kids play money range](https://australianreserveprops.com/shop/kids-play-money/) for classroom and home sets, or read our teacher and parent guides: [teaching kids to count Australian money](https://australianreserveprops.com/blog/teaching-kids-to-count-australian-money/) and [the Australian play money guide](https://australianreserveprops.com/blog/australian-play-money-guide-for-parents-and-teachers/). Orders ship free and tracked across Australia.",
+      "See the full [kids play money range](https://australianreserveprops.com/shop/kids-play-money/) for classroom and home sets, or read our teacher and parent guides: [teaching kids to count Australian money](https://australianreserveprops.com/blog/play-money-australia-guide/) and [the Australian play money guide](https://australianreserveprops.com/blog/play-money-australia-guide/). Orders ship free and tracked across Australia.",
     ],
     faqs: [
       { q: "Can I print Australian play money for a classroom?", a: "Yes, if it is clearly play money: a different size and colour from genuine notes, marked as play money, with no copied security features." },
@@ -2716,4 +2717,4 @@ seoTitle: "The Novelty Big Cheque, Explained",
 ]
 
 // Rebuilt posts (owner blog rule, post.v2) are listed first; legacy posts follow until each is rebuilt, merged or retired.
-export const POSTS = [...POSTS_V2, ...POSTS_LEGACY]
+export const POSTS = [...POSTS_V2, ...POSTS_LEGACY.filter((p) => !(p.slug in RETIRED_POSTS))]

@@ -41,7 +41,7 @@ const SLIDES = [
     title: 'RBA-COMPLIANT SIZING',
     sub: 'Every note is produced at reduced-scale to differ from genuine Australian currency by at least 25%, per RBA reproduction guidance.',
     image: 'fifty-dollar-prop-note-stack.webp',
-    ctaPrimary: { label: 'Legal explainer', href: '/blog/is-prop-money-legal-in-australia/' },
+    ctaPrimary: { label: 'Legal explainer', href: '/blog/prop-money-australia-guide/' },
     ctaSecondary: { label: 'Full FAQ', href: '/faq/' },
   }
 ]

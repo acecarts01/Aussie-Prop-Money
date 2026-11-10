@@ -160,7 +160,7 @@ export default function ShopPage() {
         <div className="container" style={{ display: 'flex', flexWrap: 'wrap', gap: '1.5rem', alignItems: 'center', justifyContent: 'space-between' }}>
           <ComplianceBadge size="lg" />
           <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
-            <Link href="/blog/prop-money-buying-guide-for-australian-filmmakers/" className="btn btn-outline">Buying guide</Link>
+            <Link href="/blog/prop-money-australia-guide/" className="btn btn-outline">Buying guide</Link>
             <Link href="/faq/" className="btn btn-outline">Legal &amp; FAQ</Link>
             <Link href="/wholesale/" className="btn btn-accent">Production &amp; wholesale</Link>
           </div>

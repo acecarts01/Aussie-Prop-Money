@@ -38,7 +38,7 @@ export default function FaqPage() {
           </p>
           <ComplianceBadge />
           <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', marginTop: '1.25rem' }}>
-            <Link href="/blog/is-prop-money-legal-in-australia/" className="btn btn-outline">Legal explainer</Link>
+            <Link href="/blog/prop-money-australia-guide/" className="btn btn-outline">Legal explainer</Link>
             <Link href="/shop/" className="btn btn-accent">Shop film-ready packs</Link>
           </div>
         </aside>

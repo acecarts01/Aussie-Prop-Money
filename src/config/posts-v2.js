@@ -1,7 +1,11 @@
+import { POSTS_NOTES } from './posts-v2-notes.js'
+import { POSTS_GUIDES } from './posts-v2-guides.js'
+import { POSTS_MORE } from './posts-v2-more.js'
+
 // Posts rebuilt to the owner's blog rule (see ~/.claude/skills/blog-post and docs/blog-plan-2026-11-10.md).
 // Each carries v2: true, a hero image with keyword alt text, a table of contents (from the ## headings), outbound links,
 // explicit related products and 10 keyword tags. Keywords are recorded in docs/used-keywords.csv.
-export const POSTS_V2 = [
+const POSTS_100 = [
   {
     v2: true,
     slug: '100-dollar-note-prop-stack-australia',
@@ -26,7 +30,7 @@ export const POSTS_V2 = [
       `## What a $100 note prop stack is`,
       `A $100 note prop stack is a bundle of reproduction banknotes made for film, theatre, photography, content creation and gifts. It is not currency and cannot be used as currency. The notes follow the look of the Australian 100 dollar banknote closely enough to read as "a lot of money" on camera, while staying clearly different from the genuine note in size and carrying no replicated security features.`,
       `Our standard unit is the [$100 note prop stack](/product/hundred-dollar-prop-note-stack/): 100 notes, banded, with a combined printed face value of $10,000. "Face value" here only describes the number printed on the notes. It says nothing about what the stack is worth, and the stack is priced per note, not by face value. If you only need a hand-held fan of cash for a close-up, a smaller pack is the better buy, and if you are dressing a whole vault or briefcase scene, a larger one saves money per note.`,
-      `Buyers searching for a "$100 note", a "100 dollar Australian note" or "$100 note Australia" are usually after one of three things: the look of the note for a shot, the right quantity for a scene, or reassurance that what they are buying is lawful. This guide covers all three, with the real prices, so you can compare suppliers on facts rather than headline numbers.`,
+      `Buyers searching for the Australian 100 dollar note, a "$100 note", a "100 dollar Australian note" or "$100 note Australia" are usually after one of three things: the look of the note for a shot, the right quantity for a scene, or reassurance that what they are buying is lawful. This guide covers all three, with the real prices, so you can compare suppliers on facts rather than headline numbers.`,
       `## $100 note prop pack sizes and prices`,
       `We sell $100 notes in five formats. Prices include GST, shipping is free on every order, and the per-note price falls as the pack gets larger because the print, banding and packing effort is spread across more notes.`,
       `| Format | Notes | Price | Price per note |
@@ -38,7 +42,7 @@ export const POSTS_V2 = [
 | Briefcase set (large) | 2,500 | $2,319 | $0.93 |
 | Duffel bag set | 5,000 | $4,629 | $0.93 |`,
       `Two things are worth noticing. First, the stack is the sweet spot for most buyers: it is the usual working unit on a set, and at $109 it costs less per note than the half pack. Second, the jumbo pack and the case sets are where large scenes become affordable. A 500-note briefcase set costs $479, which is less than the $545 that five separate stacks would cost, and the case is included.`,
-      `Our minimum order is $350 in goods, so a single stack on its own does not reach it. A stack plus a jumbo pack does, as does a briefcase set on its own. If you are building a bigger order, the [prop money pricing guide](/blog/how-much-does-prop-money-cost-in-australia/) explains how the same per-note logic applies across the $20 and $50 notes too.`,
+      `Our minimum order is $350 in goods, so a single stack on its own does not reach it. A stack plus a jumbo pack does, as does a briefcase set on its own. If you are building a bigger order, the [prop money pricing guide](/blog/prop-money-australia-guide/) explains how the same per-note logic applies across the $20 and $50 notes too.`,
       `## Why productions and creators choose the Australian $100 note`,
       `The $100 is the highest denomination in everyday Australian circulation, so the Australian 100 dollar banknote dominates prop orders. A stack of hundreds reads as serious money to an audience in a way a stack of twenties does not, and you need far fewer notes to build the same visual weight. A table with ten $100 stacks looks like a deal. Ten $20 stacks looks like a weekend float.`,
       `The current $100 note entered circulation on 29 October 2020 and carries Sir John Monash and Dame Nellie Melba, according to the [Reserve Bank's release on the new $100 banknote](https://www.rba.gov.au/media-releases/2020/mr-20-26.html). Audiences recognise the colour and portraits instantly, which is the whole point of a prop: the viewer should understand what they are looking at in a fraction of a second, without a close-up.`,
@@ -46,13 +50,13 @@ export const POSTS_V2 = [
       `## The RBA size rule for a $100 note replica`,
       `The Reserve Bank publishes the rule for reproducing banknotes. A physical reproduction must be smaller than three-quarters, or larger than one and a half times, the length and width of the genuine note, and it must be printed on one side only. You can read the full wording on the [RBA's page on reproducing banknotes](https://www.banknotes.rba.gov.au/legal/reproducing-banknotes/), and the offence provisions sit in the [Crimes (Currency) Act 1981](https://www.legislation.gov.au/C2004A02499/latest/text).`,
       `In plain terms, that means a compliant prop is visibly smaller than the genuine banknote, is single-sided, and cannot be mistaken for the genuine article when held next to it. Our notes are reduced-scale, carry the NOT LEGAL TENDER marking on every note, and leave out the security features a genuine note carries. We also never offer custom or buyer-specified serial numbers: serials are system-assigned placeholders only.`,
-      `If a supplier tells you their notes can pass as genuine, pass a detector or match the real thing exactly, walk away. Those are exactly the claims that put the buyer, not just the seller, at risk. For a longer explanation of the legal position, read our guide to the [RBA banknote reproduction rules](/blog/rba-banknote-reproduction-rules-explained/).`,
+      `If a supplier tells you their notes can pass as genuine, pass a detector or match the real thing exactly, walk away. Those are exactly the claims that put the buyer, not just the seller, at risk. For a longer explanation of the legal position, read our guide to the [RBA banknote reproduction rules](/blog/prop-money-australia-guide/).`,
       `## How many 100 dollar notes do you need?`,
       `The most common mistake is buying by total "cash value on screen" instead of by what the camera can actually see. Frame first, quantity second. Treat these as rough starting points and adjust them to your shot list.`,
       `**A wallet, a hand-off or a close-up.** Ten to thirty notes is plenty. A half pack covers it with spare notes for retakes, and it costs $59.`,
       `**A desk, a counter or a table spread.** One stack of 100 notes, fanned and piled, fills most medium shots. Order a second stack if the scene needs the cash handled, counted and re-stacked across several takes, because notes crease.`,
       `**A briefcase reveal.** A standard briefcase looks right with roughly 500 notes laid in banded bundles, which is why the 500-note briefcase set exists. Packing a case loose looks wrong on camera. Banded stacks, squared edges and a visible top layer sell the shot far better than quantity does.`,
-      `**A vault, a bag of cash or a heist spread.** Here you want 2,500 notes or more, and you want the top layers to be the best-looking notes. Large sets are the cheapest per note, and the layers underneath can be mixed denominations to save money. See our [producer's guide to bulk prop money](/blog/producers-guide-to-bulk-prop-money/) for how to plan that.`,
+      `**A vault, a bag of cash or a heist spread.** Here you want 2,500 notes or more, and you want the top layers to be the best-looking notes. Large sets are the cheapest per note, and the layers underneath can be mixed denominations to save money. See our [producer's guide to bulk prop money](/blog/prop-money-australia-guide/) for how to plan that.`,
       `Always add a buffer. Notes that are handled, thrown, counted on camera or fed through a money gun wear faster than notes that sit on a table. Ten to fifteen per cent spare is a sensible allowance for hands-on scenes, and it costs far less than a reshoot.`,
       `## $100 note vs $50 and $20 prop notes`,
       `The three denominations are priced per note, and the choice should follow the story rather than the price. A $20 note is the cheapest per note and suits everyday transactions. The $50 is the most requested for wallets, registers and hand-offs. The $100 carries the most visual weight, but it costs the most per note.`,
@@ -85,3 +89,5 @@ export const POSTS_V2 = [
     ],
   },
 ]
+
+export const POSTS_V2 = [...POSTS_100, ...POSTS_NOTES, ...POSTS_GUIDES, ...POSTS_MORE]
