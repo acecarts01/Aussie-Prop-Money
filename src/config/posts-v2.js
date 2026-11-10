@@ -1,6 +1,10 @@
 import { POSTS_NOTES } from './posts-v2-notes.js'
 import { POSTS_GUIDES } from './posts-v2-guides.js'
 import { POSTS_MORE } from './posts-v2-more.js'
+import { POSTS_GIFTS_A } from './posts-v2-gifts-a.js'
+import { POSTS_GIFTS_B } from './posts-v2-gifts-b.js'
+import { POSTS_GIFTS_C } from './posts-v2-gifts-c.js'
+import { POSTS_EVENTS } from './posts-v2-events.js'
 
 // Posts rebuilt to the owner's blog rule (see ~/.claude/skills/blog-post and docs/blog-plan-2026-11-10.md).
 // Each carries v2: true, a hero image with keyword alt text, a table of contents (from the ## headings), outbound links,
@@ -90,4 +94,4 @@ const POSTS_100 = [
   },
 ]
 
-export const POSTS_V2 = [...POSTS_100, ...POSTS_NOTES, ...POSTS_GUIDES, ...POSTS_MORE]
+export const POSTS_V2 = [...POSTS_100, ...POSTS_NOTES, ...POSTS_GUIDES, ...POSTS_MORE, ...POSTS_GIFTS_A, ...POSTS_GIFTS_B, ...POSTS_GIFTS_C, ...POSTS_EVENTS]

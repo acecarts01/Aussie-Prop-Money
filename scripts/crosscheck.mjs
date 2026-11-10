@@ -10,7 +10,7 @@ const root = join(__dirname, '..')
 
 const BANNED_TERMS = [
   'counterfeit', 'undetectable', 'indistinguishable', 'passes the pen test',
-  '1:1 scale', 'full size', 'spendable', 'heist money', 'ransom money',
+  '1:1 scale', 'full size', 'real money', 'spendable', 'heist money', 'ransom money',
   'low-profile payment', 'untraceable', 'anonymous payment',
 ]
 
@@ -39,7 +39,7 @@ console.log('WEBFORGE CROSSCHECK — Australian Reserve Props\n')
 for (const dir of SCAN_DIRS) {
   try {
     walk(join(root, dir), (file) => {
-      if (file.endsWith('crosscheck.mjs') || file.endsWith('CLAUDE.md') || file.endsWith('keyword-map.md') || file.endsWith('PROJECT.md') || file.endsWith('keyword-assignments.md') || file.endsWith('_semrush-clean.json') || file.endsWith('product-photo-shotlist.csv') || file.startsWith('.\docs\keywords-') || file.includes('semrush-research-brief')) return // these files legitimately document the banned/excluded words or are raw research data
+      if (file.endsWith('crosscheck.mjs') || file.endsWith('CLAUDE.md') || file.endsWith('keyword-map.md') || file.endsWith('PROJECT.md') || file.endsWith('keyword-assignments.md') || file.endsWith('_semrush-clean.json') || file.endsWith('product-photo-shotlist.csv') || /[\\/](keywords-|blog-keywords-|used-keywords|category-keywords)/.test(file) || file.includes('semrush-research-brief')) return // these files legitimately document the banned/excluded words or are raw research data
       let raw = readFileSync(file, 'utf8')
       // Client reviews are quoted exactly as sent (CLAUDE.md exception), so only the REVIEWS array is exempt.
       raw = raw.replace(/\r\n/g, '\n')

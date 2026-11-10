@@ -188,7 +188,7 @@ export default function HomePage() {
               Australian prop money for sale also covers parties and gifts: a <Link href="/shop/briefcases-bags/">bag of fake money</Link> for a prank, <Link href="/shop/confetti-party-favors/">money confetti and leis</Link>, a <Link href="/shop/accessories/">money gun</Link>, or <Link href="/shop/kids-play-money/">Australian play money</Link> for the classroom. Every order ships free and tracked, so prop money Australia-wide is a few clicks away.
             </p>
             <p>
-              Whatever you call it, prop cash, fake notes, prop Australian money, AUD prop money or fake Australian dollar props, it is the same compliant product, and you can see how much to order in our <Link href="/blog/how-much-prop-money-does-a-short-film-need/">short film prop money guide</Link>.
+              Whatever you call it, prop cash, fake notes, prop Australian money, AUD prop money or fake Australian dollar props, it is the same compliant product, and you can see how much to order in our <Link href="/blog/movie-props-australia/">short film prop money guide</Link>.
             </p>
           </div>
         </div>
