@@ -5,6 +5,9 @@ Australian Reserve Props — public ecommerce catalog. No authentication is requ
 ## Agent Registration
 No registration is needed. All resources below are public.
 
+OAuth Protected Resource Metadata: https://australianreserveprops.com/.well-known/oauth-protected-resource
+OpenID configuration: https://australianreserveprops.com/.well-known/openid-configuration
+
 | Resource | URL |
 |---|---|
 | Shop | https://australianreserveprops.com/shop/ |

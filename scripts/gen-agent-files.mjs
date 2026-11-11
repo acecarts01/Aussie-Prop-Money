@@ -31,7 +31,7 @@ function writeWellKnown(name, type, content) {
   WK[name] = { type, content }
 }
 
-// A — robots.txt is handled by src/app/robots.js (Next native). Nothing to do here.
+// A — robots.txt is handled by src/app/robots.txt/route.js (carries Content-Signal). Nothing to do here.
 
 // IndexNow key file — self-service, no account needed. Bing (and other IndexNow-
 // participating engines) verify ownership by fetching this exact file at the root.
@@ -68,7 +68,7 @@ ${categoryLines}
 - Prices are in AUD and include GST. Every product page states the number of notes and the prop face value received.
 
 ## Compliance
-All products are reproduced to differ from genuine Australian currency by at least 25% in size, per RBA
+All products are reproduced under three-quarters of the length and width of genuine Australian currency, printed on one side only, per RBA
 reproduction guidance, are clearly marked NOT LEGAL TENDER, and carry no replicated banknote security features.
 No custom or buyer-specified serial numbers are offered under any circumstances.
 
@@ -119,7 +119,7 @@ ${postLines}
 ${faqLines}
 
 ## Compliance
-Every note is reduced-scale (differs from genuine AUD notes by at least 25%), marked NOT LEGAL TENDER, carries no replicated
+Every note is reduced-scale (under three-quarters of the genuine length and width, printed on one side only), marked NOT LEGAL TENDER, carries no replicated
 security features, and is sold for film, theatre, education and novelty use only. No custom or buyer-specified serial numbers.
 `)
 
@@ -138,6 +138,9 @@ ${SITE.name} — public ecommerce catalog. No authentication is required to brow
 
 ## Agent Registration
 No registration is needed. All resources below are public.
+
+OAuth Protected Resource Metadata: ${base}/.well-known/oauth-protected-resource
+OpenID configuration: ${base}/.well-known/openid-configuration
 
 | Resource | URL |
 |---|---|
@@ -278,7 +281,7 @@ write('.well-known/acp.json', JSON.stringify({
 
 // K — ucp
 writeWellKnown('ucp', 'application/json', JSON.stringify({
-  ucp: '1.0',
+  ucp: { version: '1.0', spec: 'https://ucp.dev/specification/overview/' },
   protocol_version: '1.0',
   spec: 'https://ucp.dev/specification/overview/',
   schema: 'https://ucp.dev/schema/v1.json',

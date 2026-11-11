@@ -226,7 +226,7 @@ export const COMPLIANCE = {
   title: 'What This Is. What It Isn\'t.',
   lede: 'Prop money is a legitimate, long-standing part of film and theatre craft. It is legal to make and sell in Australia inside clear rules — and we build to those rules, not around them.',
   is: [
-    'Reduced-scale reproductions that differ from genuine notes by at least 25% (RBA reproduction guidance)',
+    'Reduced-scale reproductions under three-quarters of the genuine length and width, printed on one side only (RBA reproduction guidance)',
     'Clearly marked NOT LEGAL TENDER on every note — visible in-frame if you want it to be',
     'Made for film, TV, theatre, content creation, education, and novelty use',
     'Priced identically across every payment method',
@@ -448,24 +448,24 @@ export const CATEGORY_KEYWORDS = {
 
 export const CATEGORY_FAQS = {
   'twenty-dollar-notes': [
-    { q: 'How big is a prop $20 note compared to a real one?', a: 'Reproduced to differ from a genuine Australian $20 note by at least 25% in size, per RBA reproduction guidance, and clearly marked NOT LEGAL TENDER.' },
+    { q: 'How big is a prop $20 note compared to a real one?', a: 'Reproduced at under three-quarters of the length and width of a genuine Australian $20 note, printed on one side only, per RBA reproduction guidance, and clearly marked NOT LEGAL TENDER.' },
     { q: "What's a $20 prop note stack good for?", a: 'Sized for magic tricks, photo props, and mid-range prop budgets — a common denomination for close-up work.' },
     { q: 'Can I get an aged look on $20 notes?', a: 'Yes — every stack offers Standard Clean, Light Circulation, or Heavy Circulation at checkout.' },
   ],
   'fifty-dollar-notes': [
     { q: 'Why is $50 the most requested denomination?', a: "It's the most requested by film and theatre productions for wallet, register, and handoff scenes — visually substantial without needing a huge stack." },
-    { q: 'Is the $50 prop note the same size as a real one?', a: 'No — reproduced to differ by at least 25% in size, per RBA guidance, and marked NOT LEGAL TENDER.' },
+    { q: 'Is the $50 prop note the same size as a real one?', a: 'No. It is reproduced at under three-quarters of the genuine length and width, printed on one side only, per RBA guidance, and marked NOT LEGAL TENDER.' },
     { q: 'What pack sizes are available?', a: 'Half Pack (50 notes), Stack (100 notes), and Jumbo Pack (250 notes).' },
   ],
   'hundred-dollar-notes': [
     { q: "What's the $100 stack used for?", a: 'Briefcase reveals, high-stakes narrative scenes, and premium-looking stacks where scale matters.' },
     { q: 'How many notes come in a $100 Jumbo Pack?', a: '250 notes, $25,000 in combined face value.' },
-    { q: 'Is it legal to reproduce a $100 note design?', a: 'Yes, provided it differs in size by at least 25%, carries no replicated security features, and is clearly marked NOT LEGAL TENDER — see our FAQ page for the full legal explanation.' },
+    { q: 'Is it legal to reproduce a $100 note design?', a: 'Yes, provided the reproduction is under three-quarters (or over 1.5 times) the genuine length and width, printed on one side only, carries no replicated security features, and is clearly marked NOT LEGAL TENDER — see our FAQ page for the full legal explanation.' },
   ],
   'vintage-series-notes': [
     { q: 'What’s different about the Vintage & Legacy Series?', a: 'An older-style Australian note design, useful for period productions set before the current note series.' },
     { q: 'Can I mix vintage and current-series notes in one order?', a: 'Yes — order any combination of Vintage and standard denomination products together.' },
-    { q: 'Are vintage notes compliant the same way?', a: 'Yes, the same 25% size-difference and NOT LEGAL TENDER marking applies.' },
+    { q: 'Are vintage notes compliant the same way?', a: 'Yes, the same RBA size rule (under three-quarters of the genuine length and width, one side only) and NOT LEGAL TENDER marking apply.' },
   ],
   'packs-bundles': [
     { q: "What's the difference between the Starter Pack and Bulk Production Pack?", a: 'The Starter Pack mixes all three denominations for a first order; the Bulk Production Pack is a much larger mixed-denomination volume built for productions needing multiple scenes.' },
@@ -547,7 +547,7 @@ export const PACKAGING_OPTIONS = [
 ]
 
 const disclaimer =
-  'Reproduced at a size that differs from genuine Australian currency by at least 25%, per RBA reproduction guidance. Clearly marked NOT LEGAL TENDER on every note, with no replicated banknote security features. For film, theatre, education, and novelty use only.'
+  'Reproduced at under three-quarters of the length and width of genuine Australian currency, printed on one side only, per RBA reproduction guidance. Clearly marked NOT LEGAL TENDER on every note, with no replicated banknote security features. For film, theatre, education, and novelty use only.'
 
 const chequeDisclaimer =
   'A novelty presentation piece only — not a real, negotiable cheque and cannot be deposited or cashed.'
@@ -971,7 +971,7 @@ export const FAQS = [
   { q: 'What is the minimum sentence for prop money in Australia?', a: 'Under the Crimes (Currency) Act 1981, sentences for proping or circulating fake currency can range from significant fines to 10+ years of imprisonment, depending on the severity of the offence.' },
   {
     q: 'Is prop money legal in Australia?',
-    a: 'Yes. Reproducing Australian banknote designs is legal under the Crimes (Currency) Act 1981 provided the reproduction differs in size from genuine currency by at least 25%, is printed one-sided or otherwise clearly non-genuine, and is marked as not legal tender — the RBA publishes reproduction guidelines covering exactly this. Every note we sell is produced to meet these requirements.',
+    a: 'Yes. Reproducing Australian banknote designs is legal under the Crimes (Currency) Act 1981 provided the reproduction is smaller than three-quarters (or larger than one and a half times) the length and width of the genuine note, is printed on one side only, and is marked as not legal tender — the RBA publishes reproduction guidelines covering exactly this. Every note we sell is produced to meet these requirements.',
   },
   {
     q: 'Can prop money be used as real currency?',

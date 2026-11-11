@@ -24,7 +24,7 @@ const schema = graphOf({
 
 const DIFF = [
   ['Australian spec, not US', 'Built around the Crimes (Currency) Act 1981 and RBA reproduction guidance — not repackaged US-dollar props.'],
-  ['Reduced-scale, always', 'Every note differs from genuine currency by at least 25% and carries no replicated security features.'],
+  ['Reduced-scale, always', 'Every note is under three-quarters of the genuine length and width, printed on one side only, and carries no replicated security features.'],
   ['Marked, and proud of it', 'NOT LEGAL TENDER on every note. Visible in frame if you want it. It\'s the whole point.'],
   ['A registered company, on the record', 'Money 365 Pty Ltd, ABN 84 676 764 971, GST registered. Look us up on the Australian Business Register before you order.'],
   ['No custom serials', 'System-assigned placeholder serials only. On every product. At any volume.'],

@@ -91,7 +91,7 @@ export default function Footer() {
         </div>
 
         <p className="footer-legal">
-          All products sold by {SITE.name} are novelty prop items — reproductions sized to differ from genuine Australian currency by at least 25% in line with Reserve Bank of Australia reproduction guidance, carrying no replicated banknote security features and clearly marked NOT LEGAL TENDER. They are not currency, cannot be used as payment, and are sold for film, television, theatre, content creation, education, and novelty use only. We do not offer custom or buyer-specified serial numbers on any product. {SITE.name} is a trading name of {SITE.legalName} (ABN {SITE.abn}). Australian Consumer Law rights apply.
+          All products sold by {SITE.name} are novelty prop items — reproductions sized under three-quarters of the genuine length and width, printed on one side only, in line with Reserve Bank of Australia reproduction guidance, carrying no replicated banknote security features and clearly marked NOT LEGAL TENDER. They are not currency, cannot be used as payment, and are sold for film, television, theatre, content creation, education, and novelty use only. We do not offer custom or buyer-specified serial numbers on any product. {SITE.name} is a trading name of {SITE.legalName} (ABN {SITE.abn}). Australian Consumer Law rights apply.
         </p>
 
         <div className="footer-bottom">

@@ -13,7 +13,7 @@ export function GET() {
     shipping: 'free, Australia only',
     payment_methods: PAYMENT_METHODS.map((m) => m.label),
     crypto_discount: ORDER.cryptoDiscount,
-    compliance: 'Reduced-scale (≥25% size difference from genuine AUD notes), marked NOT LEGAL TENDER, no replicated security features. Film, theatre, education and novelty use only.',
+    compliance: 'Reduced-scale (under three-quarters of the genuine length and width, one side only), marked NOT LEGAL TENDER, no replicated security features. Film, theatre, education and novelty use only.',
     categories: CATEGORIES.map((c) => ({ slug: c.slug, name: c.name, url: `${base}/shop/${c.slug}/` })),
     products: PRODUCTS.map((p) => ({
       slug: p.slug,
