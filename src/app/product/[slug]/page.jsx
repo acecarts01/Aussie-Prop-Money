@@ -125,7 +125,7 @@ export default function ProductPage({ params }) {
               <span className="specimen-tag">{category?.name}</span>
               <span className="specimen-tag right">Not legal tender</span>
               {photo ? (
-                <Image src={`/images/products/${photo}`} alt={product.name} width={1600} height={1200} priority />
+                <Image src={`/images/products/${photo}`} alt={product.name} width={1600} height={1200} priority fetchPriority="high" sizes="(max-width: 900px) 94vw, 600px" />
               ) : (
                 <ProductArt colorKey={category?.color} label={artLabelFor(product)} />
               )}

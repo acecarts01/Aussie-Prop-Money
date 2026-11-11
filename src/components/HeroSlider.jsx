@@ -80,6 +80,7 @@ export default function HeroSlider() {
                 alt={SLIDES[active].title || 'Prop money'} 
                 fill 
                 priority 
+                fetchPriority="high" 
                 sizes="100vw" 
                 style={{ objectFit: 'cover', opacity: 0.6 }} 
               />
@@ -174,7 +175,7 @@ export default function HeroSlider() {
         </motion.div>
       </AnimatePresence>
 
-      <div className="hero-dots" style={{ position: 'absolute', bottom: '2rem', left: '50%', transform: 'translateX(-50%)', display: 'flex', gap: '0.5rem', zIndex: 10 }}>
+      <div className="hero-dots" style={{ position: 'absolute', bottom: '2rem', left: '50%', transform: 'translateX(-50%)', display: 'flex', gap: '0', zIndex: 10 }}>
         {SLIDES.map((_, i) => (
           <button
             key={i}
@@ -182,7 +183,7 @@ export default function HeroSlider() {
             className={`dot ${i === active ? 'active' : ''}`}
             onClick={() => setActive(i)}
             aria-label={`Go to slide ${i + 1}`}
-            style={{ width: i === active ? '24px' : '8px', height: '8px', borderRadius: '999px', background: i === active ? 'var(--accent)' : 'var(--line-strong)', border: 0, transition: 'all 300ms ease', cursor: 'pointer' }}
+            style={{ width: i === active ? '40px' : '24px', height: '24px', boxSizing: 'border-box', padding: '8px', borderRadius: '999px', background: i === active ? 'var(--accent)' : 'var(--line-strong)', backgroundClip: 'content-box', border: 0, transition: 'all 300ms ease', cursor: 'pointer' }}
           />
         ))}
       </div>
