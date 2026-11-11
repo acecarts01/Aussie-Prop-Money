@@ -256,7 +256,7 @@ export default function ProductPage({ params }) {
       {/* Sticky mobile CTA */}
       <div className="sticky-cta" aria-hidden="true">
         <span className="product-price">{formatPrice(product.price)}</span>
-        <a href="#buy" className="btn btn-accent">Configure &amp; add</a>
+        <a href="#buy" className="btn btn-accent" tabIndex={-1}>Configure &amp; add</a>
       </div>
     </div>
   )

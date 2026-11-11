@@ -95,6 +95,7 @@ export default function ShopPage() {
               <p className="h-label" style={{ fontSize: '0.9rem', marginBottom: '1rem', color: 'var(--accent)' }}>Max Price</p>
               <input 
                 type="range" 
+                aria-label="Maximum price" 
                 min="0" 
                 max="5000" 
                 step="100" 
